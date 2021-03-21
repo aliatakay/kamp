@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset238 Consolas;}{\f5\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
+\fs48 1. G\f1\lang1033\'fc\f0\lang1055 n\f2\fs28\par
+
+\pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf2\f1\fs36\lang1033\'d6\f0\lang1055 N B\f2\u304?\f0 LG\f2\u304?\f0\fs28    ------------------------------------------------------------------------------\cf0\par
+Bu derste programlama dili olarak \cf3 Python\cf0  kullan\f2\u305?\f0 lacak.\par
+Kod yazmak i\f1\lang1033\'e7\f0\lang1055 in \cf3 repl.it \cf0 sitesi kullan\f2\u305?\f0 lacak.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf1\fs36 1. DERS\fs28    ---------------------------------------------------------------------------------\cf0 Yaz\f2\u305?\f0 l\f2\u305?\f0 m geli\f2\'ba\f0 tirmede ama\f1\lang1033\'e7\f0\lang1055 ; bir veriyi y\f1\lang1033\'f6\f0\lang1055 netmektir.\par
+Bir web sayfas\f2\u305?\f0 nda g\f1\lang1033\'f6\f0\lang1055 rd\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 z her \f2\'ba\f0 ey, bir verinin g\f1\lang1033\'f6\f0\lang1055 sterilmesi olay\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in web sayfas\f2\u305?\f0 nda yer alan sabit bir text, yaz\f2\u305?\f0 l\f2\u305?\f0 m taraf\f2\u305?\f0 nda string bir de\f2\u287?\f0 i\f2\'ba\f0 ken olarak tan\f2\u305?\f0 mlanm\f2\u305?\'ba\f0 t\f2\u305?\f0 r.\f1\lang31\par
+\par
+\highlight4\f3\fs24\lang1055 title = \cf3 "\f4\u304?\f3 lginizi \f5\lang1033\'c7\f3\lang1055 ekebilir"\cf0                                   \cf2\f0\fs28\par
+\cf0\highlight0\par
+Kodda yer alan \cf3 title\cf0  isimli yap\f2\u305?\f0 , \cf3 de\f2\u287?\f0 i\f2\'ba\f0 ken\cf0  olarak adland\f2\u305?\f0 r\f2\u305?\f0 l\f2\u305?\f0 r.\par
+Az \f1\lang1033\'f6\f0\lang1055 nce verdi\f2\u287?\f0 imiz web sayfas\f2\u305?\f0  \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 inde oldu\f2\u287?\f0 u gibi, bir text ifadeyi kod taraf\f2\u305?\f0 nda bir de\f2\u287?\f0 i\f2\'ba\f0 ken sayesinde tutar\f2\u305?\f0 z.\par
+\cf1\par
+\cf0 Python dilinde konsol ekran\f2\u305?\f0 na \f1\lang1033\'e7\f2\lang1055\u305?\f0 kt\f2\u305?\f0  basmak i\f1\lang1033\'e7\f0\lang1055 in a\f2\'ba\f0 a\f2\u287?\u305?\f0 daki kod yaz\f2\u305?\f0 l\f2\u305?\f0 r.\cf1\par
+\par
+\cf0\highlight4\f3\fs24 title = \cf3 "\f4\u304?\f3 lginizi \f5\lang1033\'c7\f3\lang1055 ekebilir"\cf0                                   \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24 print(title)                                                  \cf1\highlight0\f0\fs28\par
+\par
+Peki bu \f1\lang1033\'f6\f0\lang1055 rnekte yer alan text verisine benzer verileri neden de\f2\u287?\f0 i\f2\'ba\f0 kenler ile tutmam\f2\u305?\f0 z gerekiyor?\par
+\cf0\f1\lang1033\par
+\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  biz ayn\f2\u305?\f0  text ifadeyi farkl\f2\u305?\f0  sayfalarda bir\f1\lang1033\'e7\f0\lang1055 ok kez kullanabiliriz. S\f1\lang1033\'fc\f0\lang1055 rekli ayn\f2\u305?\f0  veriyi tekrar tekrar yazmak yerine, bir de\f2\u287?\f0 i\f2\'ba\f0 ken yard\f2\u305?\f0 m\f2\u305?\f0 yla veriye eri\f2\'ba\f0 im sa\f2\u287?\f0 lar\f2\u305?\f0 z.\par
+En \f1\lang1033\'f6\f0\lang1055 nemlisi de ileride verinin de\f2\u287?\f0 i\f2\'ba\f0 mesi gerekti\f2\u287?\f0 inde, veriyi kulland\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z her yerde de\f2\u287?\f0 i\f2\'ba\f0 iklik yapmak yerine, de\f2\u287?\f0 i\f2\'ba\f0 kenin de\f2\u287?\f0 erini g\f1\lang1033\'fc\f0\lang1055 ncelleyerek t\f1\lang1033\'fc\f0\lang1055 m veriyi de\f2\u287?\f0 i\f2\'ba\f0 tirmi\f2\'ba\f0  oluruz.\par
+\par
+A\f2\'ba\f0 a\f2\u287?\u305?\f0 daki 2 kod da ayn\f2\u305?\f0  \f1\lang1033\'e7\f2\lang1055\u305?\f0 kt\f2\u305?\f0 y\f2\u305?\f0  verir.\par
+Ancak yukar\f2\u305?\f0 da bahsetti\f2\u287?\f0 imiz sebeplerden dolay\f2\u305?\f0 , de\f2\u287?\f0 i\f2\'ba\f0 ken kullanarak kod yazmam\f2\u305?\f0 z en verimlisi olacakt\f2\u305?\f0 r.\par
+\cf1\par
+\cf0\highlight4\f3\fs24 print(\cf3 "\f4\u304?\f3 lginizi \f5\lang1033\'c7\f3\lang1055 ekebilir"\cf0 )          \cf5 # Verimsiz Kod\cf0            \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24                                                               \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24 title = \cf3 "\f4\u304?\f3 lginizi \f5\lang1033\'c7\f3\lang1055 ekebilir"\cf0          \cf5 # Verimli Kod\cf0             \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24 print(title)                                                  \cf1\highlight0\f0\fs28\par
+\par
+\cf2\fs36 KURAL\fs28    ----------------------------------------------------------------------------------\cf0\par
+\cf3 DRY: Don't Repeat Yourself\cf0\par
+Yaz\f2\u305?\f0 l\f2\u305?\f0 m geli\f2\'ba\f0 tirirken, ayn\f2\u305?\f0  kodu farkl\f2\u305?\f0  yerlerde kullanmam\f2\u305?\f0 z gerekiyorsa, kodu tekrar yazmak b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k bir hatad\f2\u305?\f0 r.\par
+Kod tekrar\f2\u305?\f0 n\f2\u305?\f0  \f1\lang1033\'f6\f0\lang1055 nlemek i\f1\lang1033\'e7\f0\lang1055 in, duruma uygun merkezi yap\f2\u305?\f0  sa\f2\u287?\f0 lanmal\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in tekrar etmesi gereken \f2\'ba\f0 ey bir text ise, bu veri bir de\f2\u287?\f0 i\f2\'ba\f0 kende tutulmal\f2\u305?\f0 d\f2\u305?\f0 r.\par
+Tekrar etmesi gereken \f2\'ba\f0 ey bir kod blo\f2\u287?\f0 u ise, bu kod blo\f2\u287?\f0 u bir metot olarak olu\f2\'ba\f0 turulmal\f2\u305?\f0 d\f2\u305?\f0 r.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\cf1\par
+\f2\'aa\f0 imdi veri tiplerini \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\cf0 Programlamada \cf3 metinsel \cf0 de\f2\u287?\f0 erler, \cf3 string \cf0 veri tipi olarak adland\f2\u305?\f0 r\f2\u305?\f0 l\f2\u305?\f0 r.\cf1\par
+\cf0 Yukar\f2\u305?\f0 da yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z ilk kod \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 inde string tipte bir veriyi, title isimli bir de\f2\u287?\f0 i\f2\'ba\f0 kene atam\f2\u305?\'ba\f0 t\f2\u305?\f0 k.\par
+String veri tipi, programlamada yer alan bir\f1\lang1033\'e7\f0\lang1055 ok veri tipinden yaln\f2\u305?\f0 zca bir tanesidir.\par
+\f2\'aa\f0 imdi farkl\f2\u305?\f0  veri tiplerini inceleyelim.\par
+\cf1\par
+\cf3 Metinsel\cf0  de\f2\u287?\f0 erler, \cf3 string\cf0  olarak adland\f2\u305?\f0 r\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\cf3 Tam say\f2\u305?\cf0\f0  de\f2\u287?\f0 erler, \cf3 integer\cf0  olarak aland\f2\u305?\f0 r\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\cf3 Ondal\f2\u305?\f0 kl\f2\u305?\f0  say\f2\u305?\f0  \cf0 de\f2\u287?\f0 erler, \cf3 float\cf0  olarak adland\f2\u305?\f0 r\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\cf1\par
+\cf0\highlight4\f3\fs24 title = \cf3 "\f4\u304?\f3 lginizi \f5\lang1033\'c7\f3\lang1055 ekebilir"\cf0                \cf5 # string \cf0           \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24 vade = 48                                  \cf5 # integer\cf0           \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24 faizOrani = 1.69                           \cf5 # float\cf0             \cf1\highlight0\f0\fs28\par
+\par
+\cf0 De\f2\u287?\f0 i\f2\'ba\f0 kenlerin veri tipini g\f1\lang1033\'f6\f0\lang1055 rmek i\f1\lang1033\'e7\f0\lang1055 in a\f2\'ba\f0 a\f2\u287?\u305?\f0 daki Python kodu yaz\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\cf1\par
+\cf6\highlight4\f3\fs24 print\cf0 (\cf6 type\cf0 (title))                         \cf5 # str \cf0              \cf1\highlight0\f0\fs28\par
+\cf6\highlight4\f3\fs24 print\cf0 (\cf6 type\cf0 (vade))                          \cf5 # int\cf0               \cf1\highlight0\f0\fs28\par
+\cf6\highlight4\f3\fs24 print\cf0 (\cf6 type\cf0 (faizOrani))                     \cf5 # float\cf0             \cf1\highlight0\f0\fs28\par
+\cf0\par
+Sonu\f1\lang1033\'e7\f0\lang1055  olarak \cf3 de\f2\u287?\f0 i\f2\'ba\f0 kenler\cf0 ;\cf3  veri tutuculard\f2\u305?\f0 r\cf0 .\par
+Bu derste yaln\f2\u305?\f0 zca 3 temel veri tipini inceledik.\par
+Bunlar; string, integer ve float veri tipleriydi.\par
+\f2\u304?\f0 lerleyen derslerde \f1\lang1033\'e7\f0\lang1055 ok daha kompleks veri tiplerini \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\par
+Python programlama dilinde farkl\f2\u305?\f0  veri tiplerini print ile basabilmek i\f1\lang1033\'e7\f0\lang1055 in \cf3 tip d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055  \cf0 yapmam\f2\u305?\f0 z gerekir. Aksi halde hata al\f2\u305?\f0 r\f2\u305?\f0 z.\par
+\cf1\par
+\cf6\highlight4\f3\fs24 print\cf0 (\cf3 "Ba\f4\'ba\f3 l\f4\u305?\f3 k: " \cf0 + title)        \cf5 # \f5\lang1033\'c7\f3\lang1055 al\f4\u305?\'ba\u305?\f3 r. Tipler ayn\f4\u305?\f3 . \cf0      \cf1\highlight0\f0\fs28\par
+\cf6\highlight4\f3\fs24 print\cf0 (\cf3 "Vade: " \cf0 + vade)           \cf5 # Hata verir. Tipler farkl\f4\u305?\f3 .\cf0  \cf1\highlight0\f0\fs28\par
+\cf6\highlight4\f3\fs24 print\cf0 (\cf3 "Vade: " \cf0 + \cf6 str\cf0 (vade))      \cf5 # \f5\lang1033\'c7\f3\lang1055 al\f4\u305?\'ba\u305?\f3 r. Tip d\f5\lang1033\'f6\f3\lang1055 n\f5\lang1033\'fc\f4\lang1055\'ba\f3 t\f5\lang1033\'fc\f3\lang1055 rd\f5\lang1033\'fc\f3\lang1055 k.\cf0   \cf1\highlight0\f0\fs28\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+\cf3 (+) sembol\f1\lang1033\'fc\f0\lang1055  operat\f1\lang1033\'f6\f0\lang1055 r olarak adland\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\cf0 Programlamada bir\f1\lang1033\'e7\f0\lang1055 ok operat\f1\lang1033\'f6\f0\lang1055 r mevcuttur.\par
+En temel operat\f1\lang1033\'f6\f0\lang1055 rlerden biri (+) operat\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 d\f1\lang1033\'fc\f0\lang1055 r.\par
+Say\f2\u305?\f0 sal de\f2\u287?\f0 erleri toplamak i\f1\lang1033\'e7\f0\lang1055 in (+) operat\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055  kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+Metinsel de\f2\u287?\f0 erleri yan yana eklemek i\f1\lang1033\'e7\f0\lang1055 in de (+) operat\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055  kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+Farkl\f2\u305?\f0  operat\f1\lang1033\'f6\f0\lang1055 rleri ilerleyen zamanlarda \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\cf1\par
+\f2\'aa\f0 imdi \f2\'ba\f0 art bloklar\f2\u305?\f0 n\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\cf0\f2\'aa\f0 art bloklar\f2\u305?\f0 , yaz\f2\u305?\f0 l\f2\u305?\f0 m\f2\u305?\f0 n farkl\f2\u305?\f0  ko\f2\'ba\f0 ullarda farkl\f2\u305?\f0  davranmas\f2\u305?\f0 n\f2\u305?\f0  sa\f2\u287?\f0 layan kod bloklar\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in bir bankan\f2\u305?\f0 n web uygulamas\f2\u305?\f0 nda ana sayfay\f2\u305?\f0  ziyaret etti\f2\u287?\f0 imizde, e\f2\u287?\f0 er kullan\f2\u305?\f0 c\f2\u305?\f0  giri\f2\'ba\f0 i yapt\f2\u305?\f0 ysak farkl\f2\u305?\f0 , kullan\f2\u305?\f0 c\f2\u305?\f0  giri\f2\'ba\f0 i yapmad\f2\u305?\f0 ysak farkl\f2\u305?\f0   bir sayfa ile kar\f2\'ba\u305?\f0 la\f2\'ba\u305?\f0 r\f2\u305?\f0 z.\par
+\f2\u304?\'ba\f0 te bu ko\f2\'ba\f0 ul durumlar\f2\u305?\f0 n\f2\u305?\f0  \f2\'ba\f0 art bloklar\f2\u305?\f0  ile sa\f2\u287?\f0 lar\f2\u305?\f0 z.\par
+\cf1\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+\f1\lang1033\'c7\f0\lang1055 o\f2\u287?\f0 u programlama dilinde \f2\'ba\f0 art bloklar\f2\u305?\f0  \cf3 if\cf0  anahtar kelimesi ile yaz\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\f2\'aa\f0 art ko\f2\'ba\f0 ulunun aksini belirten blok ise \cf3 else\cf0  anahtar kelimesi ile yaz\f2\u305?\f0 l\f2\u305?\f0 r.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\cf1\par
+\cf0\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in bir banka uygulamas\f2\u305?\f0 nda dolar\f2\u305?\f0 n d\f1\lang1033\'fc\f0\lang1055 ne g\f1\lang1033\'f6\f0\lang1055 re de\f2\u287?\f0 i\f2\'ba\f0 im sonucunu g\f1\lang1033\'f6\f0\lang1055 stermek istiyoruz. Dolar d\f1\lang1033\'fc\f0\lang1055 ne g\f1\lang1033\'f6\f0\lang1055 re artm\f2\u305?\'ba\f0 sa farkl\f2\u305?\f0 , azalm\f2\u305?\'ba\f0 sa farkl\f2\u305?\f0  bir ekran \f1\lang1033\'e7\f2\lang1055\u305?\f0 kt\f2\u305?\f0 s\f2\u305?\f0  verece\f2\u287?\f0 iz. Bu t\f1\lang1033\'fc\f0\lang1055 r bir kodu, \f2\'ba\f0 art bloklar\f2\u305?\f0  kullanarak yazar\f2\u305?\f0 z.\par
+\cf1\par
+\cf0\highlight4\f3\fs24 dolarDun = 7.35 \cf5                                               \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24 dolarBugun\cf5  \cf0 = 7.45                                             \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24                                                               \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24 if\cf0  dolarDun > dolarBugun:                               \cf5  \cf0      \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24   \cf6 print\cf0 (\cf3 "Dolar D\f5\lang1033\'fc\f4\lang1055\'ba\f5\lang1033\'fc\f4\lang1055\'ba\f3 te"\cf0 )                                      \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24                                                               \par
+\cf2 if\cf0  dolarDun < dolarBugun:                                     \par
+  \cf6 print\cf0 (\cf3 "Dolar Art\f4\u305?\'ba\f3 ta"\cf0 )                                      \par
+\cf1\highlight0\f0\fs28\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Her programlama dilinin kendine ait yaz\f2\u305?\f0 m kurallar\f2\u305?\f0  vard\f2\u305?\f0 r.\par
+Bu yaz\f2\u305?\f0 m kurallar\f2\u305?\f0  dilden dile farkl\f2\u305?\f0 l\f2\u305?\f0 k g\f1\lang1033\'f6\f0\lang1055 sterebilir.\par
+Bir programlama diline ait yaz\f2\u305?\f0 m kurallar\f2\u305?\f0 na \cf3 syntax \cf0 denir.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\cf1\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Python dilinde bir blo\f2\u287?\f0 un i\f1\lang1033\'e7\f0\lang1055 ine yaz\f2\u305?\f0 lan kodlar, bo\f2\'ba\f0 luk karakterine bakarak yorumlan\f2\u305?\f0 r. Bir \f2\'ba\f0 art blo\f2\u287?\f0 una ait kodlar\f2\u305?\f0  yazarken, uygun say\f2\u305?\f0 da bo\f2\'ba\f0 luk karakteri b\f2\u305?\f0 rak\f2\u305?\f0 l\f2\u305?\f0 r. Bu kavrama \cf3 indentation \cf0 denir.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\cf1\par
+------------------------------------------------------------------------------------------------\par
+\par
+\par
+\par
+\par
+\cf0\f1\lang31\par
+}
+ 
