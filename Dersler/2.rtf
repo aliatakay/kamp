@@ -1,0 +1,87 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset238 Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
+\fs48 2. G\f1\lang1033\'fc\f0\lang1055 n\f2\fs28\par
+
+\pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf2\f1\fs36\lang1033\'d6\f0\lang1055 N B\f2\u304?\f0 LG\f2\u304?\f0\fs28    ------------------------------------------------------------------------------\cf0\par
+Bu derste programlama dili olarak \cf3 C#\cf0  kullan\f2\u305?\f0 lacak.\par
+IDE olarak \cf3 Visual Studio 2019\cf0  kullan\f2\u305?\f0 lacak.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf1\fs36 1. DERS\fs28    ---------------------------------------------------------------------------------\par
+\par
+\cf0 C# programlama dili backend teknolojilerinde yo\f2\u287?\f0 un olarak kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+C# programlama dili \cf3 .NET Framework \cf0 altyap\f2\u305?\f0 s\f2\u305?\f0  ile birlikte gelir.\par
+.NET Framework, C# dilinin geli\f2\'ba\f0 tirildi\f2\u287?\f0 i ve aya\f2\u287?\f0 a kald\f2\u305?\f0 r\f2\u305?\f0 ld\f2\u305?\u287?\u305?\f0  ortamd\f2\u305?\f0 r.\par
+.NET Framework ortam\f2\u305?\f0 nda; web, masa\f1\lang1033\'fc\f0\lang1055 st\f1\lang1033\'fc\f0\lang1055 , mobil t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nde uygulamalar geli\f2\'ba\f0 tirilebilir.\par
+\par
+\cf1 Visual Studio 2019'u a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\cf0\par
+Create a new project se\f1\lang1033\'e7\f0\lang1055 ene\f2\u287?\f0 ine t\f2\u305?\f0 klayarak yeni bir proje olu\f2\'ba\f0 turuyoruz.\par
+\cf1 Console App (.NET Core)\cf0  t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055  se\f1\lang1033\'e7\f0\lang1055 erek bir konsol projesi yarat\f2\u305?\f0 yoruz.\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+.NET Framework t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ndeki projeler yaln\f2\u305?\f0 zca Windows ortam\f2\u305?\f0 nda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 r. Bundan dolay\f2\u305?\f0  geli\f2\'ba\f0 mi\f2\'ba\f0  versiyon olan .NET Core t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nde bir proje olu\f2\'ba\f0 turduk.\par
+.NET Core t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nde projeler Linux, MacOs \f1\lang1033\'fc\f0\lang1055 zerinde de \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 abilir.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\par
+\cf1 KampIntro\cf0  ismiyle projeyi olu\f2\'ba\f0 turuyoruz.\par
+Konsol projesini sadece C# programlama dilininin temellerini \f1\lang1033\'f6\f2\lang1055\u287?\f0 renmek i\f1\lang1033\'e7\f0\lang1055 in olu\f2\'ba\f0 turduk. \f2\u304?\f0 lerleyen derslerde geli\f2\'ba\f0 mi\f2\'ba\f0  projelere ge\f1\lang1033\'e7\f0\lang1055 ece\f2\u287?\f0 iz.\par
+Bu derste \cf1 kodlama.io \cf0 sitesini inceleyerek \f1\lang1033\'f6\f0\lang1055 rnekleme yapaca\f2\u287?\u305?\f0 z.\cf2\par
+\cf0 Sitenin ana sayfas\f2\u305?\f0 nda kategori ve e\f2\u287?\f0 itmen etiketlerini g\f1\lang1033\'f6\f0\lang1055 rebiliyoruz.\cf2\par
+\f2\u304?\f0 lk dersten hat\f2\u305?\f0 rlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z gibi bunlar birer sabit metinsel ifadedir.\par
+\par
+\cf0 C# programlama dilinde \cf3 Type Safety\cf0  yani tip g\f1\lang1033\'fc\f0\lang1055 venli\f2\u287?\f0 i mevcuttur.\par
+De\f2\u287?\f0 i\f2\'ba\f0 ken tan\f2\u305?\f0 mlamas\f2\u305?\f0  yaparken, de\f2\u287?\f0 i\f2\'ba\f0 ken tipi mutlaka yaz\f2\u305?\f0 lmal\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\f1\lang31\par
+\cf2\highlight4\f3\fs24\lang1055 string\cf0  kategoriEtiketi = \cf3 "Kategori"\cf0 ;\cf3          \cf0                  \cf2\f0\fs28\par
+\cf0\highlight0\par
+Zorunlu olarak de\f2\u287?\f0 i\f2\'ba\f0 ken tipini string olarak belirttik.\par
+Kod par\f1\lang1033\'e7\f0\lang1055 ac\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0 n tamamland\f2\u305?\u287?\u305?\f0  yerde mutlaka noktal\f2\u305?\f0  virg\f1\lang1033\'fc\f0\lang1055 l kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\par
+\cf2\fs36 KURAL\fs28    ----------------------------------------------------------------------------------\cf0\par
+C# programlama dilinde string ifadeler tan\f2\u305?\f0 mlan\f2\u305?\f0 rken mutlaka \f1\lang1033\'e7\f0\lang1055 ift t\f2\u305?\f0 rnak aras\f2\u305?\f0 na yaz\f2\u305?\f0 lmal\f2\u305?\f0 d\f2\u305?\f0 r. \par
+Tek t\f2\u305?\f0 rnak kullan\f2\u305?\f0 m\f2\u305?\f0  karakter tan\f2\u305?\f0 mlarken kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\par
+\cf2\highlight4\f3\fs24 string\cf0  kelime = \cf3 "Kelime"\cf0 ;                                     \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24 char\cf0  karakter = \cf3 'k'\cf0 ;                                          \cf3\highlight0\f0\fs28\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+Programda tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z \cf3 de\f2\u287?\f0 i\f2\'ba\f0 kenler\cf0 , birer \cf3 de\f2\u287?\f0 er tutucudur\cf0 .\par
+Yukar\f2\u305?\f0 daki \f1\lang1033\'f6\f0\lang1055 rnekte metinsel bir de\f2\u287?\f0 eri, string bir de\f2\u287?\f0 i\f2\'ba\f0 kene atad\f2\u305?\f0 k.\par
+De\f2\u287?\f0 i\f2\'ba\f0 kenimizi bir \cf3 alias \cf0 (takma ad) ile olu\f2\'ba\f0 turarak bir koda d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 t\f1\lang1033\'fc\f0\lang1055 rd\f1\lang1033\'fc\f0\lang1055 k.\par
+Yani art\f2\u305?\f0 k program, \cf3 kategoriEtiketi \cf0 isimli anahtar kelimeyi bir kod olarak alg\f2\u305?\f0 layacakt\f2\u305?\f0 r.\par
+\par
+Di\f2\u287?\f0 er veri tiplerinin nas\f2\u305?\f0 l tan\f2\u305?\f0 mland\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 relim.\par
+\par
+\cf2\highlight4\f3\fs24 int\cf0  ogrenciSayisi = 32000;                                    \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24 double\cf0  faizOrani = 1.45;                                      \par
+\cf2 string\cf0  kategoriEtiketi = \cf3 "Kategori"\cf0 ;                          \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24 bool\cf0  sistemeGirisYapildi = \cf2 false\cf0 ;                             \highlight0\f0\fs28\par
+\par
+\f2\'aa\f0 imdi syntax'\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renmek i\f1\lang1033\'e7\f0\lang1055 in basit bir if blo\f2\u287?\f0 u yazal\f2\u305?\f0 m.\par
+\par
+\cf2\highlight4\f3\fs24 if\cf0 (sistemeGirisYapildi == \cf2 true\cf0 )                               \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24\{                                                             \par
+\cf2      \cf5 Console\cf2 .\cf0 Write(\cf3 "Kullan\f4\u305?\f3 c\f4\u305?\f3  Ayarlar\f4\u305?\f3  Butonu"\cf0 );              \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24\}\cf2                                                              \par
+else                                                          \par
+\cf0\{\cf2                                                              \par
+     \cf5 Console\cf2 .\cf0 Write(\cf3 "Giri\f4\'ba\f3  Yap Butonu"\cf0 );                       \cf2\par
+\cf0\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\cf1\par
+\par
+\fs36 2. DERS\fs28    ---------------------------------------------------------------------------------\par
+\cf0\par
+
+\pard\sl276\slmult1\qc\cf1 ------------------------------------------------------------------------------------------------\par
+\fs48 2. G\f1\lang1033\'fc\f0\lang1055 n Sonu\f2\fs28\par
+
+\pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\cf0\f1\lang31\par
+\fs22\par
+}
+ 
