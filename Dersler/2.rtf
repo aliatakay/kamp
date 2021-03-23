@@ -29,7 +29,7 @@ Create a new project se\f1\lang1033\'e7\f0\lang1055 ene\f2\u287?\f0 ine t\f2\u30
 .NET Core t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nde projeler Linux, MacOs \f1\lang1033\'fc\f0\lang1055 zerinde de \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 abilir.\cf3\par
 \cf2 ------------------------------------------------------------------------------------------------\par
 \par
-\cf1 KampIntro\cf0  ismiyle projeyi olu\f2\'ba\f0 turuyoruz.\par
+\cf1 KampIntro \cf0 ismiyle projeyi olu\f2\'ba\f0 turuyoruz.\par
 Konsol projesini sadece C# programlama dilininin temellerini \f1\lang1033\'f6\f2\lang1055\u287?\f0 renmek i\f1\lang1033\'e7\f0\lang1055 in olu\f2\'ba\f0 turduk. \f2\u304?\f0 lerleyen derslerde geli\f2\'ba\f0 mi\f2\'ba\f0  projelere ge\f1\lang1033\'e7\f0\lang1055 ece\f2\u287?\f0 iz.\par
 Bu derste \cf1 kodlama.io \cf0 sitesini inceleyerek \f1\lang1033\'f6\f0\lang1055 rnekleme yapaca\f2\u287?\u305?\f0 z.\cf2\par
 \cf0 Sitenin ana sayfas\f2\u305?\f0 nda kategori ve e\f2\u287?\f0 itmen etiketlerini g\f1\lang1033\'f6\f0\lang1055 rebiliyoruz.\cf2\par
@@ -38,7 +38,7 @@ Bu derste \cf1 kodlama.io \cf0 sitesini inceleyerek \f1\lang1033\'f6\f0\lang1055
 \cf0 C# programlama dilinde \cf3 Type Safety\cf0  yani tip g\f1\lang1033\'fc\f0\lang1055 venli\f2\u287?\f0 i mevcuttur.\par
 De\f2\u287?\f0 i\f2\'ba\f0 ken tan\f2\u305?\f0 mlamas\f2\u305?\f0  yaparken, de\f2\u287?\f0 i\f2\'ba\f0 ken tipi mutlaka yaz\f2\u305?\f0 lmal\f2\u305?\f0 d\f2\u305?\f0 r.\par
 \f1\lang31\par
-\cf2\highlight4\f3\fs24\lang1055 string\cf0  kategoriEtiketi = \cf3 "Kategori"\cf0 ;\cf3          \cf0                  \cf2\f0\fs28\par
+\cf2\highlight4\f3\fs24\lang1055  string\cf0  kategoriEtiketi = \cf3 "Kategori"\cf0 ;\cf3          \cf0                  \cf2\f0\fs28\par
 \cf0\highlight0\par
 Zorunlu olarak de\f2\u287?\f0 i\f2\'ba\f0 ken tipini string olarak belirttik.\par
 Kod par\f1\lang1033\'e7\f0\lang1055 ac\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0 n tamamland\f2\u305?\u287?\u305?\f0  yerde mutlaka noktal\f2\u305?\f0  virg\f1\lang1033\'fc\f0\lang1055 l kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
@@ -47,8 +47,8 @@ Kod par\f1\lang1033\'e7\f0\lang1055 ac\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0 n t
 C# programlama dilinde string ifadeler tan\f2\u305?\f0 mlan\f2\u305?\f0 rken mutlaka \f1\lang1033\'e7\f0\lang1055 ift t\f2\u305?\f0 rnak aras\f2\u305?\f0 na yaz\f2\u305?\f0 lmal\f2\u305?\f0 d\f2\u305?\f0 r. \par
 Tek t\f2\u305?\f0 rnak kullan\f2\u305?\f0 m\f2\u305?\f0  karakter tan\f2\u305?\f0 mlarken kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
 \par
-\cf2\highlight4\f3\fs24 string\cf0  kelime = \cf3 "Kelime"\cf0 ;                                     \cf1\highlight0\f0\fs28\par
-\cf2\highlight4\f3\fs24 char\cf0  karakter = \cf3 'k'\cf0 ;                                          \cf3\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  string\cf0  kelime = \cf3 "Kelime"\cf0 ;                                     \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  char\cf0  karakter = \cf3 'k'\cf0 ;                                          \cf3\highlight0\f0\fs28\par
 \cf2 ------------------------------------------------------------------------------------------------\par
 \cf0\par
 Programda tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z \cf3 de\f2\u287?\f0 i\f2\'ba\f0 kenler\cf0 , birer \cf3 de\f2\u287?\f0 er tutucudur\cf0 .\par
@@ -56,45 +56,46 @@ Yukar\f2\u305?\f0 daki \f1\lang1033\'f6\f0\lang1055 rnekte metinsel bir de\f2\u2
 De\f2\u287?\f0 i\f2\'ba\f0 kenimizi bir \cf3 alias \cf0 (takma ad) ile olu\f2\'ba\f0 turarak bir koda d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 t\f1\lang1033\'fc\f0\lang1055 rd\f1\lang1033\'fc\f0\lang1055 k.\par
 Yani art\f2\u305?\f0 k program, \cf3 kategoriEtiketi \cf0 isimli anahtar kelimeyi bir kod olarak alg\f2\u305?\f0 layacakt\f2\u305?\f0 r.\par
 \par
-Di\f2\u287?\f0 er veri tiplerinin nas\f2\u305?\f0 l tan\f2\u305?\f0 mland\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 relim.\par
+\cf1 Di\f2\u287?\f0 er veri tiplerinin nas\f2\u305?\f0 l tan\f2\u305?\f0 mland\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 relim.\cf0\par
 \par
-\cf2\highlight4\f3\fs24 int\cf0  ogrenciSayisi = 32000;                                    \cf1\highlight0\f0\fs28\par
-\cf2\highlight4\f3\fs24 double\cf0  faizOrani = 1.45;                                      \par
-\cf2 string\cf0  kategoriEtiketi = \cf3 "Kategori"\cf0 ;                          \cf1\highlight0\f0\fs28\par
-\cf2\highlight4\f3\fs24 bool\cf0  sistemeGirisYapildi = \cf2 false\cf0 ;                             \highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  int\cf0  ogrenciSayisi = 32000;                                    \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  double\cf0  faizOrani = 1.45;                                      \par
+\cf2  string\cf0  kategoriEtiketi = \cf3 "Kategori"\cf0 ;                          \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  bool\cf0  sistemeGirisYapildi = \cf2 false\cf0 ;                             \highlight0\f0\fs28\par
 \par
 \f2\'aa\f0 imdi syntax'\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renmek i\f1\lang1033\'e7\f0\lang1055 in basit bir if blo\f2\u287?\f0 u yazal\f2\u305?\f0 m.\par
 \par
-\cf2\highlight4\f3\fs24 if\cf0 (sistemeGirisYapildi == \cf2 true\cf0 )                               \cf1\highlight0\f0\fs28\par
-\cf0\highlight4\f3\fs24\{                                                             \par
-\cf2      \cf5 Console\cf2 .\cf0 Write(\cf3 "Kullan\f4\u305?\f3 c\f4\u305?\f3  Ayarlar\f4\u305?\f3  Butonu"\cf0 );              \cf1\highlight0\f0\fs28\par
-\cf0\highlight4\f3\fs24\}\cf2                                                              \par
-else                                                          \par
-\cf0\{\cf2                                                              \par
-     \cf5 Console\cf2 .\cf0 Write(\cf3 "Giri\f4\'ba\f3  Yap Butonu"\cf0 );                       \cf2\par
-\cf0\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  if\cf0 (sistemeGirisYapildi == \cf2 true\cf0 )                               \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24  \{                                                             \par
+\cf2       \cf5 Console\cf2 .\cf0 Write(\cf3 "Kullan\f4\u305?\f3 c\f4\u305?\f3  Ayarlar\f4\u305?\f3  Butonu"\cf0 );              \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24  \}\cf2                                                              \par
+ else                                                          \par
+\cf0  \{\cf2                                                              \par
+      \cf5 Console\cf2 .\cf0 Write(\cf3 "Giri\f4\'ba\f3  Yap Butonu"\cf0 );                       \cf2\par
+\cf0  \}\cf2                                 \cf0                              \highlight0\f0\fs28\par
 \cf1\par
 \par
 \fs36 2. DERS\fs28    ---------------------------------------------------------------------------------\par
 \par
 \cf0\f2\u304?\f0 lk derste \f1\lang1033\'f6\f0\lang1055 rnek olarak kodlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z dolar de\f2\u287?\f0 i\f2\'ba\f0 im kodunu yazal\f2\u305?\f0 m.\cf1\par
 \par
-\cf2\highlight4\f3\fs24 double \cf0 dolarDun = 7.35                                        \cf2\par
-double \cf0 dolarBugun = 7.45                                      \cf2\par
-if\cf0 (dolarDun > dolarBugun)                                     \cf2\par
-\cf0\{\cf2                                                              \par
-     \cf5 Console\cf0 .Write("\cf3 Dolar D\f5\lang1033\'fc\f4\lang1055\'ba\f5\lang1033\'fc\f4\lang1055\'ba\f3 te\cf0 ");                          \cf2\par
-\cf0\}                                                             \par
-\cf2 else if\cf0 (dolarDun < dolarBugun)                                \par
-\{                                                             \par
-     \cf5 Console\cf0 .Write("\cf3 Dolar Art\f4\u305?\'ba\f3 ta\cf0 ");                          \par
-\}                                                             \par
-\cf2 else\cf0                                                           \par
-\{                                                             \par
-     \cf5 Console\cf0 .Write("\cf3 Dolar De\f4\u287?\f3 i\f4\'ba\f3 medi\cf0 ");                        \par
-\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  double \cf0 dolarDun = 7.35                                        \cf2\par
+ double \cf0 dolarBugun = 7.45                                      \cf2\par
+ if\cf0 (dolarDun > dolarBugun)                                     \cf2\par
+\cf0  \{\cf2                                                              \par
+      \cf5 Console\cf0 .Write("\cf3 Dolar D\f5\lang1033\'fc\f4\lang1055\'ba\f5\lang1033\'fc\f4\lang1055\'ba\f3 te\cf0 ");                          \cf2\par
+\cf0  \}                                                             \par
+\cf2  else if\cf0 (dolarDun < dolarBugun)                                \par
+ \{                                                             \par
+      \cf5 Console\cf0 .Write("\cf3 Dolar Art\f4\u305?\'ba\f3 ta\cf0 ");                          \par
+ \}                                                             \par
+\cf2  else\cf0                                                           \par
+ \{                                                             \par
+      \cf5 Console\cf0 .Write("\cf3 Dolar De\f4\u287?\f3 i\f4\'ba\f3 medi\cf0 ");                        \par
+ \}\cf2                                 \cf0                              \highlight0\f0\fs28\par
 \cf1\par
-\f2\'aa\f0 imdi d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055 lerden bahsedece\f2\u287?\f0 iz.\cf0\par
+\f2\'aa\f0 imdi d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055 lerden bahsedece\f2\u287?\f0 iz.\par
+\cf0\par
 Solution Explorer pencerisini a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz, Solution'a sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir proje olu\f2\'ba\f0 turuyoruz.\par
 \par
 \cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
@@ -119,10 +120,10 @@ Kod yazarken Visual Studio anahtar kelimeler \f1\lang1033\'f6\f0\lang1055 nerere
 \cf2 ------------------------------------------------------------------------------------------------\par
 \par
 \cf0\par
-\cf1\highlight4\f3\fs24 for\cf0 (\cf2 int\cf0  \cf6 i\cf0  = 0; \cf6 i\cf0  < 10; \cf6 i\cf0 ++)                                   \par
-\{                                                             \par
-     \cf5 Console\cf0 .WriteLine(\cf6 i\cf0 );                                    \par
-\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\cf1\highlight4\f3\fs24  for\cf0 (\cf2 int\cf0  \cf6 i\cf0  = 0; \cf6 i\cf0  < 10; \cf6 i\cf0 ++)                                   \par
+ \{                                                             \par
+      \cf5 Console\cf0 .WriteLine(\cf6 i\cf0 );                                    \par
+ \}\cf2                                 \cf0                              \highlight0\f0\fs28\par
 \par
 For d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055 s\f1\lang1033\'fc\f0\lang1055 nde index bulunur.\par
 Yukar\f2\u305?\f0 daki \f1\lang1033\'f6\f0\lang1055 rnekte index 1'den ba\f2\'ba\f0 l\f2\u305?\f0 yor.\par
@@ -139,18 +140,18 @@ Bir\f1\lang1033\'e7\f0\lang1055 ok kursumuz oldu\f2\u287?\f0 u i\f1\lang1033\'e7
 Kurslar\f2\u305?\f0  de\f2\u287?\f0 i\f2\'ba\f0 kenlerde tutsayd\f2\u305?\f0 k bir d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055  ile bu kurslara eri\f2\'ba\f0 emezdik.\par
 Bundan dolay\f2\u305?\f0  t\f1\lang1033\'fc\f0\lang1055 m kurslar\f2\u305?\f0  bir \cf3 array\cf0  i\f1\lang1033\'e7\f0\lang1055 inde tan\f2\u305?\f0 mlamam\f2\u305?\f0 z gerekmektedir.\par
 \par
-\cf5\highlight4\f3\fs24 # Statik Programlama (Hantal Kodlama Y\f5\lang1033\'f6\f3\lang1055 ntemi)\cf0                  \cf2\par
-string \cf0 kurs1 = "\cf3 Yaz\f4\u305?\f3 l\f4\u305?\f3 m\cf0 ";               \cf5                       \cf0\par
-\cf2 string \cf0 kurs2 = "\cf3 Java\cf0 ";                                        \par
-\cf2 string \cf0 kurs3 = "\cf3 Python\cf0 ";                                      \par
-\cf2  \cf0                                                              \par
-\cf5 # Dinamik Programlama (Do\f4\u287?\f3 ru Kodlama Y\f5\lang1033\'f6\f3\lang1055 ntemi)\cf0                  \cf2\par
-string\cf0 [] kurslar = \cf2 new string\cf0 [] \{"\cf3 Yaz\f4\u305?\f3 l\f4\u305?\f3 m\cf0 ","\cf3 Java\cf0 ","\cf3 Python\cf0 "\};  \par
-                                                              \par
-\cf1 for\cf0 (\cf2 int\cf0  \cf6 i\cf0  = 0; \cf6 i\cf0  < kurslar.Length; \cf6 i\cf0 ++)                       \par
-\{                                                             \par
-     \cf5 Console\cf0 .WriteLine(kurslar[\cf6 i\cf0 ]);                           \par
-\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\cf5\highlight4\f3\fs24  # Statik Programlama (Hantal Kodlama Y\f5\lang1033\'f6\f3\lang1055 ntemi)\cf0                  \cf2\par
+ string \cf0 kurs1 = "\cf3 Yaz\f4\u305?\f3 l\f4\u305?\f3 m\cf0 ";               \cf5                       \cf0\par
+\cf2  string \cf0 kurs2 = "\cf3 Java\cf0 ";                                        \par
+\cf2  string \cf0 kurs3 = "\cf3 Python\cf0 ";                                      \par
+\cf2   \cf0                                                              \par
+\cf5  # Dinamik Programlama (Do\f4\u287?\f3 ru Kodlama Y\f5\lang1033\'f6\f3\lang1055 ntemi)\cf0                  \cf2\par
+ string\cf0 [] kurslar = \cf2 new string\cf0 [] \{"\cf3 Yaz\f4\u305?\f3 l\f4\u305?\f3 m\cf0 ","\cf3 Java\cf0 ","\cf3 Python\cf0 "\};  \par
+                                                               \par
+\cf1  for\cf0 (\cf2 int\cf0  \cf6 i\cf0  = 0; \cf6 i\cf0  < kurslar.Length; \cf6 i\cf0 ++)                       \par
+ \{                                                             \par
+      \cf5 Console\cf0 .WriteLine(kurslar[\cf6 i\cf0 ]);                           \par
+ \}\cf2                                 \cf0                              \highlight0\f0\fs28\par
 \par
 D\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055 lerin ve dinamik kodlaman\f2\u305?\f0 n faydalar\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f2\lang1055\u305?\f0 k\f1\lang1033\'e7\f0\lang1055 a g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yoruz.\par
 E\f2\u287?\f0 er 100 adet kurs olsayd\f2\u305?\f0 , 100 farkl\f2\u305?\f0  de\f2\u287?\f0 i\f2\'ba\f0 kende bu kurslar\f2\u305?\f0  tutard\f2\u305?\f0 k ve 100 adet Console.WriteLine metodu ile bu kurslar\f2\u305?\f0  ekrana basabilirdik.\par
@@ -158,14 +159,14 @@ Ancak bu y\f1\lang1033\'f6\f0\lang1055 ntem tamamen gereksiz ve hantal olurdu.\p
 \par
 Do\f2\u287?\f0 ru y\f1\lang1033\'f6\f0\lang1055 ntem; dinamik kodlama yaparak kurslar\f2\u305?\f0  bir array ile tutmakt\f2\u305?\f0 r, ayn\f2\u305?\f0  zamanda bir d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055  kullanarak tek bir Console.WriteLine kodu ile hepsini ekrana basmakt\f2\u305?\f0 r.\par
 \par
-\f2\'aa\f0 imdi farkl\f2\u305?\f0  bir d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055  y\f1\lang1033\'f6\f0\lang1055 ntemi g\f1\lang1033\'f6\f0\lang1055 relim.\par
+\cf1\f2\'aa\f0 imdi farkl\f2\u305?\f0  bir d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055  y\f1\lang1033\'f6\f0\lang1055 ntemi g\f1\lang1033\'f6\f0\lang1055 relim.\cf0\par
 \par
-\cf2\highlight4\f3\fs24 string\cf0 [] kurslar = \cf2 new string\cf0 [] \{"\cf3 Yaz\f4\u305?\f3 l\f4\u305?\f3 m\cf0 ","\cf3 Java\cf0 ","\cf3 Python\cf0 "\};  \par
-                                                              \par
-\cf1 foreach\cf0 (\cf2 string \cf6 kurs \cf1 in\cf0  \cf6 kurslar\cf0 )                               \par
-\{                                                             \par
-     \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 );                                 \par
-\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24  string\cf0 [] kurslar = \cf2 new string\cf0 [] \{"\cf3 Yaz\f4\u305?\f3 l\f4\u305?\f3 m\cf0 ","\cf3 Java\cf0 ","\cf3 Python\cf0 "\};  \par
+                                                               \par
+\cf1  foreach\cf0 (\cf2 string \cf6 kurs \cf1 in\cf0  \cf6 kurslar\cf0 )                               \par
+ \{                                                             \par
+      \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 );                                 \par
+ \}\cf2                                 \cf0                              \highlight0\f0\fs28\par
 \par
 \cf3 Foreach\cf0 ; dizi tabanl\f2\u305?\f0  yap\f2\u305?\f0 lar\f2\u305?\f0  tek tek d\f1\lang1033\'f6\f0\lang1055 nmenin pratik yoludur.\par
 kurslar isimli diziyi dola\f2\'ba\u305?\f0 r.\par
@@ -176,6 +177,7 @@ Yani kurs olarak isimlendirdi\f2\u287?\f0 imiz anahtar kelime bir \cf3 alias\cf0
 \cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\par
 \par
 \f2\'aa\f0 imdi class'lardan bahsedece\f2\u287?\f0 iz.\par
+\par
 \cf0 Ger\f1\lang1033\'e7\f0\lang1055 ek hayatta veriler, sadece tek bir bilgiden olu\f2\'ba\f0 maz.\par
 kodlama.io sitesindeki kurslar\f2\u305?\f0  inceleyelim.\par
 \cf2 Bir kursun sadece isim bilgisi olmaz.\par
@@ -204,19 +206,19 @@ Proje ismini ClassIntro olarak adland\f2\u305?\f0 rabiliriz.\par
 \par
 \f2\'aa\f0 imdi kodlama.io sitesindeki kurs verisine benzer bir veri sim\f1\lang1033\'fc\f0\lang1055 le edelim.\par
 \cf2\par
-\highlight4\f3\fs24 class \cf5 Kurs                                                    \cf0\par
-\{                                                             \par
-     \cf2 public string \cf0 KursAdi \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                      \par
-     \cf2 public string \cf0 Egitmen \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                      \par
-     \cf2 public int \cf0 IzlenmeOrani \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                    \par
-\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\highlight4\f3\fs24  class \cf5 Kurs                                                    \cf0\par
+ \{                                                             \par
+      \cf2 public string \cf0 KursAdi \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                      \par
+      \cf2 public string \cf0 Egitmen \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                      \par
+      \cf2 public int \cf0 IzlenmeOrani \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                    \par
+ \}\cf2                                 \cf0                              \highlight0\f0\fs28\par
 \cf2\par
 \cf0\f2\'aa\f0 imdi yukar\f2\u305?\f0 da tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z class'\f2\u305?\f0  inceleyelim.\cf2\par
 \cf0 Class i\f1\lang1033\'e7\f0\lang1055 inde tan\f2\u305?\f0 mlanan \f1\lang1033\'f6\f0\lang1055 zellikler \cf3 property \cf0 olarak adland\f2\u305?\f0 r\f2\u305?\f0 l\f2\u305?\f0 r.\par
 property olu\f2\'ba\f0 turmak i\f1\lang1033\'e7\f0\lang1055 in \cf3 prop \cf0 snippet'\f2\u305?\f0  kullan\f2\u305?\f0 labilir.\par
 Art\f2\u305?\f0 k programda Kurs tipinde bir de\f2\u287?\f0 i\f2\'ba\f0 ken olu\f2\'ba\f0 turabiliriz.\par
 \par
-\cf5\highlight4\f3\fs24 Kurs \cf0 kurs1;                                                    \par
+\cf5\highlight4\f3\fs24  Kurs \cf0 kurs1;                                                   \par
 \highlight0\f0\fs28\par
 Kurs tipindeki veri, kendi b\f1\lang1033\'fc\f0\lang1055 nyesinde 3 adet veri bar\f2\u305?\f0 nd\f2\u305?\f0 rmaktad\f2\u305?\f0 r.\par
 Bunlar;\par
@@ -226,7 +228,7 @@ Bunlar;\par
 \cf1\par
 \f2\'aa\f0 imdi bir class'\f2\u305?\f0  nas\f2\u305?\f0 l kullanaca\f2\u287?\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim.\par
 \par
-\cf5\highlight4\f3\fs24 Kurs \cf0 kurs1 = \cf2 new \cf5 Kurs\cf0 ();                                       \par
+\cf5\highlight4\f3\fs24  Kurs \cf0 kurs1 = \cf2 new \cf5 Kurs\cf0 ();                                      \par
 \cf1\highlight0\f0\fs28\par
 \cf0 Bu \f2\'ba\f0 ekilde Kurs tipinde, kurs1 isimli bir adet de\f2\u287?\f0 i\f2\'ba\f0 ken tan\f2\u305?\f0 mlad\f2\u305?\f0 k.\cf1\par
 \par
@@ -237,34 +239,34 @@ De\f2\u287?\f0 i\f2\'ba\f0 keni neden bu \f2\'ba\f0 ekilde olu\f2\'ba\f0 turdu\f
 \cf1\par
 \f2\'aa\f0 imdi kurs1 de\f2\u287?\f0 i\f2\'ba\f0 keninin \f1\lang1033\'f6\f0\lang1055 zelliklerine de\f2\u287?\f0 er atamay\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim.\par
 \par
-\cf5\highlight4\f3\fs24 Kurs \cf6 kurs1 \cf0 = \cf2 new \cf5 Kurs\cf0 ();                                       \par
-\cf6 kurs1\cf0 .KursAdi = \cf3 "C#"\cf0 ; \cf3                                          \cf0\par
-\cf6 kurs1\cf0 .Egitmen = \cf3 "Engin Demiro\f4\u287?\f3 "\cf0 ;\cf3                                \cf0\par
-\cf6 kurs1\cf0 .IzlenmeOrani = 72;                                       \cf1\highlight0\f0\fs28\par
+\cf5\highlight4\f3\fs24  Kurs \cf6 kurs1 \cf0 = \cf2 new \cf5 Kurs\cf0 ();                                      \par
+\cf6  kurs1\cf0 .KursAdi = \cf3 "C#"\cf0 ; \cf3                                         \cf0\par
+\cf6  kurs1\cf0 .Egitmen = \cf3 "Engin Demiro\f4\u287?\f3 "\cf0 ;\cf3                               \cf0\par
+\cf6  kurs1\cf0 .IzlenmeOrani = 72;                                      \cf1\highlight0\f0\fs28\par
 \par
 \cf0 Yukar\f2\u305?\f0 daki \f2\'ba\f0 ekilde istedi\f2\u287?\f0 imiz kadar Kurs tipinde veri olu\f2\'ba\f0 turabiliriz.\cf1\par
 \par
-\cf5\highlight4\f3\fs24 Kurs \cf6 kurs2 \cf0 = \cf2 new \cf5 Kurs\cf0 ();                                       \par
-\cf6 kurs2\cf0 .KursAdi = \cf3 "C++"\cf0 ; \cf3                                         \cf0\par
-\cf6 kurs2\cf0 .Egitmen = \cf3 "Engin Demiro\f4\u287?\f3 "\cf0 ;\cf3                                \cf0\par
-\cf6 kurs2\cf0 .IzlenmeOrani = 64;                                       \par
+\cf5\highlight4\f3\fs24  Kurs \cf6 kurs2 \cf0 = \cf2 new \cf5 Kurs\cf0 ();                                      \par
+\cf6  kurs2\cf0 .KursAdi = \cf3 "C++"\cf0 ; \cf3                                        \cf0\par
+\cf6  kurs2\cf0 .Egitmen = \cf3 "Engin Demiro\f4\u287?\f3 "\cf0 ;\cf3                               \cf0\par
+\cf6  kurs2\cf0 .IzlenmeOrani = 64;                                      \par
                                                                \cf1\highlight0\f0\fs28       \par
-\cf5\highlight4\f3\fs24 Kurs \cf6 kurs3 \cf0 = \cf2 new \cf5 Kurs\cf0 ();                                       \par
-\cf6 kurs3\cf0 .KursAdi = \cf3 "Python"\cf0 ; \cf3                                      \cf0\par
-\cf6 kurs3\cf0 .Egitmen = \cf3 "Engin Demiro\f4\u287?\f3 "\cf0 ;\cf3                                \cf0\par
-\cf6 kurs3\cf0 .IzlenmeOrani = 14;                                       \cf1\highlight0\f0\fs28\par
+\cf5\highlight4\f3\fs24  Kurs \cf6 kurs3 \cf0 = \cf2 new \cf5 Kurs\cf0 ();                                      \par
+\cf6  kurs3\cf0 .KursAdi = \cf3 "Python"\cf0 ; \cf3                                     \cf0\par
+\cf6  kurs3\cf0 .Egitmen = \cf3 "Engin Demiro\f4\u287?\f3 "\cf0 ;\cf3                               \cf0\par
+\cf6  kurs3\cf0 .IzlenmeOrani = 14;                                      \cf1\highlight0\f0\fs28\par
 \par
 \cf0\f2\'aa\f0 imdi elimizdeki Kurslar\f2\u305?\f0  listelemek istedi\f2\u287?\f0 imizi varsayal\f2\u305?\f0 m.\par
 O halde t\f1\lang1033\'fc\f0\lang1055 m kurslar\f2\u305?\f0  bir array'de toplamak, dinamik kodlama a\f1\lang1033\'e7\f2\lang1055\u305?\f0 s\f2\u305?\f0 ndan en verimli y\f1\lang1033\'f6\f0\lang1055 ntem olacakt\f2\u305?\f0 r.\par
 \cf1\par
-\cf5\highlight4\f3\fs24 Kurs \cf6 kurslar \cf0 = \cf2 new \cf5 Kurs\cf0 [] \{\cf6 kurs1\cf0 , \cf6 kurs2\cf0 , \cf6 kurs3\cf0\};              \par
-                                                              \par
-\cf1 foreach\cf0 (\cf5 Kurs \cf6 kurs \cf1 in\cf0  \cf6 kurslar\cf0 )                                 \par
-\{                                                             \par
-     \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 .KursAdi);                         \par
-     \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 .Egitmen);                         \par
-     \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 .IzlenmeOrani);                    \par
-\}\cf2                                 \cf0                              \highlight0\f0\fs28\par
+\cf5\highlight4\f3\fs24  Kurs \cf6 kurslar \cf0 = \cf2 new \cf5 Kurs\cf0 [] \{\cf6 kurs1\cf0 , \cf6 kurs2\cf0 , \cf6 kurs3\cf0\};              \par
+                                                               \par
+\cf1  foreach\cf0 (\cf5 Kurs \cf6 kurs \cf1 in\cf0  \cf6 kurslar\cf0 )                                 \par
+ \{                                                             \par
+      \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 .KursAdi);                         \par
+      \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 .Egitmen);                         \par
+      \cf5 Console\cf0 .WriteLine(\cf6 kurs\cf0 .IzlenmeOrani);                    \par
+ \}\cf2                                 \cf0                              \highlight0\f0\fs28\par
 \highlight4\f3\fs24\par
 \cf1\highlight0\f0\fs28\par
 
