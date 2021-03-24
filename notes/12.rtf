@@ -1,0 +1,943 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil Consolas;}{\f4\fnil\fcharset162 Consolas;}{\f5\fnil\fcharset238 Consolas;}{\f6\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;\red0\green0\blue0;\red255\green0\blue0;\red43\green145\blue175;\red0\green176\blue80;\red223\green206\blue4;\red204\green180\blue0;\red155\green0\blue211;\red209\green144\blue73;\red163\green21\blue21;\red0\green128\blue0;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\ri-72\sl276\slmult1\qj\f0\fs28 .NET i\f1\lang1033\'e7\f0\lang1055 erisinde IoC altyap\f2\u305?\f0 s\f2\u305?\f0  olsa da projemize, geli\f2\'ba\f0 mi\f2\'ba\f0  bir IoC Container entegre edece\f2\u287?\f0 iz.\par
+Bu geli\f2\'ba\f0 mi\f2\'ba\f0  yap\f2\u305?\f0  sayesinde AOP tekniklerini de kullanabilece\f2\u287?\f0 iz.\par
+\f1\lang31\par
+\f0\lang1055 Baz\f2\u305?\f0  kaliteli IoC Container'lar;\par
+\par
+\cf1\tab Autofac\par
+\tab Ninject\par
+\tab CastleWindsor\par
+\tab StructureMap\par
+\tab LightInject\par
+\tab DryInject\par
+\cf0\par
+Bu IoC Container'lar\f2\u305?\f0 n hepsi birbirinin alternatifidir.\par
+\par
+Ancak Autofac, son d\f1\lang1033\'f6\f0\lang1055 nemde \f1\lang1033\'f6\f0\lang1055 zellikle .NET Core taraf\f2\u305?\f0 nda b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k bir geli\f2\'ba\f0 im g\f1\lang1033\'f6\f0\lang1055 sterdi. Bu nedenle projemize Autofac entegre edece\f2\u287?\f0 iz.\par
+Autofac'in tamamen \f1\lang1033\'fc\f0\lang1055 cretsiz versiyonu mevcuttur.\par
+PostSharp ad\f2\u305?\f0 nda \f1\lang1033\'fc\f0\lang1055 cretli olan \f1\lang1033\'e7\f0\lang1055 ok daha kaliteli bir versiyonu mevcuttur.\par
+Ancak biz kursta Autofac kullanaca\f2\u287?\u305?\f0 z.\par
+
+\pard\sl276\slmult1\qj\f1\lang31\par
+\par
+\f0\lang1055 Biz \f2\'ba\f0 u anda IoC yap\f2\u305?\f0 land\f2\u305?\f0 rmas\f2\u305?\f0 n\f2\u305?\f0  API'de yap\f2\u305?\f0 yoruz.\par
+\par
+
+\pard\sl276\slmult1\cf2\f3\fs26 public\cf3  \cf2 void\cf3  ConfigureServices(IServiceCollection services)\par
+\{   \par
+\f4     \f3 services.AddSingleton<IProductDal, EfProductDal>();\par
+\}\par
+\par
+
+\pard\sl276\slmult1\qj\f0\fs28 Ancak IoC yap\f2\u305?\f0 land\f2\u305?\f0 rmas\f2\u305?\f0 n\f2\u305?\f0  API'de yapmaktan ziyade backend taraf\f2\u305?\f0 nda yaparsak daha b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k avantaj sa\f2\u287?\f0 lar\f2\u305?\f0 z. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  \f2\'ba\f0 u anda t\f1\lang1033\'fc\f0\lang1055 m konfig\f1\lang1033\'fc\f0\lang1055 rasyon ayarlar\f2\u305?\f0 m\f2\u305?\f0 z API i\f1\lang1033\'e7\f0\lang1055 inde yer al\f2\u305?\f0 yor. \par
+\f2\u304?\f0 leride projemize bir API daha ekleyebiliriz veya yeni bir Service mimarisi ekleyebiliriz. \f2\u304?\'ba\f0 te bu noktada ihtiyac\f2\u305?\f0 m\f2\u305?\f0 z olan konfig\f1\lang1033\'fc\f0\lang1055 rasyon ayarlar\f2\u305?\f0  API taraf\f2\u305?\f0 nda Startup.cs i\f1\lang1033\'e7\f0\lang1055 erisinde olmamal\f2\u305?\f0 . Bu yap\f2\u305?\f0 land\f2\u305?\f0 rmay\f2\u305?\f0  geri plana ta\f2\'ba\u305?\f0 mam\f2\u305?\f0 z \f1\lang1033\'e7\f0\lang1055 ok daha iyi olur bu sebepten dolay\f2\u305?\f0 .\par
+Normalde .NET Core i\f1\lang1033\'e7\f0\lang1055 erisinde bu IoC yap\f2\u305?\f0 land\f2\u305?\f0 rmas\f2\u305?\f0  daha geri plana ta\f2\'ba\u305?\f0 nabiliyor. Ancak biz hem bu konu i\f1\lang1033\'e7\f0\lang1055 in hem de ba\f2\'ba\f0 ka imkanlardan yararlanabilmek i\f1\lang1033\'e7\f0\lang1055 in (AOP gibi) sisteme Autofac entegre edece\f2\u287?\f0 imizi s\f1\lang1033\'f6\f0\lang1055 ylemi\f2\'ba\f0 tik.\par
+\par
+\f2\'aa\f0 imdi Autofac yap\f2\u305?\f0 land\f2\u305?\f0 rmas\f2\u305?\f0 n\f2\u305?\f0  ger\f1\lang1033\'e7\f0\lang1055 ekle\f2\'ba\f0 tirece\f2\u287?\f0 iz.\par
+\par
+\cf0 Business'a Sa\f2\u287?\f0  T\f2\u305?\f0 kla\par
+\tab > Manage NuGet Packages'a T\f2\u305?\f0 kla\par
+\tab\tab > Browse Arama B\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 ne Autofac Yaz\par
+\tab\tab\tab > Uyumlu \f1\lang1033\'c7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 yorsa G\f1\lang1033\'fc\f0\lang1055 ncel S\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055  \f2\u304?\f0 ndir\par
+\cf3\par
+\cf1 NOT: Biz projemizin ba\f2\'ba\u305?\f0 ndan itibaren .NET Core 3.1 versiyonunu kullan\f2\u305?\f0 yoruz. Kurdu\f2\u287?\f0 umuz Autofac s\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055  patlarsa, sistemimizle uyumlu olan versiyonunu kurmal\f2\u305?\f0 y\f2\u305?\f0 z. Bu ders esnas\f2\u305?\f0 nda 6.1.0 s\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055  mevcut.\par
+\par
+\cf3 Autofac isimli paketi kurduktan sonra, AOP kodlar\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in ihtiyac\f2\u305?\f0 m\f2\u305?\f0 z olan paketi de kurmam\f2\u305?\f0 z gerekiyor. Bu sebeple, ayn\f2\u305?\f0  arama b\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055  kullanarak \cf4 Autofac.Extras.DynamicProxy \cf0 aramas\f2\u305?\f0  yap\f2\u305?\f0 yoruz ve kar\f2\'ba\u305?\f0 m\f2\u305?\f0 za \f1\lang1033\'e7\f2\lang1055\u305?\f0 kan paketi de kuruyoruz.\cf3\par
+\par
+\cf1 NOT: Castle; IoC yap\f2\u305?\f0 land\f2\u305?\f0 rmas\f2\u305?\f0 n\f2\u305?\f0  .NET d\f1\lang1033\'fc\f0\lang1055 nyas\f2\u305?\f0 nda en sa\f2\u287?\f0 lam yapan ara\f1\lang1033\'e7\f0\lang1055 t\f2\u305?\f0 r. Az \f1\lang1033\'f6\f0\lang1055 nce kurdu\f2\u287?\f0 umuz Autofac.Extras.DynamicProxy paketi de, Castle kullanan bir AOP entegrasyonu sa\f2\u287?\f0 lamaktad\f2\u305?\f0 r. \par
+\cf3\par
+\par
+
+\pard\sl276\slmult1\qc\cf4 !____ IoC Container konusu daha derin ara\f2\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 lmal\f2\u305?\f0  ____!\cf3\par
+
+\pard\sl276\slmult1\qj\par
+\par
+\f2\'aa\f0 imdi bu yap\f2\u305?\f0 lar\f2\u305?\f0  API'den kopar\f2\u305?\f0 p, Business katman\f2\u305?\f0 nda olu\f2\'ba\f0 turaca\f2\u287?\u305?\f0 z.\par
+\par
+Business katman\f2\u305?\f0 nda yeni bir klas\f1\lang1033\'f6\f0\lang1055 r olu\f2\'ba\f0 turuyoruz.\par
+\cf4\tab\par
+\tab\cf1 Klas\f1\lang1033\'f6\f0\lang1055 r ad\f2\u305?\f0  -> \cf4 DependencyResolvers\par
+\cf3\par
+Yani Ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 k \f1\lang1033\'c7\'f6\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055 mleyiciler anlam\f2\u305?\f0 na geliyor. Projedeki ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar\f2\u305?\f0  \f1\lang1033\'e7\'f6\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055 mledi\f2\u287?\f0 imiz yer buras\f2\u305?\f0  olacak.\par
+\par
+Biz proje genelinde "Kat\f2\u305?\f0  Ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar" olu\f2\'ba\f0 turmamaya dikkat ettik.\par
+Fakat yine de "Gev\f2\'ba\f0 ek Ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 " olarak olu\f2\'ba\f0 turdu\f2\u287?\f0 umuz s\f2\u305?\f0 n\f2\u305?\f0 flar var.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in Business katman\f2\u305?\f0 ndaki Manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 n\f2\u305?\f0 n hepsinde gev\f2\'ba\f0 ek ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar olu\f2\'ba\f0 turduk.\par
+\par
+\f3 IProductDal _productDal;\par
+\par
+\cf2 public\cf3  \cf5 ProductManager\cf3 (IProductDal productDal)\par
+\{\par
+       _productDal = productDal;\par
+\}\par
+\par
+\f0 Manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 m\f2\u305?\f0 zda yukar\f2\u305?\f0 daki gibi Interface tipler kullanarak gev\f2\'ba\f0 ek ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar olu\f2\'ba\f0 turmu\f2\'ba\f0 tuk. Burada asl\f2\u305?\f0 nda ProductManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 , IProductDal'a ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 . Fakat asl\f2\u305?\f0 nda somut olarak hangi IProductDal s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 na ba\f2\u287?\f0 l\f2\u305?\f0  olmas\f2\u305?\f0  gerekti\f2\u287?\f0 i tam olarak belli de\f2\u287?\f0 il. Sonu\f1\lang1033\'e7\f0\lang1055 ta Interface'ler referans tutucu olarak i\f2\'ba\f0 lev g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 r. Bu sebepten dolay\f2\u305?\f0  IProductDal; bir\f1\lang1033\'e7\f0\lang1055 ok ProductDal s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0 n referans\f2\u305?\f0 n\f2\u305?\f0  tutabilir.\par
+Biz de bu ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 k ayarlar\f2\u305?\f0 n\f2\u305?\f0  Autofac kullanarak yap\f2\u305?\f0 land\f2\u305?\f0 raca\f2\u287?\u305?\f0 z.\par
+\par
+EntityFramework i\f1\lang1033\'e7\f0\lang1055 in ayr\f2\u305?\f0  bir klas\f1\lang1033\'f6\f0\lang1055 r olu\f2\'ba\f0 turmu\f2\'ba\f0 tuk. Benzer \f2\'ba\f0 ekilde Autofac i\f1\lang1033\'e7\f0\lang1055 in de bir alt klas\f1\lang1033\'f6\f0\lang1055 r olu\f2\'ba\f0 turuyoruz. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  Dependency Resolver olarak kullanaca\f2\u287?\u305?\f0 m\f2\u305?\f0 z ba\f2\'ba\f0 ka teknolojileri de projemize entegre edebiliriz ileride.\par
+\par
+\cf4\tab\cf1 Klas\f1\lang1033\'f6\f0\lang1055 r ad\f2\u305?\f0  -> \cf4 Autofac\par
+\cf0\par
+Projemizdeki ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar\f2\u305?\f0 , bu klas\f1\lang1033\'f6\f0\lang1055 r alt\f2\u305?\f0 nda \f1\lang1033\'e7\'f6\f0\lang1055 zece\f2\u287?\f0 iz.\par
+\cf3 Bu tip ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 k konfig\f1\lang1033\'fc\f0\lang1055 rasyonlar\f2\u305?\f0  projede 1 defa yap\f2\u305?\f0 l\f2\u305?\f0 r. Ancak sa\f2\u287?\f0 lam bir backend kurgulamak i\f1\lang1033\'e7\f0\lang1055 in bu t\f1\lang1033\'fc\f0\lang1055 r yap\f2\u305?\f0 land\f2\u305?\f0 rmalar \f1\lang1033\'e7\f0\lang1055 ok \f1\lang1033\'f6\f0\lang1055 nemlidir.\par
+\par
+Autofac klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ne yeni bir class ekliyoruz.\par
+\par
+\tab\cf1 Class ad\f2\u305?\f0  ->\cf4  AutofacBusinessModule.cs\par
+\cf0\par
+\f2\u304?\f0 simlendirmede Business kullanmam\f2\u305?\f0 z\f2\u305?\f0 n sebebi, Business katman\f2\u305?\f0 n\f2\u305?\f0  ilgilendiren konfig\f1\lang1033\'fc\f0\lang1055 rasyonlar\f2\u305?\f0  bu s\f2\u305?\f0 n\f2\u305?\f0 f alt\f2\u305?\f0 nda yapacak olmam\f2\u305?\f0 z.\par
+\cf3\f2\u304?\f0 lerleyen derslerde, t\f1\lang1033\'fc\f0\lang1055 m projeler i\f1\lang1033\'e7\f0\lang1055 in gerekli olabilecek evrensel ayarlar\f2\u305?\f0  da Core katman\f2\u305?\f0 nda yapaca\f2\u287?\u305?\f0 z.\par
+\par
+\cf2\f3 public\cf3  \cf2 class\cf3  \cf5 AutofacBusinessModule\cf3  : \cf5 Module\cf3\par
+\{\par
+\}\f0\par
+\par
+S\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  public olarak ayarlad\f2\u305?\f0 ktan sonra, Module isimli s\f2\u305?\f0 n\f2\u305?\f0 ftan inherit al\f2\u305?\f0 yoruz. Module isimli class'\f2\u305?\f0  \f1\lang1033\'e7\'f6\f0\lang1055 zerken \cf4 using Autofac\cf3  namespace'i olmas\f2\u305?\f0 na dikkat ediyoruz.\par
+\par
+S\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 m\f2\u305?\f0 z art\f2\u305?\f0 k bir Autofac mod\f1\lang1033\'fc\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055  olarak ayarland\f2\u305?\f0 . WebAPI katman\f2\u305?\f0 nda yapt\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z IoC yap\f2\u305?\f0 land\f2\u305?\f0 rmalar\f2\u305?\f0 n\f2\u305?\f0 , bu s\f2\u305?\f0 n\f2\u305?\f0 f i\f1\lang1033\'e7\f0\lang1055 erisine ta\f2\'ba\u305?\f0 yaca\f2\u287?\u305?\f0 z. \cf4 Module \cf3 s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  bize bu imkan\f2\u305?\f0  sa\f2\u287?\f0 layacak.\par
+\par
+Module isimli base s\f2\u305?\f0 n\f2\u305?\f0 ftan eri\f2\'ba\f0 ebildi\f2\u287?\f0 imiz Load isimli metodu override ederek olu\f2\'ba\f0 turuyoruz. Load metodu, proje y\f1\lang1033\'fc\f0\lang1055 klendi\f2\u287?\f0 inde yani aya\f2\u287?\f0 a kalkt\f2\u305?\u287?\u305?\f0  anda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 an bir metottur. Bu metot i\f1\lang1033\'e7\f0\lang1055 erisinde IoC konfig\f1\lang1033\'fc\f0\lang1055 rasyon ayarlar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  yapabiliriz.\par
+\par
+\cf2\f3 protected\cf3  \cf2 override\cf3  \cf2 void\cf3  Load(\cf6 ContainerBuilder \cf5\f4 builder\cf3\f3 )\par
+\{\par
+    \f4   \cf5 builder\cf3\f3 .\cf0 RegisterType\cf3 <\cf5\f4 ProductManager\cf3\f3 >()\par
+\f4\tab\tab\f3 .\cf0 As\cf3 <\cf7 IProductService\cf3 >().\cf0 SingleInstance\cf3 ();\par
+\}\f0\par
+\par
+Burada yapt\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z tan\f2\u305?\f0 mlama, Startup.cs s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 nda yer alan IoC service ayarlar\f2\u305?\f0  ile birebir ayn\f2\u305?\f0  i\f2\'ba\f0 levi g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 r.\par
+\cf1\par
+\cf0 Bu kod sat\f2\u305?\f0 r\f2\u305?\f0 n\f2\u305?\f0 n anlam\f2\u305?\f0 ; \cf1\par
+"Projede bir \cf4 IProductService \cf1 g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 rsen, \cf4 ProductManager \cf1 s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 ndan bir instance olu\f2\'ba\f0 tur" demektir.\par
+Sonda yer alan \cf4 SingleInstance \cf1 metodu da, t\f1\lang1033\'fc\f0\lang1055 m projede kullan\f2\u305?\f0 lmak \f1\lang1033\'fc\f0\lang1055 zere tek 1 instance olu\f2\'ba\f0 turmak amac\f2\u305?\f0 yla eklenmi\f2\'ba\f0 tir. \par
+\cf0 ProductManager nesnesi herhangi bir data tutmamaktad\f2\u305?\f0 r. Sadece belli operasyonlar\f2\u305?\f0  \f1\lang1033\'e7\f0\lang1055 a\f2\u287?\u305?\f0 rarak data ta\f2\'ba\u305?\f0 maktad\f2\u305?\f0 r. Ancak datan\f2\u305?\f0 n kendisini tutmuyor. Bu sebepten dolay\f2\u305?\f0  sistemde tek 1 instance olu\f2\'ba\f0 turuyoruz ve ProductManager nesnesine ihtiya\f1\lang1033\'e7\f0\lang1055  duyan t\f1\lang1033\'fc\f0\lang1055 m i\f2\'ba\f0 lemler i\f1\lang1033\'e7\f0\lang1055 in bu instance kullan\f2\u305?\f0 lacak.\cf3\par
+\par
+Load metodu i\f1\lang1033\'e7\f0\lang1055 inde;\par
+\par
+\tab\cf8 IProductService \cf3 -> \cf6 ProductManager\cf3\par
+\tab\cf8 IProductDal \cf3 -> \cf6 EfProductDal\cf3\par
+\par
+olarak 2 adet Single Instance olu\f2\'ba\f0 turuyoruz.\par
+Projede yer alan di\f2\u287?\f0 er ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar\f2\u305?\f0  da benzer \f2\'ba\f0 ekilde Load metodunun i\f1\lang1033\'e7\f0\lang1055 inde olu\f2\'ba\f0 turabiliriz. (ICategoryService -> CategoryManager vb.)\par
+\f2\par
+\'aa\f0 u an Aotufac Module s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  yazd\f2\u305?\f0 k. \par
+Ancak projemiz hala WebAPI i\f1\lang1033\'e7\f0\lang1055 erisinde yer alan IoC yap\f2\u305?\f0 land\f2\u305?\f0 rmas\f2\u305?\f0 n\f2\u305?\f0  kullan\f2\u305?\f0 yor. \par
+\cf4 WebAPI -> Startup.cs \cf3 i\f1\lang1033\'e7\f0\lang1055 inde yer alan IoC ayarlar\f2\u305?\f0 n\f2\u305?\f0  siliyoruz. \par
+Ancak proje bu haliyle \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 mayacakt\f2\u305?\f0 r ve hata verecektir.\par
+\cf4 WebAPI'nin kendi IoC kullan\f2\u305?\f0 m\f2\u305?\f0 n\f2\u305?\f0  iptal edip, Autofac ayarlar\f2\u305?\f0 n\f2\u305?\f0  belirtmek i\f1\lang1033\'e7\f0\lang1055 in WebAPI'de yer alan Program.cs s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 na gidiyoruz.\cf3\par
+\cf1 Not: Bu tip kodlar ezberlenmez. Nadiren yaz\f2\u305?\f0 lan bu tip temel kodlar ilgili dok\f1\lang1033\'fc\f0\lang1055 mantasyon okunarak \f1\lang1033\'f6\f2\lang1055\u287?\f0 renilir ve uygulan\f2\u305?\f0 r.\cf3\par
+Program.cs i\f1\lang1033\'e7\f0\lang1055 inde CreateHostBuilder metoduna gidiyoruz.\par
+Bu metot \f1\lang1033\'fc\f0\lang1055 zerinden UseServiceProviderFactory metodunu kullanarak AutofacServiceProviderFactory instance'\f2\u305?\f0  veriyoruz.\par
+\par
+\cf2\f3\fs22 public\cf3  \cf2 static\cf3  IHostBuilder CreateHostBuilder(\cf2 string\cf3 [] args) =>\par
+  Host.CreateDefaultBuilder(args)\par
+    \cf4 .UseServiceProviderFactory\cf3 (\cf2 new\cf3  AutofacServiceProviderFactory())\par
+\f4     \cf4\f3 .ConfigureContainer\cf3 <ContainerBuilder>(builder =>\par
+    \f4  \cf4\f3\{\cf3\par
+           \cf4 builder\cf3 .\cf4 RegisterModule\cf3 (\cf2 new\cf3  AutofacBusinessModule());\par
+     \cf4\})\cf3\par
+    .ConfigureWebHostDefaults(webBuilder =>\par
+    \{\par
+          webBuilder.UseStartup<Startup>();\par
+    \});\f0\par
+\fs28\par
+Yukar\f2\u305?\f0 da k\f2\u305?\f0 rm\f2\u305?\f0 z\f2\u305?\f0  renk ile ba\f2\'ba\f0 layan sat\f2\u305?\f0 rlar\f2\u305?\f0  ekliyoruz.\par
+AutofacServiceProviderFactory i\f1\lang1033\'e7\f0\lang1055 in WebAPI projesine,\par
+\tab\cf4 Autofac.Extensions.DependencyInjection\par
+\cf3 paketini kuruyoruz.\par
+Ayn\f2\u305?\f0  zamanda ikinci kod blo\f2\u287?\f0 u i\f1\lang1033\'e7\f0\lang1055 in de gerekli namespace eklemelerini yap\f2\u305?\f0 yoruz.\par
+\par
+\cf1 Not: Burada yap\f2\u305?\f0 lan konfig\f1\lang1033\'fc\f0\lang1055 rasyon ayarlar\f2\u305?\f0  sayesinde; \par
+.NET Core i\f1\lang1033\'e7\f0\lang1055 inde bulunan IoC yap\f2\u305?\f0 s\f2\u305?\f0 n\f2\u305?\f0  kullanmak yerine, Autofac Fabrikas\f2\u305?\f0 ndaki ayarlar\f2\u305?\f0  kullan demi\f2\'ba\f0  oluyoruz.\cf3\par
+\par
+Bu kodlarla birlikte IoC ayarlar\f2\u305?\f0 m\f2\u305?\f0 z Autofac teknolojisiyle yap\f2\u305?\f0 land\f2\u305?\f0 r\f2\u305?\f0 ld\f2\u305?\f0 .\par
+Ve Program.cs i\f1\lang1033\'e7\f0\lang1055 inde yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z kodlarla projeye entegre edilmi\f2\'ba\f0  oldu.\par
+Bu haliyle projemiz hata vermeden \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 acakt\f2\u305?\f0 r.\par
+\par
+
+\pard\sl276\slmult1\qc\cf9 ------------------------------------------------------------------------------------------------\cf3\par
+\cf9\fs36 1. B\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 m Sonu\cf3\f2\fs28\par
+
+\pard\sl276\slmult1\qj\cf9\f0 ------------------------------------------------------------------------------------------------\cf3\par
+\cf0\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+Bu b\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 mde Validation yapaca\f2\u287?\u305?\f0 z.\par
+\f2\u304?\f0 lk olarak buna neden ihtiyac\f2\u305?\f0 m\f2\u305?\f0 z oldu\f2\u287?\f0 unu anlayal\f2\u305?\f0 m.\par
+\cf3\par
+\cf0 Validation; "Do\f2\u287?\f0 rulama" kodu anlam\f2\u305?\f0 na gelmektedir.\cf3\par
+Business katman\f2\u305?\f0 nda yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z "\f2\u304?\'ba\f0  Kodlar\f2\u305?\f0 "ndan farkl\f2\u305?\f0  bir anlam ta\f2\'ba\u305?\f0 r.\par
+Bu 2 kavram kar\f2\u305?\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 lmamal\f2\u305?\f0 d\f2\u305?\f0 r.\par
+Bu sebepten, Validation kodlar\f2\u305?\f0  ile Business kodlar\f2\u305?\f0  birbirinden ayr\f2\u305?\f0  yaz\f2\u305?\f0 lmal\f2\u305?\f0 d\f2\u305?\f0 r ve birbirileri yerine kullan\f2\u305?\f0 lmamal\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\par
+\cf4 Validation\cf3 ; business katman\f2\u305?\f0 ndaki operasyonlara g\f1\lang1033\'f6\f0\lang1055 nderilen nesnenin, do\f2\u287?\f0 rulama kurallar\f2\u305?\f0 na uyup uymad\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  kontrol eden yap\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in bir Product nesnesini Add metodu ile veritaban\f2\u305?\f0 na ekleyece\f2\u287?\f0 iz.\par
+Fakat Product nesnesinin uygunlu\f2\u287?\f0 unu belirleyen baz\f2\u305?\f0  \f2\'ba\f0 artlar\f2\u305?\f0 m\f2\u305?\f0 z var.\par
+\cf4 ProductName minimum 2 karakter olmal\f2\u305?\f0 ,\par
+ProductName maksimum 50 karakter olmal\f2\u305?\f0  gibi.\par
+\cf3\f2\u304?\'ba\f0 te bu t\f1\lang1033\'fc\f0\lang1055 r "nesnenin uyumu"yla alakal\f2\u305?\f0  kurallar, Do\f2\u287?\f0 rulama ile ilgilidir.\par
+\par
+Business kurallar\f2\u305?\f0  ise, "i\f2\'ba\f0  ihtiya\f1\lang1033\'e7\f0\lang1055 lar\f2\u305?\f0 na uygunlu\f2\u287?\f0 u" de\f2\u287?\f0 erlendirir.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in, bir m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri banka uygulamas\f2\u305?\f0  \f1\lang1033\'fc\f0\lang1055 zerinden krediye ba\f2\'ba\f0 vurdu.\par
+Kendisiyle alakal\f2\u305?\f0  bilgileri girdi.\par
+Bu ki\f2\'ba\f0 inin kredi almaya uygun olup olmad\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  "i\f2\'ba\f0  kurallar\f2\u305?\f0 " belirler.\par
+\par
+\cf0 Yani ki\f2\'ba\f0 i bilgilerini girerken;\par
+\tab\cf4 TcNo -> 11 karakter olmal\f2\u305?\f0 d\f2\u305?\f0 r, yaln\f2\u305?\f0 zca rakam i\f1\lang1033\'e7\f0\lang1055 ermelidir.\par
+\tab\f2\u304?\f0 sim -> yaln\f2\u305?\f0 zca harf i\f1\lang1033\'e7\f0\lang1055 ermelidir.\par
+\cf0 tarz\f2\u305?\f0 nda yap\f2\u305?\f0 lan kontroller "\cf1 Validation\cf0 " kontrolleridir.\par
+\par
+Ki\f2\'ba\f0 i, bilgilerini do\f2\u287?\f0 rulama kurallar\f2\u305?\f0 na uygun girdikten sonra;\par
+\tab\cf4 Kredi notunu hesaplay\f2\u305?\f0 p, kredi i\f1\lang1033\'e7\f0\lang1055 in uygun mu?\cf0\par
+gibi bir kontrol\f1\lang1033\'fc\f0\lang1055  yapan sistem ise "\cf1\f2\u304?\'ba\f0  Kurallar\f2\u305?\cf0\f0 " kodlar\f2\u305?\f0 m\f2\u305?\f0 zd\f2\u305?\f0 r.\par
+\cf3\par
+\par
+Daha \f1\lang1033\'f6\f0\lang1055 nce projemizde, Business katman\f2\u305?\f0 nda baz\f2\u305?\f0  i\f2\'ba\f0  kurallar\f2\u305?\f0  yazm\f2\u305?\'ba\f0 t\f2\u305?\f0 k.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in \cf4 ProductName.Length < 2 \cf3\f2\'ba\f0 eklinde.\par
+Bu kontrol asl\f2\u305?\f0 nda bir validation kontrol\f1\lang1033\'fc\f0\lang1055 d\f1\lang1033\'fc\f0\lang1055 r.\par
+Bundan dolay\f2\u305?\f0 , bu ve benzeri kurallar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  \cf4 FluentValidation \cf3 kullanarak merkezi bir hale getirece\f2\u287?\f0 iz.\par
+\par
+\f2\par
+\'aa\f0 imdi do\f2\u287?\f0 ru zannedilen ancak hatal\f2\u305?\f0  olan bir kullan\f2\u305?\f0 m\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 relim.\par
+Entity s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 nda, property'lere \cf4 Data Annotation \cf0 verilebilir.\par
+Fakat bu SOLID prensiplerine ayk\f2\u305?\f0 r\f2\u305?\f0  bir yakla\f2\'ba\u305?\f0 md\f2\u305?\f0 r.\par
+Bir \f1\lang1033\'f6\f0\lang1055 rnek \f1\lang1033\'fc\f0\lang1055 zerinden g\f1\lang1033\'f6\f0\lang1055 relim.\par
+\par
+\cf2\f4     \f3 public\cf3  \cf2 class\cf3  \cf5 Customer\cf3  : IEntity\par
+   \f4  \f3\{\par
+        \cf2 public\cf3  \cf2 string\cf3  CustomerId \{ \cf2 get\cf3 ; \cf2 set\cf3 ; \}\par
+        [\cf5\f4 Required\cf3\f3 ]\par
+        \cf2 public\cf3  \cf2 string\cf3  TcNo \{ \cf2 get\cf3 ; \cf2 set\cf3 ; \}\par
+        \cf2 public\cf3  \cf2 string\cf3  ContactName \{ \cf2 get\cf3 ; \cf2 set\cf3 ; \}\par
+        \cf2 public\cf3  \cf2 string\cf3  CompanyName \{ \cf2 get\cf3 ; \cf2 set\cf3 ; \}\par
+        \cf2 public\cf3  \cf2 string\cf3  City \{ \cf2 get\cf3 ; \cf2 set\cf3 ; \}\par
+    \}\f0\par
+\par
+Yukar\f2\u305?\f0 da g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi Data Annotation kullanarak TcNo property'sini zorunlu bir alan olarak i\f2\'ba\f0 aretledik.\par
+Fakat bu kullan\f2\u305?\f0 m SOLID prensiplerine ayk\f2\u305?\f0 r\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\f2\u304?\f0 lerde sistemimize "yabanc\f2\u305?\f0  uyruklu" kullan\f2\u305?\f0 c\f2\u305?\f0 lar da dahil edilirse, zorunlu olarak belirledi\f2\u287?\f0 imiz TcNo property'si art\f2\u305?\f0 k zorunlu olmayacakt\f2\u305?\f0 r.\par
+Bu da sistemde b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k zorluklara yol a\f1\lang1033\'e7\f0\lang1055 ar.\par
+\cf1\f2\u304?\'ba\f0 te tam da bu y\f1\lang1033\'fc\f0\lang1055 zden, Data Annotation kullanmak yerinde Validation kurallar\f2\u305?\f0  yazmal\f2\u305?\f0 y\f2\u305?\f0 z.\cf3\par
+\par
+\f2\'aa\f0 imdi Business katman\f2\u305?\f0 na gidip Validation kodlar\f2\u305?\f0  yazal\f2\u305?\f0 m.\par
+\par
+Business alt\f2\u305?\f0 nda yeni bir klas\f1\lang1033\'f6\f0\lang1055 r olu\f2\'ba\f0 turuyoruz.\par
+\cf4\tab\par
+\tab\cf1 Klas\f1\lang1033\'f6\f0\lang1055 r Ad\f2\u305?\f0  -> \cf4 ValidationRules\par
+\cf3\par
+O klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 n alt\f2\u305?\f0 na da yeni bir klas\f1\lang1033\'f6\f0\lang1055 r ekliyoruz.\par
+\cf4\tab\par
+\tab\cf1 Klas\f1\lang1033\'f6\f0\lang1055 r Ad\f2\u305?\f0  -> \cf4 FluentValidation\par
+\cf3\par
+Bunu yapmam\f2\u305?\f0 z\f2\u305?\f0 n sebebi, FluentValidation teknolojisini kullanaca\f2\u287?\u305?\f0 z.\par
+Ancak ileride ba\f2\'ba\f0 ka bir Validation teknolojisi de kullanabiliriz.\par
+O y\f1\lang1033\'fc\f0\lang1055 zden bu teknolojiyi klas\f1\lang1033\'f6\f0\lang1055 rl\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+\par
+Business projesine yeni bir NuGet Package eklememiz gerekiyor.\par
+\tab\cf1 Paket Ad\f2\u305?\f0  -> \cf4 FluentValidation\cf3\par
+\par
+Art\f2\u305?\f0 k FluentValidation klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055  alt\f2\u305?\f0 nda, Entity'lerimize ilgili s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0  olu\f2\'ba\f0 turabiliriz. Bu s\f2\u305?\f0 n\f2\u305?\f0 flar i\f1\lang1033\'e7\f0\lang1055 erisinde validation kurallar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  yazaca\f2\u287?\u305?\f0 z.\par
+\par
+\tab\cf1 Class Ad\f2\u305?\f0  -> \cf4 ProductValidator.cs\cf3\par
+\par
+Bu s\f2\u305?\f0 n\f2\u305?\f0 fa AbstractValidator s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 ndan inherit al\f2\u305?\f0 yoruz.\par
+\par
+\cf2\f3\fs24 public\cf3  \cf2 class\cf3  \cf5 ProductValidator\cf3  : \cf5\f4 AbstractValidator\cf3\f3 <\cf5 Product\cf3 >\par
+\{\par
+\}\f0\par
+\fs28\par
+Yukar\f2\u305?\f0 da g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi \f1\lang1033\'fc\f0\lang1055 zerinde \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 aca\f2\u287?\u305?\f0 m\f2\u305?\f0 z s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  belirtiyoruz.\par
+\par
+\cf4 Bu kurallar bir ctor i\f1\lang1033\'e7\f0\lang1055 erisinde yaz\f2\u305?\f0 l\f2\u305?\f0 r. (FluentValidation yap\f2\u305?\f0 s\f2\u305?\f0  b\f1\lang1033\'f6\f0\lang1055 yle)\cf3\par
+\cf1 NOT: Bu s\f2\u305?\f0 n\f2\u305?\f0 flar; hem entity'ler hem de DTO'lar i\f1\lang1033\'e7\f0\lang1055 in yaz\f2\u305?\f0 labilir.\par
+\cf3\par
+\f2\'aa\f0 imdi Product i\f1\lang1033\'e7\f0\lang1055 in validation kurallar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  yazal\f2\u305?\f0 m ctor i\f1\lang1033\'e7\f0\lang1055 inde.\par
+\par
+\cf2\f3\fs24 public\cf3  \cf2 class\cf3  \cf5 ProductValidator\cf3  : \cf5\f4 AbstractValidator\cf3\f3 <\cf5 Product\cf3 >\par
+\{\par
+      \cf2 public\cf3  \cf5 ProductValidator\cf3 ()\par
+      \{\par
+            \cf10 RuleFor\cf3 (p => p.ProductName).\cf10 NotEmpty\cf3 ();\par
+            \cf10 RuleFor\cf3 (p => p.ProductName).\cf10 MinimumLength\cf3 (2);\par
+            \cf10 RuleFor\cf3 (p => p.UnitPrice).\cf10 NotEmpty\cf3 ();\par
+            \cf10 RuleFor\cf3 (p => p.UnitPrice).\cf10 GreaterThan\cf3 (0);\par
+      \}\par
+\}\f0\par
+\fs28\par
+G\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi bir\f1\lang1033\'e7\f0\lang1055 ok validation ko\f2\'ba\f0 ulu i\f1\lang1033\'e7\f0\lang1055 in haz\f2\u305?\f0 r metotlar var.\par
+\cf4 RuleFor \cf0 metoduna parametre olarak verdi\f2\u287?\f0 imiz \cf4 Lambda Expression \cf0 sayesinde, "nesnenin hangi property'si i\f1\lang1033\'e7\f0\lang1055 in kural yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0 " belirtmi\f2\'ba\f0  oluyoruz.\cf3\par
+Devam\f2\u305?\f0 nda ise istedi\f2\u287?\f0 imiz kurallar\f2\u305?\f0  ilgili metot ile tamaml\f2\u305?\f0 yoruz.\par
+\par
+\par
+\f2\'aa\f0 imdi bir ayr\f2\u305?\f0 nt\f2\u305?\f0 y\f2\u305?\f0  da \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in Product i\f1\lang1033\'e7\f0\lang1055 in "\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 n fiyat\f2\u305?\f0  mutlaka 0'dan b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k olmal\f2\u305?\f0 " dedik.\par
+Ancak buna ek olarak \f1\lang1033\'f6\f0\lang1055 zel bir validation'a daha sahip olabiliriz.\f1\lang1033\par
+\'d6\f0\lang1055 rne\f2\u287?\f0 in;\par
+\tab CategoryId'si 1 olan \f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nlerin min fiyat\f2\u305?\f0  10 TL olmal\f2\u305?\f0 d\f2\u305?\f0 r.\par
+Bunu da ek bir kod ile belirtebiliriz.\par
+\par
+\f3\fs19     \f4  \f3  \cf10\fs28 RuleFor\cf3 (p => p.UnitPrice).GreaterThan(10)\par
+\f4\tab\tab  \f3 .\cf10 When\cf3 (p => p.CategoryId == 1);\par
+\f0\par
+G\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi genel UnitPrice validation'a ek olarak spesifik bir kural daha yazm\f2\u305?\'ba\f0  olduk.\par
+\par
+\cf1 NOT: Normalde ayn\f2\u305?\f0  prop'a ait kurallar\f2\u305?\f0  arka arkaya tek sat\f2\u305?\f0 r halinde yazabiliriz. Ancak yine SOLID gere\f2\u287?\f0 i b\f1\lang1033\'f6\f0\lang1055 yle yapmamal\f2\u305?\f0 y\f2\u305?\f0 z. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  ilerleyen zamanlarda kurallar de\f2\u287?\f0 i\f2\'ba\f0 ebilir ve aralara When metodu eklememiz gerekebilir. Bu sebepten dolay\f2\u305?\f0  her kural\f2\u305?\f0  ayr\f2\u305?\f0  sat\f2\u305?\f0 rlarda yazmak iyidir.\cf3\par
+\par
+\par
+Bilinmesi gereken \f1\lang1033\'e7\f0\lang1055 ok m\f1\lang1033\'fc\f0\lang1055 him bir konu daha var.\par
+E\f2\u287?\f0 er FluentValidation i\f1\lang1033\'e7\f0\lang1055 inde OLMAYAN t\f1\lang1033\'fc\f0\lang1055 rde bi kural eklemek istiyorsak,\par
+bunun i\f1\lang1033\'e7\f0\lang1055 in yapmam\f2\u305?\f0 z gereken \f2\'ba\f0 ey Must metodunu kullanmak.\par
+\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in t\f1\lang1033\'fc\f0\lang1055 m ProductName'ler A harfi ile ba\f2\'ba\f0 las\f2\u305?\f0 n istiyoruz;\par
+\par
+\tab\cf10\f3 RuleFor\cf3 (p => p.ProductName).\cf10\f4 Must\cf3\f3 (\f4 StartWithA\f3 );\fs24\par
+\f0\fs28\par
+Must metodunu kullanarak, kendi kural\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  yarataca\f2\u287?\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  belirttik. \f2\u304?\f1\lang1033\'e7\f0\lang1055 erisine de kendi yazaca\f2\u287?\u305?\f0 m\f2\u305?\f0 z metodu veriyoruz.\par
+\par
+\tab\cf2\f3 private\cf3  \cf2 bool\cf3  StartWithA(\cf2 string\cf3  arg)\par
+    \f4  \f3\{\par
+           \cf2 return\cf3  arg.StartsWith(\cf11 "A"\cf3 );\par
+     \}\f0\par
+\par
+StartWithA metodunu otomatik olarak generate ettik.\par
+bool d\f1\lang1033\'f6\f0\lang1055 nmek zorunda.\par
+false ise RuleFor sat\f2\u305?\f0 r\f2\u305?\f0  patlayacak.\par
+true ise onaylayacak.\par
+Metoda parametre olarak gelen arg da RuleFor i\f1\lang1033\'e7\f0\lang1055 inde belirtti\f2\u287?\f0 imiz lambda "p" nesnesi oluyor.\par
+C# metodu olan StartsWith yard\f2\u305?\f0 mc\f2\u305?\f0  metodu ile kontrol\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055  yapt\f2\u305?\f0 k ve duruma g\f1\lang1033\'f6\f0\lang1055 re boolean d\f1\lang1033\'f6\f0\lang1055 nd\f1\lang1033\'fc\f0\lang1055 rece\f2\u287?\f0 iz.\par
+Bu \f2\'ba\f0 ekilde FluentValidation i\f1\lang1033\'e7\f0\lang1055 inde yer almayan bir validation kural\f2\u305?\f0  yazm\f2\u305?\'ba\f0  olduk.\par
+\par
+\par
+\par
+Validation kurallar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  yazd\f2\u305?\f0 k.\par
+\f2\'aa\f0 imdi bu kurallar\f2\u305?\f0  nas\f2\u305?\f0 l \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\f0 raca\f2\u287?\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim.\par
+\par
+Daha \f1\lang1033\'f6\f0\lang1055 nce Business katman\f2\u305?\f0 nda Product'a ait yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z validation kodlar\f2\u305?\f0 n\f2\u305?\f0  siliyoruz. (if kullanarak ProductName.Length < 2 tarz\f2\u305?\f0 nda kodlar yazm\f2\u305?\'ba\f0 t\f2\u305?\f0 k. Bunlar\f2\u305?\f0  siliyoruz.)\par
+\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in Add operasyonu i\f1\lang1033\'e7\f0\lang1055 inde parametre olarak gelen Product nesnesinin validation kontrollerini yapaca\f2\u287?\u305?\f0 z.\par
+Bu durumda Add metodunu i\f1\lang1033\'e7\f0\lang1055 ine gerekli FluentValidation ayarlar\f2\u305?\f0 n\f2\u305?\f0  yazmam\f2\u305?\f0 z gerekiyor.\par
+\par
+\cf2\f4\fs19  \fs22  \f3 public\cf3  IResult Add(Product product)\par
+  \{\par
+        \cf12 /\f4 * FluentValidation Kodlar\f5\u305?\f4  Ba\f5\'ba\f4 lang\f5\u305?\f6\lang1033\'e7\f4\lang1055  */\cf3\f3\par
+\par
+        \cf2 var\cf3  context = \cf2 new\cf3  ValidationContext<Product>(product);\par
+        ProductValidator productValidator = \cf2 new\cf3  ProductValidator();\par
+        \cf2 var\cf3  result = productValidator.Validate(context);\par
+        \cf2 if\cf3  (!result.IsValid)\par
+        \{\par
+              \cf2 throw\cf3  \cf2 new\cf3  ValidationException(result.Errors);\par
+        \}\par
+\par
+\f4\tab  \cf12\f3 /\f4 * FluentValidation Kodlar\f5\u305?\f4  Biti\f5\'ba\f4  */\cf3\f3\par
+\par
+\par
+        _productDal.Add(product);\par
+        \cf2 return\cf3  \cf2 new\cf3  Result(\cf2 true\cf3 , Messages.ProductAdded);\par
+\f5   \}\f0\par
+\fs28\par
+Bu kodlar\f2\u305?\f0  FluentValidation dok\f1\lang1033\'fc\f0\lang1055 man\f2\u305?\f0 ndan ald\f2\u305?\f0 k.\par
+Kodlar\f2\u305?\f0 n anlam\f2\u305?\f0 n\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim;\par
+\par
+1. sat\f2\u305?\f0 rda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 aca\f2\u287?\u305?\f0 m\f2\u305?\f0 z s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  veriyoruz. -> Product\par
+1. sat\f2\u305?\f0 rda validation yap\f2\u305?\f0 lacak nesneyi veriyoruz. -> product\par
+\par
+2. sat\f2\u305?\f0 rda ise validation yapan s\f2\u305?\f0 n\f2\u305?\f0 ftan instance \f1\lang1033\'fc\f0\lang1055 retiyoruz.\par
+\par
+3. sat\f2\u305?\f0 rda context'i validate etmesi i\f1\lang1033\'e7\f0\lang1055 in instance'a veriyoruz.\par
+\par
+4. sat\f2\u305?\f0 rdaki if blo\f2\u287?\f0 u da, t\f1\lang1033\'fc\f0\lang1055 m kurallara uymazsa hata d\f1\lang1033\'f6\f0\lang1055 nd\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yor.\par
+\par
+\par
+\cf4 Bu kod refactor edilecek. \f2\'aa\f0 u anki hali asl\f2\u305?\f0 nda SOLID'e ayk\f2\u305?\f0 r\f2\u305?\f0 d\f2\u305?\f0 r.\par
+Bu haliyle validation kodlar\f2\u305?\f0 m\f2\u305?\f0 z spagetti kod oldu.\cf3\par
+\par
+\par
+\f2\'aa\f0 imdi bu kodu iyile\f2\'ba\f0 tirelim.\par
+\par
+Biz Add metodunun i\f1\lang1033\'e7\f0\lang1055 inde validation kontrollerimizi FluentValidation kullanarak yapaca\f2\u287?\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  s\f1\lang1033\'f6\f0\lang1055 ylemek i\f1\lang1033\'e7\f0\lang1055 in bir s\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055  kod yazd\f2\u305?\f0 k.\par
+Ancak bu kodlar her metot ve s\f2\u305?\f0 n\f2\u305?\f0 f i\f1\lang1033\'e7\f0\lang1055 in ayn\f2\u305?\f0  \f2\'ba\f0 ekilde yaz\f2\u305?\f0 lacak zaten.\par
+Sadece \f1\lang1033\'fc\f0\lang1055 zerinde \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 aca\f2\u287?\u305?\f0 m\f2\u305?\f0 z s\f2\u305?\f0 n\f2\u305?\f0 f de\f2\u287?\f0 i\f2\'ba\f0 ecek. (product, category vs.)\par
+Bu sebeple, SOLID'e uygun olarak yazmal\f2\u305?\f0 y\f2\u305?\f0 z.\par
+Hatta validation yani do\f2\u287?\f0 rulama i\f2\'ba\f0 lemlerini t\f1\lang1033\'fc\f0\lang1055 m projelerimizde kullan\f2\u305?\f0 r\f2\u305?\f0 z.\f1\lang1033\par
+\f0\lang1055 Bu nedenle Core katman\f2\u305?\f0 nda yazaca\f2\u287?\u305?\f0 z bunu.\par
+(Hen\f1\lang1033\'fc\f0\lang1055 z AOP'ye gelmedik. ad\f2\u305?\f0 m ad\f2\u305?\f0 m yakla\f2\'ba\u305?\f0 yoruz.)\par
+\par
+\par
+Kodu iyile\f2\'ba\f0 tirmeden \f1\lang1033\'f6\f0\lang1055 nce bir konunun teorisini \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim.\par
+\par
+Yaz\f2\u305?\f0 l\f2\u305?\f0 m geli\f2\'ba\f0 tirmede baz\f2\u305?\f0  bile\f2\'ba\f0 enler \cf4 Cross Cutting Concern \cf0 yap\f2\u305?\f0 dad\f2\u305?\f0 r.\par
+Yani, t\f1\lang1033\'fc\f0\lang1055 m katmanlar\f2\u305?\f0  ilgilendiren bile\f2\'ba\f0 enlerdir.\par
+Bu t\f1\lang1033\'fc\f0\lang1055 r bile\f2\'ba\f0 enlere \f1\lang1033\'f6\f0\lang1055 rnek verecek olursak;\par
+\par
+\tab\tab\cf1 Log\par
+\tab\tab Cache\par
+\tab\tab Validation\par
+\tab\tab Transaction\par
+\tab\tab Authorization\par
+\cf0\tab\tab\cf3\par
+Bu tip yap\f2\u305?\f0 lar, farkl\f2\u305?\f0  katmanlarda farkl\f2\u305?\f0  \f2\'ba\f0 ekillerde kullan\f2\u305?\f0 labilir.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in Validation kurallar\f2\u305?\f0  UI katman\f2\u305?\f0 nda da kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+Dolay\f2\u305?\f0 s\f2\u305?\f0 yla bunlar, Cross Cutting Concern olarak adland\f2\u305?\f0 r\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\par
+Sonu\f1\lang1033\'e7\f0\lang1055  olarak Validation bir Cross Cutting Concern yap\f2\u305?\f0 s\f2\u305?\f0 d\f2\u305?\f0 r.\par
+Bundan dolay\f2\u305?\f0  Core katman\f2\u305?\f0 na koyaca\f2\u287?\u305?\f0 z ancak buna uygun bir yap\f2\u305?\f0 da koyaca\f2\u287?\u305?\f0 z.\par
+\par
+\par
+Core katman\f2\u305?\f0 na yeni bir klas\f1\lang1033\'f6\f0\lang1055 r ekliyoruz.\par
+\par
+\cf4\tab\cf1 Klas\f1\lang1033\'f6\f0\lang1055 r ad\f2\u305?\f0  -> \cf4 CrossCuttingConcerns\par
+\cf3\par
+Alt\f2\u305?\f0 na bir klas\f1\lang1033\'f6\f0\lang1055 r daha olu\f2\'ba\f0 turuyoruz.\par
+\cf4\par
+\tab\cf1 Klas\f1\lang1033\'f6\f0\lang1055 r ad\f2\u305?\f0  -> \cf4 Validation\par
+\tab\cf1 Class ad\f2\u305?\f0  -> \cf4 ValidationTool.cs\par
+\cf3\par
+Az \f1\lang1033\'f6\f0\lang1055 nce business katman\f2\u305?\f0 nda yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z validation kodlar\f2\u305?\f0 n\f2\u305?\f0  keselim.\par
+\par
+\cf4 Olu\f2\'ba\f0 turdu\f2\u287?\f0 umuz ValidationTool s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0  static olarak tan\f2\u305?\f0 ml\f2\u305?\f0 yoruz.\cf3\par
+\cf4 Bu s\f2\u305?\f0 n\f2\u305?\f0 fa ihtiya\f1\lang1033\'e7\f0\lang1055  duydu\f2\u287?\f0 umuzda "newlememek" i\f1\lang1033\'e7\f0\lang1055 in.\cf3\par
+\par
+Validate isminde bir static metot yaz\f2\u305?\f0 yoruz.\par
+Kesti\f2\u287?\f0 imiz kodlar\f2\u305?\f0  bu metodun i\f1\lang1033\'e7\f0\lang1055 ine yap\f2\u305?\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 yoruz.\par
+\par
+\cf1\f2\'aa\f0 imdi burada \f1\lang1033\'e7\f0\lang1055 ok kritik bir konu var.\par
+\cf3\par
+FluentValidation paketinde base class olarak kulland\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z AbstractValidator s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0 n t\f1\lang1033\'fc\f0\lang1055 retildi\f2\u287?\f0 i esas Interface'lere f12 kullanarak tek tek bak\f2\u305?\f0 yoruz. Ve nihayet IValidator isimli bir temel Interface'in oldu\f2\u287?\f0 unu g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yoruz. IValidator interface'inin de i\f1\lang1033\'e7\f0\lang1055 ini incelersek Validate diye bir metot oldu\f2\u287?\f0 unu zaten g\f1\lang1033\'f6\f0\lang1055 rebiliriz.\par
+Bunu bulmam\f2\u305?\f0 z\f2\u305?\f0 n amac\f2\u305?\f0 , kesti\f2\u287?\f0 imiz kodlar\f2\u305?\f0  kendi yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z metoda yap\f2\u305?\'ba\f0 t\f2\u305?\f0 raca\f2\u287?\u305?\f0 m\f2\u305?\f0 z i\f1\lang1033\'e7\f0\lang1055 in, metoda parametre olarak verece\f2\u287?\f0 imiz de\f2\u287?\f0 er tipinin ne olaca\f2\u287?\u305?\f0 n\f2\u305?\f0  bulmakt\f2\u305?\f0 . \par
+Ve f12 ile takip ederek temel Interface'e ula\f2\'ba\f0 t\f2\u305?\f0 k.\par
+(Genelde base class ismiyle interface ismi ayn\f2\u305?\f0  olur. Burada da Validator olarak ge\f1\lang1033\'e7\f0\lang1055 iyor ikisi de.)\par
+\par
+\f2\u304?\'ba\f0 te bu Interface'i, referans tutucu oldu\f2\u287?\f0 u i\f1\lang1033\'e7\f0\lang1055 in, metodumuzda parametre tipi olarak kullanaca\f2\u287?\u305?\f0 z. Bu sebepten dolay\f2\u305?\f0  aray\f2\u305?\f0 p bulduk.\par
+\par
+Bu tipi de parametre olarak metoda ekliyoruz. Ve ilgili namespace'in yer ald\f2\u305?\u287?\u305?\f0  paketi Core projemize de dahil ediyoruz.\fs22\par
+\par
+\cf2\f3 public\cf3  \cf2 static\cf3  \cf2 class\cf3  \cf5 ValidationTool\cf3\par
+\{\par
+   \cf2 public\cf3  \cf2 static\cf3  \cf2 void\cf3  Validate(\cf5\f4 IV\f3 alidat\f4 or \cf3\f3 validator, \cf2 object\cf3  entity)\par
+   \{\par
+         \cf2 var\cf3  context = \cf2 new\cf3  \cf5 Validation\f4 Context\cf3\f3 <\cf2 object\cf3 >(entity);\par
+         \cf2 var\cf3  result = validator.Validate(context);\par
+         \cf2 if\cf3  (!result.IsValid)\par
+         \{\par
+               \cf2 throw\cf3  \cf2 new\cf3  \cf5 Validation\f4 Exception\cf3\f3 (result.Errors);\par
+         \}\par
+   \}\par
+\}\f0\par
+\fs28\par
+Keserek buraya yap\f2\u305?\'ba\f0 t\f2\u305?\f0 rd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z kodlarda de\f2\u287?\f0 i\f2\'ba\f0 iklikler yapt\f2\u305?\f0 k.\par
+Burada parametre olarak IValidator ve object kullanarak, metodu kullanacak olan t\f1\lang1033\'fc\f0\lang1055 m nesnelerle uyumlulu\f2\u287?\f0 unu sa\f2\u287?\f0 lam\f2\u305?\'ba\f0  olduk.\par
+\par
+validator parametresine, \cf4 new ProductValidator() \cf0 yollayaca\f2\u287?\u305?\f0 z.\cf3\par
+entity parametresine de, \cf4 product \cf3 yollayaca\f2\u287?\u305?\f0 z.\par
+(Bu entity tipine object dedik. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  IEntity de olabilir IDto da olabilir. Hatta ba\f2\'ba\f0 ka katmanlar kullan\f2\u305?\f0 rsa, bamba\f2\'ba\f0 ka s\f2\u305?\f0 n\f2\u305?\f0 flar da olabilir. O y\f1\lang1033\'fc\f0\lang1055 zden t\f1\lang1033\'fc\f0\lang1055 m tiplerin atas\f2\u305?\f0  olan object tipini kulland\f2\u305?\f0 k parametre tipi olarak.)\par
+\par
+Static metodumuzu bu \f2\'ba\f0 ekilde kurgulad\f2\u305?\f0 k.\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  ihtiyac\f2\u305?\f0 m\f2\u305?\f0 z olan yerlerde \f2\'ba\f0 u \f2\'ba\f0 ekilde \f1\lang1033\'e7\f0\lang1055 a\f2\u287?\u305?\f0 r\f2\u305?\f0 r\f2\u305?\f0 z diye planlad\f2\u305?\f0 k;\par
+\par
+\f3\fs24 ValidationTool.Validate(\cf2 new\cf3  ProductValidator(), product);\f0\par
+\fs28\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in ProductManager i\f1\lang1033\'e7\f0\lang1055 inde Add metodunun i\f1\lang1033\'e7\f0\lang1055 inde, yukar\f2\u305?\f0 daki gibi bir kullan\f2\u305?\f0 mla bu ValidationTool metodunu \f1\lang1033\'e7\f0\lang1055 a\f2\u287?\u305?\f0 rabiliriz.\par
+\cf4 Bu yap\f2\u305?\f0 y\f2\u305?\f0  ve isimlendirmeyi tamamen biz kurgulad\f2\u305?\f0 k.\par
+Buna uygun olarak da static metodu kendimiz in\f2\'ba\f0 a ettik.\par
+\cf3\par
+\cf1\f2\'aa\f0 imdi burada \f1\lang1033\'e7\f0\lang1055 ok \f1\lang1033\'e7\f0\lang1055 ok \f1\lang1033\'f6\f0\lang1055 nemli bir olay daha devreye giriyor.\cf3\par
+Biz bu \f2\'ba\f0 ekilde Manager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 m\f2\u305?\f0 zdaki bir metodun i\f1\lang1033\'e7\f0\lang1055 inde gerekli olan Validation kodlar\f2\u305?\f0 n\f2\u305?\f0  tek sat\f2\u305?\f0 ra d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 rm\f1\lang1033\'fc\f2\lang1055\'ba\f0  olsak da, bu bile hala yetersizdir.\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  biz \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 in ProductManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0 n Add metodunda sadece validation yapm\f2\u305?\f0 yoruz.\par
+Loglama, Cache Remove, Yetkilendirme, Validation gibi gibi bir s\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055  i\f2\'ba\f0 lemler yapaca\f2\u287?\u305?\f0 z. Ancak bunlar bizim "i\f2\'ba\f0  kodlar\f2\u305?\f0 m\f2\u305?\f0 z" de\f2\u287?\f0 il. \par
+\cf4 O y\f1\lang1033\'fc\f0\lang1055 zden bu yap\f2\u305?\f0 lar\f2\u305?\f0  AOP olarak kurgulay\f2\u305?\f0 p, metotlar\f2\u305?\f0 n \f1\lang1033\'fc\f0\lang1055 zerine Annotation olarak vermek \f1\lang1033\'e7\f0\lang1055 ok daha clean code bir teknik olacakt\f2\u305?\f0 r.\cf3\par
+\cf1 O y\f1\lang1033\'fc\f0\lang1055 zden Validation yap\f2\u305?\f0 s\f2\u305?\f0 n\f2\u305?\f0  getirdi\f2\u287?\f0 imiz son haliyle bile tam olarak temiz kurgulamad\f2\u305?\f0 k. \par
+Son derste bunu AOP ile refactor edece\f2\u287?\f0 iz.\cf3\par
+\par
+
+\pard\sl276\slmult1\qc\cf9 ------------------------------------------------------------------------------------------------\cf3\par
+\cf9\fs36 2. B\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 m Sonu\cf3\f2\fs28\par
+
+\pard\sl276\slmult1\qj\cf9\f0 ------------------------------------------------------------------------------------------------\cf3\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+Bu b\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 mde AOP kodlar\f2\u305?\f0  yazaca\f2\u287?\u305?\f0 z.\par
+Birtak\f2\u305?\f0 m haz\f2\u305?\f0 r kodlar\f2\u305?\f0  almak i\f1\lang1033\'e7\f0\lang1055 in, Engin Demiro\f2\u287?\f0  hocam\f2\u305?\f0 z\f2\u305?\f0 n GitHub profiline gidiyoruz.\par
+\cf4 NetCoreBackend \cf3 isimli reposuna gidiyoruz.\par
+Buradan ihtiyac\f2\u305?\f0 m\f2\u305?\f0 z olan kodlar\f2\u305?\f0  almadan \f1\lang1033\'f6\f0\lang1055 nce, AOP nedir \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim.\par
+\par
+\par
+\cf9\fs36 AOP (Aspect Oriented Programming) NED\f2\u304?\f0 R?\par
+\par
+\cf3\f1\fs28\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in metotlar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  loglamak istiyoruz.\par
+Genelde metotlar; ba\f2\'ba\f0 ta sonda veya hata verdi\f2\u287?\f0 inde loglan\f2\u305?\f0 r.\par
+\cf1\f2\par
+\u304?\'ba\f0 te bu \f1\lang1033\'f6\f0\lang1055 rnekteki gibi metodumuzun ba\f2\'ba\u305?\f0 nda, sonunda veya hata verdi\f2\u287?\f0 inde \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 mas\f2\u305?\f0 n\f2\u305?\f0  istedi\f2\u287?\f0 imiz kodlar varsa, bunlar\f2\u305?\f0  AOP tekni\f2\u287?\f0 iyle \f1\lang1033\'e7\f0\lang1055 ok rahat bir \f2\'ba\f0 ekilde yapabiliriz.\cf3\par
+\par
+\cf1 Bu sayede projenin her yerinde defalarca try catch yazmak yerine veya her yerde loglama yapmak yerine, merkezi bir yap\f2\u305?\f0 yla (AOP kullanarak)bunu sa\f2\u287?\f0 layabiliriz.\cf3\par
+\par
+\cf4 Bu y\f1\lang1033\'f6\f0\lang1055 nteme INTERCEPTION denir.\par
+\cf3\par
+Interception'\f2\u305?\f0 n kelime anlam\f2\u305?\f0 , "araya girmek" demektir.\par
+Bir \f2\'ba\f0 eyin ba\f2\'ba\u305?\f0 nda, sonunda, veya belirledi\f2\u287?\f0 imiz yerde araya girerek \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 an yap\f2\u305?\f0 lar\f2\u305?\f0  ifade eder.\par
+\par
+\par
+Bu y\f1\lang1033\'f6\f0\lang1055 zden az sonra hocam\f2\u305?\f0 z\f2\u305?\f0 n projesinde;\par
+\par
+\tab\cf1 NetCoreBackend > Core > Utilities > Interceptors\cf3\par
+\par
+klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ne bakaca\f2\u287?\u305?\f0 z.\par
+\par
+\par
+Fakat bundan \f1\lang1033\'f6\f0\lang1055 nce,\par
+Core katman\f2\u305?\f0 nda Utilities alt\f2\u305?\f0 na bir klas\f1\lang1033\'f6\f0\lang1055 r ekleyelim.\par
+\cf4\par
+\cf1\tab Klas\f1\lang1033\'f6\f0\lang1055 r ad\f2\u305?\f0  -> \cf4 Interceptors\par
+\cf3\par
+\cf1 Biz AOP kullan\f2\u305?\f0 rken log, cache vs gibi i\f2\'ba\f0 lemleri metotlar\f2\u305?\f0 n \f1\lang1033\'fc\f0\lang1055 st\f1\lang1033\'fc\f0\lang1055 ne Attribute olarak koyuyoruz.\cf3\par
+\par
+\f1\lang1033\'d6\f0\lang1055 rnek -> \cf4 [Validate] \cf3\f2\'ba\f0 eklinde.\par
+\par
+\par
+\par
+Engin hocan\f2\u305?\f0 n projesinden,\par
+\par
+\cf1 NetCoreBackend > Core > Utilities \par
+\tab > Interceptors > MethodInterceptionBaseAttribute.cs\par
+\cf3\par
+s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0  oldu\f2\u287?\f0 u gibi kopyal\f2\u305?\f0 yoruz.\par
+\par
+\par
+\fs24 [AttributeUsage( AttributeTargets.Class | \par
+\tab                AttributeTargets.Method, AllowMultiple = \cf1 true\cf3 , Inherited = \cf1 true\cf3 )]\par
+\cf1 public abstract class \cf3 MethodInterceptionBaseAttribute : Attribute, IInterceptor\par
+\fs28\{\par
+        \cf1 public int \cf3 Priority \{ get; set; \}\par
+\par
+        \cf1 public virtual void \cf3 Intercept(IInvocation invocation)\par
+        \{\par
+        \}\par
+\}\par
+\par
+\par
+\f2\'aa\f0 imdi bu kodun anlam\f2\u305?\f0 n\f2\u305?\f0  inceleyelim.\par
+\f2\u304?\f0 lk sat\f2\u305?\f0 rdaki attribute \f1\lang1033\'f6\f0\lang1055 zelliklerine bakal\f2\u305?\f0 m.\par
+\cf1 AttributeTarget \cf3 = Bu yap\f2\u305?\f0 y\f2\u305?\f0  \cf4 class'lar ve metot'lara \cf3 ekleyebilirsin demek.\par
+\cf1 AllowMultiple \cf3 = 1'den fazla ekleyebilirsin.\par
+\cf1 Inherited \cf3 = inherit edilen bir yerde de \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 s\f2\u305?\f0 n.\par
+\par
+\cf1 NOT: Neden 1'den fazla kullanal\f2\u305?\f0 m ki sorusunun cevab\f2\u305?\f0 ; \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 in bir metodu hem veritaban\f2\u305?\f0 na hem de bir dosyaya loglamak isteyebiliriz. \par
+Bu durumda loglama i\f1\lang1033\'e7\f0\lang1055 in 2 adet attribute kullanmal\f2\u305?\f0 y\f2\u305?\f0 z.\par
+\cf3\par
+\f2\'aa\f0 imdi bu s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  kopyal\f2\u305?\f0 yoruz.\par
+\par
+Interceptors klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055 n alt\f2\u305?\f0 nda bir class olu\f2\'ba\f0 turuyoruz.\par
+\par
+ve kodlar\f2\u305?\f0  yap\f2\u305?\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 yoruz.\par
+\par
+\fs24 [AttributeUsage( AttributeTargets.Class | \par
+\tab                AttributeTargets.Method, AllowMultiple = \cf1 true\cf3 , Inherited = \cf1 true\cf3 )]\par
+\cf1 public abstract class \cf3 MethodInterceptionBaseAttribute : Attribute, IInterceptor\par
+\fs28\{\par
+        \cf1 public int \cf3 Priority \{ get; set; \}\par
+\par
+        \cf1 public virtual void \cf3 Intercept(IInvocation invocation)\par
+        \{\par
+        \}\par
+\}\par
+\par
+\par
+Bu kodlar\f2\u305?\f0  koydu\f2\u287?\f0 umuz zaman, IInterceptor interface'ini bulamayacak.\par
+Bu interface, \cf4 Castle.DynamicProxy \cf3 namespace'inden geliyor.\par
+\par
+Bu y\f1\lang1033\'fc\f0\lang1055 zden Solution'a sa\f2\u287?\f0  t\f2\u305?\f0 kl\f2\u305?\f0 yoruz.\par
+Manage nuget packages for solution'a t\f2\u305?\f0 kl\f2\u305?\f0 yoruz.\par
+\cf1 A\f1\lang1033\'e7\f2\lang1055\u305?\f0 lan ekranda a\f2\'ba\f0 a\f2\u287?\u305?\f0 daki paketlerin hepsini Core katman\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in de install ediyoruz.\cf3\par
+\cf4\tab autofac ekliyoruz.\cf3\par
+\cf4\tab autofac.dynamicproxy ekliyoruz\cf3\par
+\cf4\tab autofac.extensions.dependencyinjection ekliyoruz. \par
+\cf3 (Sonuncu paketi daha sonra kullanaca\f2\u287?\u305?\f0 z ama \f2\'ba\f0 imdiden ekliyoruz.)\par
+\par
+\f2\u304?\'ba\f0 te bize AOP altyap\f2\u305?\f0 s\f2\u305?\f0  sa\f2\u287?\f0 layacak olan sistem bu paketlerden gelecek.\par
+\par
+Az \f1\lang1033\'f6\f0\lang1055 nce \f1\lang1033\'e7\'f6\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055 lmeyen interface'i \cf2\f3\fs24 using\cf3  Castle.DynamicProxy;\f4  \f0\fs28 olarak \f1\lang1033\'e7\'f6\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+\par
+Bu classtaki metodun i\f1\lang1033\'e7\f0\lang1055 i bo\f2\'ba\f0  b\f2\u305?\f0 rak\f2\u305?\f0 lm\f2\u305?\'ba\f0  g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi.\par
+Buna ne yapaca\f2\u287?\u305?\f0 n\f2\u305?\f0  biraz sonra kodlayaca\f2\u287?\u305?\f0 z.\par
+\par
+\par
+\par
+Engin hocan\f2\u305?\f0 n projesinden,\par
+\par
+\cf4\tab\tab\cf1 NetCoreBackend > Core > Utilities \par
+\tab\tab\tab > Interceptors > MethodInterception.cs\par
+\cf3\par
+class\f2\u305?\f0 na gidelim \f2\'ba\f0 imdi de.\par
+\par
+\par
+\cf4 BURASI A\f2\'aa\f0 IRI A\f2\'aa\f0 IRI \f1\lang1033\'d6\f0\lang1055 NEML\f2\u304?\f0  B\f2\u304?\f0 R NOKTA.\par
+ASIL AOP MANTI\f2\u286?\f0 I BU CLASS'TA YER ALIYOR.\par
+\cf3\par
+\par
+\cf2\f3\fs19 public\cf3  \cf2 abstract\cf3  \cf2 class\cf3  \cf5 MethodInterception\cf3  : MethodInterceptionBaseAttribute\par
+\{\par
+  \cf2 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnBefore(IInvocation invocation) \{ \}\par
+  \cf2 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnAfter(IInvocation invocation) \{ \}\par
+  \cf2 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnException(IInvocation invocation, \par
+\f4\tab\tab\tab\tab\tab   \f3 System.Exception e\f4  \f3\{ \}\par
+  \cf2 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnSuccess(IInvocation invocation) \{ \}\par
+  \cf2 public\cf3  \cf2 override\cf3  \cf2 void\cf3  Intercept(IInvocation invocation)\par
+  \{\fs26\par
+         \cf2 var\cf3  isSuccess = \cf2 true\cf3 ;\par
+         OnBefore(invocation);\par
+         \cf2 try\cf3\par
+         \{\par
+             invocation.Proceed();\par
+         \}\par
+         \cf2 catch\cf3  (Exception e)\par
+         \{\par
+             isSuccess = \cf2 false\cf3 ;\par
+             OnException(invocation, e);\par
+             \cf2 throw\cf3 ;\par
+         \}\par
+         \cf2 finally\cf3\par
+         \{\par
+             \cf2 if\cf3  (isSuccess)\par
+             \{\par
+                 OnSuccess(invocation);\par
+             \}\par
+         \}\par
+         OnAfter(invocation);\par
+\fs19     \}\par
+\}\f0\fs28\par
+\par
+\cf1\f2\u304?\'ba\f0 te yukar\f2\u305?\f0 daki kod, AOP mant\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0 n nas\f2\u305?\f0 l i\f2\'ba\f0 ledi\f2\u287?\f0 ini bize anlat\f2\u305?\f0 yor.\cf3\par
+\par
+Intercept metodundaki parametre olan invocation bizim projede \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 acak olan metodumuz oluyor.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in ProductManager'daki Add metodumuz.\par
+\f2\u304?\'ba\f0 te bu invocation parametresi Add metodu oluyor.\par
+\par
+\f2\u304?\'ba\f0 te bu Add metodunu OnBefore(invocation) dersek, metodun ba\f2\'ba\u305?\f0 nda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 r.\par
+\par
+E\f2\u287?\f0 er hata ald\f2\u305?\u287?\u305?\f0 nda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 s\f2\u305?\f0 n dersek, OnException(invocation) diyoruz.\par
+zaten catch metodunun i\f1\lang1033\'e7\f0\lang1055 ine koymu\f2\'ba\f0 uz mant\f2\u305?\f0 k olarak.\par
+\par
+Metot ba\f2\'ba\f0 ar\f2\u305?\f0 l\f2\u305?\f0  olduktan sonra \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 mas\f2\u305?\f0 n\f2\u305?\f0  istersek, OnSuccess(invocation) diyoruz.\par
+\par
+Her \f2\'ba\f0 ey bittikten sonra \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 mas\f2\u305?\f0 n\f2\u305?\f0  istersek, OnAfter(invocation) diyoruz.\par
+\par
+Ger\f1\lang1033\'e7\f0\lang1055 ek hayatta %90 OnBefore ve OnException kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\par
+\par
+\f2\u304?\'ba\f0 te biz hangi metot i\f1\lang1033\'e7\f0\lang1055 in \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 mak istiyorsak, ona g\f1\lang1033\'f6\f0\lang1055 re OnBefore, OnException metotlar\f2\u305?\f0 n\f2\u305?\f0  doldururuz. Hangisini doldurursak sadece onlar \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 r.\par
+\par
+Mesela Validation yap\f2\u305?\f0 s\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in sadece OnBefore dolduraca\f2\u287?\u305?\f0 z.\par
+Add metodunun en ba\f2\'ba\u305?\f0 nda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 acak ve bitecek.\par
+\par
+\cf1 ASLINDA BU YAPI, B\f2\u304?\f0 Z\f2\u304?\f0 M PROJEM\f2\u304?\f0 ZDEK\f2\u304?\f0  METOTLARIMIZIN \f1\lang1033\'c7\f0\lang1055 ATISIDIR.\par
+PROJEDE YER ALAN \f2\u304?\f0 LG\f2\u304?\f0 L\f2\u304?\f0  T\f1\lang1033\'dc\f0\lang1055 M METOTLAR, BU \f1\lang1033\'c7\f0\lang1055 ATIDAN GE\f1\lang1033\'c7\f0\lang1055 ECEK.\par
+\cf3\par
+\cf4 Yani Add, GetByCategoryId, GetAll gibi t\f1\lang1033\'fc\f0\lang1055 m metotlar, bu AOP \f1\lang1033\'e7\f0\lang1055 at\f2\u305?\f0 s\f2\u305?\f0 ndan faydalanacak \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 rken.\cf3\par
+\cf4 Biz asl\f2\u305?\f0 nda bir Try - Catch - Finally \f1\lang1033\'e7\f0\lang1055 at\f2\u305?\f0 s\f2\u305?\f0  olu\f2\'ba\f0 turduk.\par
+\cf3\par
+Try \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 madan, Catch \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 rsa, Finally \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 rsa, Finally'den sonra da istedi\f2\u287?\f0 imiz metot i\f1\lang1033\'e7\f0\lang1055 in istedi\f2\u287?\f0 imiz kodlar\f2\u305?\f0  \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\f0 rabilelim diye, haz\f2\u305?\f0 r olarak 4 adet metot \f1\lang1033\'e7\f0\lang1055 at\f2\u305?\f0 s\f2\u305?\f0  bulunduruyoruz virtual olarak.\par
+\par
+\cf1\tab\tab OnBefore\par
+\tab\tab OnException\par
+\tab\tab OnSuccess\par
+\tab\tab OnAfter\par
+\cf3\par
+\cf4 Bunlar\f2\u305?\f0  da diledi\f2\u287?\f0 imiz metotta override ederek diledi\f2\u287?\f0 imiz \f2\'ba\f0 ekilde doldurabiliriz.\cf3\par
+\par
+\par
+\cf0\f2\'aa\f0 imdi bu s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n kodlar\f2\u305?\f0 n\f2\u305?\f0  da kopyal\f2\u305?\f0 yoruz.\par
+Ge\f1\lang1033\'e7\f0\lang1055 ici olarak bu class\f2\u305?\f0  da di\f2\u287?\f0 er class\f2\u305?\f0 n alt\f2\u305?\f0 na ekliyoruz.\par
+\cf3\par
+\par
+Engin hocan\f2\u305?\f0 n projesinden son class olan,\par
+\par
+\cf1\tab NetCoreBackend > Core > Utilities \par
+\tab\tab > Interceptors > AspectInterceptorSelector.cs\par
+\cf3\par
+class\f2\u305?\f0 na gidelim \f2\'ba\f0 imdi de.\par
+\par
+\cf2\f3\fs19 public\cf3  \cf2 class\cf3  \cf5 AspectInterceptorSelector\cf3  : IInterceptorSelector\par
+\{\par
+    \cf2 public\cf3  IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)\par
+    \{\par
+        \cf2 var\cf3  classAttributes \par
+\f4               \f3 = type.GetCustomAttributes<MethodInterceptionBaseAttribute\par
+\f4                 (\cf2\f3 true\cf3 ).ToList();\par
+        \cf2 var\cf3  methodAttributes = type.GetMethod(method.Name)\par
+                .GetCustomAttributes<MethodInterceptionBaseAttribute>(\cf2 true\cf3 );\par
+        classAttributes.AddRange(methodAttributes);\par
+        classAttributes.Add(\cf2 new\cf3  ExceptionLogAspect(\cf2 typeof\cf3 (FileLogger)));\par
+\par
+        \cf2 return\cf3  classAttributes.OrderBy(x => x.Priority).ToArray();\par
+    \}\par
+\}\f0\fs28\par
+\par
+\cf4 Bu class'\f2\u305?\f0 n yapt\f2\u305?\u287?\u305?\f0  i\f2\'ba\f0  de \f2\'ba\f0 u;\par
+\par
+\tab Gidip class attribute'unu oku.\f1\lang1033\par
+\f0\lang1055\tab Gidip metot attribute'unu oku. \par
+\par
+(validation, log, cache, yetkilendirme vs. o attribute her neyse gidip onlar\f2\u305?\f0 n hepsini bul ve onlar\f2\u305?\f0  bir listeye koy.)\par
+Fakat "onlar\f2\u305?\f0 n \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 ma s\f2\u305?\f0 ras\f2\u305?\f0 n\f2\u305?\f0  da \f1\lang1033\'f6\f0\lang1055 ncelik de\f2\u287?\f0 erine g\f1\lang1033\'f6\f0\lang1055 re s\f2\u305?\f0 rala" diyoruz  son sat\f2\u305?\f0 rdaki kod ile.\cf3\par
+\par
+\f2\'aa\f0 imdi bu class\f2\u305?\f0  da kopyal\f2\u305?\f0 yoruz ve onu da ayn\f2\u305?\f0  class\f2\u305?\f0 n i\f1\lang1033\'e7\f0\lang1055 ine yap\f2\u305?\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 yoruz.\par
+\par
+koddaki \f2\'ba\f0 u sat\f2\u305?\f0 r ileri seviye bir kullan\f2\u305?\f0 m\par
+\par
+\f3\fs22 classAttributes.Add(\cf2 new\cf3  ExceptionLogAspect(\cf2 typeof\cf3 (FileLogger)));\f0\fs28\par
+\par
+(bu sat\f2\u305?\f0 r\f2\u305?\f0 n anlam\f2\u305?\f0 : projedeki t\f1\lang1033\'fc\f0\lang1055 m metotlara loglama i\f2\'ba\f0 lemi uygula demektir. bu kod yaz\f2\u305?\f0 ld\f2\u305?\f0 ktan sonra hi\f1\lang1033\'e7\f0\lang1055 bir metot i\f1\lang1033\'e7\f0\lang1055 in loglama yap\f2\u305?\f0 l\f2\u305?\f0 p yap\f2\u305?\f0 lmad\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 nmemize gerek kalmaz.)\par
+Fakat \f2\'ba\f0 u an loglama altyap\f2\u305?\f0 m\f2\u305?\f0 z haz\f2\u305?\f0 r olmad\f2\u305?\u287?\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in o sat\f2\u305?\f0 r\f2\u305?\f0  \f2\'ba\f0 imdilik siliyoruz.\par
+\par
+son class i\f1\lang1033\'e7\f0\lang1055 in gerekli namespace \f1\lang1033\'e7\'f6\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055 mlemelerini yap.\par
+(Yani Reflection ve Linq namespace'leri.)\par
+\par
+\f2\'aa\f0 imdi 1 cs i\f1\lang1033\'e7\f0\lang1055 ine 3 tane class yap\f2\u305?\'ba\f0 t\f2\u305?\f0 rd\f2\u305?\f0 k.\par
+class1 olarak isimlendirmi\f2\'ba\f0 tik.\par
+bunlar\f2\u305?\f0  \f2\'ba\f0 u an refactor edece\f2\u287?\f0 iz.\par
+\par
+ilk class'\f2\u305?\f0 n \f1\lang1033\'fc\f0\lang1055 zerine gelip, imleci b\f2\u305?\f0 rak\f2\u305?\f0 yoruz.\par
+ampule bast\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 zda, "move type to" se\f1\lang1033\'e7\f0\lang1055 ene\f2\u287?\f0 ine t\f2\u305?\f0 kl\f2\u305?\f0 yoruz.\par
+ayn\f2\u305?\f0  bir s\f2\u305?\f0 n\f2\u305?\f0 f dosyas\f2\u305?\f0  olarak ta\f2\'ba\u305?\f0 yor.\par
+\par
+bunu ikinci class i\f1\lang1033\'e7\f0\lang1055 in de yap\f2\u305?\f0 yoruz.\par
+\par
+en son kalan class i\f1\lang1033\'e7\f0\lang1055 in de sa\f2\u287?\f0  t\f2\u305?\f0 klay\f2\u305?\f0 p, "rename" se\f1\lang1033\'e7\f0\lang1055 iyoruz.\par
+\par
+kodlar\f2\u305?\f0 m\f2\u305?\f0 z tamamen refactor edildi.\par
+\par
+(bu kodlar Engin hocan\f2\u305?\f0 n zamanda yazd\f2\u305?\u287?\u305?\f0  kodlar. g\f1\lang1033\'fc\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 zde bir\f1\lang1033\'e7\f0\lang1055 ok kurumda altyap\f2\u305?\f0  olarak bu kodlar kullan\f2\u305?\f0 l\f2\u305?\f0 yor. Hocan\f2\u305?\f0 n tasarlad\f2\u305?\u287?\u305?\f0  bir mimari asl\f2\u305?\f0 nda.)\par
+\par
+\par
+Engin hocan\f2\u305?\f0 n projesinde Core katman\f2\u305?\f0 na tekrar gidiyoruz,\par
+\par
+\cf1\tab NetCoreBackend > Core > Aspects > Autofac\cf4\par
+\par
+\cf3 Bu klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 n alt\f2\u305?\f0 nda, Cross Cutting Concern olan t\f1\lang1033\'fc\f0\lang1055 m yap\f2\u305?\f0 lar\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 rebiliriz.\par
+Caching, Exception, Logging, Performance, Transaction, Validation\par
+\par
+\par
+Projemize d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+Core katman\f2\u305?\f0 na yeni bir klas\f1\lang1033\'f6\f0\lang1055 r ekliyoruz.\par
+\par
+\cf1\tab Klas\f1\lang1033\'f6\f0\lang1055 r Ad\f2\u305?\f0  -> \cf4 Aspects\par
+\cf3\par
+Alt\f2\u305?\f0 na bir klas\f1\lang1033\'f6\f0\lang1055 r daha ekliyoruz.\par
+\par
+\cf1\tab Klas\f1\lang1033\'f6\f0\lang1055 r ad\f2\u305?\f0  -> \cf4 Autofac\par
+\cf3\par
+(\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  ileride postsharpla da aspectler yazabiliriz. O y\f1\lang1033\'fc\f0\lang1055 zden autofac alt\f2\u305?\f0 nda klas\f1\lang1033\'f6\f0\lang1055 rl\f1\lang1033\'fc\f0\lang1055 yoruz.)\par
+\par
+\f2\'aa\f0 imdi bu autofac klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055 n alt\f2\u305?\f0 na bir klas\f1\lang1033\'f6\f0\lang1055 r daha ekliyoruz.\par
+\par
+\cf1\tab Klas\f1\lang1033\'f6\f0\lang1055 r ad\f2\u305?\f0  -> \cf4 Validation\par
+\cf3\par
+(autofac aspectlerinden "validation" yap\f2\u305?\f0 s\f2\u305?\f0 n\f2\u305?\f0  kodlayaca\f2\u287?\u305?\f0 z. bu sebepten onu da konu ba\f2\'ba\f0 l\f2\u305?\u287?\u305?\f0 nda klas\f1\lang1033\'f6\f0\lang1055 rl\f1\lang1033\'fc\f0\lang1055 yoruz.)\par
+\par
+\par
+Engin hocan\f2\u305?\f0 n projesinden\par
+\par
+\cf1\tab Validation > ValidationAspect.cs \par
+\par
+\cf0 s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0  \cf3 kopyal\f2\u305?\f0 yoruz.\par
+\par
+Projemizdeki Validation klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055  alt\f2\u305?\f0 nda yeni bir class olu\f2\'ba\f0 turuyoruz.\par
+ve kopyalad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z kodlar\f2\u305?\f0  yap\f2\u305?\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 yoruz.\par
+class ad\f2\u305?\f0 n\f2\u305?\f0  da rename diyerek d\f1\lang1033\'fc\f0\lang1055 zeltiyoruz.\par
+gerekli namespace'leri de \f1\lang1033\'e7\'f6\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055 ml\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+\par
+\par
+Bu s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n ad\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  \f1\lang1033\'fc\f0\lang1055 zere ValidationAspect\par
+Biz bu s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  ba\f2\'ba\f0 ka katmanlardaki metotlar\f2\u305?\f0 m\f2\u305?\f0 zda Annotation olarak kullanaca\f2\u287?\u305?\f0 z.\par
+\par
+[ValidationAspect] \f2\'ba\f0 eklinde metotlar\f2\u305?\f0 n \f1\lang1033\'fc\f0\lang1055 zerine yazaca\f2\u287?\u305?\f0 z.\par
+\par
+Ve dersin 2. b\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 nde yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z\par
+\tab ValidationTool.Validate(new ProductValidator(), product);\par
+\par
+\f2\'ba\f0 eklindeki yap\f2\u305?\f0 y\f2\u305?\f0  silece\f2\u287?\f0 iz. AOP mimariye ge\f1\lang1033\'e7\f0\lang1055 mi\f2\'ba\f0  olaca\f2\u287?\u305?\f0 z.\par
+Bu sayede business katman\f2\u305?\f0  metotlar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0 n i\f1\lang1033\'e7\f0\lang1055 inde sadece i\f2\'ba\f0  kodlar\f2\u305?\f0 m\f2\u305?\f0 z kalacak. validation sorgulamas\f2\u305?\f0 n\f2\u305?\f0  AOP ile sa\f2\u287?\f0 lam\f2\u305?\'ba\f0  olaca\f2\u287?\u305?\f0 z.\par
+\par
+\cf2\f4\fs19\tab\f3 public\cf3  \cf5 ValidationAspect\cf3 (\cf4 Type\cf3  validatorType)\par
+        \{\par
+            \cf2 if\cf3  (!\cf2 typeof\cf3 (IValidator).IsAssignableFrom(validatorType))\par
+            \{\par
+                \cf2 throw\cf3  \cf2 new\cf3  System.Exception(AspectMessages.WrongValidationType);\par
+            \}\par
+\par
+            _validatorType = validatorType;\par
+        \}\f0\fs28\par
+\par
+parametrede bulunan Type tipi, attribute tipleri atad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z tiptir.\par
+yani annotation'da tip belirtece\f2\u287?\f0 iz ya hani, onun i\f1\lang1033\'e7\f0\lang1055 in.\par
+\f1\lang1033\'d6\f0\lang1055 rnek;\par
+\tab [ValidationAspect(\cf1 typeof\cf3 (\cf4 ProductValidator\cf3 ))] \par
+\par
+\par
+Art\f2\u305?\f0 k bu yap\f2\u305?\f0 y\f2\u305?\f0  business katman\f2\u305?\f0 m\f2\u305?\f0 zdaki Add metoduna uygulayabiliriz.\par
+\par
+   \f3\fs22 [ValidationAspect(\cf2 typeof\cf3 (ProductValidator\f4 )\f3 )]\par
+  \cf2 public\cf3  IResult Add(Product product)\par
+  \{\par
+\f5        \cf12 //ValidationTool.Validate(new ProductValidator(), product);\cf3\par
+       _productDal.Add(product);\par
+       \cf2 return\cf3  \cf2 new\cf3  Result(\cf2 true\cf3 , Messages.ProductAdded);\par
+  \}\f0\par
+\cf1\fs28\par
+Yukar\f2\u305?\f0 da g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  \f1\lang1033\'fc\f0\lang1055 zere, art\f2\u305?\f0 k metodun i\f1\lang1033\'e7\f0\lang1055 inde Validation kodlar\f2\u305?\f0  yazmam\f2\u305?\f0 za gerek kalmad\f2\u305?\f0 .\par
+AOP ile Data Annotation mant\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  kullanarak, ValidationAspect yap\f2\u305?\f0 s\f2\u305?\f0 n\f2\u305?\f0  bu metoda ba\f2\u287?\f0 lad\f2\u305?\f0 k.\par
+Validation yaparken hangi validator s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0  kullanmas\f2\u305?\f0  gerekti\f2\u287?\f0 ini de Type olarak ProductValidator vererek belirttik.\par
+\cf3\par
+\par
+\f2\'aa\f0 imdi burada \f1\lang1033\'e7\f0\lang1055 ok \f1\lang1033\'f6\f0\lang1055 nemli bir husus daha var.\par
+Biz type olarak ProductValidator verdik ama bu s\f2\u305?\f0 n\f2\u305?\f0 fa ait instace nerede ve ne zaman olu\f2\'ba\f0 tu??\par
+i\f2\'ba\f0 te bunun cevab\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in ValidationAspect s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 m\f2\u305?\f0 za geri d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+\par
+\cf2\f3\fs19 protected\cf3  \cf2 override\cf3  \cf2 void\cf3  OnBefore(IInvocation invocation)\par
+\{\par
+    \cf2 var\cf3  validator = (IValidator)\cf4 Activator\cf3 .\cf4 CreateInstance\cf3 (_validatorType);\par
+    \cf2 var\cf3  entityType = _\cf9 validatorType\cf3 .BaseType.GetGenericArguments()[0];\par
+    \cf2 var\cf3  entities = \cf0 invocation\cf3 .\cf6 Arguments\cf3 .Where(t => t.GetType() == entityType);\par
+    \cf2 foreach\cf3  (var entity \cf2 in\cf3  entities)\par
+    \{\par
+        ValidationTool.Validate(validator, entity);\par
+    \}\par
+\}\f0\fs28\par
+\par
+\f2\u304?\'ba\f0 te yukar\f2\u305?\f0 da k\f2\u305?\f0 rm\f2\u305?\f0 z\f2\u305?\f0  ile i\f2\'ba\f0 aretlenen yere bakarsak, bir "Reflection" g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yoruz. Bir \f1\lang1033\'f6\f0\lang1055 nceki dersin \f1\lang1033\'f6\f0\lang1055 dev konular\f2\u305?\f0 ndan biriydi.\par
+Reflection kullanarak, "program\f2\u305?\f0 n \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 ma an\f2\u305?\f0 nda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 mas\f2\u305?\f0 n\f2\u305?\f0  istedi\f2\u287?\f0 imiz \f2\'ba\f0 eyleri" belirtiyorduk.\par
+Bu OnBefore metodunda asl\f2\u305?\f0 nda type olarak bildi\f2\u287?\f0 i "validator class"\f2\u305?\f0 n bir instance'\f2\u305?\f0 n\f2\u305?\f0  yaratm\f2\u305?\'ba\f0  oluyoruz \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 ma an\f2\u305?\f0 nda.\par
+Bu sayede newlememize gerek kalm\f2\u305?\f0 yor. \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 ma an\f2\u305?\f0 nda newlenmi\f2\'ba\f0  oluyor.\par
+\par
+mor ile i\f2\'ba\f0 aretlenmi\f2\'ba\f0  sat\f2\u305?\f0 rda ise, type olarak verdi\f2\u287?\f0 imiz s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  gidip buluyor. yani "productvalidator"\par
+o buldu\f2\u287?\f0 u validator s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0 n da "generic olarak ald\f2\u305?\u287?\u305?\f0  entity nesnesini" buluyor bu sat\f2\u305?\f0 r da.\par
+yani "product"\par
+\par
+ye\f2\'ba\f0 il sat\f2\u305?\f0 rda da, ba\f2\u287?\f0 land\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z metodun parametrelerini buluyoruz.\par
+yani business katman\f2\u305?\f0 ndaki add metodunun parametrelerini al\f2\u305?\f0 yoruz.\par
+(\f2\'ba\f0 u anda 1 tane product parametresi var ama \f1\lang1033\'e7\f0\lang1055 oklu parametre de olabilirdi.)\par
+\par
+NOT: yani "productvalidator" s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0 n generic tipini bulduk = Product\par
+sonra add metodunda ilgili parametreyi bulduk. = product\par
+\par
+yani validator s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0 n tipiyle, metottaki tipi e\f2\'ba\f0 liyoruz burada.\par
+(birden fazla tip e\f2\'ba\f0 lemesi gerekebilirdi, ondan dolay\f2\u305?\f0  where ile \f1\lang1033\'e7\f0\lang1055 ekip, bir diziye at\f2\u305?\f0 yoruz.)\par
+\par
+sonra foreach ile ValidationTool.Validate metodunu \f1\lang1033\'e7\f0\lang1055 a\f2\u287?\u305?\f0 rarak, validation kontrollerimizi yap\f2\u305?\f0 yoruz.\par
+\par
+ESK\f2\u304?\f0  KOD:\par
+\tab\cf12\f5\fs22 ValidationTool.Validate(new ProductValidator(), product);\cf3\f0\fs28\par
+\par
+YEN\f2\u304?\f0  KOD:\par
+\tab\par
+\cf0\f3\fs19 protected override void OnBefore(IInvocation invocation)\par
+\{\par
+    var validator = (IValidator)Activator.CreateInstance(_validatorType);\par
+    var entityType = _validatorType.BaseType.GetGenericArguments()[0];\par
+    var entities = invocation.Arguments.Where(t => t.GetType() == entityType);\par
+    foreach (var entity in entities)\par
+    \{\par
+        \cf12\f5\fs26 ValidationTool\f4 .Validate\f5 (\f4 validator, entity\f5 )\f4 ;\cf6\f3\fs19\par
+\cf0     \}\par
+\}\f0\fs28\par
+\cf3\par
+2 kodda da ye\f2\'ba\f0 il olarak g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 len sat\f2\u305?\f0 rlar, eski ve yeni versiyonlar\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 steriyor.\par
+\par
+Fakat hala i\f2\'ba\f0 imiz bitmedi.\par
+yap\f2\u305?\f0 y\f2\u305?\f0  kurduk ama.\par
+Interceptorlar\f2\u305?\f0 n Devreye girmesi gerekti\f2\u287?\f0 ini belirtmedik.\par
+\par
+Engin hocan\f2\u305?\f0 n projesinden business katman\f2\u305?\f0 na gidelim,\par
+\par
+\cf4 NetCoreBackend > Business > DependencyResolvers\par
+\tab > Autofac > AutofacBusinessModule.cs\par
+\cf3\par
+class\f2\u305?\f0 na gidelim \f2\'ba\f0 imdi de.\par
+\par
+Autofac paketinde bize ayn\f2\u305?\f0  zamanda interceptor g\f1\lang1033\'f6\f0\lang1055 revi de sa\f2\u287?\f0 l\f2\u305?\f0 yor.\par
+Buradaki kodlar\f2\u305?\f0 n sadece en alttaki k\f2\u305?\f0 sm\f2\u305?\f0 n\f2\u305?\f0  kopyal\f2\u305?\f0 yoruz.\par
+\par
+\f3\fs19      \fs22 builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()\par
+         .EnableInterfaceInterceptors(\cf2 new\cf3  ProxyGenerationOptions()\par
+         \{\par
+             \f4  \f3 Selector = \cf2 new\cf3  AspectInterceptorSelector()\par
+         \}).SingleInstance();\par
+\par
+\par
+\f0\fs28 sadece yukar\f2\u305?\f0 daki ks\f2\u305?\f0 m\f2\u305?\f0  kopyal\f2\u305?\f0 yoruz.\f3\fs22\par
+\f0\fs28\par
+(\f1\lang1033\'fc\f0\lang1055 stte kalan s\f2\u305?\f0 n\f2\u305?\f0 flar ba\f2\'ba\f0 ka projeye ait s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 n kodlar\f2\u305?\f0 . biz en alttaki genel yap\f2\u305?\f0 y\f2\u305?\f0  al\f2\u305?\f0 p, \f1\lang1033\'fc\f0\lang1055 st\f1\lang1033\'fc\f0\lang1055 ne kendi projemize ait kodlar yer alacak. ZATEN BU KODLAR B\f2\u304?\f0 Z\f2\u304?\f0 M LOAD METODUMUZDA \f1\lang1033\'d6\f0\lang1055 NCEDEN VARDI. )\par
+\par
+Kendi projemizde\par
+\par
+\cf4 Business > dependencyResolvers > Autofac >\par
+> AutofacBusinessModule.cs\par
+\cf3\par
+s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 na gidiyoruz.\par
+\par
+LOAD METODUNUN \cf4\f2\u304?\f1\lang1033\'c7\f2\lang1055\u304?\f0 NE \cf0 BU KODLARI YAPI\f2\'aa\f0 TIRIYORUZ.\cf3\par
+\par
+yani;\par
+\par
+\cf2\f3\fs19 protected\cf3  \cf2 override\cf3  \cf2 void\cf3  Load(ContainerBuilder builder)\par
+\{\par
+    builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();\par
+    builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();\par
+\par
+\par
+    \cf2 var\cf3  assembly = System.Reflection.Assembly.GetExecutingAssembly();\par
+\par
+    builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()\par
+        .EnableInterfaceInterceptors(\cf2 new\cf3  ProxyGenerationOptions()\par
+        \{\par
+            Selector = \cf2 new\cf3  AspectInterceptorSelector()\par
+        \}).SingleInstance();\par
+\}\par
+\f0\fs28\par
+Kodumuz yukar\f2\u305?\f0 daki hale d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 ecek.\par
+Gerekli \f1\lang1033\'e7\'f6\f0\lang1055 z\f1\lang1033\'fc\f0\lang1055 mlemeleri yap\f2\u305?\f0 yoruz.\par
+\par
+Art\f2\u305?\f0 k refactor bitti.\par
+Art\f2\u305?\f0 k proje ve AOP tamamen i\f2\'ba\f0 leyecek.\par
+Add metodumuzun i\f1\lang1033\'e7\f0\lang1055 inde hi\f1\lang1033\'e7\f0\lang1055 bir validation kodu yok.\par
+ama AOP ile add metodunun validation kontrolleri yap\f2\u305?\f0 l\f2\u305?\f0 yor.\par
+Art\f2\u305?\f0 k proje \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 labilir halde.\par
+\cf1\par
+(bu tip kodlar 1 kere yaz\f2\u305?\f0 l\f2\u305?\f0 r. Core katman\f2\u305?\f0 na ekledi\f2\u287?\f0 imiz bu Aspect s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0  sayesince -\f2\'ba\f0 u an i\f1\lang1033\'e7\f0\lang1055 in sadece validatipnaspect var- bundan sonra di\f2\u287?\f0 er projelerimizde ayn\f2\u305?\f0  Core katman\f2\u305?\f0 n\f2\u305?\f0  ekleyerek, altyap\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  haz\f2\u305?\f0 r hale getirmi\f2\'ba\f0  olaca\f2\u287?\u305?\f0 z.)\par
+\cf3\par
+
+\pard\sl276\slmult1\qc\cf9 ------------------------------------------------------------------------------------------------\cf3\par
+\cf9\fs36 Ders Sonu\cf3\f2\fs28\par
+
+\pard\sl276\slmult1\qj\cf9\f0 ------------------------------------------------------------------------------------------------\cf3\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\cf0\f1\lang31\par
+}
+ 

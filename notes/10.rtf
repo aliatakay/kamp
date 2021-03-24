@@ -1,0 +1,169 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset238 Calibri;}{\f2\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red255\green0\blue0;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qj\f0\fs28 Kursun 1 ay daha uzat\f1\u305?\f0 ld\f1\u305?\u287?\u305?\f0  tekrar belirtildi.\par
+Kursun ek b\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 m\f2\lang1033\'fc\f0\lang1055 nde; AOP teknikleri ve ileri d\f2\lang1033\'fc\f0\lang1055 zey Git gibi konular  anlat\f1\u305?\f0 lacak.\par
+Bunun yan\f1\u305?\f0  s\f1\u305?\f0 ra frontend dersleri de daha ayr\f1\u305?\f0 nt\f1\u305?\f0 l\f1\u305?\f0  olacak.\par
+\par
+-----------------------------------------------------------------------------------------\par
+Ge\f2\lang1033\'e7\f0\lang1055 ti\f1\u287?\f0 imiz derste, Entity Framework'\f2\lang1033\'fc\f0\lang1055  base bir repository hale d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0 t\f2\lang1033\'fc\f0\lang1055 rd\f2\lang1033\'fc\f0\lang1055 k ve Core katman\f1\u305?\f0 na ta\f1\'ba\u305?\f0 d\f1\u305?\f0 k. Bu sayede Data Access katman\f1\u305?\f0 n\f1\u305?\f0  rahatlatm\f1\u305?\'ba\f0 t\f1\u305?\f0 k.\par
+\par
+Bu derste \f2\lang1033\'f6\f0\lang1055 nce Business katman\f1\u305?\f0 nda geli\f1\'ba\f0 tirmeler yapaca\f1\u287?\u305?\f0 z ve dersin sonlar\f1\u305?\f0 nda projeyi bir Web API ile s\f2\lang1033\'fc\f0\lang1055 sleyece\f1\u287?\f0 iz.\par
+Bir sonraki derste de API konusunu ayr\f1\u305?\f0 nt\f1\u305?\f0 l\f1\u305?\f0  \f2\lang1033\'f6\f1\lang1055\u287?\f0 renece\f1\u287?\f0 iz.\par
+\par
+---------------------------------------------------------------------------------------------\par
+Biz Data Access ve Business katmanlar\f1\u305?\f0 na sahibiz. Bu katmanlar backend kodlar\f1\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  olu\f1\'ba\f0 turuyor. Biz backend'i bu katmanlarda yazd\f1\u305?\f0 ktan sonra projemizin \f2\lang1033\'f6\f0\lang1055 ny\f2\lang1033\'fc\f0\lang1055 z\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055  ister Angular yazar\f1\u305?\f0 z ister IOS Mobil yazar\f1\u305?\f0 z istersek Android Mobil yazar\f1\u305?\f0 z. Proje \f2\lang1033\'f6\f0\lang1055 ny\f2\lang1033\'fc\f0\lang1055 z\f2\lang1033\'fc\f0\lang1055  art\f1\u305?\f0 k t\f2\lang1033\'fc\f0\lang1055 m altyap\f1\u305?\f0 larla kurulabilir. \f2\lang1033\'c7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  hepsi i\f2\lang1033\'e7\f0\lang1055 in haz\f1\u305?\f0 r bir backend'e sahibiz.\par
+Ancak \f2\lang1033\'e7\f0\lang1055 e\f1\'ba\f0 itli frontend teknolojileriyle, backend aras\f1\u305?\f0 nda ileti\f1\'ba\f0 im kurabilmek i\f2\lang1033\'e7\f0\lang1055 in bir Web API katman\f1\u305?\f0 na ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z var.\par
+Biz ConsoleUI projesi olu\f1\'ba\f0 turmu\f1\'ba\f0 tuk. Console bir .NET proje tipi oldu\f1\u287?\f0 unu i\f2\lang1033\'e7\f0\lang1055 in, bizim backend kodlar\f1\u305?\f0 m\f1\u305?\f0 z bir web api'ye ihtiya\f2\lang1033\'e7\f0\lang1055  duymadan Console \f2\lang1033\'f6\f0\lang1055 ny\f2\lang1033\'fc\f0\lang1055 z ile ileti\f1\'ba\f0 im kurabilmi\f1\'ba\f0 ti. Buna benzer \f1\'ba\f0 ekilde yine .NET tabanl\f1\u305?\f0  olan Web Form, Xamarin vs gibi teknolojilerle de web api olmadan ileti\f1\'ba\f0 im kurabiliriz.\par
+\par
+Web API standard\f1\u305?\f0  kullan\f1\u305?\f0 l\f1\u305?\f0 r C# projelerinde.\par
+Web API -> Restful denen formatla \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\u305?\f0 r.\par
+Genellikle bu Restful format\f1\u305?\f0  -> JSON'd\f1\u305?\f0 r.\par
+Bu yap\f1\u305?\f0 , HTTP istekleriyle i\f1\'ba\f0  g\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 r.\par
+\par
+Bu sebeple araya bir Web API katman\f1\u305?\f0  kuraca\f1\u287?\u305?\f0 z.\par
+\par
+Web API'ye farkl\f1\u305?\f0  Client'lardan istekler gelir.\par
+Client -> IOS, Android, Angular, React, Vue .....\par
+Bu isteklere Request denir.\par
+\cf1 Request: Client taraf\f1\u305?\f0 ndan yap\f1\u305?\f0 lan isteklerdir.\par
+\cf0\f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in t\f2\lang1033\'fc\f0\lang1055 m product'\f1\u305?\f0  g\f2\lang1033\'f6\f0\lang1055 rmek istemesi bir istektir.\par
+\cf1 Response: Yap\f1\u305?\f0 lan istek do\f1\u287?\f0 rultusunda verdi\f1\u287?\f0 imiz cevapt\f1\u305?\f0 r.\par
+\cf0\par
+\f1\u304?\'ba\f0 te biz de bu request ve response'lar\f1\u305?\f0  daha iyi y\f2\lang1033\'f6\f0\lang1055 netebilmek i\f2\lang1033\'e7\f0\lang1055 in bir ortam olu\f1\'ba\f0 turaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+\f1\'aa\f0 imdi biz de business katman\f1\u305?\f0 n\f1\u305?\f0  iyile\f1\'ba\f0 tiriyor olaca\f1\u287?\u305?\f0 z. \f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 zda Add operasyonu var. Product'\f1\u305?\f0  veritaban\f1\u305?\f0 na ekleyen metodumuz bu. Biz bu Add metodu kullan\f1\u305?\f0 ld\f1\u305?\u287?\u305?\f0 nda, "veritaban\f1\u305?\f0 na ba\f1\'ba\f0 ar\f1\u305?\f0 yla eklendi" veya "ekleme ger\f2\lang1033\'e7\f0\lang1055 ekle\f1\'ba\f0 tirilemedi" tarz\f1\u305?\f0 nda bir geri d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0  yapmal\f1\u305?\f0 y\f1\u305?\f0 z. \f1\'aa\f0 imdi Business taraf\f1\u305?\f0 nda bu yap\f1\u305?\f0 y\f1\u305?\f0  kuraca\f1\u287?\u305?\f0 z.\par
+\par
+Biz bug\f2\lang1033\'fc\f0\lang1055 ne kadar CRUD operasyonlar\f1\u305?\f0 n\f1\u305?\f0  yazarken hep void metotlar yazd\f1\u305?\f0 k. \f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in;\par
+\cf1 public void Add(Product product)\par
+\{\par
+\tab _productDal.Add(product);\par
+\}\par
+\cf0 ancak burada biz hem "i\f1\'ba\f0 lemin sonucunu" hem de "mesaj\f1\u305?\f0 n\f1\u305?\f0 " d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rmek isteriz.\par
+Yani 1 adet boolean (true ya da false) d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rs\f2\lang1033\'fc\f0\lang1055 n. \par
+1 tane de i\f1\'ba\f0 lem mesaj\f1\u305?\f0  d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rs\f2\lang1033\'fc\f0\lang1055 n. (veritaban\f1\u305?\f0 na eklendi / eklenemedi).\par
+Yani biz 1 metottan 2 de\f1\u287?\f0 er d\f2\lang1033\'f6\f0\lang1055 ns\f2\lang1033\'fc\f0\lang1055 n istiyoruz.\par
+\f1\u304?\'ba\f0 te o halde ENCAPSULATION uygulayaca\f1\u287?\u305?\f0 z her zamanki gibi.\par
+\cf1 public IResult Add(Product product)\par
+\{\par
+\tab _productDal.Add(product);\par
+\}\par
+\cf0 burdaki d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0  de\f1\u287?\f0 eri i\f2\lang1033\'e7\f0\lang1055 in bir class olu\f1\'ba\f0 turaca\f1\u287?\u305?\f0 z ve \f2\lang1033\'e7\f0\lang1055 oklu return sa\f1\u287?\f0 layabilece\f1\u287?\f0 iz.\par
+--------------------------\par
+ilk olarak sistemi yukar\f1\u305?\f0 da anlat\f1\u305?\f0 lan gibi profesyonel hale getirece\f1\u287?\f0 iz.\par
+daha sonra bir api olu\f1\'ba\f0 turaca\f1\u287?\u305?\f0 z.\par
+son olarak postman ile testlerimizi yapaca\f1\u287?\u305?\f0 z.\par
+---------------------------\par
+Core projesi > yeni klas\f2\lang1033\'f6\f0\lang1055 r (utilities) > yeni klas\f2\lang1033\'f6\f0\lang1055 r (results)\par
+IResult interface'i ve Result s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0  olu\f1\'ba\f0 turuyoruz.\par
+\f1\'ba\f0 imdilik sadece void d\f2\lang1033\'f6\f0\lang1055 nen CRUD metotlar\f1\u305?\f0  i\f2\lang1033\'e7\f0\lang1055 in bir Result s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0  yazaca\f1\u287?\u305?\f0 z.\par
+o y\f2\lang1033\'fc\f0\lang1055 zden veritaban\f1\u305?\f0 na hatas\f1\u305?\f0 z kaydolduysa true d\f2\lang1033\'f6\f0\lang1055 necek bir bool de\f1\u287?\f0 i\f1\'ba\f0 kenle, "kaydedildi" mesaj\f1\u305?\f0  i\f2\lang1033\'e7\f0\lang1055 eren bir string prop bar\f1\u305?\f0 nd\f1\u305?\f0 racak bu Result s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 .\par
+\par
+
+\pard\li720\sa200\sl276\slmult1\qj public Result (bool success, string message) : this(success)\par
+\{\par
+\tab this.Message = message;\par
+\}\par
+public Result ( bool success )\par
+\{\par
+\tab this.Success = success;\par
+\}\par
+public bool Success \{ get; \}\par
+public string Message \{ get; \}\par
+
+\pard\sa200\sl276\slmult1\qj\par
+// 2 farkl\f1\u305?\f0  ctor da yaz\f1\u305?\f0 labilirdi. Ancak kodun daha g\f2\lang1033\'fc\f0\lang1055 zel olmas\f1\u305?\f0  i\f2\lang1033\'e7\f0\lang1055 in b\f2\lang1033\'f6\f0\lang1055 yle bir teknik uygulad\f1\u305?\f0 k.\par
+\par
+------------------ B\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 m 1 Burada Bitiyor ---------------------------------\par
+\par
+\par
+\b Dersin 2nci B\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 m\f2\lang1033\'fc\f0\lang1055\par
+\b0\par
+\f1\'aa\f0 imdi ilk b\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 mde yapt\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z kodlar\f1\u305?\f0  geli\f1\'ba\f0 tirelim.\par
+Sadece bir bool ve string d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rmekle yetinmeyelim.\par
+Success Result ve Error Result tarz\f1\u305?\f0 nda yap\f1\u305?\f0 lar d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 relim.\par
+Yeni bir class ekliyoruz.\par
+\tab Utilities > Results > SuccessResult.cs\par
+\par
+Bu s\f1\u305?\f0 n\f1\u305?\f0 f Result s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 ndan inherit alacak.\par
+Buradaki ama\f2\lang1033\'e7\f0\lang1055 ; SuccessResult s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n\f1\u305?\f0  kullanarak base s\f1\u305?\f0 n\f1\u305?\f0 fa do\f1\u287?\f0 rudan true g\f2\lang1033\'f6\f0\lang1055 nderece\f1\u287?\f0 iz. \f1\u304?\f0 stersek message i\f2\lang1033\'e7\f0\lang1055 eren halini kullanabiliriz, istersek yaln\f1\u305?\f0 zca true g\f2\lang1033\'f6\f0\lang1055 ndeririz.\par
+public class SuccessResult : Result\par
+\{\par
+\tab public SuccessResult() : base (true)\par
+\tab\{\par
+\tab\}\par
+\tab public SuccessResult(string message) : base (true, message)\par
+\tab\{\par
+\tab\}\par
+\}\par
+\par
+Kurguyu b\f2\lang1033\'f6\f0\lang1055 yle yapmam\f1\u305?\f0 z\f1\u305?\f0 n \f2\lang1033\'e7\f0\lang1055 ok \f2\lang1033\'f6\f0\lang1055 nemli bir sebebi var.\par
+\f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in biz default parametre alan bir constructor yap\f1\u305?\f0 s\f1\u305?\f0  da kullanabilirdik. Ancak o kullan\f1\u305?\f0 m API \f2\lang1033\'fc\f0\lang1055 zerinden veriyi alacak ki\f1\'ba\f0 i a\f2\lang1033\'e7\f1\lang1055\u305?\f0 s\f1\u305?\f0 ndan s\f1\u305?\f0 k\f1\u305?\f0 nt\f1\u305?\f0 l\f1\u305?\f0  olurdu. \f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in;\par
+
+\pard\li720\sa200\sl276\slmult1\qj public Result (bool success, string message = null) \par
+\{\par
+\tab this.Success = success;\par
+\tab this.Message = message;\par
+\}\par
+
+\pard\sa200\sl276\slmult1\qj Yukar\f1\u305?\f0 daki gibi bir default parametre yap\f1\u305?\f0 s\f1\u305?\f0  kullanmak tehlikeli olurdu. API \f2\lang1033\'fc\f0\lang1055 zerinden veriye eri\f1\'ba\f0 ecek ki\f1\'ba\f0 i buradan d\f2\lang1033\'f6\f0\lang1055 nen de\f1\u287?\f0 erleri yanl\f1\u305?\'ba\f0  anlayabilir veye do\f1\u287?\f0 ru sonuca ula\f1\'ba\f0 mak i\f2\lang1033\'e7\f0\lang1055 in fazlada \f1\'ba\f0 art bloklar\f1\u305?\f0  yazmak zorunda kalabilir.\par
+\par
+Ayn\f1\u305?\f0  \f1\'ba\f0 ekilde bir tane de ErrorResult s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0  yaz\f1\u305?\f0 yoruz.\par
+-----------------------------\par
+\f1\'aa\f0 imdi bu noktada farkl\f1\u305?\f0  bir gereklilik do\f1\u287?\f0 du.\par
+Biz ProductManager i\f2\lang1033\'e7\f0\lang1055 inde bu Error ve Success nesnelerini kullan\f1\u305?\f0 rken, her defas\f1\u305?\f0 nda string'leri tekrar tekrar yaz\f1\u305?\f0 yoruz.\par
+Bu \f2\lang1033\'e7\f0\lang1055 ok hatal\f1\u305?\f0  bir y\f2\lang1033\'f6\f0\lang1055 ntemdir.\par
+Literat\f2\lang1033\'fc\f0\lang1055 rde buna "magic string" denir.\par
+Biz "bir\f2\lang1033\'e7\f0\lang1055 ok yerde defalarca kullan\f1\u305?\f0 lan string"leri ayr\f1\u305?\f0  bir yerde tan\f1\u305?\f0 mlamal\f1\u305?\f0 y\f1\u305?\f0 z.\par
+\f1\'aa\f0 imdi bunu yap\f1\u305?\f0 yoruz.\par
+Business > yeni klas\f2\lang1033\'f6\f0\lang1055 r (Constants) > Messages.cs\par
+S\f2\lang1033\'fc\f0\lang1055 rekli newlememek i\f2\lang1033\'e7\f0\lang1055 in bu s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0  static tan\f1\u305?\f0 ml\f1\u305?\f0 yoruz. \f2\lang1033\'e7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  her zaman ayn\f1\u305?\f0  s\f1\u305?\f0 n\f1\u305?\f0 f i\f2\lang1033\'e7\f0\lang1055 indeki ayn\f1\u305?\f0 -sabit ifadelere ula\f1\'ba\f0 aca\f1\u287?\u305?\f0 z.\par
+bu const ifadeleri business katman\f1\u305?\f0 na ekliyoruz.\par
+\f2\lang1033\'e7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  "\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n eklendi" diye bir sabit var mesela.\par
+her projede \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n olmad\f1\u305?\u287?\u305?\f0  i\f2\lang1033\'e7\f0\lang1055 in Core katman\f1\u305?\f0 na koyamam bu yap\f1\u305?\f0 y\f1\u305?\f0 .\par
+Core katman\f1\u305?\f0  t\f2\lang1033\'fc\f0\lang1055 m projelere uyumlu bir yap\f1\u305?\f0 da olmal\f1\u305?\f0 .\par
+Error-Success kodlar\f1\u305?\f0 n\f1\u305?\f0  o y\f2\lang1033\'fc\f0\lang1055 zden Core'a yazd\f1\u305?\f0 k. Her projede ihtiya\f2\lang1033\'e7\f0\lang1055  vard\f1\u305?\f0 r.\par
+------------------------------------------\par
+kritik bir bilgiye ge\f2\lang1033\'e7\f0\lang1055 iyoruz.\par
+Add metodunun d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0  de\f1\u287?\f0 eri IResult\par
+ama\par
+GetAll metodunun d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0  de\f1\u287?\f0 eri IDataResult olmal\f1\u305?\f0 .\par
+\par
+Bunun bir sebebi var.\par
+Add void d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055 yordu. \par
+\tab success: kaydoldu mu?\par
+\tab message: ba\f1\'ba\f0 ar\f1\u305?\f0  ya da hata mesaj\f1\u305?\f0\par
+ihtiya\f2\lang1033\'e7\f0\lang1055 lar\f1\u305?\f0 n\f1\u305?\f0  kar\f1\'ba\u305?\f0 layarak IResult alt\f1\u305?\f0 nda 2 prop ile hallettik.\par
+Ancak GetAll metodu List<Product> d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055 yordu.\cf1\par
+Burada hem success hem message hem de DATA'y\f1\u305?\f0  d\f2\lang1033\'f6\f0\lang1055 nmeliyiz.\cf0\par
+Bunun i\f2\lang1033\'e7\f0\lang1055 in IResult i\f2\lang1033\'e7\f0\lang1055 ine data diye bir field EKLEYEMEM.\par
+\f2\lang1033\'c7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  data d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rmeyen metotlarda, bo\f1\'ba\f0 una bu data alan\f1\u305?\f0 n\f1\u305?\f0  null d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rm\f2\lang1033\'fc\f1\lang1055\'ba\f0  olaca\f1\u287?\u305?\f0 m. bu tamamen hatal\f1\u305?\f0  ve gereksiz bir mant\f1\u305?\f0 k.\par
+Bu sebepten dolay\f1\u305?\f0  IDataResult diye yeni bir s\f1\u305?\f0 n\f1\u305?\f0 f yazmam\f1\u305?\f0 z laz\f1\u305?\f0 m.\par
+\par
+IDataResult yazd\f1\u305?\f0 k. Results klas\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055 n alt\f1\u305?\f0 nda. \f1\u304?\f0 ncele.\par
+Bu yap\f1\u305?\f0  generic olmak zorunda ve \f2\lang1033\'f6\f0\lang1055 yle yazd\f1\u305?\f0 k.\par
+IDataResult yap\f1\u305?\f0 s\f1\u305?\f0 n\f1\u305?\f0 n 3 field'\f1\u305?\f0 ndan 2'si zaten IResult ile ayn\f1\u305?\f0 .\par
+O halde kod tekrar\f1\u305?\f0 na d\f2\lang1033\'fc\f1\lang1055\'ba\f0 memek i\f2\lang1033\'e7\f0\lang1055 in burda bir y\f2\lang1033\'f6\f0\lang1055 ntem uygulayaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\f2\lang31\par
+}
+ 

@@ -1,0 +1,772 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset238 Calibri;}{\f2\fnil\fcharset162 Calibri;}}
+{\colortbl ;\red251\green2\blue7;\red0\green0\blue255;\red0\green0\blue0;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red0\green176\blue80;\red75\green172\blue198;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\f0\fs28\lang31 Bu dersten itibaren, kamp\f1\u305?\f0 n sonuna kadar Angular \'f6\f1\u287?\f0 renece\f1\u287?\f0 iz.\par
+\par
+Angular: web uygulamalar\f1\u305?\f0  geli\f1\'ba\f0 tirmek i\'e7in Google taraf\f1\u305?\f0 ndan geli\f1\'ba\f0 tirilen bir framework\rquote t\'fcr.\par
+\par
+Bu videoda sadece Angular temellerini \'f6\f1\u287?\f0 renece\f1\u287?\f0 iz. Geli\f1\'ba\f0 tirdi\f1\u287?\f0 imiz backend uygulamas\f1\u305?\f0 yla bir ba\f1\u287?\f0 lant\f1\u305?\f0  kurmayaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+GEREKS\f1\u304?\f0 N\f1\u304?\f0 MLER:\par
+\par
+1- IDE olarak Visual Studio Code kullanaca\f1\u287?\u305?\f0 z.\par
+2- node kurulumunun yap\f1\u305?\f0 lmas\f1\u305?\f0  gerekmektedir.\par
+\par
+\par
+node\rquote un bir s\'fcr\'fc \'f6zelli\f1\u287?\f0 i var.\par
+Fakat biz node\rquote u sadece 2 \'f6zelli\f1\u287?\f0 i i\'e7in kullanaca\f1\u287?\u305?\f0 z.\par
+\par
+1- npm (node package manager)\par
+2- server imkan\f1\u305?\f0  sa\f1\u287?\f0 lama \'f6zelli\f1\u287?\f0 i\par
+\par
+\par
+npm: javascript uygulamalar\f1\u305?\f0  i\'e7in paket y\'f6netimi yapmam\f1\u305?\f0 z\f1\u305?\f0  sa\f1\u287?\f0 layan ara\'e7t\f1\u305?\f0 r. \par
+dotnet ortam\f1\u305?\f0 ndaki nuget gib ayn\f1\u305?\f0  amaca hizmet etmektedir.\par
+\par
+node sayesinde geli\f1\'ba\f0 tirdi\f1\u287?\f0 imiz uygulamay\f1\u305?\f0  local\rquote de \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 p, taray\f1\u305?\f0 c\f1\u305?\f0 m\f1\u305?\f0 zda g\'f6r\'fcnt\'fcleyece\f1\u287?\f0 iz. Yani node bizim i\'e7in bir server g\'f6revi g\'f6recek.\par
+\par
+\par
+\emdash\emdash\emdash\emdash\emdash\emdash\emdash\par
+\cf1\par
+\cf2 i\f1\'ba\f0 lem:\cf1  Visual Studio Code uygulamas\f1\u305?\f0 n\f1\u305?\f0  a\'e7\f1\u305?\f0 yoruz.\par
+\par
+\cf2 i\f1\'ba\f0 lem:\cf1  Terminal > New Terminal\rquote e t\f1\u305?\f0 klayarak VSCode i\'e7inde yeni bir terminal a\'e7\f1\u305?\f0 yoruz.\par
+\cf2 amac\f1\u305?\f0 :\cf3  Gerekli paketleri indirmek ve ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z olan komutlar\f1\u305?\f0  \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rmak i\'e7in VSCode i\'e7ine g\'f6m\'fcl\'fc olan terminal ekran\f1\u305?\f0 n\f1\u305?\f0  kullanaca\f1\u287?\u305?\f0 z.\cf1\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote Select Default Shell\rquote e t\f1\u305?\f0 klayarak, + tu\f1\'ba\f0 una bas\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0\f1\u304?\'ba\f0 letim sistemimizin default komut istemcisi se\'e7ilecektir.\par
+\tab\tab  Windows i\'e7in; cmd\par
+\tab\tab  MacOs i\'e7in; zsh\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote node --version\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 node\rquote a sahip olup olmad\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  g\'f6rmek i\'e7in.\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote npm install -g @angular/cli\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf3 angular projeleri i\'e7in gerekli olan temel bile\f1\'ba\f0 enlerin yer ald\f1\u305?\u287?\u305?\f0  paketi \par
+(angular/cli) indirmek i\'e7in bu komutu yazd\f1\u305?\f0 k.\par
+\cf2 ayr\f1\u305?\f0 nt\f1\u305?\f0 :\cf0\par
+npm paketlerini temelde 2 seviyede kurar\f1\u305?\f0 z.\par
+local ya da global olarak kurar\f1\u305?\f0 z.\par
+-g komutu sayesine global olarak kuraca\f1\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  belirtmi\f1\'ba\f0  olduk.\par
+global demek; bir kez bu paketi kuruyoruz, bundan sonra bir daha bu paketi kurmam\f1\u305?\f0 za gerek kalmayacak demektir. \par
+bu komuttan sonra t\'fcm node sistemi, angular cli\rquote y\f1\u305?\f0  tan\f1\u305?\f0 yor olacak.\par
+kurulum vakit alabilir.\par
+bu komut daha \'f6nce mevcut bilgisayarda kullan\f1\u305?\f0 lm\f1\u305?\'ba\f0  olsa bile, mevcut angular/cli bile\f1\'ba\f0 enlerini g\'fcncelleyecektir. hi\'e7bir sorun \'e7\f1\u305?\f0 kmayacakt\f1\u305?\f0 r.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1 C dizininde \lquote kamp-frontend\rquote  ad\f1\u305?\f0 nda bir klas\'f6r olu\f1\'ba\f0 turuyoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 frontend projemizi buraya koyaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1 cd komutlar\f1\u305?\f0 yla\cf2  \cf1 VSCode terminalinde, frontend klas\'f6r yoluna gidiyoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 devam eden s\'fcre\'e7te yazaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z komutlar bu dizinde yaz\f1\u305?\f0 lacak.\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote ng new northwind\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 h\f1\u305?\f0 zl\f1\u305?\f0 ca bir angular \f1\'ba\f0 ablonu indirip, kurmak i\'e7in.\par
+\cf2 ayr\f1\u305?\f0 nt\f1\u305?\f0 :\cf0\par
+backend projemizde northwind isimli bir db kullanm\f1\u305?\'ba\f0 t\f1\u305?\f0 k.\par
+northwind bir e-ticaret projesine ait tablolara sahipti.\par
+bu projemizin ismini de northwind olarak olu\f1\'ba\f0 turuyoruz o y\'fczden.\par
+\cf2 not:\cf0\par
+bu komutu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rd\f1\u305?\f0 ktan sonra kar\f1\'ba\u305?\f0 m\f1\u305?\f0 za cevaplamam\f1\u305?\f0 z gereken birka\'e7 soru \'e7\f1\u305?\f0 kacak.\par
+bunlardan ilki\par
+Soru 1- Arka planda kullan\f1\u305?\f0 lacak dilin tip g\'fcvenlikli olmas\f1\u305?\f0 n\f1\u305?\f0  ister misiniz?\par
+\cf2 a\'e7\f1\u305?\f0 klama:\cf0  normalde javascript dilini kullan\f1\u305?\f0 yor angular ve di\f1\u287?\f0 er t\'fcm \'f6ny\'fcz k\'fct\'fcphaneleri. fakat javascript tip g\'fcvenli\f1\u287?\f0 i a\'e7\f1\u305?\f0 s\f1\u305?\f0 ndan zay\f1\u305?\f0 f bir dil.\par
+bu sebepten dolay\f1\u305?\f0 , ilk soruda, tip g\'fcvenli\f1\u287?\f0 ini kat\f1\u305?\f0  \f1\'ba\f0 ekilde uygulayan ve arka planda yine javascripte \'e7evrilen bir dil olan \ldblquote typescript\rdblquote  kullanmak isteyip istemedi\f1\u287?\f0 imizi soruyor. biz de bu soruya evet demek i\'e7in \ldblquote y\rdblquote  yaz\f1\u305?\f0 p, enter\rquote a bas\f1\u305?\f0 yoruz.\par
+\par
+\par
+Soru 2- angular routing kullanmak ister misiniz?\par
+\cf2 a\'e7\f1\u305?\f0 klama:\cf0  routing i\f1\'ba\f0 leri i\'e7in \'f6zel olarak angulardaki yap\f1\u305?\f0 y\f1\u305?\f0  kullanaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  belirterek evet diyoruz. ileride ayr\f1\u305?\f0 nt\f1\u305?\f0 l\f1\u305?\f0  \f1\'ba\f0 ekilde bu konuya de\f1\u287?\f0 inece\f1\u287?\f0 iz.\par
+\par
+Soru 3- hangi stylesheet format\f1\u305?\f0 n\f1\u305?\f0  kullanaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  soruyor?\par
+\cf2 a\'e7\f1\u305?\f0 klama:\cf0  default olarak css se\'e7ili oldu\f1\u287?\f0 u i\'e7in direkt enter\rquote a bas\f1\u305?\f0 yoruz.\par
+\par
+art\f1\u305?\f0 k bu ad\f1\u305?\f0 mdan sonra projemiz olu\f1\'ba\f0 maya ba\f1\'ba\f0 l\f1\u305?\f0 yor.\par
+C dizininde kamp-frontend isimli dosyaya gidersek, i\'e7inde northwind isimli klas\'f6r\'fc g\'f6r\'fcr\'fcz. bu klas\'f6r i\'e7inde gerekli angular dosyalar\f1\u305?\f0  olu\f1\'ba\f0 mu\f1\'ba\f0 tur. i\f1\'ba\f0 lemin bitmesi biraz zaman alabilir. terminal ekran\f1\u305?\f0 ndan takip edilebilir.\par
+\par
+\par
+\par
+\par
+not: bundan sonra yeni bir angular projesi olu\f1\'ba\f0 turmak istedi\f1\u287?\f0 imizde,\par
+terminal \'fczerinden istedi\f1\u287?\f0 imiz dizine gidiyoruz. ve ng new komutunu kullanarak direkt yeni bir proje yaratabiliriz.\par
+\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote cd northwind\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 proje klas\'f6r\'fcm\'fcze gitmek i\'e7in.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote code .\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 bulundu\f1\u287?\f0 umuz klas\'f6r\'fc yani projemizi vs code\rquote da a\'e7abilmek i\'e7in.\par
+\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1 new terminal diyerek terminali tekrar a\'e7\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 yeni bir vs code \'fczerinden projemiz a\'e7\f1\u305?\f0 ld\f1\u305?\u287?\u305?\f0  i\'e7in terminali tekrar a\'e7\f1\u305?\f0 yoruz.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote ng serve --open\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 bu komutu kullanarak projemizi bir taray\f1\u305?\f0 c\f1\u305?\f0  \'fczerinde a\'e7\f1\u305?\f0 yoruz.\par
+\cf2 ayr\f1\u305?\f0 nt\f1\u305?\f0 :\cf0\par
+ng komutu angular cli\rquote\f1\u305?\f0 n temel komutudur.\par
+serve ise \ldblquote node\rquote u kullanarak yay\f1\u305?\f0 na al\rdblquote  demektir.\par
+open komutu ile de projeyi, bir taray\f1\u305?\f0 c\f1\u305?\f0  ile a\'e7mas\f1\u305?\f0 n\f1\u305?\f0  istemi\f1\'ba\f0  oluyoruz.\par
+\cf2 not:\cf0\par
+kar\f1\'ba\u305?\f0 m\f1\u305?\f0 za taray\f1\u305?\f0 c\f1\u305?\f0  se\f1\'ba\f0 enekleri \'e7\f1\u305?\f0 kabilir.\par
+google chrome se\'e7ip, a\'e7\f1\u305?\f0 lmas\f1\u305?\f0 n\f1\u305?\f0  sa\f1\u287?\f0 l\f1\u305?\f0 yoruz.\par
+\par
+\par
+sonu\'e7: angular projemizin temel \f1\'ba\f0 ablonu taray\f1\u305?\f0 c\f1\u305?\f0  \'fczerinden a\'e7\f1\u305?\f0 lm\f1\u305?\'ba\f0  oldu.\par
+taray\f1\u305?\f0 c\f1\u305?\f0 ya yans\f1\u305?\f0 yan t\'fcm \'e7\f1\u305?\f0 kt\f1\u305?\f0 lar, angular\rquote\f1\u305?\f0 n default i\'e7erikleridir.\par
+biz kendi kodlar\f1\u305?\f0 m\f1\u305?\f0 zla frontend projemizi \f1\'ba\f0 ekillendirece\f1\u287?\f0 iz.\par
+\par
+\par
+\cf2 not:\cf0\par
+normalde a\'e7\f1\u305?\f0 lan taray\f1\u305?\f0 c\f1\u305?\f0  da, localhost:4200 g\'f6r\'fcr\'fcz default olarak.\par
+fakat bizim sistemimizde bu port kullan\f1\u305?\f0 l\f1\u305?\f0 yor olabilir, uygun durumda olmayabilir.\par
+bu durumda, terminal ekran\f1\u305?\f0 na gelerek;\par
+\cf1\lquote ng serve --open --port 4201\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\par
+bu \f1\'ba\f0 ekilde 4201 portu \'fczerinden projemizi \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rm\f1\u305?\'ba\f0  olaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+
+\pard\sl276\slmult1\qj\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf3\par
+
+\pard\sl276\slmult1\qc\cf4\fs36 1. B\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m Sonu\cf3\f1\fs28\par
+
+\pard\sl276\slmult1\qj\cf4\f2 ------------------------------------------------------------------------------------------------\par
+\cf0 Angular'\f1\u305?\f2 n yap\f1\u305?\f2 s\f1\u305?\f2  ve \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 ma mant\f1\u305?\u287?\u305?\f2  hakk\f1\u305?\f2 nda biraz konu\f1\'ba\f2 al\f1\u305?\f2 m.\par
+\f0\lang1033\'d6\f2\lang1055 rnek olarak kodlama.io sitesini ele alal\f1\u305?\f2 m.\par
+kodlama.io bir web projesidir.\par
+\par
+Klasik web projelerinde (PHP, ASP.NET gibi) her \f1\'ba\f2 ey ayr\f1\u305?\f2  birer sayfad\f1\u305?\f2 r.\par
+\par
+kodlama.io \f0\lang1033\'fc\f2\lang1055 zerinden incelersek;\par
+\tab\cf5 anasayfa\cf0  ayr\f1\u305?\f2  bir sayfad\f1\u305?\f2 r.\par
+\tab\cf5 kurslar\f1\u305?\f2 m\cf0  ayr\f1\u305?\f2  bir sayfad\f1\u305?\f2 r.\par
+\tab\cf5 kurs detay\f1\u305?\f2  \cf0 ayr\f1\u305?\f2  bir sayfad\f1\u305?\f2 r.\par
+K\f1\u305?\f2 saca her \f1\'ba\f2 ey i\f0\lang1033\'e7\f2\lang1055 in ayr\f1\u305?\f2  bir sayfa olu\f1\'ba\f2 turulur.\par
+\par
+Fakat Angular, React ve Vue uyglamalar\f1\u305?\f2  SPA (Single Page Application) yap\f1\u305?\f2 dad\f1\u305?\f2 r. Yani bu uygulamalar sadece tek bir sayfadan olu\f1\'ba\f2 ur.\par
+\par
+Peki o halde t\f0\lang1033\'fc\f2\lang1055 m proje tek bir sayfadan olu\f1\'ba\f2 uyorsa, nas\f1\u305?\f2 l oluyor da farkl\f1\u305?\f2  sayfalara eri\f1\'ba\f2 ebiliyoruz.\par
+\par
+Single Page Application yap\f1\u305?\f2 s\f1\u305?\f2 nda routing denilen bir mant\f1\u305?\f2 k yer almaktad\f1\u305?\f2 r.\par
+Ve routing mant\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  da Component denilen yap\f1\u305?\f2 larla sa\f1\u287?\f2 lar\f1\u305?\f2 z.\par
+
+\pard\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\f0\lang31\par
+\f2\lang1055 Bir Angular uygulamas\f1\u305?\f2 nda her bir par\f0\lang1033\'e7\f2\lang1055 a bir Componenttir.\par
+kodlama.io \f0\lang1033\'fc\f2\lang1055 zerinden \f0\lang1033\'f6\f2\lang1055 rnek verecek olursak;\par
+\tab\cf5 navigation\cf0  \cf5 bar\cf0  bir Componenttir.\par
+\tab\cf5 search b\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m\f0\lang1033\'fc\f2\lang1055  \cf0 bir Componenttir.\par
+\tab\cf5 liste halindeki kurslar \cf0 bir Componenttir.\par
+\par
+Yani projede sayfa de\f1\u287?\f2 il Component mant\f1\u305?\u287?\u305?\f2  vard\f1\u305?\f2 r.\par
+Component mant\f1\u305?\u287?\u305?\f2  sayesinde SPA bir web projesi geli\f1\'ba\f2 tirebiliyoruz.\par
+\par
+kodlama.io \f0\lang1033\'fc\f2\lang1055 zerinden \f0\lang1033\'f6\f2\lang1055 rneklendirirsek;\par
+Anasayfadaki search bar ve kurslar listesi birer componenttir.\par
+Fakat kullan\f1\u305?\f2 c\f1\u305?\f2  kurs detay\f1\u305?\f2 na t\f1\u305?\f2 klad\f1\u305?\u287?\u305?\f2 nda, anasayfadaki bu 2 component kald\f1\u305?\f2 r\f1\u305?\f2 l\f1\u305?\f2 r ve kurs detay\f1\u305?\f2 nda g\f0\lang1033\'f6\f2\lang1055 stermek istedi\f1\u287?\f2 imiz componentler ekrana gelir. Bu \f1\'ba\f2 ekilde farkl\f1\u305?\f2  sayfalar aras\f1\u305?\f2 nda ge\f0\lang1033\'e7\f2\lang1055 i\f1\'ba\f2  yap\f1\u305?\f2 yormu\f1\'ba\f2 uz hissi olu\f1\'ba\f2 ur.\f0\lang31\par
+\par
+\f2\lang1055 Bir ba\f1\'ba\f2 ka deyi\f1\'ba\f2 le, R\f0\lang31 outing \'fczerinden kullan\f1\u305?\f0 c\f1\u305?\f0  hangi sayfay\f1\u305?\f0  istiyorsa, o sayfada g\'f6stermek istedi\f1\u287?\f0 imiz componentleri bir araya getirip, g\'f6steririz. \f2\lang1055 B\f0\lang31 u da yeni bir sayfaya ge\'e7mi\f1\'ba\f0 iz etkisi yarat\f1\u305?\f0 r. \f2\lang1055 A\f0\lang31 sl\f1\u305?\f0 nda farkl\f1\u305?\f0  sayfalar yoktur, route\rquote a g\'f6re bir araya getirilen componentler vard\f1\u305?\f0 r.\par
+\par
+\f2\lang1055 B\f0\lang31 urdaki enteresan sistem asl\f1\u305?\f0 nda \f1\'ba\f0\'f6yle \'e7al\f1\u305?\'ba\f0 maktad\f1\u305?\f0 r.\par
+\f2\lang1055 A\f0\lang31 nasayfadayken, search b\'f6l\'fcm\'fc ve kurslar b\'f6l\'fcm\'fc ayr\f1\u305?\f0  birer componenttir.\par
+\f2\lang1055 F\f0\lang31 akat bu 2 component ana sayfada bir arada bulunur.\par
+\f2\lang1055 B\f0\lang31 u y\'fczden biz bu 2 componenti de bir componentin i\'e7ine koyarak, istedi\f1\u287?\f0 imiz \f1\'ba\f0 ekilde y\'f6netebiliriz.\par
+\par
+\f2\lang1055 ------------------------------------------------------------------------------------------------\f0\lang31\par
+\par
+\f1\lang1055\'aa\f0\lang31 imdi ilk derste kurdu\f1\u287?\f0 umuz angular projesini \f2\lang1055 VSCode ile \f0\lang31 a\'e7al\f1\u305?\f0 m\f2\lang1055 .\par
+kamp-frontend klas\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055  i\f0\lang1033\'e7\f2\lang1055 inde northwind ad\f1\u305?\f2 nda bir proje olu\f1\'ba\f2 turmu\f1\'ba\f2 tuk.\par
+\f0\lang31\par
+\f1\lang1055\'aa\f2 imdi projede\f0\lang31  default olarak olu\f1\'ba\f0 an baz\f1\u305?\f0  dosyalar\f1\u305?\f0  inceleyelim.\par
+\f2\lang1055 (H\f0\lang31 epsini \f1\lang1055\'ba\f2 imdi \f0\lang31 incelemeyece\f1\u287?\f0 iz. \f2\lang1055 Y\f0\lang31 eri geldik\'e7e \f2\lang1055 hepsini \f0\lang31\'f6\f1\u287?\f0 renece\f1\u287?\f0 iz\f2\lang1055 .)\f0\lang31\par
+\par
+\par
+\cf6\f2\fs36\lang1055 node_modules\cf0\f0\fs28\lang31\par
+\par
+\f2\lang1055 U\f0\lang31 ygulamada kulland\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z t\'fcm node paketlerini i\'e7eren \f2\lang1055 klas\f0\lang1033\'f6\f2\lang1055 rd\f0\lang1033\'fc\f2\lang1055 r\f0\lang31 .\par
+\par
+\f2\lang1055 JavaScript\f0\lang31  statik mant\f1\u305?\f0 kta \'e7al\f1\u305?\'ba\u305?\f0 r.\par
+\f2\lang1055 Y\f0\lang31 ani bir paketi kullanabilmek i\'e7in o pakete ait t\'fcm kodlar bizim projemizde bulunmal\f1\u305?\f0 d\f1\u305?\f0 r.\par
+\f2\lang1055\'d6\f0\lang31 rne\f1\u287?\f0 in ilerde \cf5 j\f2\lang1055 Q\f0\lang31 uery\cf0  ve \cf5 bootstrap\cf0  kullanaca\f1\u287?\u305?\f0 z. \f2\lang1055 B\f0\lang31 u paketlere ait t\'fcm kodlar node_modules klas\'f6r\'fcm\'fczde yer \f2\lang1055 almak zorundad\f1\u305?\f2 r\f0\lang31 .\par
+\par
+\f2\lang1055 B\f0\lang31 u sebepten dolay\f1\u305?\f0  asl\f1\u305?\f0 nda herbir angular projesi \'e7ok \'e7ok fazla dosya bar\f1\u305?\f0 nd\f1\u305?\f0 r\f1\u305?\f0 r.\par
+\f1\lang1055\'aa\f0\lang31 u an \f2\lang1055 bile \f0\lang31 northwind projemizde \f2\lang1055 on binlerce \f0\lang31 dosya bulunmaktad\f1\u305?\f0 r.\par
+\f2\lang1055 Asl\f1\u305?\f2 nda tam da bu \f0\lang31 sebepten dolay\f1\u305?\f0 , \f2\lang1055 projemizde yer alan node_modules paketlerinin tamam\f1\u305?\f2  .gitignore i\f0\lang1033\'e7\f2\lang1055 inde \f0\lang31 yer al\f1\u305?\f0 r. \par
+\f2\lang1055 Y\f0\lang31 ani \f2\lang1055 node_modules'ta bulunan hi\f0\lang1033\'e7\f2\lang1055 bir paketi \f0\lang31 github\rquote a yollamaz.\par
+\f2\lang1055 .gitignore'u incelersek, i\f0\lang1033\'e7\f2\lang1055 inde node_modules yazd\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rebiliriz.\f0\lang31\par
+\par
+\f1\lang1055\u304?\lang31\'ba\f0 te bu sebepten dolay\f1\u305?\f0 , github \'fczerinden bir angular projesi indireceksek,\f2\lang1055  \f0\lang31\'f6nce \cf6 npm install \cf0 komutunu kullanarak gerekli t\'fcm node paketlerini indirmemiz gerekmektedir. \lang1033\'c7\lang31\'fcnk\'fc github\rquote ta yer alan projede bu paketler bulunmayacakt\f1\u305?\f0 r.\par
+\par
+\f2\lang1055 P\f0\lang31 eki sadece \cf6\f2\lang1055 npm install\f0\lang31  \cf0\f2\lang1055 komutunu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 rmam\f1\u305?\f2 za ra\f1\u287?\f2 men, projeye \f0\lang31 hangi paketleri\f2\lang1055 n\f0\lang31  \f2\lang1055 indirilece\f1\u287?\f2 i\f0\lang31  nerden \f2\lang1055 biliniyor\f0\lang31  diye sorarsan\f1\u305?\f0 z, projede yer alan \cf6 package.json \cf0 dosyas\f1\u305?\f0 na bakarak biliyor.\par
+\par
+\cf6\f2\fs36\lang1055\par
+package.json\cf0\f0\fs28\lang31\par
+\par
+\f2\lang1055 npm i\f0\lang1033\'e7\f2\lang1055 in kullan\f1\u305?\f2 lan bir yap\f1\u305?\f2 land\f1\u305?\f2 rma dosyas\f1\u305?\f2 d\f1\u305?\f2 r.\f0\lang31\par
+\par
+package.json i\'e7inde 2 temel node g\'f6r\'fcr\'fcz.\par
+\f2\lang1055\tab\cf5\f0\lang31 dependencies\par
+\f2\lang1055\tab\f0\lang31 dev dependencies\par
+\cf0\par
+\f2\lang1055 P\f0\lang31 eki bu 2 ayr\f1\u305?\f0 m ne i\f1\'ba\f0 e yar\f1\u305?\f0 yor.\par
+\f1\lang1055\u304?\f0\lang31 kisi de geli\f1\'ba\f0 tirme yaparken kulland\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z paketlerdir.\par
+\par
+\f2\lang1055 Fakat\f0\lang31  biz projemizi yay\f1\u305?\f0 na ald\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z zaman, yani kullan\f1\u305?\f0 c\f1\u305?\f0 ya sundu\f1\u287?\f0 umuz zaman\f2\lang1055 , o noktada\f0\lang31  laz\f1\u305?\f0 m olan paketler \cf5 dependencies\cf0\rquote de bulunur.\f2\lang1055  \par
+\f0\lang1033\'d6\lang31 rne\f1\u287?\f0 in bootstrap\rquote i kullan\f1\u305?\f0 c\f1\u305?\f0  kullan\f1\u305?\f0 yor, o halde dependencies\f2\lang1055  alt\f1\u305?\f2 nda\f0\lang31  \f2\lang1055 yer almal\f1\u305?\f2 d\f1\u305?\f2 r\f0\lang31 .\par
+\par
+\cf5 devdependencies\cf0  de geli\f1\'ba\f0 tiriciye laz\f1\u305?\f0 m olan paketlerdir.\par
+\lang1033\'d6\lang31 rne\f1\u287?\f0 in unit test yazarken ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z olan paketleri burada yazar\f1\u305?\f0 z.\par
+\f2\lang1055 K\f0\lang31 ullan\f1\u305?\f0 c\f1\u305?\f2\lang1055 y\f1\u305?\f2  ilgilendirmeyen ve ihtiyac\f1\u305?\f2  olmayan paketler burda yer al\f1\u305?\f2 r\f0\lang31 .\par
+\par
+\f2\lang1055 B\f0\lang31 u ayr\f1\u305?\f0 m\f1\u305?\f0  yapmam\f1\u305?\f0 z\f1\u305?\f0 n sebebi;\f2\lang1055  \f0\lang31 projemizi yay\f1\u305?\f0 na alaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z zaman sadece dependencies y\'fcklensin ki uygulama boyutu k\'fc\'e7\'fck olsun. \par
+\f2\lang1055 S\f0\lang31 adece kullan\f1\u305?\f0 c\f1\u305?\f0  i\'e7in gerekli olan paketleri oraya yazar\f2\lang1055 ak bunu sisteme belirtmi\f1\'ba\f2  oluruz\f0\lang31 .\par
+\f2\lang1055 (Biz g\f0\lang31 eli\f1\'ba\f0 tirme yapan ki\f1\'ba\f0 i oldu\f1\u287?\f0 umuz i\'e7in 2 b\'f6l\'fcmdeki paketleri de \f2\lang1055 bilgisayar\f1\u305?\f2 m\f1\u305?\f2 za \f0\lang31 kurmu\f1\'ba\f0  oluyoruz.\f2\lang1055 )\f0\lang31\par
+\par
+\cf5\f2\lang1055 Ve sonu\f0\lang1033\'e7\f2\lang1055  olarak biz github \f0\lang1033\'fc\f2\lang1055 zerinden bir angular projesi indirdi\f1\u287?\f2 imiz zaman \cf6 npm install \cf5 komutunu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 rmak zorunday\f1\u305?\f2 z.\par
+npm install komutu ile projenin ihtiyac\f1\u305?\f2  olan paketler teker teker y\f0\lang1033\'fc\f2\lang1055 klenir. Y\f0\lang1033\'fc\f2\lang1055 klemesi gereken paketleri de \cf6 package.json \cf5 dosyas\f1\u305?\f2 n\f1\u305?\f2 n i\f0\lang1033\'e7\f2\lang1055 ini okuyarak tespit eder.\par
+\par
+\par
+\cf6\fs36 src\cf5\f0\fs28\lang31\par
+\cf0\par
+src\f2\lang1055 ; \f0\lang31 source\f2\lang1055 (kaynak)\f0\lang31  demektir\f2\lang1055 .\f0\lang31\par
+\f2\lang1055 Y\f0\lang31 ani projenin kaynak kodlar\f1\u305?\f0 n\f1\u305?\f0  i\'e7eren klas\'f6rd\'fcr.\par
+\par
+\par
+\cf6\f2\fs36\lang1055 app\par
+\cf0\f0\fs28\lang31\par
+app\f2\lang1055 ;\f0\lang31  application\f2\lang1055 (uygulama)\f0\lang31  demektir.\par
+\f2\lang1055 Burada u\f0\lang31 ygulama kodlar\f1\u305?\f0 m\f1\u305?\f0 z yer al\f1\u305?\f0 r.\par
+\par
+\par
+\cf6\f2\fs36\lang1055 index.html\par
+\cf0\f0\fs28\lang31\par
+\f2\lang1055 Angular u\f0\lang31 ygulamam\f1\u305?\f0 z\f1\lang1055\u305?\f2 n\f0\lang31  SPA \f2\lang1055 oldu\f1\u287?\f2 unu s\f0\lang1033\'f6\f2\lang1055 ylemi\f1\'ba\f2 tik\f0\lang31 .\par
+\f2\lang1055 Yani uygulamam\f1\u305?\f2 z\f1\u305?\f2 n tek bir sayfas\f1\u305?\f2  vard\f1\u305?\f2 r.\f0\lang31\par
+\f1\lang1055\u304?\lang31\'ba\f0 te o single page \f2\lang1055 bu tam olarak bu sayfad\f1\u305?\f2 r, yani \cf6 index.html\cf0\f0\lang31\par
+\par
+\f2\lang1055 B\f0\lang31 urda body etiketinin i\'e7inde \cf6\f2\lang1055 <\f0\lang31 app-root\f2\lang1055 > \cf0\f0\lang31 etiketi\f2\lang1055 ni\f0\lang31  g\'f6r\'fcyoruz.\par
+\f2\lang1055 B\f0\lang31 u normal \f2\lang1055 (standart) \f0\lang31 bir html etiketi de\f1\u287?\f0 ildir.\par
+\f1\lang1055\u304?\'ba\f2 te b\f0\lang31 u angular taraf\f1\u305?\f0 ndan tan\f1\u305?\f0 nan bir \cf6\f2\lang1055 C\f0\lang31 omponenttir\cf0 .\par
+\f2\lang1055 B\f0\lang31 iz de angular\f2\lang1055  projemizde buna benzer \cf6 C\f0\lang31 omponentler \cf0 geli\f1\'ba\f0 tirece\f1\u287?\f0 iz.\par
+\par
+\par
+\f2\lang1055\tab\f0\lang31 app klas\'f6r\'fcne sa\f1\u287?\f0  t\f1\u305?\f0 kl\f1\u305?\f0 yoruz.\par
+\f2\lang1055\tab Y\f0\lang31 eni bir klas\'f6r olu\f1\'ba\f0 turuyoruz.\par
+\tab\f2\lang1055\tab\par
+\tab\tab\cf5 Klas\f0\lang1033\'f6\f2\lang1055 r Ad\f1\u305?\f2  \f0\lang31 =\f2\lang1055 >\f0\lang31  \cf6 components\cf0\par
+\par
+\f2\lang1055\tab Kendi \f0\lang31 componentlerimiz\f2\lang1055 i\f0\lang31  bura\f2\lang1055 ya\f0\lang31  \f2\lang1055 koyaca\f1\u287?\u305?\f2 z\f0\lang31 .\par
+\par
+\par
+\cf6\f2\fs36\lang1055 app (devam)\par
+\cf0\f0\fs28\lang31\par
+\f2\lang1055 Projenin burada yer alan temel component dosyalar\f1\u305?\f2 n\f1\u305?\f2  inceleyelim. \tab\par
+\par
+\tab\cf5\f0\lang31 app.component.ts\cf0\f2\lang1055\par
+\cf5\tab\f0\lang31 app.component.css\par
+\f2\lang1055\tab\f0\lang31 app.component.html\par
+\f2\lang1055\tab\f0\lang31 app.component.spec.ts\par
+\f2\lang1055\tab\f0\lang31\par
+\cf0\f2\lang1055 G\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 ld\f0\lang1033\'fc\f1\lang1055\u287?\f0\lang1033\'fc\f2\lang1055  \f0\lang1033\'fc\f2\lang1055 zere hepsi ayn\f1\u305?\f2  isme sahiptir.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  hepsi, yine \f0\lang31 ayn\f1\u305?\f0  isimde\f2\lang1055 ki\f0\lang31  \f2\lang1055 tek \f0\lang31 bir componentle alakal\f1\u305?\f0  dosyalar\f2\lang1055 d\f1\u305?\f2 r\f0\lang31 .\par
+\par
+\par
+\cf6\f2\fs36\lang1055 app.component.css\par
+\cf0\f0\fs28\lang31\par
+\f2\lang1055 Sadece app.component'ini ilgilendiren \cf5 tasar\f1\u305?\f2 m kodlar\f1\u305?\f2 n\f1\u305?\f2 n\cf0  yer ald\f1\u305?\u287?\u305?\f2  dosyad\f1\u305?\f2 r.\par
+\par
+\par
+\cf6\fs36 app.component.html\par
+\cf0\f0\fs28\lang31\par
+\f2\lang1055 Sadece app.component'ini ilgilendiren \cf5 html iskeleti kodlar\f1\u305?\f2 n\f1\u305?\f2 n\cf0  yer ald\f1\u305?\u287?\u305?\f2  dosyad\f1\u305?\f2 r.\par
+\par
+\par
+\cf6\fs36 app.component.spec.ts\cf0\fs28\par
+\f0\lang31\par
+\f2\lang1055 JavaScript uygulamalar\f1\u305?\f2 nda \f0\lang31 spec\f2\lang1055 , \cf6 Unit Test \cf0 dosyalar\f1\u305?\f2 n\f1\u305?\f2  ifade eder.\f0\lang31\par
+\par
+\par
+\cf6\f2\fs36\lang1055 app.component.spec.ts\par
+\cf0\f0\fs28\lang31\par
+\f2\lang1055 Bu dosya da add.component isimli \cf6 esas component'imizin kendisidir\cf0 .\f0\lang31\par
+\par
+\par
+\par
+\cf5\f2\lang1055 NOT: N\f0\lang31 ormalde \f2\lang1055 A\f0\lang31 ngular\f2\lang1055 ,\f0\lang31  \f2\lang1055 R\f0\lang31 eact\rquote\f2\lang1055 e g\f0\lang1033\'f6\f2\lang1055 re \f0\lang31 daha kolayd\f1\u305?\f0 r. \par
+\f2\lang1055 F\f0\lang31 akat \f2\lang1055 Angularda, Nesne Y\f0\lang1033\'f6\f2\lang1055 nelimli Programlama mant\f1\u305?\u287?\u305?\f2  kendini belli etti\f1\u287?\f2 i i\f0\lang1033\'e7\f2\lang1055 in\f0\lang31 , bu konular\f1\u305?\f0  bilmeyen insanlar \f2\lang1055 A\f0\lang31 ngular\f2\lang1055 '\f1\lang31\u305?\f0 n daha zor oldu\f1\u287?\f0 unu d\'fc\f1\'ba\f0\'fcn\'fcr. \par
+\f2\lang1055 F\f0\lang31 akat asl\f1\u305?\f0 nda \f2\lang1055 OOP\f0\lang31  bilenler i\'e7in \f2\lang1055 A\f0\lang31 ngular\f2\lang1055 ,\f0\lang31  \f2\lang1055 R\f0\lang31 eact\f2\lang1055 '\f0\lang31 e g\'f6re daha kolayd\f1\u305?\f0 r.\par
+\cf0\par
+\par
+\par
+\f2\lang1055 Bizim i\f0\lang1033\'e7\f2\lang1055 in bir Component ile ilgili hayati \f0\lang1033\'f6\f2\lang1055 neme sahip 2 dosya vard\f1\u305?\f2 r.\f0\lang31\par
+\par
+\f2\lang1055\tab\tab\cf5\tab\f0\lang31 .html\par
+\f2\lang1055\tab\tab\tab\f0\lang31 .ts\par
+\cf0\par
+\f2\lang1055 Bu 2 dosyay\f1\u305?\f0\lang31  birbirinden ayr\f1\u305?\f0  d\'fc\f1\'ba\f0\'fcnemeyiz.\par
+\lang1033\par
+\'c7\lang31\'fcnk\'fc\f2\lang1055 ;\par
+\tab\cf5\f0\lang31 html \f2\lang1055 dosyas\f1\u305?\f2 ; \cf6\f0\lang31 g\'f6r\'fcnt\'fc\f2\lang1055  iskeletini y\f0\lang1033\'f6\f2\lang1055 netti\f1\u287?\f2 imiz yerdir.\cf0\f0\lang31  \par
+\f2\lang1055\tab\cf5\f0\lang31 ts \f2\lang1055 dosyas\f1\u305?\f2 ; \cf6\f0\lang31 datay\f1\u305?\f0  y\'f6netti\f1\u287?\f0 imiz yer\f2\lang1055 dir\f0\lang31 .\cf0\par
+\par
+\cf5\f2\lang1055 NOT: \par
+ts uzant\f1\u305?\f2 l\f1\u305?\f2  dosyalar, bir TypeScript dosyas\f1\u305?\f2  oldu\f1\u287?\f2 u anlam\f1\u305?\f2 na gelir.\cf0\f0\lang31\par
+\par
+\cf5\f2\lang1055 NOT: \par
+html dosyas\f1\u305?\f2  kendini yap\f1\u305?\f2 land\f1\u305?\f2 r\f1\u305?\f2 rken, ts dosyas\f1\u305?\f2 ndan yararlan\f1\u305?\f2 r.\cf0\f0\lang31\par
+\par
+\par
+\par
+\par
+\f1\lang1055\'aa\f0\lang31 imdi \cf6 app.component.html \cf0\f2\lang1055 dosyas\f1\u305?\f2 n\f1\u305?\f2  \f0\lang31 a\'e7al\f1\u305?\f0 m\f2\lang1055 .\f0\lang31\par
+\par
+\f2\lang1055 E\f0\lang31 n alttaki \cf6 <router-outlet> \cf0 hari\'e7, \'fcstteki t\'fcm sat\f1\u305?\f0 rlar\f1\u305?\f0  silelim.\par
+\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  bu html kodlar\f1\u305?\f2 , Angular projemizi olu\f1\'ba\f2 turdu\f1\u287?\f2 umuzda default olarak yaz\f1\u305?\f2 lan kodlard\f1\u305?\f2 r. Bunlara ihtiya\f0\lang1033\'e7\f2\lang1055  duymad\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 z i\f0\lang1033\'e7\f2\lang1055 in siliyoruz.\f0\lang31\par
+  \par
+\f2\lang1055 File'a t\f1\u305?\f2 klayarak, \cf6 Save All\cf0 'a t\f1\u305?\f2 kl\f1\u305?\f2 yoruz.\par
+\par
+\cf5 NOT: Sol tarafta Explorer \f0\lang1033\'fc\f2\lang1055 zerindeki rakam, kaydedilmeyen dosya say\f1\u305?\f2 s\f1\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 sterir.\cf0\f0\lang31\par
+\par
+\cf5\f2\lang1055 NOT: Projede de\f1\u287?\f2 i\f1\'ba\f2 iklik yapt\f1\u305?\f2 ktan sonra, \cf6 projeyi durdurup yeniden ba\f1\'ba\f2 latmam\f1\u305?\f2 za gerek yoktur\cf5 . \par
+\cf6 ctrl + s \cf5 ile kaydettikten sonra \cf6 g\f0\lang1033\'fc\f2\lang1055 ncel hali taray\f1\u305?\f2 c\f1\u305?\f2 da g\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 nt\f0\lang1033\'fc\f2\lang1055 lenecektir\cf5 .\par
+\par
+NOT: Ayn\f1\u305?\f2  zamanda Autosave diye bir \f0\lang1033\'f6\f2\lang1055 zellik de var ancak biz bunu kullanmayaca\f1\u287?\u305?\f2 z. Yazd\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 z anda, kaydetmeye ihtiya\f0\lang1033\'e7\f2\lang1055  duymadan, \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2 y\f1\u305?\f2  g\f0\lang1033\'fc\f2\lang1055 ncelleyen bir sistem bu. Ancak biz kullanmayaca\f1\u287?\u305?\f2 z.\par
+\cf0\par
+Projeyi son haliyle kaydettikten sonra, bombo\f1\'ba\f2  bir sayfa kar\f1\'ba\u305?\f2 m\f1\u305?\f2 za \f0\lang1033\'e7\f1\lang1055\u305?\f2 kacak. \f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  app.component.html i\f0\lang1033\'e7\f2\lang1055 indeki t\f0\lang1033\'fc\f2\lang1055 m html kodlar\f1\u305?\f2 n\f1\u305?\f2  sildik.\par
+\par
+\cf5 NOT: \par
+\f0\lang1033\'c7\f2\lang1055 al\f1\u305?\'ba\f2 an \cf6 projeyi durdurmak i\f0\lang1033\'e7\f2\lang1055 in \cf5 cmd \f0\lang1033\'fc\f2\lang1055 zerinden \cf6 ctrl + c \cf5 diyoruz.\par
+Tekrar \cf6\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 rmak\cf5  i\f0\lang1033\'e7\f2\lang1055 in de "\cf6 ng serve --open\cf5 " komutunu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 yoruz.\par
+\cf0\par
+------------------------------------------------------------------------------------------------\par
+\f1\par
+\'aa\f2 imdi Angular'\f1\u305?\f2 n ne i\f1\'ba\f2 e yarad\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  anlamak i\f0\lang1033\'e7\f2\lang1055 in \f0\lang1033\'f6\f2\lang1055 rnek kodlar yazaca\f1\u287?\u305?\f2 z.\par
+\par
+app.component.html dosyas\f1\u305?\f2 na geliyoruz.\par
+A\f1\'ba\f2 a\f1\u287?\u305?\f2 daki \f0\lang1033\'f6\f2\lang1055 rnek html kodunu en \f0\lang1033\'fc\f2\lang1055 ste yaz\f1\u305?\f2 yoruz.\par
+\par
+\tab\tab\tab <\cf5 ul\cf0 >\par
+  \tab\tab\tab\tab <\cf5 li\cf0 >Laptop</\cf5 li\cf0 >\par
+  \tab\tab\tab\tab <\cf5 li\cf0 >Mouse</\cf5 li\cf0 >\par
+  \tab\tab\tab\tab <\cf5 li\cf0 >Keyboard</\cf5 li\cf0 >\par
+\tab\tab\tab </\cf5 ul\cf0 >\par
+\par
+Bu \f1\'ba\f2 ekilde html kodu yazd\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 zda klasik bir htlm \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2 s\f1\u305?\f2  al\f1\u305?\f2 r\f1\u305?\f2 z. \par
+Fakat \cf6 bu t\f0\lang1033\'fc\f2\lang1055 r kodlar static kodlard\f1\u305?\f2 r\cf0 . \par
+\cf6 Angular\cf0  sayesinde ise \cf6 DOM manip\f0\lang1033\'fc\f2\lang1055 lasyonu yapmay\f1\u305?\f2  kolayla\f1\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 r\f1\u305?\f2 z\cf0 . \par
+Ayn\f1\u305?\f2  zamanda \cf6 Angular ile bir Restful API'ye ba\f1\u287?\f2 lanarak data transferi sa\f1\u287?\f2 layabiliriz\cf0 .\par
+\par
+\cf5 NOT: Data diyince akl\f1\u305?\f2 m\f1\u305?\f2 za ilgili html dosyas\f1\u305?\f2 n\f1\u305?\f2 n component'i gelmelidir.\cf0\par
+\par
+\f1\par
+\par
+\'aa\f2 imdi app.component.ts dosyas\f1\u305?\f2 n\f1\u305?\f2  a\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\f2 m.\par
+\par
+\cf5 NOT: Angular'da her \f1\'ba\f2 ey birer classt\f1\u305?\f2 r.\cf0\par
+\par
+Yani Angular'da component haricindeki di\f1\u287?\f2 er t\f0\lang1033\'fc\f2\lang1055 m bile\f1\'ba\f2 enler de birer class't\f1\u305?\f2 r.\par
+\par
+O halde bir class'\f1\u305?\f2 n component oldu\f1\u287?\f2 unu belirleyen \f1\'ba\f2 ey nedir?\par
+\par
+Bir class'\f1\u305?\f2 n component oldu\f1\u287?\f2 unu belirtmek i\f0\lang1033\'e7\f2\lang1055 in deklarasyon yazar\f1\u305?\f2 z.\par
+Deklarasyon, C# taraf\f1\u305?\f2 ndaki Attribute olarak d\f0\lang1033\'fc\f1\lang1055\'ba\f0\lang1033\'fc\f2\lang1055 n\f0\lang1033\'fc\f2\lang1055 lebilir.\par
+A\f1\'ba\f2 a\f1\u287?\u305?\f2 daki k\f1\u305?\f2 rm\f1\u305?\f2 z\f1\u305?\f2  b\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m gibi bir kod yazarak, deklarasyon yapm\f1\u305?\'ba\f2  oluruz.\par
+\par
+\par
+\tab\tab\cf5 import \{ Component \} from '@angular/core';\cf0\par
+\par
+\cf6\tab\tab @Component(\{\par
+  \tab\tab\tab selector: 'app-root',\par
+  \tab\tab\tab templateUrl: './app.component.html',\par
+  \tab\tab\tab styleUrls: ['./app.component.css']\par
+\tab\tab\})\par
+\par
+\cf0\tab\cf4\tab export class AppComponent \{\par
+  \tab\tab title = 'northwind';\par
+\tab\tab\}\par
+\cf0\par
+\par
+@ kullanarak Annotation yapar\f1\u305?\f2 z.\par
+\par
+\f1\'aa\f2 imdi yap\f1\u305?\f2 s\f1\u305?\f2 n\f1\u305?\f2  biraz inceleyelim.\par
+Kodun k\f1\u305?\f2 rm\f1\u305?\f2 z\f1\u305?\f2  b\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m\f0\lang1033\'fc\f2\lang1055 n\f0\lang1033\'fc\f2\lang1055  inceleyecek olursak;\par
+\tab\par
+\tab\tab\cf6 @Component( \{ \} )\par
+\cf0\par
+i\f0\lang1033\'e7\f2\lang1055 ine s\f0\lang1033\'fc\f2\lang1055 sl\f0\lang1033\'fc\f2\lang1055  parantezler ile \f0\lang1033\'f6\f2\lang1055 zelliklerin yolland\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 yoruz.\par
+\par
+\cf5 NOT: S\f0\lang1033\'fc\f2\lang1055 sl\f0\lang1033\'fc\f2\lang1055  parantezler JavaScript d\f0\lang1033\'fc\f2\lang1055 nyas\f1\u305?\f2 nda "\cf6 object\cf5 " anlam\f1\u305?\f2 na gelir.\par
+\par
+\cf0\f1\'aa\f2 imdi deklarasyon i\f0\lang1033\'e7\f2\lang1055 indeki \f0\lang1033\'f6\f2\lang1055 zellikleri inceleyelim.\cf5\par
+\par
+\tab\cf4\tab @Component(\{\par
+  \tab\tab\tab selector: 'app-root',\par
+  \tab\tab\tab templateUrl: './app.component.html',\par
+  \tab\tab\tab styleUrls: ['./app.component.css']\par
+\tab\tab\})\par
+\cf0\par
+\par
+\cf4 @Component \cf0 diyerek, bu class'\f1\u305?\f2 n bir Component oldu\f1\u287?\f2 unu belirttik.\par
+\cf6\par
+\par
+\cf4 templateUrl: './app.component.html' \cf0 sat\f1\u305?\f2 r\f1\u305?\f2 n\f1\u305?\f2  yazarak, "\cf5 bu Component, app.component.html isimli html dosyas\f1\u305?\f2 n\f1\u305?\f2  y\f0\lang1033\'f6\f2\lang1055 netecek olan Component dosyas\f1\u305?\f2 d\f1\u305?\f2 r\cf0 " demi\f1\'ba\f2  olduk.\cf5\par
+\cf0\par
+\par
+\cf4 selector: 'app-root' \cf0 kodu ise, bu Component'i bir html etiketi gibi kullanmam\f1\u305?\f2 za imkan veren koddur.\par
+Etiket art\f1\u305?\f2 k, app-root anahtar ismiyle kullan\f1\u305?\f2 labilir durumdad\f1\u305?\f2 r.\par
+<\cf5 app-root\cf0 ></\cf5 app-root\cf0 > olarak yazarak kullan\f1\u305?\f2 r\f1\u305?\f2 z.\par
+\par
+\par
+\cf4 styleUrls: ['./app.component.css'] \cf0 sat\f1\u305?\f2 r\f1\u305?\f2  sayesinde, bu Component'in hangi css dosyalar\f1\u305?\f2 n\f1\u305?\f2  kullanaca\f1\u287?\u305?\f2 n\f1\u305?\f2  belirtmi\f1\'ba\f2  olduk.\par
+Dikkat edersek, css dosyas\f1\u305?\f2  bir array i\f0\lang1033\'e7\f2\lang1055 inde verilmi\f1\'ba\f2 .\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  birden fazla css dosyas\f1\u305?\f2 yla da ili\f1\'ba\f2 kili olabilirdi. Bu sebepten dolay\f1\u305?\f2  dizi olarak belirtiriz.\par
+\par
+\par
+\cf5 NOT: \cf6 @Component deklarasyonunu kullanabilmemiz i\f0\lang1033\'e7\f2\lang1055 in \cf5 Angular'da yer alan Component s\f1\u305?\f2 n\f1\u305?\f2 f\f1\u305?\f2 n\f1\u305?\f2  import etmemiz gerekmektedir.\par
+\par
+\tab\tab\cf6 import \{ Component \} from '@angular/core';\cf5\par
+\par
+import, C# taraf\f1\u305?\f2 nda kullan\f1\u305?\f2 lan using ile ayn\f1\u305?\f2  mant\f1\u305?\f2 ktad\f1\u305?\f2 r.\par
+\cf0\par
+------------------------------------------------------------------------------------------------\par
+\par
+Component dosyalar\f1\u305?\f2 , html dosyalar\f1\u305?\f2  i\f0\lang1033\'e7\f2\lang1055 in datay\f1\u305?\f2  y\f0\lang1033\'f6\f2\lang1055 netir demi\f1\'ba\f2 tik.\par
+\f1\'aa\f2 imdi Component dosyas\f1\u305?\f2 n\f1\u305?\f2 n data y\f0\lang1033\'f6\f2\lang1055 netimi olaylar\f1\u305?\f2 na ge\f0\lang1033\'e7\f2\lang1055 elim.\par
+\par
+Kodda g\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 ld\f0\lang1033\'fc\f1\lang1055\u287?\f0\lang1033\'fc\f2\lang1055  gibi, basit bir data olu\f1\'ba\f2 turulmu\f1\'ba\f2 .\par
+\f0\lang31\par
+\cf4\f2\lang1055\tab\tab export \cf5 class \cf7 AppComponent \cf0\{\cf4\par
+  \tab\tab\tab\cf8 title \cf0 =\cf4  \cf6 'northwind'\cf0 ;\cf4\par
+\tab\cf0\tab\}\cf4\par
+\cf0\f0\lang31\par
+\f2\lang1055 title isimli bir data oldu\f1\u287?\f2 unu g\f0\lang1033\'f6\f2\lang1055 rmekteyiz.\f0\lang31\par
+\par
+\cf5\f2\lang1055 NOT: JavaScript d\f0\lang1033\'fc\f2\lang1055 nyas\f1\u305?\f2 nda veri tipleri yer almaz. Ancak TypeScript sayesinde veriler i\f0\lang1033\'e7\f2\lang1055 in tip belirtebiliriz.\par
+\f0\lang1033\'d6\f2\lang1055 rne\f1\u287?\f2 in;\par
+\cf0\tab\tab\cf6 title:string = 'northwind';\par
+\cf5\f1\'ba\f2 eklinde tip belirtebiliriz.\cf0\f0\lang31\par
+\par
+\par
+\f2\lang1055 Component'ler, html datalar\f1\u305?\f2 n\f1\u305?\f2  y\f0\lang1033\'f6\f2\lang1055 neten yerlerdir.\par
+O halde, bu Component'te yer alan "title" isimli datay\f1\u305?\f2 , html dosyam\f1\u305?\f2 zda kullanal\f1\u305?\f2 m.\f0\lang31\par
+\par
+\f1\lang1055\'aa\f2 imdi app.component.html dosyas\f1\u305?\f2 n\f1\u305?\f2  a\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\f2 m.\f0\lang31\par
+\par
+\f2\lang1055 html dosyas\f1\u305?\f2 nda, Angular kodu yazabilmek i\f0\lang1033\'e7\f2\lang1055 in.\par
+\par
+\tab\tab\cf6 Welcome to \{\{ title \}\}\cf0\f0\lang31\par
+\par
+\f1\lang1055\'ba\f2 eklinde 2 adet s\f0\lang1033\'fc\f2\lang1055 sl\f0\lang1033\'fc\f2\lang1055  parantez aras\f1\u305?\f2 nda kod yazar\f1\u305?\f2 z.\par
+\cf4\par
+Angular, yukardaki kodu okurken, s\f0\lang1033\'fc\f2\lang1055 sl\f0\lang1033\'fc\f2\lang1055  parantezleri g\f0\lang1033\'f6\f2\lang1055 rd\f0\lang1033\'fc\f1\lang1055\u287?\f0\lang1033\'fc\f2\lang1055  anda, ilgili component dosyas\f1\u305?\f2 na gider ve title isminde datay\f1\u305?\f2  al\f1\u305?\f2 r.\cf0\f0\lang31\par
+\f2\lang1055 Dolay\f1\u305?\f2 s\f1\u305?\f2 yla yukardaki kodu html'de yazarsak, \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2  olarak \f1\'ba\f2 unu g\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 z;\par
+\par
+\tab\tab\cf6 Welcome to northwind\cf0\f0\lang31\par
+\par
+\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  \{\{ title \}\} isimli datay\f1\u305?\f2 , ilgili component'ten \f0\lang1033\'e7\f2\lang1055 ektik.\par
+\par
+\par
+\par
+\par
+\f1\'aa\f2 imdi birtak\f1\u305?\f2 m kodlar yazmaya devam ediyoruz.\par
+\f1\'aa\f2 imdi app.component.ts i\f0\lang1033\'e7\f2\lang1055 inde;\par
+\par
+\tab\cf6 product:any = \{\}\par
+\cf0\par
+datas\f1\u305?\f2 n\f1\u305?\f2  ekliyoruz.\par
+any, her veri t\f0\lang1033\'fc\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055  olabilir demek.\par
+Bir product olu\f1\'ba\f2 turaca\f1\u287?\u305?\f2 m\f1\u305?\f2 z i\f0\lang1033\'e7\f2\lang1055 in do\f1\u287?\f2 al olarak object yarat\f1\u305?\f2 yoruz.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  bir s\f0\lang1033\'fc\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055  \f0\lang1033\'f6\f2\lang1055 zelli\f1\u287?\f2 i olacak.\par
+\par
+\cf6\tab product: any = \{\par
+    \tab\tab productId: 1,\par
+    \tab\tab productName: 'Bardak',\par
+    \tab\tab caregoryId: 1,\par
+    \tab\tab unitPrice: 30,\par
+  \tab\};\par
+\cf0\par
+\par
+\par
+\f1\'aa\f2 imdi app.component.html dosyas\f1\u305?\f2 n\f1\u305?\f2  a\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\f2 m.\par
+\par
+\tab\cf6\{\{ product.productName \}\}\par
+\cf0\par
+Bu \f1\'ba\f2 ekilde yazarsak, product nesnesinin productName \f0\lang1033\'f6\f2\lang1055 zelli\f1\u287?\f2 ine ula\f1\'ba\f2 abiliriz.\par
+\par
+\par
+\cf5 NOT: Intellisence ekleyebilmek i\f0\lang1033\'e7\f2\lang1055 in, VSCode i\f0\lang1033\'e7\f2\lang1055 ine \f0\lang1033\'e7\f2\lang1055 e\f1\'ba\f2 itli Angular extension'lar\f1\u305?\f2  ekleyece\f1\u287?\f2 iz. Engin hoca ileride birka\f0\lang1033\'e7\f2\lang1055  tane g\f0\lang1033\'f6\f2\lang1055 sterecek.\par
+\par
+NOT: JavaScript, k\f0\lang1033\'fc\'e7\'fc\f2\lang1055 k b\f0\lang1033\'fc\f2\lang1055 y\f0\lang1033\'fc\f2\lang1055 k harf duyarl\f1\u305?\f2 d\f1\u305?\f2 r.\cf0\f0\lang31\par
+\par
+\par
+\f1\lang1055\'aa\f2 imdi app.component.ts dosyas\f1\u305?\f2 n\f1\u305?\f2  a\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\f2 m.\f0\lang31\par
+\f2\lang1055 Birka\f0\lang1033\'e7\f2\lang1055  product nesnesi daha tan\f1\u305?\f2 ml\f1\u305?\f2 yoruz.\par
+Ve hepsini bir diziye koyal\f1\u305?\f2 m.\par
+\par
+\tab\cf4\tab products = [\par
+    \tab\tab\tab this.product1,\par
+    \tab\tab\tab this.product2,\par
+    \tab\tab\tab this.product3,\par
+    \tab\tab\tab this.product4,\par
+    \tab\tab\tab this.product5,\par
+  \tab\tab ];\f0\lang31\par
+\cf0\par
+\par
+\par
+\f1\lang1055\'aa\f2 imdi app.component.html dosyas\f1\u305?\f2 n\f1\u305?\f2  a\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\f2 m.\par
+Burada \f0\lang1033\'f6\f2\lang1055 nemli bir konu \f0\lang1033\'f6\f1\lang1055\u287?\f2 renece\f1\u287?\f2 iz.\par
+Mevcut ul ve li'lerden olu\f1\'ba\f2 an statik kodlar\f1\u305?\f2  siliyoruz.\par
+Dinamik olarak html dosyas\f1\u305?\f2 nda kod yazaca\f1\u287?\u305?\f2 z.\par
+\f0\lang31\par
+\f2\lang1055\tab\tab\tab <\cf5 ul\cf0 >\par
+  \tab\tab\tab\tab <\cf5 li \cf8 *ngFor\cf0 =\cf6 ""\cf0 ></\cf5 li\cf0 >\par
+\tab\tab\tab </\cf5 ul\cf0 >\par
+\f0\lang31\par
+\f2\lang1055 Angular i\f0\lang1033\'e7\f2\lang1055 inde bu yap\f1\u305?\f2 ya \cf6 Directive\cf0  denir.\f0\lang31\par
+\f2\lang1055 Directive sayesinde, ilgili html elementini manip\f0\lang1033\'fc\f2\lang1055 le etmemize yarar.\par
+ngFor, bulundu\f1\u287?\f2 un li sat\f1\u305?\f2 r\f1\u305?\f2 n\f1\u305?\f2  tekrarla demektir.\par
+\par
+\cf5 NOT: Normalde bir for blo\f1\u287?\f2 u yaz\f1\u305?\f2 ld\f1\u305?\u287?\u305?\f2 nda, blo\f1\u287?\f2 un ba\f1\'ba\f2 lad\f1\u305?\u287?\u305?\f2  ve sonland\f1\u305?\u287?\u305?\f2  yerleri s\f0\lang1033\'fc\f2\lang1055 sl\f0\lang1033\'fc\f2\lang1055  parantezler ile belirleriz. Fakat Directive mant\f1\u305?\u287?\u305?\f2 nda, ba\f1\'ba\f2 lang\f1\u305?\f0\lang1033\'e7\f2\lang1055  ve biti\f1\'ba\f2  noktalar\f1\u305?\f2 , bulundu\f1\u287?\f2 u elementin a\f0\lang1033\'e7\f1\lang1055\u305?\f2 l\f1\u305?\'ba\f2  ve kapan\f1\u305?\'ba\f2  etiketleriyle belirlenir.\par
+Yani yukardaki \f0\lang1033\'f6\f2\lang1055 rnek i\f0\lang1033\'e7\f2\lang1055 in d\f0\lang1033\'f6\f2\lang1055 ng\f0\lang1033\'fc\f2\lang1055 n\f0\lang1033\'fc\f2\lang1055 n ba\f1\'ba\u305?\f2 n\f1\u305?\f2  ve sonunu \cf6 <li></li> \cf5 etiketleri ifade eder.\par
+\par
+\cf0 Kodu geli\f1\'ba\f2 tiriyoruz.\cf5\f0\lang31\par
+\cf0\par
+\f2\lang1055\tab\tab\tab <\cf5 li \cf8 *ngFor\cf0 =\cf6 "let product of products"\cf0 ></\cf5 li\cf0 >\f0\lang31\par
+\par
+\f2\lang1055 Bu kod, bildi\f1\u287?\f2 imiz \cf6 foreach \cf0 d\f0\lang1033\'f6\f2\lang1055 ng\f0\lang1033\'fc\f2\lang1055 s\f0\lang1033\'fc\f2\lang1055 d\f0\lang1033\'fc\f2\lang1055 r.\f0\lang31\par
+\par
+\cf6\f2\lang1055 products\cf0 ; componentteki array durumunda olan de\f1\u287?\f2 i\f1\'ba\f2 kenimiz.\par
+\cf6 product\cf0 ; herbir array eleman\f1\u305?\f2 n\f1\u305?\f2  temsil eden takma isim.\f0\lang31\par
+\cf6\f2\lang1055 let\cf0 ; zaten tipler i\f0\lang1033\'e7\f2\lang1055 in g\f0\lang1033\'fc\f2\lang1055 venli tan\f1\u305?\f2 mlama keyword'\f0\lang1033\'fc\f2\lang1055 d\f0\lang1033\'fc\f2\lang1055 r.\f0\lang31\par
+\par
+\f1\lang1055\'aa\f2 imdi kodu tamamlayal\f1\u305?\f2 m.\f0\lang31\par
+\par
+\f2\lang1055 <\cf5 ul\cf0 >\f0\lang31\par
+\f2\lang1055 <\cf5 li \cf8 *ngFor\cf0 =\cf6 "let product of products"\cf0 > \{\{ product.productName \}\} </\cf5 li\cf0 >\f0\lang31\par
+\f2\lang1055 </\cf5 ul\cf0 >\f0\lang31\par
+\par
+\f2\lang1055 Bu kod ile, t\f0\lang1033\'fc\f2\lang1055 m \f0\lang1033\'fc\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 nlere ait isim bilgisini bir liste \f1\'ba\f2 eklinde g\f0\lang1033\'f6\f2\lang1055 rebiliriz.\f0\lang31\par
+\par
+\cf4\f2\lang1055 Angular sayesinde, \f0\lang1033\'f6\f2\lang1055 nceden statik olarak tan\f1\u305?\f2 mlad\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 z li elemanlar\f1\u305?\f2 n\f1\u305?\f2  dinamik bir \f1\'ba\f2 ekilde bir foreach kullanarak yazm\f1\u305?\'ba\f2  olduk.\cf0\f0\lang31\par
+\cf4\f2\lang1055 Bu dinamik yap\f1\u305?\f2 y\f1\u305?\f2  sa\f1\u287?\f2 lamak i\f0\lang1033\'e7\f2\lang1055 in tek bir li eleman\f1\u305?\f2  bizim i\f0\lang1033\'e7\f2\lang1055 in yeterli oldu.\cf0\f0\lang31\par
+\par
+\par
+\f1\lang1055\u304?\f2 lerleyen zamanlarda kendi directive kodlar\f1\u305?\f2 m\f1\u305?\f2 z\f1\u305?\f2  yazaca\f1\u287?\u305?\f2 m\f1\u305?\f2 z i\f0\lang1033\'e7\f2\lang1055 in\par
+app klas\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055  alt\f1\u305?\f2 nda yeni bir klas\f0\lang1033\'f6\f2\lang1055 r olu\f1\'ba\f2 turuyoruz.\par
+\tab\par
+\tab\cf5 Klas\f0\lang1033\'f6\f2\lang1055 r Ad\f1\u305?\f2  => \cf6 directives\par
+\par
+\par
+
+\pard\sl276\slmult1\qj\cf4 ------------------------------------------------------------------------------------------------\cf3\par
+
+\pard\sl276\slmult1\qc\cf4\fs36 2. B\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m Sonu\cf3\f1\fs28\par
+
+\pard\sl276\slmult1\qj\cf4\f2 ------------------------------------------------------------------------------------------------\par
+
+\pard\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\cf6\par
+\par
+\cf0\f1\'aa\f2 imdi kendi componentlerimizi eklemeye ba\f1\'ba\f2 layaca\f1\u287?\u305?\f2 z.\par
+Temel hedefimiz, klasik bir e-ticaret sitesindeki gibi 3 adet b\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m olu\f1\'ba\f2 turmak.\par
+\f0\lang1033\'dc\f2\lang1055 stte navigation bar, solda kategori b\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m\f0\lang1033\'fc\f2\lang1055 , kalan k\f1\u305?\f2 s\f1\u305?\f2 mda da ekran bulunacak.\par
+Dolay\f1\u305?\f2 s\f1\u305?\f2 yla 3 adet temel componente ihtiyac\f1\u305?\f2 m\f1\u305?\f2 z var.\par
+\f1\u304?\f2 lerleyen zamanlarda bu say\f1\u305?\f2  artabilir.\par
+\cf6\par
+\par
+\cf0 Bir component olu\f1\'ba\f2 tural\f1\u305?\f2 m.\par
+components klas\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 ne sa\f1\u287?\f2  t\f1\u305?\f2 kl\f1\u305?\f2 yoruz.\par
+\tab "\cf6 open in integrated terminal\cf0 " diyoruz.\par
+\par
+Bizi otomatik olarak cmd ekran\f1\u305?\f2 nda o klas\f0\lang1033\'f6\f2\lang1055 re getirecek.\par
+\cf6\par
+\tab\tab\cf4 ng g component product\cf6\par
+\par
+\cf0 komutunu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 yoruz.\cf6\par
+\par
+\cf5 ng : Angular komutu\par
+g   : generate (olu\f1\'ba\f2 tur) komutu\par
+\cf6\par
+\cf0 Bize product isminde bir component olu\f1\'ba\f2 turacak.\par
+Component isimleri tekil olur.\par
+\cf6\par
+Bu komut \cf0 bize\cf6  4 adet dosya olu\f1\'ba\f2 turur.\par
+ts, html, css \cf0 ve\cf6  spec.ts \cf0 dosyalar\f1\u305?\f2 n\f1\u305?\f2 n hepsini olu\f1\'ba\f2 turur.\cf6\par
+\par
+\par
+\cf0 Bir tane de category componenti ekleyelim.\cf6\par
+\par
+\tab\tab\cf4 ng g component category\cf6\par
+\cf0\f0\lang31\par
+\par
+\f2\lang1055 Son olarak bir tane de navigation componenti ekleyelim.\cf6\par
+\par
+\tab\tab\cf4 ng g component navi\par
+\par
+\cf0\f1\'aa\f2 u an 3 adet componentimiz olu\f1\'ba\f2 tu.\cf4\par
+\par
+\par
+\par
+\cf6\fs36 app.module.ts\cf4\fs28\par
+\par
+\cf5 module\cf0 : birbiriyle ili\f1\'ba\f2 kili componentleri, directive'leri toplad\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 z yer demektir.\cf4\par
+\par
+\cf0 Bir projede farkl\f1\u305?\f2  mod\f0\lang1033\'fc\f2\lang1055 ller olabilir. \f0\lang1033\'d6\f2\lang1055 rne\f1\u287?\f2 in bir eticaret sitesinde kullan\f1\u305?\f2 c\f1\u305?\f2  mod\f0\lang1033\'fc\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055  ve admin modul\f0\lang1033\'fc\f2\lang1055  olabilir.\par
+\par
+\f1\'aa\f2 imdi app.module.ts dosyam\f1\u305?\f2 za gelelim.\par
+\cf4\par
+\cf0 Burada g\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 yoruz ki, Angular bizim yerimize gerekli import ve declaration kodlar\f1\u305?\f2 n\f1\u305?\f2  olu\f1\'ba\f2 turmu\f1\'ba\f2  3 yeni componentimiz i\f0\lang1033\'e7\f2\lang1055 in de.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  cmd \f0\lang1033\'fc\f2\lang1055 zerinden angular cli kullanarak component olu\f1\'ba\f2 turma komutu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 rd\f1\u305?\f2 k, bu sayede Angular bizim i\f0\lang1033\'e7\f2\lang1055 in gerekli t\f0\lang1033\'fc\f2\lang1055 m temle tan\f1\u305?\f2 mlamalar\f1\u305?\f2  yapm\f1\u305?\'ba\f2 .\par
+\cf4\par
+\cf0 ------------------------------------------------------------------------------------------------\par
+\cf4\par
+\cf0\f1\'aa\f2 imdi bir componenti nas\f1\u305?\f2 l kullanaca\f1\u287?\u305?\f2 m\f1\u305?\f2 z \f0\lang1033\'f6\f1\lang1055\u287?\f2 renelim.\par
+\par
+app.component.html dosyas\f1\u305?\f2 na gelelim.\par
+\par
+Az \f0\lang1033\'f6\f2\lang1055 nce yazd\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 z gereksiz html kodlar\f1\u305?\f2 n\f1\u305?\f2 n tamam\f1\u305?\f2 n\f1\u305?\f2  yorum sat\f1\u305?\f2 r\f1\u305?\f2 na alal\f1\u305?\f2 m.\par
+\cf4\par
+\cf5 Kendi olu\f1\'ba\f2 turdu\f1\u287?\f2 umuz componentlerimizi app.component.html i\f0\lang1033\'e7\f2\lang1055 inde yazarak g\f0\lang1033\'f6\f2\lang1055 stermek istiyoruz. Bunun i\f0\lang1033\'e7\f2\lang1055 in yapmam\f1\u305?\f2 z gereken \f1\'ba\f2 ey; olu\f1\'ba\f2 turdu\f1\u287?\f2 umuz componentlerin selector isimlerini \f0\lang1033\'f6\f1\lang1055\u287?\f2 renmek.\cf4\par
+\par
+\cf5 Angular cli, verdi\f1\u287?\f2 imiz isimlerin ba\f1\'ba\u305?\f2 na otomatik olarak "\cf6 app\cf5 " ekler.\cf4\par
+\par
+\cf5 Yani selector'lar \f1\'ba\f2 u \f1\'ba\f2 ekilde olu\f1\'ba\f2 mu\f1\'ba\f2 tur;\par
+\tab\par
+\tab\tab\cf6 selector: 'app-product'\cf5\par
+\cf6\par
+\cf0\f0\lang31\par
+\f2\lang1055 Biz de app.component.html i\f0\lang1033\'e7\f2\lang1055 inde bu \f1\'ba\f2 ekilde etiket olarak kullanal\f1\u305?\f2 m.\par
+\par
+A\f1\'ba\f2 a\f1\u287?\u305?\f2 daki \f1\'ba\f2 ekilde ekliyoruz.\par
+\par
+\tab\tab <\cf5 app-navi\cf0 ></\cf5 app-navi\cf0 >\par
+\tab\tab <\cf5 app-category\cf0 ></\cf5 app-category\cf0 >\par
+\tab\tab <\cf5 app-product\cf0 ></\cf5 app-product\cf0 >\f0\lang31\par
+\par
+\par
+\f2\lang1055 Bu \f1\'ba\f2 ekilde biz bir component a\f1\u287?\f2 ac\f1\u305?\f2  olu\f1\'ba\f2 turmu\f1\'ba\f2  olduk.\par
+\par
+\cf6 En tepede kapsay\f1\u305?\f2 c\f1\u305?\f2  bir component var. (app.component)\f0\lang31\par
+\f2\lang1055 Onun alt\f1\u305?\f2 nda ayn\f1\u305?\f2  seviyede 3 component var. (navi,category,product)\f0\lang31\par
+\cf0\par
+\f2\lang1055 Kaydetti\f1\u287?\f2 imiz anda, 3 componentin de \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rebiliriz canl\f1\u305?\f2  projede.\par
+\par
+Component kullanma y\f0\lang1033\'f6\f2\lang1055 ntemini de \f0\lang1033\'f6\f1\lang1055\u287?\f2 renmi\f1\'ba\f2  ve uygulam\f1\u305?\'ba\f2  olduk.\par
+\par
+------------------------------------------------------------------------------------------------\f0\lang31\par
+\par
+\f1\lang1055\'aa\f2 imdi daha iyi html geli\f1\'ba\f2 tirmek amac\f1\u305?\f2 yla css i\f0\lang1033\'e7\f2\lang1055 in bootstrap kullanaca\f1\u287?\u305?\f2 z.\f0\lang31\par
+\par
+\f2\lang1055 bootstap/docs sitesinde, Components alt\f1\u305?\f2 nda navbar kodunu buluyoruz  ve kopyal\f1\u305?\f2 yoruz.\par
+\par
+navi componentimizin html'ine yap\f1\u305?\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 yoruz.\par
+\par
+Bu haliyle kaydetti\f1\u287?\f2 imizde, \f0\lang1033\'e7\f2\lang1055 irkin bir \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2  alaca\f1\u287?\u305?\f2 z.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  hen\f0\lang1033\'fc\f2\lang1055 z bootstrap css'leri devreye girmedi.\par
+Sadece temel html etiketleri \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\u305?\f2 yor.\par
+\par
+JavaScript projelerinde bir paket kullanmak istiyorsak, o pakete ait t\f0\lang1033\'fc\f2\lang1055 m kodlar projemizde bulunmal\f1\u305?\f2 d\f1\u305?\f2 r.\par
+\par
+Bu y\f0\lang1033\'fc\f2\lang1055 zden cmd'ye geliyoruz. (path'in \f0\lang1033\'f6\f2\lang1055 nemi yok)\par
+\cf6\par
+npm install bootstrap \cf0 komutunu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 yoruz.\par
+\cf6\par
+\cf0 Bu komuttan sonra, node_modules i\f0\lang1033\'e7\f2\lang1055 ine bootstrap klas\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 n\f0\lang1033\'fc\f2\lang1055 n eklendi\f1\u287?\f2 ini g\f0\lang1033\'f6\f2\lang1055 rebiliriz.\par
+\par
+\f1\u304?\f2 ndirdik ama hala projede kullanm\f1\u305?\f2 yoruz.\par
+Bunu yapabilmek i\f0\lang1033\'e7\f2\lang1055 in \cf6 angular.json \cf0 dosyas\f1\u305?\f2 na gitmemiz laz\f1\u305?\f2 m.\par
+\cf6\par
+\par
+\fs36 angular.json\fs28\par
+\par
+\cf0 bu dosya, Angular projemizle ilgili konfig\f0\lang1033\'fc\f2\lang1055 rasyon yeridir.\cf6\par
+\par
+\par
+\cf0\f1\'ba\f2 imdi bu dosyay\f1\u305?\f2  a\f0\lang1033\'e7\f1\lang1055\u305?\f2 yoruz.\par
+"\cf6 styles\cf0 " arrayini buluyoruz.\par
+\cf6\par
+\cf4\tab "styles": [\par
+              \cf6 "./node_modules/bootstrap/dist/css/bootstrap.min.css",\cf4\par
+              "src/styles.css"\par
+            ],\par
+\cf6\par
+\cf0 K\f1\u305?\f2 rm\f1\u305?\f2 z\f1\u305?\f2  sat\f1\u305?\f2 r\f1\u305?\f2  yaz\f1\u305?\f2 yoruz.\par
+Projemizdeki kullan\f1\u305?\f2 lacak olan css dosyas\f1\u305?\f2 na ek olarak bootstrap dosyas\f1\u305?\f2 n\f1\u305?\f2 n da referans\f1\u305?\f2 n\f1\u305?\f2  diziye ekledik.\f0\lang31\par
+\f2\lang1055\par
+\cf5 NOT:\f0\lang1033\par
+\f2\lang1055 .min.css dosyas\f1\u305?\f2 , normal .css dosyas\f1\u305?\f2 n\f1\u305?\f2 n tamamen ayn\f1\u305?\f2 s\f1\u305?\f2 d\f1\u305?\f2 r.\par
+Dosyadaki bo\f1\'ba\f2 luklar silindi\f1\u287?\f2 i i\f0\lang1033\'e7\f2\lang1055 in boyutu daha k\f0\lang1033\'fc\'e7\'fc\f2\lang1055 kt\f0\lang1033\'fc\f2\lang1055 r, o y\f0\lang1033\'fc\f2\lang1055 zden min olan\f1\u305?\f2  tercih ettik.\par
+\cf0\par
+\par
+\cf6\f1\'aa\f2 imdi projeyi kaydetti\f1\u287?\f2 imiz zaman, yine proje \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2 s\f1\u305?\f2 na bootstrap s\f1\u305?\f2 n\f1\u305?\f2 flar\f1\u305?\f2 n\f1\u305?\f2 n yans\f1\u305?\f2 mad\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rece\f1\u287?\f2 iz.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  projeye yeni bir paket ekledi\f1\u287?\f2 imizde yapmam\f1\u305?\f2 z gereken bir i\f1\'ba\f2 lem oluyor.\par
+\cf0\par
+Bu durumda node isimli terminali a\f0\lang1033\'e7\f1\lang1055\u305?\f2 yoruz.\par
+\f0\lang1033\'c7\f2\lang1055 al\f1\u305?\'ba\f2 an uygulamay\f1\u305?\f2  ctrl + C diyerek durduruyoruz.\par
+Ve sonra "ng serve --open" tekrar yay\f1\u305?\f2 na al\f1\u305?\f2 yoruz.\par
+\par
+\cf5 NOT:\f0\lang1033\par
+\f2\lang1055 projeye bir paket ekledi\f1\u287?\f2 imizde, \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2  \f0\lang1033\'fc\f2\lang1055 zerinde sonu\f0\lang1033\'e7\f2\lang1055 lar\f1\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rebilmek i\f0\lang1033\'e7\f2\lang1055 in \f0\lang1033\'f6\f2\lang1055 nce durdurup, sonra tekrar yay\f1\u305?\f2 na almam\f1\u305?\f2 z gerekiyor.\par
+\cf0\par
+Art\f1\u305?\f2 k html kodlar\f1\u305?\f2 m\f1\u305?\f2 zdaki bootstrap s\f1\u305?\f2 n\f1\u305?\f2 flar\f1\u305?\f2 n\f1\u305?\f2 n \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rebiliriz.\par
+\par
+------------------------------------------------------------------------------------------------\par
+\par
+app.component.ts dosyas\f1\u305?\f2 n\f1\u305?\f2  a\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\f2 m.\par
+\par
+products listesinin komple keselim.\par
+\par
+product.component.ts i\f0\lang1033\'e7\f2\lang1055 inde, export class i\f0\lang1033\'e7\f2\lang1055 ine yap\f1\u305?\'ba\f2 t\f1\u305?\f2 ral\f1\u305?\f2 m.\par
+\par
+\par
+\par
+product.component.html i\f0\lang1033\'e7\f2\lang1055 ine gelelim.\par
+html kodlar\f1\u305?\f2 m\f1\u305?\f2 z\f1\u305?\f2  yazaca\f1\u287?\u305?\f2 z.\f0\lang1033\par
+\par
+\f2\lang1055\tab\tab\tab\f0\lang1033 <\cf5 table\cf0 >\par
+   \f2\lang1055\tab\tab\tab\tab\f0\lang1033  <\cf5 tr\cf0 >\par
+        \f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+\f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+\f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+\f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+    \f2\lang1055\tab\tab\tab\tab\f0\lang1033 </\cf5 tr\cf0 >\par
+\f2\lang1055\tab\tab\tab\f0\lang1033 </\cf5 table\cf0 >\par
+\par
+\cf6\f2\lang1055 table\cf0 : tablo\par
+\cf6 tr\cf0 : sat\f1\u305?\f2 r\par
+\cf6 td\cf0 : s\f0\lang1033\'fc\f2\lang1055 tun\par
+\par
+Bu sayede herbir sat\f1\u305?\f2 r\f1\u305?\f2 n 4 adet s\f0\lang1033\'fc\f2\lang1055 tunu oluyor.\par
+\par
+Kodu tamamlayal\f1\u305?\f2 m.\par
+\par
+\tab\tab <table class="table">\par
+    \tab\tab\tab <tr *ngFor="let product of products">\par
+        \tab\tab\tab\tab <td>\{\{ product.productId \}\}</td>\par
+        \tab\tab\tab\tab <td>\{\{ product.productName \}\}</td>\par
+        \tab\tab\tab\tab <td>\{\{ product.categoryId \}\}</td>\par
+        \tab\tab\tab\tab <td>\{\{ product.unitPrice \}\}</td>\par
+    \tab\tab\tab </tr>\par
+\tab\tab </table>\par
+
+\pard\sl276\slmult1\qj\cf4 ------------------------------------------------------------------------------------------------\cf3\par
+
+\pard\sl276\slmult1\qc\cf4\fs36 3. B\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m Sonu\cf3\f1\fs28\par
+
+\pard\sl276\slmult1\qj\cf4\f2 ------------------------------------------------------------------------------------------------\par
+
+\pard\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\cf0\par
+\par
+\par
+\par
+\par
+\f0\lang31\par
+\par
+\par
+\par
+}
+ 

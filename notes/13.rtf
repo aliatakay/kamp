@@ -1,0 +1,443 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset238 Calibri;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Consolas;}{\f4\fnil\fcharset238 Consolas;}{\f5\fnil\fcharset162 Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green0\blue255;\red0\green0\blue0;\red0\green128\blue0;\red0\green77\blue187;\red255\green0\blue0;\red43\green145\blue175;\red163\green21\blue21;\red0\green176\blue80;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qj\cf1\f0\fs36 AOP'YE NEDEN \f1\u304?\f0 HT\f1\u304?\f0 YA\f2\lang1033\'c7\f0\lang1055  DUYARIZ?\cf0\fs24\par
+\f2\fs28\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in business katman\f1\u305?\f0 nda, ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 za ait Add metodunu a\f2\lang1033\'e7\f0\lang1055 t\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 zda a\f1\'ba\f0 a\f1\u287?\u305?\f0 daki durumla kar\f1\'ba\u305?\f0 la\f1\'ba\u305?\f0 r\f1\u305?\f0 z.\par
+\cf2\f3\fs24\par
+public\cf3  IResult Add(Product product)\par
+\{\f4\par
+   \cf4\f5   \f4 ValidationTool.Validate(new ProductValidator(), product);\par
+\f5\tab // Business Codes\cf3\f4\par
+     _productDal.Add(product);\par
+     \cf2 return\cf3  \cf2 new\cf3  Result(\cf2 true\cf3 , Messages.ProductAdded);\par
+\}\par
+\f1\fs28\par
+\cf0\f0 SOLID prensiplerine uygun olmas\f1\u305?\f0  i\f2\lang1033\'e7\f0\lang1055 in bir business katman\f1\u305?\f0  metodunda sadece ve sadece i\f1\'ba\f0  kurallar\f1\u305?\f0 na ait kodlar yer almal\f1\u305?\f0 d\f1\u305?\f0 r.\cf3\par
+Fakat biz business katman\f1\u305?\f0 na ait bir metot i\f2\lang1033\'e7\f0\lang1055 in "Log, Cache, Validation, Transaction" gibi bir s\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055  Cross Cutting Concern i\f1\'ba\f0 lemi de kullanmak isteriz. Dolay\f1\u305?\f0 s\f1\u305?\f0 yla Cross Cutting Concern say\f1\u305?\f0 lan kodlar\f1\u305?\f0  burada yazarsak, SOLID prensiplerine ayk\f1\u305?\f0 r\f1\u305?\f0  hareket etmi\f1\'ba\f0  oluruz.\par
+\cf5 Bir business katman\f1\u305?\f0  metodunda sadece i\f1\'ba\f0  kodlar\f1\u305?\f0  olmal\f1\u305?\f0 d\f1\u305?\f0 r.\cf3\par
+\f1\u304?\'ba\f0 te bu sebepten dolay\f1\u305?\f0  Cross Cutting Concern yap\f1\u305?\f0 da olan kodlar\f1\u305?\f0  merkezi \f1\'ba\f0 ekilde konumland\f1\u305?\f0 rmal\f1\u305?\f0 y\f1\u305?\f0 z. Ancak bu i\f1\'ba\f0 lemi yapt\f1\u305?\f0 ktan sonra bile hala business metodu i\f2\lang1033\'e7\f0\lang1055 inde birtak\f1\u305?\f0 m kodlar yazmak zorunda kal\f1\u305?\f0 r\f1\u305?\f0 z.\par
+Yukar\f1\u305?\f0 daki kodda g\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 ld\f2\lang1033\'fc\f1\lang1055\u287?\f2\lang1033\'fc\f0\lang1055  gibi, ye\f1\'ba\f0 il olarak g\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 len kod sat\f1\u305?\f0 r\f1\u305?\f0 , validation kodlar\f1\u305?\f0 n\f1\u305?\f0  \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\f0 rmak i\f2\lang1033\'e7\f0\lang1055 in \f2\lang1033\'e7\f0\lang1055 a\f1\u287?\u305?\f0 rd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z ValidationTool metodunu bar\f1\u305?\f0 nd\f1\u305?\f0 rmaktad\f1\u305?\f0 r. Metot i\f2\lang1033\'e7\f0\lang1055 inde de instance \f2\lang1033\'fc\f0\lang1055 retmek zorunda kald\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  da g\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 yoruz.\par
+Haliyle Core katman\f1\u305?\f0 nda merkezi bir yap\f1\u305?\f0 da olu\f1\'ba\f0 turmay\f1\u305?\f0  ba\f1\'ba\f0 ard\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z validation yap\f1\u305?\f0 s\f1\u305?\f0  bile bize istedi\f1\u287?\f0 imiz soyutlama mant\f1\u305?\u287?\u305?\f0 n\f1\u305?\f0  sa\f1\u287?\f0 lamad\f1\u305?\f0 .\par
+Bundan dolay\f1\u305?\f0 , t\f2\lang1033\'fc\f0\lang1055 m Cross Cutting Concern yap\f1\u305?\f0 da olan kodlar\f1\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  Core katman\f1\u305?\f0 nda kodlamaya devam etmeliyiz. \cf5 Fakat buna ek olarak bu yap\f1\u305?\f0 lar\f1\u305?\f0  AOP format\f1\u305?\f0 nda kullanmal\f1\u305?\f0 y\f1\u305?\f0 z.\cf3\par
+Bu sayede AOP olarak olu\f1\'ba\f0 turdu\f1\u287?\f0 umuz Cross Cutting Concern yap\f1\u305?\f0 lar\f1\u305?\f0 , projenin her katman\f1\u305?\f0 nda, istedi\f1\u287?\f0 imiz her metot ya da class i\f2\lang1033\'e7\f0\lang1055 in kolayca \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 labilir. \cf5 Daha \f2\lang1033\'f6\f0\lang1055 nce \f2\lang1033\'f6\f1\lang1055\u287?\f0 rendi\f1\u287?\f0 imiz gibi, AOP \f1\'ba\f0 eklinde kurulan yap\f1\u305?\f0 lar, metot ve class'lar\f1\u305?\f0 n \f2\lang1033\'fc\f0\lang1055 zerine Annotation olarak verilebilmektedir.\cf3  Bu sayede \f2\lang1033\'f6\f0\lang1055 rne\f1\u287?\f0 in bir business katman\f1\u305?\f0  metodunun i\f2\lang1033\'e7\f0\lang1055 inde sadece ve sadece i\f1\'ba\f0  kurallar\f1\u305?\f0 n\f1\u305?\f0  bar\f1\u305?\f0 nd\f1\u305?\f0 raca\f1\u287?\u305?\f0 z. Validation, Cache, Log, Yetkilendirme gibi hi\f2\lang1033\'e7\f0\lang1055 bir yap\f1\u305?\f0 n\f1\u305?\f0 n kodlar\f1\u305?\f0 n\f1\u305?\f0  metot i\f2\lang1033\'e7\f0\lang1055 inde yazmam\f1\u305?\f0 za gerek kalmayacak.\par
+\par
+\f1\'aa\f0 imdi \f2\lang1033\'f6\f0\lang1055 rnek bir kod yazaca\f1\u287?\u305?\f0 z.\par
+Bu kodlar\f1\u305?\f0  ilerde silece\f1\u287?\f0 iz. \f1\'aa\f0 u an sadece AOP'nin k\f1\u305?\f0 ymetini anlamak i\f2\lang1033\'e7\f0\lang1055 in yazaca\f1\u287?\u305?\f0 z.\par
+\f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 imize ba\f1\'ba\f0 layal\f1\u305?\f0 m;\par
+Business katman\f1\u305?\f0 nda yeni bir klas\f2\lang1033\'f6\f0\lang1055 r olu\f1\'ba\f0 turuyoruz.\par
+\cf5\tab Klas\f2\lang1033\'f6\f0\lang1055 r Ad\f1\u305?\f0  -> \cf6 CCS\cf3\par
+Cross Cutting Concerns anlam\f1\u305?\f0 nda.\par
+Bu klas\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n alt\f1\u305?\f0 na da bir interface ekliyoruz.\par
+\cf5\tab Interface Ad\f1\u305?\f0  -> \cf6 ILogger\cf3\par
+\par
+Sim\f2\lang1033\'fc\f0\lang1055 lasyon olmas\f1\u305?\f0  a\f2\lang1033\'e7\f1\lang1055\u305?\f0 s\f1\u305?\f0 ndan i\f2\lang1033\'e7\f0\lang1055 inde basit bir log metodu yaz\f1\u305?\f0 yoruz.\par
+\par
+
+\pard\li720\sa200\sl276\slmult1\qj\tab\cf2\f3 public\cf3  \cf2 interface\cf3  \cf7 ILogger\cf3\par
+    \f5\tab\f3\{\par
+        \f5\tab\cf2\f3 void\cf3  Log();\par
+    \f5\tab\f3\}\f0\par
+
+\pard\sa200\sl276\slmult1\qj\par
+Bir de CCS alt\f1\u305?\f0 nda class olu\f1\'ba\f0 tural\f1\u305?\f0 m\par
+\tab\cf5 Class Ad\f1\u305?\f0  -> \cf6 FileLogger.cs\cf3\par
+\par
+Bir dosyaya log almak i\f2\lang1033\'e7\f0\lang1055 in kullan\f1\u305?\f0 lan y\f2\lang1033\'f6\f0\lang1055 ntem. \par
+G\f2\lang1033\'fc\f0\lang1055 nl\f2\lang1033\'fc\f0\lang1055 k hayatta da uygulan\f1\u305?\f0 r.\par
+\par
+\tab\cf2\f3\fs24 public\cf3  \cf2 class\cf3  \cf7 FileLogger\cf3  : ILogger\par
+    \f5\tab\f3\{\par
+        \f5\tab\cf2\f3 public\cf3  \cf2 void\cf3  Log()\par
+        \f5\tab\f3\{\par
+           \f5\tab\f3 Console.WriteLine(\cf8 "Dosyaya Logland\f4\u305?"\cf3 );\par
+        \f5\tab\f4\}\par
+    \f5\tab\f4\}\cf5\f0\par
+\fs28\par
+NOT: \f1\'aa\f0 u anda yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z kodlar tamamen AOP'yi anlamak i\f2\lang1033\'e7\f0\lang1055 in yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z kodlard\f1\u305?\f0 r. Bu \f2\lang1033\'f6\f0\lang1055 rnek \f2\lang1033\'fc\f0\lang1055 zerinden mant\f1\u305?\u287?\u305?\f0  anlad\f1\u305?\f0 ktan sonra bu kodlar\f1\u305?\f0  silece\f1\u287?\f0 iz.\par
+\cf3\par
+2. log class'\f1\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  da olu\f1\'ba\f0 tural\f1\u305?\f0 m.\par
+\tab\cf5 Class Ad\f1\u305?\f0  -> \cf6 DatabaseLogger.cs\cf3\par
+Bu class i\f2\lang1033\'e7\f0\lang1055 in de metodumuzu implemente edelim.\par
+\par
+\tab\cf2\f3\fs24 public\cf3  \cf2 class\cf3  \cf7\f5 Database\f3 Logger\cf3  : ILogger\par
+    \f5\tab\f3\{\par
+        \f5\tab\cf2\f3 public\cf3  \cf2 void\cf3  Log()\par
+        \f5\tab\f3\{\par
+           \f5\tab\f3 Console.WriteLine(\cf8 "\f5 Db'ye\f3  Logland\f4\u305?"\cf3 );\par
+        \f5\tab\f4\}\par
+    \f5\tab\f4\}\par
+\par
+\f1\fs28\'aa\f0 imdi business katman\f1\u305?\f0 ndaki ProductManager'\f1\u305?\f0 n Add metoduna gidelim.\par
+\f4\fs24\par
+\cf2\f3 public\cf3  IResult Add(Product product)\par
+\{\cf4\f4\par
+\f5\tab // Business Codes\cf3\f4\par
+     _productDal.Add(product);\par
+     \cf2 return\cf3  \cf2 new\cf3  Result(\cf2 true\cf3 , Messages.ProductAdded);\par
+\}\par
+\f1\fs28\par
+\f0 Metot \f2\lang1033\'fc\f0\lang1055 zerinde yer alan ValidationAspect Annotation'\f1\u305?\f0  \f1\'ba\f0 imdilik silelim. \f1\'aa\f0 u an anlamaya \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z \f1\'ba\f0 ey, AOP olmadan loglama i\f1\'ba\f0 ini nas\f1\u305?\f0 l yapard\f1\u305?\f0 k konusu. Burdaki SOLID d\f1\u305?\'ba\u305?\f0  yap\f1\u305?\f0 y\f1\u305?\f0  g\f2\lang1033\'f6\f0\lang1055 rd\f2\lang1033\'fc\f0\lang1055 kten sonra AOP'nin g\f2\lang1033\'fc\f0\lang1055 c\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055  daha iyi anlayaca\f1\u287?\u305?\f0 z.\par
+\cf5 NOT: Loglama yapman\f1\u305?\f0 n amac\f1\u305?\f0 , yap\f1\u305?\f0 lan operasyonlar\f1\u305?\f0 n kayd\f1\u305?\f0 n\f1\u305?\f0  bir yerde tutmak i\f2\lang1033\'e7\f0\lang1055 indir. Mesela; "kim ne zaman, nas\f1\u305?\f0 l bir \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n ekledi". Bu bilgileri tutmak i\f2\lang1033\'e7\f0\lang1055 in.\cf3\par
+ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 za ILogger enjekte ediyoruz.\f4\fs24\par
+\f5\fs19\tab  \par
+\par
+ \f3\fs24 IProductDal _productDal;\par
+\f5  \f3 ILogger _logger;\par
+\par
+ \cf2 public\cf3  \cf7 ProductManager\cf3 (IProductDal productDal, ILogger logger)\par
+ \{\par
+         _productDal = productDal;\par
+         _logger = logger;\par
+ \}\par
+ \cf2 public\cf3  IResult Add(Product product)\par
+ \{\f4\par
+         \f5  \f4 _productDal.Add(product);\par
+          \cf2 return\cf3  \cf2 new\cf3  Result(\cf2 true\cf3 , Messages.ProductAdded);\par
+ \}\par
+\par
+\f0\fs28 Logger'\f1\u305?\f0  dependency injection yaparak ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 za ekledik. Ancak \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 ma an\f1\u305?\f0 nda hangi ILogger tipindeki somut log s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n\f1\u305?\f0  kullanaca\f1\u287?\u305?\f0 n\f1\u305?\f0  belirtmedik. Bunu \f2\lang1033\'e7\'f6\f0\lang1055 zmek i\f2\lang1033\'e7\f0\lang1055 in;\par
+\cf5\tab Business > DependencyResolvers > Autofac \par
+\tab\tab > AutofacBusinessModule.cs\f4\fs24\par
+\cf3\f0\fs28 S\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 na giderek, Singleton olarak gerekli IoC yap\f1\u305?\f0 land\f1\u305?\f0 rmas\f1\u305?\f0 n\f1\u305?\f0  yap\f1\u305?\f0 yoruz.\par
+\f3\fs22 builder.RegisterType<FileLogger>().As<ILogger>().SingleInstance();\f4\fs24\par
+\f1\fs28\par
+\'aa\f0 imdi business Add metodumuza geri d\f2\lang1033\'f6\f0\lang1055 nelim.\f1\par
+\cf2\f5\fs22\tab\f3 public\cf3  IResult Add(Product product)\par
+        \{\par
+\f4             _logger.Log();\par
+            \cf2 try\cf3\par
+            \{\par
+\f5\tab\cf9\tab     // business codes\cf3\f4\par
+                _productDal.Add(product);\par
+                \cf2 return\cf3  \cf2 new\cf3  Result(\cf2 true\cf3 , Messages.ProductAdded);\par
+            \}\par
+            \cf2 catch\cf3  (Exception exception)\par
+            \{\par
+                _logger.Log();\par
+            \}\par
+\f3\fs19             \cf2\fs22 return\cf3  \cf2 new\cf3  ErrorResult();\f4\par
+        \}\par
+\fs24\par
+\f0\fs28 Bu tip kodlar sekt\f2\lang1033\'f6\f0\lang1055 rde de \f2\lang1033\'e7\f0\lang1055 ok fazla g\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 r.\par
+\f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in Add metodunun en ba\f1\'ba\u305?\f0 nda Log al\f1\u305?\f0 yoruz.\par
+Devam\f1\u305?\f0 nda e\f1\u287?\f0 er hata f\f1\u305?\f0 rlat\f1\u305?\f0 l\f1\u305?\f0 rsa, hatayla ilgili bir Log al\f1\u305?\f0 yoruz. \par
+\f1\u304?\'ba\f0 te g\f2\lang1033\'f6\f0\lang1055 rd\f2\lang1033\'fc\f1\lang1055\u287?\f2\lang1033\'fc\f0\lang1055 m\f2\lang1033\'fc\f0\lang1055 z gibi bir business metodunun i\f2\lang1033\'e7\f0\lang1055 inde sadece bir loglama yapabilmek i\f2\lang1033\'e7\f0\lang1055 in uzunca kod yazmam\f1\u305?\f0 z gerekti.\par
+Di\f1\u287?\f0 er Cross Cutting Concern yap\f1\u305?\f0 lar\f1\u305?\f0 n\f1\u305?\f0  da kullanmam\f1\u305?\f0 z gerekti\f1\u287?\f0 ini d\f2\lang1033\'fc\f1\lang1055\'ba\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055 rsek, metodumuzun i\f2\lang1033\'e7\f0\lang1055 i epey kar\f1\u305?\'ba\u305?\f0 k hale gelecektir. Ve spagetti koda d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0 ecektir.\par
+\cf5\f1\u304?\'ba\f0 te biz AOP ile "hata y\f2\lang1033\'f6\f0\lang1055 netimi, loglama y\f2\lang1033\'f6\f0\lang1055 netimi, cache" gibi \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 malar\f1\u305?\f0  merkezi bir noktaya ta\f1\'ba\u305?\f0 m\f1\u305?\f0 z olaca\f1\u287?\u305?\f0 z.\cf3\f1\par
+\f0\par
+\f1\'aa\f0 imdi Core katman\f1\u305?\f0 na gelelim.\par
+\cf6 Core > Utilities > Interceptors \cf3 ad\f1\u305?\f0 nda bir klas\f2\lang1033\'f6\f0\lang1055 r olu\f1\'ba\f0 turmu\f1\'ba\f0 tuk.\par
+Peki Interceptor ne demek?\par
+\cf5 Interception\cf3 ; kelime anlam\f1\u305?\f0  olarak "araya girmek" demektir.\par
+Araya girmekten kas\f1\u305?\f0 t, "metodun ba\f1\'ba\u305?\f0 nda \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 mak", "metodun sonunda \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 mak" veya "metot hata verdi\f1\u287?\f0 inde \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 mak" anlam\f1\u305?\f0 ndad\f1\u305?\f0 r.\par
+\f1\u304?\'ba\f0 te bunu yapan s\f1\u305?\f0 n\f1\u305?\f0 flar\f1\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  da \cf5 Interceptors \cf3 isimli bir klas\f2\lang1033\'f6\f0\lang1055 rde toplad\f1\u305?\f0 k bu sebepten dolay\f1\u305?\f0 .\par
+\f1\'aa\f0 imdi Interceptors klas\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055  alt\f1\u305?\f0 nda \cf5 MethodInterceptions.cs \cf0 isimli s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0  inceleyelim.\par
+\cf2\f3\fs22 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnBefore(IInvocation invocation) \{ \}\par
+\cf2 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnAfter(IInvocation invocation) \{ \}\par
+\cf2 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnException(IInvocation invocation\f5 , ...)\f3\{ \}\par
+\cf2 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnSuccess(IInvocation invocation) \{ \}\par
+
+\pard\sl276\slmult1\qj\cf2 public\cf3  \cf2 override\cf3  \cf2 void\cf3  Intercept(IInvocation invocation)\par
+\{\par
+    \f5   \cf2\f3 var\cf3  isSuccess = \cf2 true\cf3 ;\par
+    \f5   \f3 OnBefore(invocation);\par
+    \f5   \cf2\f3 try\cf3\par
+    \f5   \f3\{\par
+     \f5   \f3    invocation.Proceed();\par
+   \f5   \f3  \}\par
+   \f5   \f3  \cf2 catch\cf3  (Exception e)\par
+   \f5   \f3  \{\par
+       \f5   \f3  isSuccess = \cf2 false\cf3 ;\par
+       \f5   \f3  OnException(invocation, e);\par
+        \f5   \cf2\f3 throw\cf3 ;\par
+   \f5   \f3  \}\par
+    \f5   \cf2\f3 finally\cf3\par
+   \f5   \f3  \{\par
+       \f5   \f3  \cf2 if\cf3  (isSuccess)\par
+        \f5   \f3\{\par
+         \f5   \f3    OnSuccess(invocation);\par
+       \f5   \f3  \}\par
+    \}\par
+    OnAfter(invocation);\par
+\}\f0\par
+
+\pard\sa200\sl276\slmult1\qj\fs28\par
+Burada g\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 ld\f2\lang1033\'fc\f1\lang1055\u287?\f2\lang1033\'fc\f0\lang1055  \f2\lang1033\'fc\f0\lang1055 zere, birka\f2\lang1033\'e7\f0\lang1055  tane virtual metodumuz var.\par
+Biz bir Aspect yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z zaman, o aspect nerede \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 s\f1\u305?\f0 n istiyorsak, onunla ilgili metotlar\f1\u305?\f0  override yaparak eziyoruz.\par
+\par
+Peki parametredeki IInvocation neye kar\f1\'ba\u305?\f0 l\f1\u305?\f0 k geliyor?\par
+\cf2\f3\fs22 protected\cf3  \cf2 virtual\cf3  \cf2 void\cf3  OnAfter(\cf6 IInvocation invocation\cf3 ) \{ \}\f0\fs28\par
+Bu k\f1\u305?\f0 s\f1\u305?\f0 m da, o s\f1\u305?\f0 rada hangi metot \f2\lang1033\'fc\f0\lang1055 zerinde \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\u305?\f0 yorsak, o metoda kar\f1\'ba\u305?\f0 l\f1\u305?\f0 k geliyor. \f2\lang1033\'d6\f0\lang1055 rne\f1\u287?\f0 in ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 ndaki Add metodu.\par
+(invocation : business method)\par
+\par
+\f1\u304?\'ba\f0 te tam da bu sebepten, yine Core katman\f1\u305?\f0 nda yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z \cf6 ValidationAspect \cf3 s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 z, \cf6 MethodInterception \cf3 base s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 zdan kal\f1\u305?\f0 t\f1\u305?\f0 m al\f1\u305?\f0 yor. Ve bu Aspect s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0  i\f2\lang1033\'e7\f0\lang1055 inde de sadece OnBefore metodunu ezerek kulland\f1\u305?\f0 k. \f2\lang1033\'c7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  validation i\f1\'ba\f0 lemlerini sadece metot ba\f1\'ba\f0 lamadan kontrol etmek istiyoruz.\par
+Buradaki OnBefore metodumuzda zaten ValidationTool s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n\f1\u305?\f0  kullanarak Validate metodunu \f2\lang1033\'e7\f0\lang1055 a\f1\u287?\u305?\f0 r\f1\u305?\f0 yoruz. \par
+\f5\fs26\tab\f3 ValidationTool.Validate(\cf6 validator\cf0 ,\cf6  entity\cf3 );\f0\fs28\par
+Ve Validate metodunun ihtiya\f2\lang1033\'e7\f0\lang1055  duydu\f1\u287?\f0 u 2 parametre validator ve entity de Validation i\f2\lang1033\'e7\f0\lang1055 in gerekli olan;\par
+\tab\cf6 ProductValidator() instance'\f1\u305?\f0\par
+\tab product nesnesi\par
+\cf3 kar\f1\'ba\u305?\f0 l\f1\u305?\f0 k gelmektedir.\par
+Bu de\f1\u287?\f0 erleri de OnBefore metodu i\f2\lang1033\'e7\f0\lang1055 inde ald\f1\u305?\f0 k zaten.\par
+\cf2\f3\fs19 protected\cf3  \cf2 override\cf3  \cf2 void\cf3  OnBefore(IInvocation invocation)\par
+\{\par
+    \cf2 var\cf3  \cf6 validator \cf3 = (IValidator)Activator.CreateInstance(_validatorType);\par
+    \cf2 var\cf3  entityType = _validatorType.BaseType.GetGenericArguments()[0];\par
+    \cf2 var\cf3  \cf6 entities \cf3 = invocation.Arguments.Where(t => t.GetType() == entityType);\par
+    \cf2 foreach\cf3  (var entity \cf2 in\cf3  entities)\par
+    \{\par
+        ValidationTool.Validate(validator, entity);\par
+    \}\par
+\}\f4\fs24\par
+\par
+\cf0\f0\fs28 (Log \f2\lang1033\'f6\f0\lang1055 rne\f1\u287?\f0 inin spagetti kodunu yazm\f1\u305?\'ba\f0 t\f1\u305?\f0 k. Bunu tamamen silelim. Amac\f1\u305?\f0 m\f1\u305?\f0 z AOP'nin mant\f1\u305?\u287?\u305?\f0 n\f1\u305?\f0  \f2\lang1033\'f6\f1\lang1055\u287?\f0 renmekti. Zaten ilerleyen derslerde Log i\f1\'ba\f0 leminin AOP altyap\f1\u305?\f0 s\f1\u305?\f0 n\f1\u305?\f0  kuraca\f1\u287?\u305?\f0 z.)\par
+(Bu AOP yap\f1\u305?\f0 s\f1\u305?\f0 n\f1\u305?\f0  kurdu\f1\u287?\f0 umuz kodlar daha derin ara\f1\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 lmal\f1\u305?\f0 d\f1\u305?\f0 r.)\par
+
+\pard\sl276\slmult1\qc\cf1 ------------------------------------------------------------------------------------------------\cf3\par
+\cf1\fs36 1. B\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 m Sonu\cf3\f1\fs28\par
+
+\pard\sl276\slmult1\qj\cf1\f0 ------------------------------------------------------------------------------------------------\cf3\par
+
+\pard\sa200\sl276\slmult1\qj\cf0\par
+Bu b\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 mde Clean Code tekniklerini ele alaca\f1\u287?\u305?\f0 z.\cf3\par
+Ayn\f1\u305?\f0  zamanda mikro servis mimarilerinin mant\f1\u305?\u287?\u305?\f0 n\f1\u305?\f0  \f2\lang1033\'f6\f1\lang1055\u287?\f0 renece\f1\u287?\f0 iz.\par
+Hocam\f1\u305?\f0 z, bizim yazmam\f1\u305?\f0 z i\f2\lang1033\'e7\f0\lang1055 in bize bir business kural\f1\u305?\f0  verdi.\par
+Eklemek istedi\f1\u287?\f0 imiz \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055 n Kategorisinde en fazla 10 adet \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n olabilir.\par
+\cf5 (Burada hedefledi\f1\u287?\f0 imiz \f1\'ba\f0 ey, i\f1\'ba\f0  kodlar\f1\u305?\f0  nas\f1\u305?\f0 l Clean Code yaz\f1\u305?\f0 l\f1\u305?\f0 r. Bu do\f1\u287?\f0 rultuda hocan\f1\u305?\f0 n kodlar\f1\u305?\f0 yla kar\f1\'ba\u305?\f0 la\f1\'ba\f0 t\f1\u305?\f0 raca\f1\u287?\u305?\f0 z.)\cf3\par
+
+\pard\sl276\slmult1\qj\cf2\f3\fs24\par
+\f5\fs28 var\cf3  result = _productDal.GetAll(p => \par
+\tab\tab\tab p.CategoryId == product.CategoryId);\par
+\par
+ \cf2 if\cf3  (result.Count >= 10)\par
+\{\par
+      \cf2 return\cf3  \cf2 new\cf3  ErrorResult(Messages.CountError);\par
+\}\par
+\par
+_productDal.Add(product);\par
+
+\pard\sa200\sl276\slmult1\qj\f0\par
+\f1\u304?\f0 lk akl\f1\u305?\f0 m\f1\u305?\f0 za gelen kodlama y\f2\lang1033\'f6\f0\lang1055 ntemi, yukar\f1\u305?\f0 daki gibi bir kod yazmakt\f1\u305?\f0 r. Bu kodu Add metodunun i\f2\lang1033\'e7\f0\lang1055 ine yazd\f1\u305?\f0 k.\par
+Fakat biz ayn\f1\u305?\f0  i\f1\'ba\f0  kural\f1\u305?\f0 n\f1\u305?\f0  "Update" metodu i\f2\lang1033\'e7\f0\lang1055 in de kullanabiliriz.\par
+Sonu\f2\lang1033\'e7\f0\lang1055 ta bir \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055 n Kategori bilgisi g\f2\lang1033\'fc\f0\lang1055 ncellenirken, tek kategoride max 10 \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n kural\f1\u305?\f0 n\f1\u305?\f0  ihlal edebilir.\par
+Bu sebepten dolay\f1\u305?\f0  biz ayn\f1\u305?\f0  i\f1\'ba\f0  kural\f1\u305?\f0  kodlar\f1\u305?\f0 n\f1\u305?\f0  update metodu i\f2\lang1033\'e7\f0\lang1055 in de yazamay\f1\u305?\f0 z. DRY prensibine uymam\f1\u305?\f0 z gerekiyor.\par
+\f1\'aa\f0 imdi hocan\f1\u305?\f0 n yakla\f1\'ba\u305?\f0 m\f1\u305?\f0 n\f1\u305?\f0  g\f2\lang1033\'f6\f0\lang1055 relim.\par
+ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n\f1\u305?\f0 n en alt\f1\u305?\f0 nda geliyoruz.\par
+\par
+
+\pard\sl276\slmult1\qj\cf2\f3\fs19 private\cf3  IResult CheckIfProductCountOfCategoryCorrect(\cf2 int\cf3  categoryId)\par
+\{\par
+      \cf2 var\cf3  result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;\par
+\par
+      \cf2 if\cf3  (result >= 10)\par
+      \{\par
+            \cf2 return\cf3  \cf2 new\cf3  ErrorResult(Messages.ProductCountOfCategoryError);\par
+      \}\par
+\par
+      \cf2 return\cf3  \cf2 new\cf3  SuccessResult();\par
+\}\f0\fs28\par
+
+\pard\sa200\sl276\slmult1\qj\par
+yukar\f1\u305?\f0 daki metodu yaz\f1\u305?\f0 yoruz.\par
+\f1\'aa\f0 imdi burada anlamam\f1\u305?\f0 z gereken durumlar var.\par
+Bunu ayr\f1\u305?\f0  bir metot olarak yazd\f1\u305?\f0 k. \f2\lang1033\'c7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  bu bir "i\f1\'ba\f0  kural\f1\u305?\f0  par\f2\lang1033\'e7\f0\lang1055 ac\f1\u305?\u287?\u305?\f0 ".\par
+t\f2\lang1033\'fc\f0\lang1055 m i\f1\'ba\f0  kural\f1\u305?\f0  par\f2\lang1033\'e7\f0\lang1055 alar\f1\u305?\f0 n\f1\u305?\f0  birbirinden ayr\f1\u305?\f0  yazmam\f1\u305?\f0 z gerekir.\par
+private olarak tan\f1\u305?\f0 mlad\f1\u305?\f0 k \f2\lang1033\'e7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055 , sadece ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0 n bu "i\f1\'ba\f0  kural\f1\u305?\f0  par\f2\lang1033\'e7\f0\lang1055 ac\f1\u305?\u287?\u305?\f0 "na ihtiyac\f1\u305?\f0  var. Ba\f1\'ba\f0 ka s\f1\u305?\f0 n\f1\u305?\f0 flar bu metoda eri\f1\'ba\f0 memeli.\par
+Ayn\f1\u305?\f0  zamanda return k\f1\u305?\f0 sm\f1\u305?\f0 nda sadece bo\f1\'ba\f0  bir success result ge\f2\lang1033\'e7\f0\lang1055 tik. bunun sebebi, e\f1\u287?\f0 er \f1\'ba\f0 art\f1\u305?\f0 m\f1\u305?\f0 zdan ba\f1\'ba\f0 ar\f1\u305?\f0 yla ge\f2\lang1033\'e7\f0\lang1055 tiyse, herhangi bir mesaja zaten gerek yok. Bizim ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z olacak \f1\'ba\f0 ey, success sonucu olarak true d\f2\lang1033\'f6\f0\lang1055 nmesi.\par
+ancak elbette false d\f2\lang1033\'f6\f0\lang1055 nerse, neden hata ald\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 za dair bir bilgi alabilmek i\f2\lang1033\'e7\f0\lang1055 in Error result i\f2\lang1033\'e7\f0\lang1055 inde bir message ge\f2\lang1033\'e7\f0\lang1055 tik.\par
+\f2\lang1033\'d6\f0\lang1055 nemli bir bilgi daha var.\par
+Ben bu metodu IProductService i\f2\lang1033\'e7\f0\lang1055 inde \f1\'ba\f0 ablon olarak olu\f1\'ba\f0 turmad\f1\u305?\f0 m.\par
+\f2\lang1033\'c7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  ba\f1\'ba\f0 ka ProductManager s\f1\u305?\f0 n\f1\u305?\f0 flar\f1\u305?\f0 m olabilirdi ve o s\f1\u305?\f0 n\f1\u305?\f0 flarda bu "i\f1\'ba\f0  kural\f1\u305?\f0  par\f2\lang1033\'e7\f0\lang1055 ac\f1\u305?\u287?\u305?\f0  metoduna" ihtiyac\f1\u305?\f0 m OLMAYAB\f1\u304?\f0 L\f1\u304?\f0 RD\f1\u304?\f0 . Bu sebepten dolay\f1\u305?\f0  interface i\f2\lang1033\'e7\f0\lang1055 inde olu\f1\'ba\f0 turup da implemente edilme zorunlulu\f1\u287?\f0 u yaratm\f1\u305?\f0 yoruz. Bu metot sadece ProductManager'a \f2\lang1033\'f6\f0\lang1055 zel bir metottur.\par
+\cf6\f2\lang1033\'d6\f0\lang1055 NEML\f1\u304?\f0  NOT: Fakat her zaman oldu\f1\u287?\f0 u gibi bu \f1\'ba\f0 ekilde yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z private metot da tam olarak do\f1\u287?\f0 ru bir yakla\f1\'ba\u305?\f0 m de\f1\u287?\f0 ildir. Bu tip bir i\f1\'ba\f0  kural\f1\u305?\f0  metodunu da tam olarak en do\f1\u287?\f0 ru haliyle 3. derste \f2\lang1033\'f6\f1\lang1055\u287?\f0 renece\f1\u287?\f0 iz.\cf3\par
+\par
+\f1\'aa\f0 imdi hocam\f1\u305?\f0 z bir kural daha s\f2\lang1033\'f6\f0\lang1055 yl\f2\lang1033\'fc\f0\lang1055 yor. Onu yazaca\f1\u287?\u305?\f0 z.\par
+"Ayn\f1\u305?\f0  isimde \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n eklenemez".\par
+Benim yazd\f1\u305?\u287?\u305?\f0 m kodu g\f2\lang1033\'f6\f0\lang1055 relim;\par
+\cf2\f3\fs19\par
+
+\pard\sl276\slmult1\qj private\cf3  IResult CheckIfProductName\f5 Exists\f3 (\cf2 string\cf3  productName)\par
+\{\par
+    \cf2 var\cf3  result = _productDal.GetAll(p => p.ProductName == productName).\cf6 Count\cf3 ;\par
+\par
+    \cf2 if\cf3  (\cf6 result > 0\cf3 )\par
+    \{\par
+        \cf2 return\cf3  \cf2 new\cf3  ErrorResult(Messages.ProductName\f5 AlreadyExists\f3 );\par
+    \}\par
+\par
+    \cf2 return\cf3  \cf2 new\cf3  SuccessResult();\par
+\}\f0\fs28\par
+
+\pard\sa200\sl276\slmult1\qj\par
+Hocan\f1\u305?\f0 n yazd\f1\u305?\u287?\u305?\f0  kodu g\f2\lang1033\'f6\f0\lang1055 relim;\par
+
+\pard\sl276\slmult1\qj\cf2\f3\fs19\par
+private\cf3  IResult CheckIfProductName\f5 Exists\f3 (\cf2 string\cf3  productName)\par
+\{\par
+    \cf2 var\cf3  result = _productDal.GetAll(p => p.ProductName == productName).\cf6\f5 Any()\cf3\f3 ;\par
+\par
+    \cf2 if\cf3  (\cf6 result\cf3 )\par
+    \{\par
+        \cf2 return\cf3  \cf2 new\cf3  ErrorResult(Messages.ProductName\f5 AlreadyExists\f3 );\par
+    \}\par
+\par
+    \cf2 return\cf3  \cf2 new\cf3  SuccessResult();\par
+\}\f0\fs28\par
+
+\pard\sa200\sl276\slmult1\qj\par
+Any(); bool bir sonu\f2\lang1033\'e7\f0\lang1055  d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 r.\par
+Verdi\f1\u287?\f0 imiz productName ile e\f1\'ba\f0 le\f1\'ba\f0 en herhangi bir productName var m\f1\u305?\f0  diye kontrol eder. Varsa true, yoksa false d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 r.\par
+\cf5 (true halini if'e yaz\f1\u305?\f0 yoruz \f2\lang1033\'e7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  if ErrorResult d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 yor zaten)\par
+Add metodumuzun i\f2\lang1033\'e7\f0\lang1055 i de \f1\'ba\f2\lang1033\'f6\f0\lang1055 yle bir hale d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0 t\f2\lang1033\'fc\f0\lang1055 ;\par
+
+\pard\sl276\slmult1\qj\cf2\f3\fs21 if\cf3  (CheckIfProductCountOfCategoryCorrect(product.CategoryId).Success)\par
+\{\par
+    \cf2 if\cf3  (CheckIfProductNameExists(product.ProductName).Success)\par
+    \{\par
+        _productDal.Add(product);\par
+        \cf2 return\cf3  \cf2 new\cf3  SuccessResult(Messages.ProductAdded);\par
+    \}\par
+                \par
+\}\par
+\cf2 return\cf3  \cf2 new\cf3  ErrorResult();\par
+\fs19\par
+\cf5\f0\fs28\par
+
+\pard\sa200\sl276\slmult1\qj\cf6 3. b\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 mde basit bir i\f1\'ba\f0  motoru yazaca\f1\u287?\u305?\f0 z.\par
+Yukar\f1\u305?\f0 daki Add metodunun i\f2\lang1033\'e7\f0\lang1055 ini de Refactor edece\f1\u287?\f0 iz.\cf5\par
+
+\pard\sl276\slmult1\qc\cf1 ------------------------------------------------------------------------------------------------\cf3\par
+\cf1\fs36 2. B\f2\lang1033\'f6\f0\lang1055 l\f2\lang1033\'fc\f0\lang1055 m Sonu\cf3\f1\fs28\par
+
+\pard\sl276\slmult1\qj\cf1\f0 ------------------------------------------------------------------------------------------------\cf3\par
+
+\pard\sa200\sl276\slmult1\qj\cf0\f1\'aa\f0 u anki haliyle Business metotlar\f1\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0 n "Hata Y\f2\lang1033\'f6\f0\lang1055 netimi"nde baz\f1\u305?\f0  s\f1\u305?\f0 k\f1\u305?\f0 nt\f1\u305?\f0 lar var.\par
+Ayn\f1\u305?\f0  zamanda yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z "\f1\u304?\'ba\f0  Kodlar\f1\u305?\f0 " da \f2\lang1033\'e7\f0\lang1055 irkin bir g\f2\lang1033\'f6\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 nt\f2\lang1033\'fc\f0\lang1055  olu\f1\'ba\f0 turuyor.\par
+\cf5 Biz \f2\lang1033\'f6\f0\lang1055 yle d\f2\lang1033\'fc\f0\lang1055 zg\f2\lang1033\'fc\f0\lang1055 n bir sistem yazd\f1\u305?\f0 k ki, t\f2\lang1033\'fc\f0\lang1055 m "\f1\u304?\'ba\f0  Kural\f1\u305?\f0  Par\f2\lang1033\'e7\f0\lang1055 ac\f1\u305?\u287?\u305?\f0  Metotlar\f1\u305?\f0 "m\f1\u305?\f0 z \cf6 IResult \cf5 d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 yor. O halde biz hepsini i\f2\lang1033\'e7\f0\lang1055 ine alan bir i\f1\'ba\f0  motoru yazabiliriz.\cf0\par
+\cf6\f1\'aa\f0 imdi bir Polymorphism kodu yazaca\f1\u287?\u305?\f0 z.\cf3\par
+Amac\f1\u305?\f0 m\f1\u305?\f0 z, ihtiyac\f1\u305?\f0 m olan t\f2\lang1033\'fc\f0\lang1055 m i\f1\'ba\f0  kurallar\f1\u305?\f0 n\f1\u305?\f0  bir motora g\f2\lang1033\'f6\f0\lang1055 ndereyim. Benim yerime hepsini \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\f0 rs\f1\u305?\f0 n.\par
+\f1\u304?\'ba\f0  kurallar\f1\u305?\f0 n\f1\u305?\f0  \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\f0 rmaya yarayacak olan motor, Core katman\f1\u305?\f0 nda yer almal\f1\u305?\f0 d\f1\u305?\f0 r. Ba\f1\'ba\f0 ka projelerdeki business kodlar\f1\u305?\f0 n\f1\u305?\f0  da \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\f0 rabilir \f2\lang1033\'e7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  bu motor.\par
+Yeni bir klas\f2\lang1033\'f6\f0\lang1055 r olu\f1\'ba\f0 turuyoruz.\f2\lang1033\par
+\f0\lang1055\tab Core > Utilities \par
+\cf1\tab\tab\cf5 Klas\f2\lang1033\'f6\f0\lang1055 r Ad\f1\u305?\f0  -> \cf6 Business\cf3\par
+Bu klas\f2\lang1033\'f6\f0\lang1055 r alt\f1\u305?\f0 nda yeni bir class olu\f1\'ba\f0 turuyoruz.\par
+\cf5\tab\tab Class Ad\f1\u305?\f0  -> \cf6 BusinessRules.cs\cf5\par
+\cf3\par
+Buradaki hedefimiz; i\f1\'ba\f0  motorunu yazd\f1\u305?\f0 ktan sonra, business metotlar\f1\u305?\f0  i\f2\lang1033\'e7\f0\lang1055 inde \par
+\tab\cf6\f3 BusinessRules.Run();\cf3\f0\par
+Tarz\f1\u305?\f0 nda bir kod \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\f0 rmak. Hedefimiz bu.\par
+\par
+\cf6 BusinessRules.cs s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 mda a\f1\'ba\f0 a\f1\u287?\u305?\f0 daki metodu olu\f1\'ba\f0 turuyoruz;\par
+
+\pard\sl276\slmult1\qj\cf2\f5\fs19  \tab\f3 public\cf3  \cf2 class\cf3  \cf7 BusinessRules\cf3\par
+    \f5\tab\f3\{\par
+      \f5\tab\tab\cf2\f3 public\cf3  \cf2 static\cf3  IResult Run(\cf2 params\cf3  IResult[] logics)\par
+       \f5\tab\f3\{\par
+\f5\tab\tab\f3\par
+       \f5\tab\f3\}\par
+   \f5\tab\f3\}\f0\fs28\par
+
+\pard\sa200\sl276\slmult1\qj\par
+\cf5 Madem bizim t\f2\lang1033\'fc\f0\lang1055 m "i\f1\'ba\f0  kural\f1\u305?\f0  par\f2\lang1033\'e7\f0\lang1055 ac\f1\u305?\u287?\u305?\f0  metotlar\f1\u305?\f0 "m\f1\u305?\f0 z IResult d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 yor.\par
+O halde biz, Run metoduna parametre olarak "istedi\f1\u287?\f0 imiz say\f1\u305?\f0 da IResult tipinde parametre" yollayabiliriz.\par
+"istedi\f1\u287?\f0 imiz say\f1\u305?\f0 da parametre" olay\f1\u305?\f0 n\f1\u305?\f0  sa\f1\u287?\f0 lamak i\f2\lang1033\'e7\f0\lang1055 in de \cf6 params \cf5 keyword'\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055  kullan\f1\u305?\f0 yoruz.\par
+\cf3\par
+Yani biz params olarak parametre olu\f1\'ba\f0 turdu\f1\u287?\f0 umuz i\f2\lang1033\'e7\f0\lang1055 in Business metotlar\f1\u305?\f0 nda \f1\'ba\f0 u tarz bir kullan\f1\u305?\f0 m sa\f1\u287?\f0 layabilece\f1\u287?\f0 iz.\par
+\cf6\f3\fs24 BusinessRules.Run(CheckIfCarIsAvailable(rental.CarId)\f5 ,\par
+\tab\tab\tab  Ba\f4\'ba\f5 kaBirMetot(rental.CarId),\par
+\tab\tab\tab  Ba\f4\'ba\f5 kaBirMetotDaha(rental.rentalId)\tab\tab\tab             \f3 );\f0\fs28\par
+\cf3 Bu \f1\'ba\f0 ekilde \cf5 istedi\f1\u287?\f0 imiz say\f1\u305?\f0 da IResult tip yollayabilece\f1\u287?\f0 iz\cf3 .\par
+
+\pard\sl276\slmult1\qj\cf2\f5\fs19\tab  \par
+\tab  \f3 public\cf3  \cf2 static\cf3  IResult Run(\cf2 params\cf3  IResult[] logics)\par
+        \{\par
+            \cf2 foreach\cf3  (var logic \cf2 in\cf3  logics)\par
+            \{\par
+                \cf2 if\cf3  (!logic.Success)\par
+                \{\par
+                    \cf2 return\cf3  logic; \cf4 // Returns ErrorResult of exact one.\cf3\par
+                \}\par
+            \}\par
+\par
+            \cf2 return\cf3  \cf2 null\cf3 ;\par
+        \}\f0\fs28\par
+
+\pard\sa200\sl276\slmult1\qj\par
+\f1\u304?\'ba\f0 te yukar\f1\u305?\f0 daki gibi bir Run metodu yazd\f1\u305?\f0 k.\par
+Parametre olarak gelen t\f2\lang1033\'fc\f0\lang1055 m IResult sonu\f2\lang1033\'e7\f0\lang1055 lar\f1\u305?\f0 n\f1\u305?\f0  al\f1\u305?\f0 yoruz.\par
+\cf6 E\f1\u287?\f0 er herhangi bir metodun Success sonucu false ise, o logic'e ait ErrorResult'u d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 yoruz.\cf3\par
+\par
+\cf5 NOT: C#'ta metotlar\f1\u305?\f0  static olan bir class'\f1\u305?\f0 n kendisi static olmak zorunda DE\f1\u286?\u304?\f0 LD\f1\u304?\f0 R.\par
+\par
+NOT: Biz Run metodunda tek bir IResult d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rerek, e\f1\u287?\f0 er hata varsa yakalad\f1\u305?\u287?\u305?\f0  ilk hatay\f1\u305?\f0  d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 r demi\f1\'ba\f0  olduk.\par
+Ancak List<IResult> d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rerek, t\f2\lang1033\'fc\f0\lang1055 m hatalar\f1\u305?\f0  tek bir listede de d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rebilirdik. Bu tamamen programc\f1\u305?\f0 n\f1\u305?\f0 n inisiyatifine kalm\f1\u305?\'ba\f0  bir durumdur.\par
+\par
+Add metodumuz bu hale d\f2\lang1033\'f6\f0\lang1055 n\f2\lang1033\'fc\f1\lang1055\'ba\f0 t\f2\lang1033\'fc\f0\lang1055 .\par
+
+\pard\sl276\slmult1\qj\cf2\f3\fs19 public\cf3  IResult Add(\f5 Product product\f3 )\par
+\{\par
+       IResult result = BusinessRules.Run(\par
+\f5\tab\tab\tab\f3 CheckIf\f5 ProductNameExists\f3 (\f5 product.ProductName\f3 )\f5 ,\par
+\tab\tab\tab CheckIfProductCountOfCategoryCorrect(product.CategoryId)\f3 );\par
+\par
+       \cf2 if\cf3  (result != \cf2 null\cf3 )\par
+       \{\par
+             \cf2 return\cf3  result;\par
+       \}\par
+\par
+       _\f5 product\f3 Dal.Add(\f5 product\f3 );\par
+       \cf2 return\cf3  \cf2 new\cf3  SuccessResult(Messages.\f5 Product\f3 Added);\par
+\}\cf5\f0\fs28\par
+
+\pard\sa200\sl276\slmult1\qj\par
+\cf3 Bu sayede Run metoduna istedi\f1\u287?\f0 imiz kadar i\f1\'ba\f0  kural\f1\u305?\f0  metodu yazabiliriz.\par
+Hepsinin kontrol\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055  Run metodu \f2\lang1033\'fc\f0\lang1055 stlenecek.\f2\lang1033\par
+\f0\lang1055 E\f1\u287?\f0 er herhangi bir error result d\f2\lang1033\'f6\f0\lang1055 nerse, if blo\f1\u287?\f0 unun i\f2\lang1033\'e7\f0\lang1055 inde o error result'u d\f2\lang1033\'f6\f0\lang1055 nd\f2\lang1033\'fc\f0\lang1055 rece\f1\u287?\f0 iz.\par
+T\f2\lang1033\'fc\f0\lang1055 m sonu\f2\lang1033\'e7\f0\lang1055 lar SuccessResult d\f2\lang1033\'f6\f0\lang1055 nerse, do\f1\u287?\f0 rudan ekleme i\f1\'ba\f0 lemi yapabiliriz.\par
+\par
+****\f2\lang1033\'e7\f0\lang1055 ok \f2\lang1033\'f6\f0\lang1055 nemli****\par
+\cf6\f1\'aa\f0 imdi hocam\f1\u305?\f0 z bize yeni bir soru daha soruyoruz.\par
+Bu sorunun \f2\lang1033\'e7\'f6\f0\lang1055 z\f2\lang1033\'fc\f0\lang1055 m\f2\lang1033\'fc\f0\lang1055 n\f2\lang1033\'fc\f0\lang1055  do\f1\u287?\f0 ru yapmak demek, Mikro Servis mant\f1\u305?\u287?\u305?\f0 n\f1\u305?\f0  en do\f1\u287?\f0 ru anlam\f1\u305?\f0 yla \f2\lang1033\'f6\f1\lang1055\u287?\f0 renmek demektir.\f2\lang1033\par
+\f0\lang1055 SORU: E\f1\u287?\f0 er mevcut kategori say\f1\u305?\f0 s\f1\u305?\f0  15'i ge\f2\lang1033\'e7\f0\lang1055 tiyse sisteme yeni \f2\lang1033\'fc\f0\lang1055 r\f2\lang1033\'fc\f0\lang1055 n eklenemez.\par
+NOT: Bu sorunun \f2\lang1033\'e7\f0\lang1055 ok \f2\lang1033\'f6\f0\lang1055 nemli oldu\f1\u287?\f0 unu belirtti hocam\f1\u305?\f0 z. \f2\lang1033\'d6\f0\lang1055 nemli olmas\f1\u305?\f0 n\f1\u305?\f0  sa\f1\u287?\f0 layan sebep bence; "Product Manager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 nda, Category'ye ait bir sorgu yazmam\f1\u305?\f0 z gerekiyor." \f1\u304?\'ba\f0 te san\f1\u305?\f0 r\f1\u305?\f0 m bu sebepten dolay\f1\u305?\f0  bu soruna do\f1\u287?\f0 ru bir \f2\lang1033\'e7\'f6\f0\lang1055 z\f2\lang1033\'fc\f0\lang1055 m bulmak \f2\lang1033\'e7\f0\lang1055 ok \f2\lang1033\'f6\f0\lang1055 nemli.\par
+M\f1\u304?\f0 KRO Servis mimarisi i\f2\lang1033\'e7\f0\lang1055 in \f2\lang1033\'e7\f0\lang1055 ok \f2\lang1033\'f6\f0\lang1055 nemli bir soru.\par
+\cf5 NOT: kural uydurma bir kural. ama ba\f1\'ba\f0 ka bir tabloya bakmam\f1\u305?\f0 z gerekti\f1\u287?\f0 i i\f2\lang1033\'e7\f0\lang1055 in \f1\'ba\f0 imdilik b\f2\lang1033\'f6\f0\lang1055 yle bir soru haz\f1\u305?\f0 rlad\f1\u305?\f0 k. kural\f1\u305?\f0 n mant\f1\u305?\f0 ks\f1\u305?\f0 z olmas\f1\u305?\f0 n\f1\u305?\f0  \f1\'ba\f0 u an \f2\lang1033\'f6\f0\lang1055 nemsemeyelim.\cf3\par
+\f2\lang1033\'c7\'d6\f0\lang1055 Z\f2\lang1033\'dc\f0\lang1055 M: Biz ProductManager'da "tamamen Category ile alakal\f1\u305?\f0 " bir sorgu istiyoruz. \par
+"Kategori tablosunda ka\f2\lang1033\'e7\f0\lang1055  adet kategori var". istedi\f1\u287?\f0 imiz tek \f1\'ba\f0 ey bu sonuca ula\f1\'ba\f0 mak.\par
+ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 nda bir ICategoryDal metodu kullanmaya \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\u305?\f0 yoruz \f2\lang1033\'e7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055 .\par
+\par
+\cf6 FAKAT BURADA B\f1\u304?\f0 R TUZA\f1\u286?\f0 A D\f2\lang1033\'dc\f1\lang1055\'aa\f2\lang1033\'dc\f0\lang1055 YORUZ.\f2\lang1033\par
+\f0\lang1055 ProductManager i\f2\lang1033\'e7\f0\lang1055 inde "ctor'da ICategoryDal injection yapmak" tamamen hatal\f1\u305?\f0 d\f1\u305?\f0 r.\par
+NOT: Bir entity Manager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0  SADECE KEND\f1\u304?\f0  DAL SINIFINDAN INJECTION ALMAK ZORUNDADIR.\tab\par
+\par
+\cf5 --- en \f2\lang1033\'f6\f0\lang1055 nemli nokta ---\par
+\f2\lang1033\'c7\'d6\f0\lang1055 Z\f2\lang1033\'dc\f0\lang1055 M: Biz ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 za ba\f1\'ba\f0 ka bir dal enjekte edemeyiz.\par
+Onun yerine ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z olan s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n (yani category'nin)                     Business Service'ini enjekte etmeliyiz.\par
+\f2\lang1033\'c7\'fc\f0\lang1055 nk\f2\lang1033\'fc\f0\lang1055  categoryService \f2\lang1033\'fc\f0\lang1055 zerinden kategoriye ait sorgular\f1\u305?\f0  \f2\lang1033\'e7\f0\lang1055 al\f1\u305?\'ba\f0 t\f1\u305?\f0 raca\f1\u287?\u305?\f0 z sonu\f2\lang1033\'e7\f0\lang1055 ta.\par
+\par
+YAN\f1\u304?\f0 ;\par
+   \cf3\f3\fs19 I\f5 Product\f3 Dal _\f5 product\f3 Dal;\par
+ \f5  \f3 ICa\f5 tegory\f3 Service _ca\f5 tegory\f3 Service;\par
+\par
+  \cf2 public\cf3  \cf7 RentalManager\cf3 (I\f5 Product\f3 Dal \f5 product\f3 Dal, ICa\f5 tegory\f3 Service ca\f5 tegory\f3 Service)\par
+  \{\par
+        _rentalDal = rentalDal;\par
+        _ca\f5 tegory\f3 Service\f5  \f3 = ca\f5 tegory\f3 Service;\par
+  \}\par
+\par
+\par
+\cf5\f0\fs28 ProductManager s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 m\f1\u305?\f0 z sadece kendi Dal s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n\f1\u305?\f0  injekte edebilir.\par
+Bundan dolay\f1\u305?\f0  sadece IProductDal injection yapt\f1\u305?\f0 k.\par
+Ba\f1\'ba\f0 ka s\f1\u305?\f0 n\f1\u305?\f0 flara ait sorgulama yapmas\f1\u305?\f0  gerekti\f1\u287?\f0 inde ise o s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n Service'ini enjekte etmelidir.\par
+O s\f1\u305?\f0 n\f1\u305?\f0 f\f1\u305?\f0 n IService interface'inde, ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z olan metot bulunmal\f1\u305?\f0 d\f1\u305?\f0 r. Yoksa da biz bu metodu oraya yazmal\f1\u305?\f0 y\f1\u305?\f0 z.\par
+Bu mikro servis mimarisinin i\f2\lang1033\'e7\f0\lang1055 in \f2\lang1033\'e7\f0\lang1055 ok \f2\lang1033\'f6\f0\lang1055 nemli bir kurald\f1\u305?\f0 r.\f2\lang31\par
+\f0\lang1055 --------------------------\cf0\f2\lang31\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 

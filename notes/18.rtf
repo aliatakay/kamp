@@ -1,0 +1,421 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil Consolas;}{\f5\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green0\blue255;\red0\green0\blue0;\red163\green21\blue21;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
+\fs48 18. G\f1\lang1033\'fc\f0\lang1055 n\f2\fs28\par
+
+\pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf2\f1\fs36\lang1033\'d6\f0\lang1055 N B\f2\u304?\f0 LG\f2\u304?\f0\fs28    ------------------------------------------------------------------------------\cf0\par
+Bu derste programlama dili olarak \cf3 TypeScript\cf0  kullan\f2\u305?\f0 lacak.\par
+Framework olarak \cf3 Angular \cf0 kullan\f2\u305?\f0 lacak.\par
+IDE olarak \cf3 Visual Studio Code\cf0  kullan\f2\u305?\f0 lacak.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf1\fs36 1. DERS\fs28    ---------------------------------------------------------------------------------\par
+\par
+\cf0 Angular projesinde \cf3 base bir Response modeli \cf0 olu\f2\'ba\f0 turmu\f2\'ba\f0 tuk.\par
+Frontend projesinde model olu\f2\'ba\f0 tururken, backend projesinden gelen veri modelini biliyor olmam\f2\u305?\f0 z gerekiyor.\par
+Backend taraf\f2\u305?\f0 nda t\f1\lang1033\'fc\f0\lang1055 m veri modelleri i\f1\lang1033\'e7\f0\lang1055 in standart bir yap\f2\u305?\f0  kurmam\f2\u305?\f0 z sayesinde, ayn\f2\u305?\f0  \f2\'ba\f0 ekilde frontend projesinde base bir modeli esas alan standart bir veri modeli olu\f2\'ba\f0 turabildik.\par
+\par
+Tekrar hat\f2\u305?\f0 rlayacak olursak;\par
+\par
+\cf1\highlight4\f3\fs24 export \cf2 interface \cf5 ResponseModel\cf0\{                                \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24     \cf6 success\cf0 :\cf2  \cf5 boolean\cf0 ,                                          \cf3\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24     \cf6 message\cf0 :\cf2  \cf5 string                                            \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24\} \cf2                   \cf0                                            \cf3\highlight0\f0\fs28\par
+\cf0\par
+API'den gelen t\f1\lang1033\'fc\f0\lang1055 m veri modelleri, 3 adet veri i\f1\lang1033\'e7\f0\lang1055 eriyordu.\par
+\par
+Bu 3 adet veri:\par
+\tab - \cf1 Data\cf0\par
+\tab - \cf1 Success\cf0\par
+\tab - \cf1 Message\par
+\par
+Data\cf0 : \f2\u304?\f0 lgili nesneye ait tablo verilerini i\f1\lang1033\'e7\f0\lang1055 erir.  \cf1 [Entity / Dto listesi]\cf0\par
+\cf1 Success\cf0 : Response sonucunu i\f1\lang1033\'e7\f0\lang1055 erir.                 \cf1 [true veya false]\par
+Message\cf0 : Response sonucuna ait bilgi i\f1\lang1033\'e7\f0\lang1055 erir. \cf1 [Ba\f2\'ba\f0 ar\f2\u305?\f0  veya Hata mesaj\f2\u305?\f0 ]\par
+\par
+\cf0 Backend projemizdeki bu standart veri modeli sayesinde, frontend projemizde benzer bir veri modellemesi yapt\f2\u305?\f0 k.\par
+\par
+\f1\lang1033\'d6\f0\lang1055 rnek bir datay\f2\u305?\f0  modelledi\f2\u287?\f0 imiz dosyay\f2\u305?\f0  hat\f2\u305?\f0 rlayal\f2\u305?\f0 m,\par
+\par
+\cf1\highlight4\f3\fs24 export \cf2 interface \cf5 Product\cf0\{                                      \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24     \cf6 productId\cf0 :\cf2  \cf5 number\cf0 ;                                         \cf3\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24     \cf6 categoryId\cf0 :\cf2  \cf5 string\cf0 ;\cf2                                         \par
+    \cf6 productName\cf2 : \cf5 string\cf0 ;\cf2                                        \par
+    \cf6 unitsInStock\cf2 : \cf5 number\cf0 ;\cf2                                       \par
+    \cf6 unitPrice\cf2 : \cf5 number\cf0 ;                                         \cf1\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24\} \cf2                   \cf0                                            \cf1\highlight0\f0\fs28\par
+\cf0\par
+Birebir ayn\f2\u305?\f0  verilere sahip Product tablomuz oldu\f2\u287?\f0 u i\f1\lang1033\'e7\f0\lang1055 in Product modeli bu \f2\'ba\f0 ekilde olu\f2\'ba\f0 turduk.\par
+Benzer \f2\'ba\f0 ekilde Dto'lar i\f1\lang1033\'e7\f0\lang1055 in de veri modeli olu\f2\'ba\f0 turabiliriz.\par
+\par
+Her veri modeli \cf3 farkl\f2\u305?\f0  tipte data\cf0  d\f1\lang1033\'f6\f0\lang1055 nd\f1\lang1033\'fc\f0\lang1055 rd\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  i\f1\lang1033\'e7\f0\lang1055 in, base olarak yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z ResponseModel'i extend edece\f2\u287?\f0 imiz, \cf3 her tipe \f1\lang1033\'f6\f0\lang1055 zel Response modeli\cf0  yazm\f2\u305?\'ba\f0 t\f2\u305?\f0 k.\cf1\par
+\par
+\cf0 Yine Product Response Modeli \f1\lang1033\'f6\f0\lang1055 rnek olarak hat\f2\u305?\f0 rlayal\f2\u305?\f0 m.\cf1\par
+\cf0\par
+\cf1\highlight4\f3\fs24 import \cf0\{ \cf6 Product \cf0\} \cf1 from \cf3 './product'\cf0 ;    \cf1                        \par
+import \cf0\{ \cf6 ResponseModel \cf0\} \cf1 from \cf3 './responseModel'\cf0 ;               \cf1\par
+                                                               \par
+export \cf2 interface \cf5 ProductResponseModel \cf2 extends \cf5 ResponseModel\cf0\{   \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24     \cf6 data\cf0 :\cf2  \cf5 Product\cf0 []                                            \cf3\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24\} \cf2                   \cf0                                            \cf1\highlight0\f0\fs28\par
+\cf0\par
+Bu sayede \cf3 Product \cf0 tipinde bir array bar\f2\u305?\f0 nd\f2\u305?\f0 ran \cf3 data \cf0 tan\f2\u305?\f0 mlad\f2\u305?\f0 k.\par
+Geriye kalan '\cf3 success\cf0 ' ve '\cf3 message\cf0 ' tan\f2\u305?\f0 mlar\f2\u305?\f0 na da \cf3 base ResponseModel\cf0  \f1\lang1033\'fc\f0\lang1055 zerinden ula\f2\'ba\f0 abilmek i\f1\lang1033\'e7\f0\lang1055 in \cf3 extends \cf0 keyword ile inherit ettik.\par
+\par
+Bu k\f2\u305?\f0 sma kadar \f1\lang1033\'f6\f0\lang1055 nceki derslerde kurdu\f2\u287?\f0 umuz '\cf3 model\cf0 ' yap\f2\u305?\f0 s\f2\u305?\f0 n\f2\u305?\f0  inceledik.\par
+G\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi, her data tipi i\f1\lang1033\'e7\f0\lang1055 in ayr\f2\u305?\f0  bir Response Model yazmam\f2\u305?\f0 z gerekti. ProductResponseModel, CategoryResponseModel vs.\par
+Bu y\f1\lang1033\'f6\f0\lang1055 ntem haliyle verimsiz bir y\f1\lang1033\'f6\f0\lang1055 ntemdir.\par
+\cf1 T\f1\lang1033\'fc\f0\lang1055 m tipler i\f1\lang1033\'e7\f0\lang1055 in ge\f1\lang1033\'e7\f0\lang1055 erli olan tek bir interface yazmam\f2\u305?\f0 z \f1\lang1033\'e7\f0\lang1055 ok daha verimli olacakt\f2\u305?\f0 r.\par
+\par
+\highlight4\f3\fs24 import \cf0\{ \cf6 ResponseModel \cf0\} \cf1 from \cf3 './responseModel'\cf0 ;               \par
+  \cf2                   \cf0                                            \cf1\highlight0\f0\fs28\par
+\highlight4\f3\fs24 export \cf2 interface \cf5 ListResponseModel\cf0 <\cf5 T\cf0 > \cf2 extends \cf5 ResponseModel\cf0\{   \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24     \cf6 data\cf0 :\cf2  \cf5 T\cf0 []                                                  \cf3\highlight0\f0\fs28\par
+\cf0\highlight4\f3\fs24\} \cf2                   \cf0                                            \cf1\highlight0\f0\fs28\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Normalde interface yerine class yazabilirdik. Fakat TypeScript'in yeni versiyonlar\f2\u305?\f0 nda, class i\f1\lang1033\'e7\f0\lang1055 inde bir veri tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z zaman, veriyi ba\f2\'ba\f0 latmam\f2\u305?\f0 z\f2\u305?\f0  bekliyor. Buna mecbur kalmamak i\f1\lang1033\'e7\f0\lang1055 in interface yazmam\f2\u305?\f0 z daha pratik olacakt\f2\u305?\f0 r.\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\par
+\cf0 Generic bir Response Model yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z i\f1\lang1033\'e7\f0\lang1055 in, art\f2\u305?\f0 k her modele \f1\lang1033\'f6\f0\lang1055 zel olarak yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z Response Model dosyalar\f2\u305?\f0 na ihtiya\f1\lang1033\'e7\f0\lang1055  kalmad\f2\u305?\f0 .\par
+\par
+productResponseModel.ts\par
+categoryResponseModel.ts ve benzer \cf1 dosyalar\f2\u305?\f0 n hepsini siliyoruz\cf0 .\par
+\par
+Fakat silme i\f2\'ba\f0 leminden sonra, ilgili service dosyalar\f2\u305?\f0  hata verecektir.\par
+\f2\'aa\f0 imdi onlar\f2\u305?\f0  d\f1\lang1033\'fc\f0\lang1055 zeltece\f2\u287?\f0 iz.\par
+\par
+product.service.ts\par
+category.service.ts ve benzer dosyalar hata verecektir.\par
+\par
+Bu dosyalar\f2\u305?\f0  yeni generic Response modelimize g\f1\lang1033\'f6\f0\lang1055 re g\f1\lang1033\'fc\f0\lang1055 ncellemek i\f1\lang1033\'e7\f0\lang1055 in,\par
+\par
+\cf1\highlight4\f3\fs24 import \cf0\{ \cf6 Injectable \cf0\} \cf1 from \cf3 '@angular/core'\cf0 ;\cf1                     \par
+import \cf0\{ \cf6 HttpClient \cf0\} \cf1 from \cf3 '@angular/common/http'\cf0 ;             \par
+\cf1 import \cf0\{ \cf6 Observable \cf0\} \cf1 from \cf3 'rxjs'\cf0 ;                             \par
+\cf1 import \cf0\{ \cf6 Product \cf0\} \cf1 from \cf3 '../models/product'\cf0 ;                   \par
+                                                               \par
+@\cf5 Injectable\cf0 (\{                                                  \par
+  \cf6 providedIn\cf0 : '\cf3 root\cf0 '                                           \par
+\})                                                             \cf1\par
+                                                               \par
+export \cf2 class \cf5 ProductService\cf0\{                                   \par
+                                                               \par
+    \cf6 apiUrl \cf0 = '{\cf3{\field{\*\fldinst{HYPERLINK https://localhost:44368/api/products/getall }}{\fldrslt{https://localhost:44368/api/products/getall\ul0\cf0}}}}\f3\fs24 ';    \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24                                                                \cf6\par
+    \cf2 constructor\cf0 (\cf2 private \cf6 httpClient\cf0 : \cf5 HttpClient\cf0 ) \{ \}            \cf6\par
+                                                               \par
+\cf0     getProducts():\cf5 Observable\cf0 <\cf5 ListResponseModel\cf0 <\cf5 Product\cf0 >> \{     \par
+      \cf1 return \cf2 this\cf0 .\cf6 httpClient                                   \cf0\par
+\tab\tab     .get<\cf5 ListResponseModel\cf0 <\cf5 Product\cf0 >>(\cf2 this\cf0 .\cf6 apiUrl\cf0 );  \cf3\highlight0\f0\par
+\cf0\highlight4\f3     \}                                                          \par
+\} \cf2                   \cf0                                            \cf1\highlight0\f0\fs28\par
+\cf0\par
+\cf1 ProductResponseModel \cf0 olarak yaz\f2\u305?\f0 lanlar\f2\u305?\f0 , \cf1 ListResponseModel<Product>\cf0  olarak g\f1\lang1033\'fc\f0\lang1055 ncelliyoruz.\par
+Ard\f2\u305?\f0 ndan gerekli importlar\f2\u305?\f0  yaz\f2\u305?\f0 yoruz ve gereksiz importlar\f2\u305?\f0  siliyoruz.\par
+Bu g\f1\lang1033\'fc\f0\lang1055 ncellemeyi gerekli olan t\f1\lang1033\'fc\f0\lang1055 m Service s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in yap\f2\u305?\f0 yoruz.\par
+Bu g\f1\lang1033\'fc\f0\lang1055 ncellemelerden sonra projeyi tekrar ba\f2\'ba\f0 latmakta fayda var.\par
+\par
+Projede \f2\'ba\f0 imdiye kadar yaln\f2\u305?\f0 zca Product ile alakal\f2\u305?\f0  component ve html dosyalar\f2\u305?\f0 n\f2\u305?\f0  yazm\f2\u305?\'ba\f0 t\f2\u305?\f0 k.\par
+\f2\'aa\f0 imdi ayn\f2\u305?\f0  kodlar\f2\u305?\f0  Category i\f1\lang1033\'e7\f0\lang1055 in de yazaca\f2\u287?\u305?\f0 z.\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Bir \f1\lang1033\'f6\f0\lang1055 nceki notta bahsetti\f2\u287?\f0 imiz bir konu vard\f2\u305?\f0 .\par
+class i\f1\lang1033\'e7\f0\lang1055 inde de\f2\u287?\f0 i\f2\'ba\f0 ken tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z zaman, ba\f2\'ba\f0 lang\f2\u305?\f1\lang1033\'e7\f0\lang1055  de\f2\u287?\f0 eri vermemiz isteniyor demi\f2\'ba\f0 tik.\par
+Tam olarak bu sebepten dolay\f2\u305?\f0 , component dosyas\f2\u305?\f0 nda tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z array de\f2\u287?\f0 i\f2\'ba\f0 kenine ba\f2\'ba\f0 lang\f2\u305?\f1\lang1033\'e7\f0\lang1055  atamas\f2\u305?\f0  yapmam\f2\u305?\f0 z gerekiyor.\par
+\par
+\cf6\highlight4\f3\fs24 categories\cf0 : \cf5 Category\cf0 [] = [];                                   \highlight0\f0\fs28\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+Category i\f1\lang1033\'e7\f0\lang1055 in gerekli service dosyalar\f2\u305?\f0 n\f2\u305?\f0  olu\f2\'ba\f0 turmak i\f1\lang1033\'e7\f0\lang1055 in,\par
+\cf3 service\cf0  klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ne sa\f2\u287?\f0  t\f2\u305?\f0 klayarak, \cf3 Open in Integrated Terminal\cf0  diyoruz.\par
+\cf3 ng g service category\cf0  komutunu \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\f0 r\f2\u305?\f0 yoruz.\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Service s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 nda constructor'lara HttpClient vermi\f2\'ba\f0 tik.\par
+\par
+\cf2\highlight4\f3\fs24 constructor\cf0 (\cf2 private \cf6 httpClient\cf0 : \cf5 HttpClient\cf0 ) \{ \}                \highlight0\f0\fs28\par
+\cf2\par
+\cf0 Angular, burada otomatik olarak \cf3 injection\cf0  yapmaktad\f2\u305?\f0 r.\par
+Bu injection'\f2\u305?\f0 n yap\f2\u305?\f0 labilmek ad\f2\u305?\f0 na \cf3 app.module.ts\cf0  dosyas\f2\u305?\f0 nda baz\f2\u305?\f0  kodlar Angular taraf\f2\u305?\f0 ndan yarat\f2\u305?\f0 l\f2\u305?\f0 r. Bu kodlar\f2\u305?\f0  tekrar hat\f2\u305?\f0 rlayal\f2\u305?\f0 m.\par
+\cf2\par
+\cf0\highlight4\f3\fs24 ...                                                            \par
+\cf1 import \cf0\{ \cf6 HttpClient \cf0\} \cf1 from \cf3 '@angular/common/http'\cf0 ;             \par
+...                                                            \par
+...                                                            \par
+  \cf6 imports\cf0 : [                                                   \par
+    ...                                                        \par
+    ...                                                        \par
+    \cf5 HttpClientModule\cf0                                            \par
+  ]                                                            \par
+\cf1\highlight0\f0\fs28\par
+\cf3 Injection \cf0 i\f2\'ba\f0 leminin Angular taraf\f2\u305?\f0 ndan otomatik olarak yap\f2\u305?\f0 labilmesi i\f1\lang1033\'e7\f0\lang1055 in \cf3 app.module.ts\cf0  dosyas\f2\u305?\f0 nda, ilgili \cf3 Mod\f1\lang1033\'fc\f0\lang1055 l \cf0 Angular taraf\f2\u305?\f0 ndan \cf3 import \cf0 edilir ve \cf3 imports array\cf0 'e eklenir.\par
+\par
+Service s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 m\f2\u305?\f0 zda yer alan \cf3 Injectable \cf0 kodu sayesinde Angular, injection ayarlar\f2\u305?\f0 n\f2\u305?\f0  otomatik olarak olu\f2\'ba\f0 turuyor.\par
+Bu otomatik yap\f2\u305?\f0 land\f2\u305?\f0 rmay\f2\u305?\f0  a\f2\'ba\f0 a\f2\u287?\u305?\f0 daki kod sayesinde yapt\f2\u305?\f0 r\f2\u305?\f0 yoruz.\par
+\par
+\highlight4\f3\fs24 @\cf5 Injectable\cf0 (\{                                                  \par
+  \cf6 providedIn\cf0 : '\cf3 root\cf0 '                                           \par
+\})                                                             \highlight0\f0\fs28\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+Category i\f1\lang1033\'e7\f0\lang1055 in service dosyalar\f2\u305?\f0 n\f2\u305?\f0  terminal \f1\lang1033\'fc\f0\lang1055 zerinden olu\f2\'ba\f0 turmu\f2\'ba\f0 tuk.\par
+\cf3 category.service.ts\cf0  dosyas\f2\u305?\f0 n\f2\u305?\f0  product ile ayn\f2\u305?\f0  \f2\'ba\f0 ekilde kodluyoruz.\par
+\par
+Biz backend projemizde Category tablosu i\f1\lang1033\'e7\f0\lang1055 in WebAPI'de bir Controller s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  yazmam\f2\u305?\'ba\f0 t\f2\u305?\f0 k.\par
+\f2\'aa\f0 imdi gerekli Controller s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0  yazmak i\f1\lang1033\'e7\f0\lang1055 in backend projemizi a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\par
+\cf1\par
+\f2\'aa\f0 imdi backend projemize Category Controller ekleyece\f2\u287?\f0 iz.\par
+\cf0 WebAPI katman\f2\u305?\f0 nda, Controllers klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ne sa\f2\u287?\f0  t\f2\u305?\f0 kl\f2\u305?\f0 yoruz.\par
+Add se\f1\lang1033\'e7\f0\lang1055 ene\f2\u287?\f0 ine t\f2\u305?\f0 klayarak Controller'\f2\u305?\f0  se\f1\lang1033\'e7\f0\lang1055 iyoruz.\par
+Common sekmesi alt\f2\u305?\f0 nda API'yi se\f1\lang1033\'e7\f0\lang1055 iyoruz.\f1\lang1033\par
+\cf3\f0\lang1055 API Controller - Empty\cf0  t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nde yeni bir Controller ekliyoruz.\par
+\cf3 CategoriesController.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+\cf8\highlight4\f4\fs24 [\cf5 Route\cf8 (\cf9 "api/[controller]"\cf8 )]\f3                                     \f4\par
+[\cf5 ApiController\cf8 ]\f3                                                 \f4\par
+\cf7 public\cf8  \cf7 class\cf8  \cf5\f3 Categorie\f4 sController \cf8 : \cf5 ControllerBase\f3              \cf8\f4\par
+\{\f3                                                               \f4\par
+\f3      \cf0\f4 I\f3 Category\f4 Service \cf8 _\f3 category\f4 Service;\f3                         \f4\par
+\f3                                                                \f4\par
+\f3\tab\cf7\f4\fs22 public\cf8  \cf5\f3 Categorie\f4 sController\cf8 (I\f3 Category\f4 Service \cf6\f3 category\f4 Service\cf8 )\f3  \f4\fs24\par
+     \{\f3                                                          \f4\par
+     \f3      \f4 _\f3 category\f4 Service = \cf6\f3 category\f4 Service\cf8 ;\f3                   \f4\par
+     \}\f3                                                          \f4\par
+\f3                                                                \f4\par
+    \f3  \f4 [\cf5 HttpGet\cf8 (\cf9 "getall"\cf8 )]\f3                                        \f4\par
+     \cf7 public\cf8  IActionResult GetAll()\f3                              \f4\par
+     \{\f3                                                          \f4\par
+          \cf7 var\cf8  \cf6 result \cf8 = _\f3 category\f4 Service.GetAll();\f3               \f4\par
+            \f3                                                    \f4\par
+          \cf1 if\cf8  (\cf6 result\cf8 .Success)\f3                                   \f4\par
+          \{\f3                                                     \f4\par
+          \f3     \cf1\f4 return \cf8 Ok(\cf6 result\cf8 );\f3                                \f4\par
+          \}\f3                                                     \f4\par
+          \cf1 else\f3                                                  \cf8\f4\par
+          \{\f3                                                     \f4\par
+              \cf1 return \cf8 BadRequest(\cf6 result\cf8 );\f3                        \f4\par
+          \}\f3                                                     \f4\par
+     \}\f3                                                          \f4\par
+\f3\}                                                              \cf0\f0\par
+\highlight0\fs28\par
+Backend projemizde bir Controller s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  yazd\f2\u305?\f0 k.\par
+Ancak bu s\f2\u305?\f0 n\f2\u305?\f0 fta haliyle bir \cf3 injection \cf0 bulunuyor.\par
+Bu injection i\f1\lang1033\'e7\f0\lang1055 in gerekli konfig\f1\lang1033\'fc\f0\lang1055 rasyonlar\f2\u305?\f0  yapmam\f2\u305?\f0 z gerekiyor.\par
+Bunu yapabilmek i\f1\lang1033\'e7\f0\lang1055 in,\par
+\par
+\cf1 Business > DependencyResolvers > Autofac\cf0  klas\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ne gidiyoruz.\par
+\cf1 AutofacBusinessModule.cs\cf0  dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\par
+Burada Category ile ilgili gerekli ayarlar\f2\u305?\f0  tan\f2\u305?\f0 mlamam\f2\u305?\f0 z gerekiyor.\par
+\highlight4\fs24\par
+\cf6\f4\fs19 builder\cf8 .RegisterType<\cf5 CategoryManager\cf8 >().As<ICategoryService>().SingleInstance();\par
+\cf6 builder\cf8 .RegisterType<\cf5 EfCategoryDal\cf8 >().As<ICategoryDal>().SingleInstance();\f3       \cf0\f0\fs28\par
+\cf1\highlight0\par
+\f2\'aa\f0 imdi frontend projesine geri d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+\cf0 category.component.ts dosyas\f2\u305?\f0 n\f2\u305?\f0  dolduruyoruz.\par
+\par
+category.component.html dosyas\f2\u305?\f0 nda, \f1\lang1033\'f6\f0\lang1055 nceden yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z basit html kodlar\f2\u305?\f0  bulunuyor.\par
+Herbir kategoriyi listelemek istedi\f2\u287?\f0 imizden dolay\f2\u305?\f0 , li elemanlar\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in bir d\f1\lang1033\'f6\f0\lang1055 ng\f1\lang1033\'fc\f0\lang1055  olu\f2\'ba\f0 turaca\f2\u287?\u305?\f0 z.\par
+\par
+\highlight4\f3\fs24 <\cf2 ul \cf6 class \cf0 = \cf3 "list-group"\cf0 >                                      \par
+     <\cf2 li \cf6 *ngFor \cf0 = \cf3 "let category of categories"\cf0                  \par
+          \cf6 class \cf0 = \cf3 "list-group-item"\cf0 >                           \par
+      \{\{ category.categoryName \}\}                              \par
+     </\cf2 li\cf0 >                                                     \par
+</\cf2 ul\cf0 >                                                          \highlight0\f0\fs28    \par
+\cf1\par
+\cf0 Bu \f2\'ba\f0 ekilde sadece kategorilerin listelenmesini sa\f2\u287?\f0 lad\f2\u305?\f0 k.\par
+Fakat \f2\'ba\f0 u an i\f1\lang1033\'e7\f0\lang1055 in hi\f1\lang1033\'e7\f0\lang1055 bir kategori t\f2\u305?\f0 klanabilir de\f2\u287?\f0 il. \par
+Dolay\f2\u305?\f0 s\f2\u305?\f0 yla se\f1\lang1033\'e7\f0\lang1055 ilen kategoriye g\f1\lang1033\'f6\f0\lang1055 re \f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 n listelemesi yapam\f2\u305?\f0 yoruz.\par
+2. derste angular routing ile bu yap\f2\u305?\f0 y\f2\u305?\f0  kodlayaca\f2\u287?\u305?\f0 z. \cf1\fs36\par
+\par
+2. DERS\fs28    ---------------------------------------------------------------------------------\par
+\cf0\par
+\cf1 app.component.html dosyas\f2\u305?\f0 n\f2\u305?\f0  inceleyelim.\par
+\cf0 En altta \cf3 <router-outlet> \cf0 etiketini g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+Angular, Single Page Application oldu\f2\u287?\f0 u i\f1\lang1033\'e7\f0\lang1055 in, route de\f2\u287?\f0 i\f2\'ba\f0 tik\f1\lang1033\'e7\f0\lang1055 e ekranda g\f1\lang1033\'f6\f0\lang1055 sterilen html sayfas\f2\u305?\f0  da de\f2\u287?\f0 i\f2\'ba\f0 ir.\par
+\f2\u304?\'ba\f0 te s\f1\lang1033\'fc\f0\lang1055 rekli de\f2\u287?\f0 i\f2\'ba\f0 en html sayfalar\f2\u305?\f0  \cf3 router-outlet \cf0 component'i \f1\lang1033\'fc\f0\lang1055 zerinden g\f1\lang1033\'f6\f0\lang1055 sterilir.\par
+Bu y\f1\lang1033\'fc\f0\lang1055 zden html dosyas\f2\u305?\f0 nda product component'ini yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z sat\f2\u305?\f0 ra, router-outlet component'ini yazmam\f2\u305?\f0 z gerekiyor. \par
+Bu sayede route de\f2\u287?\f0 i\f2\'ba\f0 tik\f1\lang1033\'e7\f0\lang1055 e, ekranda g\f1\lang1033\'f6\f0\lang1055 sterilen component de dinamik olarak de\f2\u287?\f0 i\f2\'ba\f0 ecektir.\par
+\par
+\highlight4\f3\fs24 <\cf2 div \cf6 class \cf0 = \cf3 "container"\cf0 >\par
+  <\cf2 app-navi\cf0 ></\cf2 app-navi\cf0 >\par
+  <div \cf6 class \cf0 = \cf3 "row"\cf0 >\par
+    <\cf2 div \cf6 class \cf0 = \cf3 "col-md-3"\cf0 >\par
+      <\cf2 app-category\cf0 ></\cf2 app-category\cf0 >\par
+    </\cf2 div\cf0 >\par
+    <\cf2 div \cf6 class \cf0 = \cf3 "col-md-9"\cf0 >\par
+      <\cf2 router-outlet\cf0 ></\cf2 router-outlet\cf0 >\par
+    </\cf2 div\cf0 >\par
+  </\cf2 div\cf0 >\par
+</\cf2 div\cf0 >\par
+\highlight0\f0\fs28\par
+Angular projesini olu\f2\'ba\f0 tururken, Angular'\f2\u305?\f0 n sa\f2\u287?\f0 lad\f2\u305?\u287?\u305?\f0  routing servisini istedi\f2\u287?\f0 imizi onaylam\f2\u305?\'ba\f0 t\f2\u305?\f0 k. Bundan dolay\f2\u305?\f0  projemizde routing altyap\f2\u305?\f0 s\f2\u305?\f0  haz\f2\u305?\f0 r olarak bulunmaktad\f2\u305?\f0 r.\par
+\par
+app-routing.module.ts dosyas\f2\u305?\f0 na bakacak olursak, Angular'a ait routing kodlar\f2\u305?\f0 n\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 rebiliriz.\par
+\par
+\highlight4\f3\fs24 import \{ NgModule \} from '@angular/core';\par
+import \{ RouterModule, Routes \} from '@angular/router';\par
+\par
+const routes: Routes = [];\par
+\par
+@NgModule(\{\par
+  imports: [RouterModule.forRoot(routes)],\par
+  exports: [RouterModule]\par
+\})\par
+export class AppRoutingModule \{ \}\par
+\highlight0\f0\fs28\par
+\cf3 routes\cf0 ;\cf3  \cf0 projede bulunan t\f1\lang1033\'fc\f0\lang1055 m route'lar\f2\u305?\f0 n tutuldu\f2\u287?\f0 u dizidir. \par
+\f2\'aa\f0 u an dizi tamamen bo\f2\'ba\f0 , \f1\lang1033\'e7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  hen\f1\lang1033\'fc\f0\lang1055 z route eklemedik.\par
+Bu diziye ekleyece\f2\u287?\f0 imiz route'lar, app.component.html dosyas\f2\u305?\f0 ndaki \cf3 router-outlet\cf0  tag'i \f1\lang1033\'fc\f0\lang1055 zerinden g\f1\lang1033\'f6\f0\lang1055 sterilecek olan component'ler olacakt\f2\u305?\f0 r.\par
+\par
+routes dizisine \cf3 object\cf0  olarak elemanlar ekleyebiliriz.\par
+\par
+\highlight4\f3\fs24 const routes: Routes = [\par
+  \{ path:'', pathMatch: 'full', component: ProductComponent \},\par
+  \{ path: 'products', component: ProductComponent \},\par
+];\par
+\highlight0\f0\fs28\par
+path: temel url'in devam\f2\u305?\f0 na eklenecek olan route adresini ifade eder.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in\par
+\cf6\highlight4 path\cf0 : '\cf3 products\cf0 '\highlight0  olarak belirtirsek,\par
+{\highlight4\f3\fs24{\field{\*\fldinst{HYPERLINK https://localhost:4200/products }}{\fldrslt{https://localhost:4200/products\ul0\cf0}}}}\f0\fs28  adresini yaratm\f2\u305?\'ba\f0  oluruz.\par
+\par
+component: belirlenen adrese gidildi\f2\u287?\f0 inde, router-outlet \f1\lang1033\'fc\f0\lang1055 zerinden ekranda g\f1\lang1033\'f6\f0\lang1055 sterilecek olan component'i ifade eder.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in\par
+\cf6\highlight4\f3\fs24 path\cf0 : '\cf3 products\cf0 ', \cf6 component\cf0 : \cf5 ProductComponent\highlight0\f0\fs28  \cf0 olarak belirtirsek,\par
+{\highlight4\f3\fs24{\field{\*\fldinst{HYPERLINK https://localhost:4200/products }}{\fldrslt{https://localhost:4200/products\ul0\cf0}}}}\f0\fs28  bu adreste product component'i g\f1\lang1033\'f6\f0\lang1055 sterilir.\par
+\par
+\f2\'aa\f0 imdi bir kategoriye t\f2\u305?\f0 kland\f2\u305?\u287?\u305?\f0 nda, o kategoriye ait \f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nlerin gelmesi i\f1\lang1033\'e7\f0\lang1055 in gerekli kodlar\f2\u305?\f0  yazaca\f2\u287?\u305?\f0 z.\par
+\par
+\cf1 category.component.html dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f0\lang1055 al\f2\u305?\f0 m.\cf0\par
+T\f2\u305?\f0 klama i\f2\'ba\f0 lemini olu\f2\'ba\f0 turmak i\f1\lang1033\'e7\f0\lang1055 in, \cf3 click\cf0  isimli event binding denilen bir yap\f2\u305?\f0 y\f2\u305?\f0  kullanaca\f2\u287?\u305?\f0 z.\par
+Bu \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 i kullan\f2\u305?\f0 rken syntax gere\f2\u287?\f0 i parantez i\f1\lang1033\'e7\f0\lang1055 inde yazmam\f2\u305?\f0 z gerekiyor.\par
+\par
+\par
+\highlight4\f3\fs24 <ul class="list-group">\par
+    <li (click)="setCurrentCategory(category)" \par
+        *ngFor="let category of categories" \par
+        class="list-group-item"> \par
+    \{\{ category.categoryName \}\}\par
+    </li>\par
+</ul>\par
+\highlight0\f0\fs28\par
+Yukar\f2\u305?\f0 daki gibi \highlight4\f3\fs24 (click)="setCurrentCategory(category)"\highlight0  \f2\fs28\'ba\f0 eklinde bir click event binding yarat\f2\u305?\f0 yoruz.\par
+\f2\u304?\f0 stedi\f2\u287?\f0 imiz her elemana bu \f2\'ba\f0 ekilde click \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 i verebiliriz.\par
+Biz de burada bir li eleman\f2\u305?\f0 na click \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 i vermi\f2\'ba\f0  olduk.\par
+Ve click oldu\f2\u287?\f0 unda, setCurrentCategory isimli metodun tetiklenece\f2\u287?\f0 ini belirtmi\f2\'ba\f0  olduk.\par
+Bu metoda, o anki ilgili category'yi yollayabilmek i\f1\lang1033\'e7\f0\lang1055 in category isimli bir parametre ge\f1\lang1033\'e7\f0\lang1055 iyoruz.\par
+category isimli parametre otomatik olarak zaten ilgili category'yi se\f1\lang1033\'e7\f0\lang1055 ecektir. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  parametre olarak yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z category, *ngFor'da belirtti\f2\u287?\f0 imiz category ile e\f2\'ba\f0 le\f2\'ba\f0 ir.\par
+\par
+ \cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Her zaman ilk olarak *ngFor \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 r.\par
+Bundan dolay\f2\u305?\f0 , *ngFor kodunun \f1\lang1033\'f6\f0\lang1055 nce ya da sonra yaz\f2\u305?\f0 lmas\f2\u305?\f0  m\f1\lang1033\'fc\f0\lang1055 him de\f2\u287?\f0 ildir. Her zaman ilk olarak o \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 r.\par
+Bundan dolay\f2\u305?\f0  click i\f1\lang1033\'e7\f0\lang1055 in tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z metottaki category parametresi *ngFor'da tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z category de\f2\u287?\f0 i\f2\'ba\f0 kenine kar\f2\'ba\u305?\f0 l\f2\u305?\f0 k gelir.\par
+Esas olan *ngFor'daki category de\f2\u287?\f0 i\f2\'ba\f0 kenidir.\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf1\par
+category.component.html dosyas\f2\u305?\f0 nda belirtti\f2\u287?\f0 imiz bu metodun orijinali, category.component.ts dosyas\f2\u305?\f0 nda tan\f2\u305?\f0 mlanmal\f2\u305?\f0 d\f2\u305?\f0 r elbette.\par
+\par
+Bundan dolay\f2\u305?\f0  category.component.ts dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\par
+T\f2\u305?\f0 klanan kategoriyi tutabilmek i\f1\lang1033\'e7\f0\lang1055 in bir de\f2\u287?\f0 i\f2\'ba\f0 ken tan\f2\u305?\f0 ml\f2\u305?\f0 yoruz.\par
+\par
+\highlight4\f3\fs24 export \cf2 class \cf5 CategoryService\cf0\{ \par
+\par
+    \cf6 currentCategory\cf0 : \cf5 Category\cf0 ;                                  \par
+                                                               \par
+    \cf6 apiUrl \cf0 = '{{\field{\*\fldinst{HYPERLINK https://localhost:44368/api/categories/getall }}{\fldrslt{https://localhost:44368/api/categories/getall\ul0\cf0}}}}\f3\fs24 ';    \cf1\highlight0\f0\fs28\par
+\cf2\highlight4\f3\fs24                                                                \cf6\par
+    \cf2 constructor\cf0 (\cf2 private \cf6 httpClient\cf0 : \cf5 HttpClient\cf0 ) \{ \}            \cf6\par
+                                                               \par
+\cf0     getCategories():\cf5 Observable\cf0 <\cf5 ListResponseModel\cf0 <\cf5 Category\cf0 >> \{     \par
+      \cf1 return \cf2 this\cf0 .\cf6 httpClient                                   \cf0\par
+\tab\tab     .get<\cf5 ListResponseModel\cf0 <\cf5 Category\cf0 >>(\cf2 this\cf0 .\cf6 apiUrl\cf0 );  \cf3\highlight0\f0\par
+\cf0\highlight4\f3     \}                                                          \par
+\} \cf2                   \cf0                                            \cf1\highlight0\f0\fs28\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Angular son s\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 mleriyle beraber iyiden iyiye OOP mimariye yakla\f2\'ba\f0 t\f2\u305?\u287?\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in, bir class'\f2\u305?\f0 n i\f1\lang1033\'e7\f0\lang1055 inde de\f2\u287?\f0 i\f2\'ba\f0 ken tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 zda, o de\f2\u287?\f0 i\f2\'ba\f0 keni initialize etmemizi bekliyor.\par
+Bu durumu gidermenin 2 yolu bulunuyor. \par
+\f2\u304?\f0 stersek olu\f2\'ba\f0 turdu\f2\u287?\f0 umuz de\f2\u287?\f0 i\f2\'ba\f0 kenlere ilk de\f2\u287?\f0 er atamas\f2\u305?\f0  yapabiliriz.\par
+\par
+\highlight4\f3\fs24 currentCategory: Category = \{categoryId:0, categoryName:""\};   \par
+\highlight0\f0\fs28\par
+Yukar\f2\u305?\f0 daki gibi her defas\f2\u305?\f0 nda ilk de\f2\u287?\f0 er atamas\f2\u305?\f0  yapmak istemiyorsak e\f2\u287?\f0 er tsconfig.json isimli dosyay\f2\u305?\f0  a\f1\lang1033\'e7\f2\lang1055\u305?\f0 p, bir ayar eklememiz gerekiyor.\par
+\par
+tsconfig.json dosyas\f2\u305?\f0 n\f2\u305?\f0 n i\f1\lang1033\'e7\f0\lang1055 ine,\par
+\par
+\highlight4\f3\fs24   \cf6 "compilerOptions"\cf0 : \{                                         \par
+    ...                                                        \par
+    \cf6 "strictPropertyInitialization"\cf0 : \cf2 false\cf0 ,                     \par
+    ...                                                        \par
+  \}                                                            \par
+\highlight0\f0\fs28\par
+Yukar\f2\u305?\f0 da belirtilen ayar, false olarak eklenebilir.\par
+\f2\'aa\f0 imdilik bu ayar\f2\u305?\f0  false yaparak projeye devam edece\f2\u287?\f0 iz.\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf1\par
+currentCategory ad\f2\u305?\f0 nda de\f2\u287?\f0 i\f2\'ba\f0 kenimizi tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 za g\f1\lang1033\'f6\f0\lang1055 re, \f2\'ba\f0 imdi setCurrentCategory metodumuzun i\f1\lang1033\'e7\f0\lang1055 ini yazabiliriz.\par
+\par
+\cf0\highlight4 setCurrentCategory(category: Category) \{\par
+    this.currentCategory = category;\par
+  \}\par
+\highlight0\par
+Art\f2\u305?\f0 k category'lerden birine click yap\f2\u305?\f0 ld\f2\u305?\u287?\u305?\f0  zaman, o anki category'yi category.component.html dosyas\f2\u305?\f0 ndaki click event ile al\f2\u305?\f0 yoruz ve category.component.ts dosyas\f2\u305?\f0 ndaki currentCategory de\f2\u287?\f0 i\f2\'ba\f0 kenine set ediyoruz. Bu sayede html dosyas\f2\u305?\f0 nda di\f2\u287?\f0 er bu kategori bilgisine ula\f2\'ba\f0 abilece\f2\u287?\f0 iz.\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Burada kritik bir durum var.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in currentCategory bilgisini a\f2\'ba\f0 a\f2\u287?\u305?\f0 daki html \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 indeki gibi kullanal\f2\u305?\f0 m.\par
+\par
+\highlight4\f3\fs24 <ul class="list-group">\par
+    <li (click)="setCurrentCategory(category)" \par
+        *ngFor="let category of categories" \par
+        class="list-group-item"> \par
+    \{\{ category.categoryName \}\}\par
+    </li>\par
+</ul>\par
+<h5>\{\{currentCategory.categoryName\}\} se\f5\lang1033\'e7\f3\lang1055 tiniz </h5>\highlight0\f0\fs28\par
+\cf2\par
+Bu tarz bir html yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z zaman, sayfa ilk y\f1\lang1033\'fc\f0\lang1055 klendi\f2\u287?\f0 inde, category.html dosyas\f2\u305?\f0  bo\f2\'ba\f0  veriler olarak y\f1\lang1033\'fc\f0\lang1055 klenecektir.\par
+Kategori listesine rastgele bir kere t\f2\u305?\f0 klad\f2\u305?\f0 ktan sonra ise kategori listesi dolacakt\f2\u305?\f0 r.\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  Angular, sayfay\f2\u305?\f0  y\f1\lang1033\'fc\f0\lang1055 klerken her \f2\'ba\f0 eyden \f1\lang1033\'f6\f0\lang1055 nce html sayfas\f2\u305?\f0 n\f2\u305?\f0  y\f1\lang1033\'fc\f0\lang1055 kler.\par
+Yukar\f2\u305?\f0 daki kodun en alt\f2\u305?\f0 nda currentCategory'ye ait categoryName bilgisine eri\f2\'ba\f0 meye \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 yoruz.\par
+Fakat sayfa ilk kez y\f1\lang1033\'fc\f0\lang1055 klendi\f2\u287?\f0 inde currentCategory undefined olarak gelecektir. Dolay\f2\u305?\f0 s\f2\u305?\f0 yla undefined bir verinin categoryName bilgisine ula\f2\'ba\f0 amad\f2\u305?\u287?\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in hata olu\f2\'ba\f0 acakt\f2\u305?\f0 r ve html verileri bo\f2\'ba\f0  y\f1\lang1033\'fc\f0\lang1055 klenecektir.\par
+\par
+Bu sorunu \f1\lang1033\'e7\'f6\f0\lang1055 zmek i\f1\lang1033\'e7\f0\lang1055 in "e\f2\u287?\f0 er currentCategory varsa h5 etiketine koy" dememiz gerekmektedir. Bunu yapabilmek i\f1\lang1033\'e7\f0\lang1055 in de;\par
+\par
+\cf0\highlight4\f3\fs24 <ul class="list-group">\par
+    <li (click)="setCurrentCategory(category)" \par
+        *ngFor="let category of categories" \par
+        class="list-group-item"> \par
+    \{\{ category.categoryName \}\}\par
+    </li>\par
+</ul>\par
+<h5 *ngIf="currentCategory>\par
+   \{\{currentCategory.categoryName\}\} se\f5\lang1033\'e7\f3\lang1055 tiniz \par
+</h5>\highlight0\f0\fs28\par
+\cf2\par
+yukar\f2\u305?\f0 daki gibi bir *ngIf ko\f2\'ba\f0 ulu eklememiz gerekmektedir.\par
+Yani currentCategory varsa \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0  demi\f2\'ba\f0  oluyoruz. \par
+------------------------------------------------------------------------------------------------\par
+\cf0\par
+Dk. 1:30: 15\par
+\par
+\cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\par
+\par
+\par
+
+\pard\sl276\slmult1\qc ------------------------------------------------------------------------------------------------\par
+\fs48 18. G\f1\lang1033\'fc\f0\lang1055 n Sonu\f2\fs28\par
+
+\pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\cf0\f1\lang31\par
+\fs22\par
+
+\pard\sa200\sl276\slmult1\par
+}
+ 
