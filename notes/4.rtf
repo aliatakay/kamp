@@ -1,5 +1,5 @@
-{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}}
-{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;}
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green0\blue255;\red0\green0\blue0;\red163\green21\blue21;}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
 \fs48 4. G\f1\lang1033\'fc\f0\lang1055 n\f2\fs28\par
@@ -162,6 +162,33 @@ Yani b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k ve k\f1\lang1
 \cf1\par
 \par
 \fs36 2. DERS\fs28    ---------------------------------------------------------------------------------\par
+\cf0\par
+\cf1 Koleksiyonlar konusu \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\par
+Bir string array tan\f2\u305?\f0 mlayal\f2\u305?\f0 m.\par
+\par
+\cf7\highlight4\f3\fs24  string\cf8 [] \cf6 names \cf8 = \cf7 new\cf8  \cf7 string\cf8 [] \{ \cf9 "Engin"\cf8 , \cf9 "Ali"\cf8 , \cf9 "Ahmet"\cf8\};     \par
+ \cf5 Console\cf8 .WriteLine(\cf6 names\cf8 [0]);                                  \par
+ \cf5 Console\cf8 .WriteLine(\cf6 names\cf8 [1]);                                  \cf1\par
+\highlight0\f0\fs28\par
+\cf0 Bu \f2\'ba\f0 ekilde string tipinde de\f2\u287?\f0 erler tutan bir array tan\f2\u305?\f0 mlad\f2\u305?\f0 k.\par
+Fakat \cf3 array, olu\f2\'ba\f0 turuldu\f2\u287?\f0 u boyutun s\f2\u305?\f0 n\f2\u305?\f0 rlar\f2\u305?\f0 n\f2\u305?\f0  a\f2\'ba\f0 amaz.\par
+\cf0 Yani bir \cf3 array'e yeni bir eleman set edemeyiz.\par
+\par
+\cf7\highlight4\f3\fs24  string\cf8 [] \cf6 names \cf8 = \cf7 new\cf8  \cf7 string\cf8 [] \{ \cf9 "Engin"\cf8 , \cf9 "Ali"\cf8 , \cf9 "Ahmet"\cf8\};     \par
+ \cf6 names\cf0 [3] =\cf5  \cf3 "Emrah"\cf8 ;                \cf5 // Bu kod hata verir.      \cf1\par
+\cf3\highlight0\f0\fs28\par
+Bu sebepten dolay\f2\u305?\f0 , her zaman List kullan\f2\u305?\f0 m\f2\u305?\f0  tercih edilir.\par
+\par
+\cf8\highlight4\f3\fs24  List<\cf7 string\cf8 > \cf6 fruits \cf8 = \cf7 new\cf8  List<\cf7 string\cf8 > \{ \cf9 "Elma"\cf8 , \cf9 "Armut"\cf8  \};   \par
+ \cf6 fruits\cf8 .Add(\cf9 "\f4\'c7ilek"\cf8 );\f3                                           \f4\par
+ \cf5 Console\cf8 .WriteLine(\cf6 fruits\cf8 [2]);\f3                                  \cf3\par
+\highlight0\f0\fs28\par
+\cf0 List i\f1\lang1033\'e7\f0\lang1055 in boyut s\f2\u305?\f0 n\f2\u305?\f0 rland\f2\u305?\f0 rmas\f2\u305?\f0  olmad\f2\u305?\u287?\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in, \cf3 Add \cf0 metodu kullan\f2\u305?\f0 larak istenilen say\f2\u305?\f0 da eleman eklenebilir.\par
+\par
+\cf2\fs36 KURAL\fs28    ----------------------------------------------------------------------------------\cf0\par
+List koleksiyonunu kullanabilmek i\f1\lang1033\'e7\f0\lang1055 in \cf1 using System.Collections.Generic\cf0  namespace'ini tan\f2\u305?\f0 mlamam\f2\u305?\f0 z gerekmektedir.\par
+\cf2 ------------------------------------------------------------------------------------------------\par
 \cf0\par
 \par
 \cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\par
