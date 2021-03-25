@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset0 Consolas;}}
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset0 Consolas;}{\f5\fnil Consolas;}}
 {\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green0\blue255;\red0\green0\blue0;\red163\green21\blue21;}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
@@ -180,7 +180,7 @@ Fakat \cf3 array, olu\f2\'ba\f0 turuldu\f2\u287?\f0 u boyutun s\f2\u305?\f0 n\f2
 \cf3\highlight0\f0\fs28\par
 Bu sebepten dolay\f2\u305?\f0 , her zaman List kullan\f2\u305?\f0 m\f2\u305?\f0  tercih edilir.\par
 \par
-\cf8\highlight4\f3\fs24  List<\cf7 string\cf8 > \cf6 fruits \cf8 = \cf7 new\cf8  List<\cf7 string\cf8 > \{ \cf9 "Elma"\cf8 , \cf9 "Armut"\cf8  \};   \par
+\cf8\highlight4\f3\fs24  \cf5 List\cf8 <\cf7 string\cf8 > \cf6 fruits \cf8 = \cf7 new\cf8  \cf5 List\cf8 <\cf7 string\cf8 > \{ \cf9 "Elma"\cf8 , \cf9 "Armut"\cf8  \};   \par
  \cf6 fruits\cf8 .Add(\cf9 "\f4\'c7ilek"\cf8 );\f3                                           \f4\par
  \cf5 Console\cf8 .WriteLine(\cf6 fruits\cf8 [2]);\f3                                  \cf3\par
 \highlight0\f0\fs28\par
@@ -193,9 +193,85 @@ List koleksiyonunu kullanabilmek i\f1\lang1033\'e7\f0\lang1055 in \cf1 using Sys
 \par
 \cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\par
 \cf0\highlight4\f3\fs24\par
+\cf1\highlight0\f2\fs28\'aa\f0 imdi Generic konusu \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+Generic yap\f2\u305?\f0 lar\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renirken kendi List class'\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  yazaca\f2\u287?\u305?\f0 z.\par
+\par
+\cf0 C# dilinde bulunan \cf3 List\cf0 'in asl\f2\u305?\f0 nda \cf3 Generic \cf0 bir yap\f2\u305?\f0  oldu\f2\u287?\f0 unu g\f1\lang1033\'f6\f0\lang1055 rebiliriz.\cf1\par
+\par
+\cf8\highlight4\f3\fs24  \cf5 List\cf8 <\cf7 string\cf8 > \cf6 fruits \cf8 = \cf7 new\cf8  \cf5 List\cf8 <\cf7 string\cf8 > \{ \cf9 "Elma"\cf8 , \cf9 "Armut"\cf8  \};   \cf1\highlight0\f0\fs28\par
+\par
+\cf0 Kodda g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  \f1\lang1033\'fc\f0\lang1055 zere, List asl\f2\u305?\f0 nda bir class't\f2\u305?\f0 r.\par
+\cf3 Class'lara generic \f1\lang1033\'f6\f0\lang1055 zellik kazand\f2\u305?\f0 r\f2\u305?\f0 labilir\cf0 .\par
+\par
+\cf1 KampIntro \cf0 isimli projemizde Solution'a sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir console projesi olu\f2\'ba\f0 turuyoruz.\par
+Projeyi \cf1 Generics \cf0 olarak isimlendirebiliriz.\par
+\par
+\cf1\f2\'aa\f0 imdi kendi Generic List'imizi yazaca\f2\u287?\u305?\f0 z.\cf0\par
+\par
+\cf1 OOP1 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 MyList.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+A\f2\'ba\f0 a\f2\u287?\u305?\f0 da bulunan kodu \cf3 MyList \cf0 class'\f2\u305?\f0 nda yaz\f2\u305?\f0 yoruz.\par
+\par
+\cf7\highlight4\f3\fs24  public\cf8  \cf7 class\cf8  \cf5 MyList\cf8 <\cf0 Type\cf8 >                                     \par
+ \{                                                             \par
+     Type[] array;                                             \par
+                                                               \par
+     \cf7 public\cf8  \cf5 MyList\cf8 ()                                           \par
+     \{                                                         \par
+         array = \cf7 new\cf8  Type[0];                                  \par
+     \}                                                         \par
+                                                               \par
+     \cf7 public\cf8  \cf7 void\cf8  Add(Type \cf6 value\cf8 )                               \par
+     \{                                                         \par
+         Type[] \cf6 temp \cf8 = array;                                  \par
+                                                               \par
+         array = \cf7 new\cf8  Type[array.Length + 1];                   \par
+                                                               \par
+         \cf7 for\cf8  (\cf7 int\cf8  i = 0; i < \cf6 temp\cf8 .Length; i++)                 \par
+         \{                                                     \par
+             array[i] = \cf6 temp\cf8 [i];                               \par
+         \}                                                     \par
+                                                               \par
+         array[array.Length - 1] = \cf6 value\cf8 ;                      \par
+     \}                                                         \par
+                                                               \par
+     \cf7 public\cf8  \cf7 int\cf8  Length => array.Length;                        \par
+                                                               \par
+     \cf7 public\cf8  Type[] Items => array;                             \par
+\}                                                              \cf0\par
 \cf1\highlight0\f0\fs28\par
+\cf0 Class'a generic bir yap\f2\u305?\f0  kazand\f2\u305?\f0 rmak i\f1\lang1033\'e7\f0\lang1055 in class isminin tan\f2\u305?\f0 mland\f2\u305?\u287?\u305?\f0  kodun devam\f2\u305?\f0 na <> sembollerini ekliyoruz.\par
+\cf1\par
+\cf0 Bu sembollerin aras\f2\u305?\f0 na yazaca\f2\u287?\u305?\f0 m\f2\u305?\f0 z rastgele bir keyword, t\f1\lang1033\'fc\f0\lang1055 m tipler i\f1\lang1033\'e7\f0\lang1055 in kapsay\f2\u305?\f0 c\f2\u305?\f0  bir veri tipi haline d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 ecektir.\par
+Bundan dolay\f2\u305?\f0  generic veri tipini, <Type> olarak isimlendiriyoruz.\par
+Type yerine random bir isimlendirme de yapabilirdik.\par
+\par
+Art\f2\u305?\f0 k MyList class'\f2\u305?\f0 ndan \f1\lang1033\'fc\f0\lang1055 retilen instance'lar, her \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 it tiple \f1\lang1033\'fc\f0\lang1055 retilebilir.\par
+\cf1\par
+\cf8\highlight4\f3\fs24  \f5 MyList<\cf7 string\cf8 > fruits = \cf7 new\cf8  MyList<\cf7 string\cf8 >();\f3                  \par
+\par
+\cf0\highlight0\f0\fs28 Yukar\f2\u305?\f0 daki gibi bir tan\f2\u305?\f0 mlama art\f2\u305?\f0 k yap\f2\u305?\f0 labilir.\par
+\par
+MyList class'\f2\u305?\f0 ndan yeni bir instance \f1\lang1033\'fc\f0\lang1055 retildi\f2\u287?\f0 i anda, s\f2\u305?\f0 f\f2\u305?\f0 r eleman\f2\u305?\f0  bir diziyi Heap bellek alan\f2\u305?\f0 nda olu\f2\'ba\f0 turuyoruz.\par
+Bunu yapabilmek i\f1\lang1033\'e7\f0\lang1055 in, constructor i\f1\lang1033\'e7\f0\lang1055 inde new keyword ile s\f2\u305?\f0 f\f2\u305?\f0 r elemanl\f2\u305?\f0  yeni bir array instance'\f2\u305?\f0  olu\f2\'ba\f0 turduk.\par
+\par
+\f2\'aa\f0 imdi esas \f1\lang1033\'f6\f0\lang1055 nemli olan k\f2\u305?\f0 sma gelelim.\par
+Elimizde array isminde bir dizi var.\par
+Fakat diziler, \f1\lang1033\'fc\f0\lang1055 retildikleri boyut s\f2\u305?\f0 n\f2\u305?\f0 r\f2\u305?\f0 n\f2\u305?\f0  a\f2\'ba\f0 amazlar.\par
+Dolay\f2\u305?\f0 s\f2\u305?\f0 yla s\f2\u305?\f0 f\f2\u305?\f0 r elemanl\f2\u305?\f0  \f1\lang1033\'fc\f0\lang1055 retti\f2\u287?\f0 imiz bu array, yeni bir eleman ekleyemez.\par
+O halde, array isminde verilerimizi tutan esas diziye ek olarak, eski elemanlar\f2\u305?\f0  kaybetmemek i\f1\lang1033\'e7\f0\lang1055 in, onlar\f2\u305?\f0  ge\f1\lang1033\'e7\f0\lang1055 ici olarak tutabilecek bir dizi daha olu\f2\'ba\f0 turmam\f2\u305?\f0 z gerekiyor.\par
+Bunu yapabilmek i\f1\lang1033\'e7\f0\lang1055 in Type tipinde temp isimli bir array olu\f2\'ba\f0 turuyoruz.\par
+temp array'ine, esas array'imizi at\f2\u305?\f0 yoruz. Bu sayede art\f2\u305?\f0 k Heap'te ikisi de ayn\f2\u305?\f0  adresi i\f2\'ba\f0 aret ediyor.\par
+Dolay\f2\u305?\f0 s\f2\u305?\f0 yla art\f2\u305?\f0 k, esas array'imizin boyutunu 1 art\f2\u305?\f0 rmak i\f1\lang1033\'e7\f0\lang1055 in, yeni bir instance \f1\lang1033\'fc\f0\lang1055 retebiliriz. Bu i\f2\'ba\f0 lemi yapt\f2\u305?\f0 ktan sonra, array isimli dizinin Heap bellekte i\f2\'ba\f0 aret etti\f2\u287?\f0 i adres de\f2\u287?\f0 i\f2\'ba\f0 ecektir, dolay\f2\u305?\f0 s\f2\u305?\f0 yla eski verileri art\f2\u305?\f0 k tutmayacakt\f2\u305?\f0 r. Ancak bunu bildi\f2\u287?\f0 imiz i\f1\lang1033\'e7\f0\lang1055 in, temp isimli ge\f1\lang1033\'e7\f0\lang1055 ici array'de eski de\f2\u287?\f0 erlerimizi tutmu\f2\'ba\f0 tuk.\par
+Bu sayede array'e temp'teki t\f1\lang1033\'fc\f0\lang1055 m elemanlar\f2\u305?\f0  tek tek at\f2\u305?\f0 yoruz.\par
+Daha sonra, metottan gelen yeni eleman\f2\u305?\f0  da array'in fazladan 1 eleman\f2\u305?\f0 na ekliyoruz.\par
+\par
+Son olarak Length ve elemanlar\f2\u305?\f0  get edebilmek i\f1\lang1033\'e7\f0\lang1055 in sonda yer alan 2 adet property alan\f2\u305?\f0 n\f2\u305?\f0  tan\f2\u305?\f0 ml\f2\u305?\f0 yoruz.\cf8\highlight4\f3\fs24\par
 
-\pard\sl276\slmult1\qc ------------------------------------------------------------------------------------------------\par
+\pard\sl276\slmult1\qc\cf1\highlight0\f0\fs28\par
+\par
+------------------------------------------------------------------------------------------------\par
 \fs48 4. G\f1\lang1033\'fc\f0\lang1055 n Sonu\f2\fs28\par
 
 \pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\cf0\f1\fs22\lang31\par
