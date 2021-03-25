@@ -1,0 +1,250 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green255\blue0;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
+\fs48 5. G\f1\lang1033\'fc\f0\lang1055 n\f2\fs28\par
+
+\pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf2\f1\fs36\lang1033\'d6\f0\lang1055 N B\f2\u304?\f0 LG\f2\u304?\f0\fs28    ------------------------------------------------------------------------------\cf0\par
+Bu derste programlama dili olarak \cf3 C#\cf0  kullan\f2\u305?\f0 lacak.\par
+IDE olarak \cf3 Visual Studio 2019\cf0  kullan\f2\u305?\f0 lacak.\f1\lang31\par
+\cf2\f0\lang1055 ------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf1\fs36 1. DERS\fs28    ---------------------------------------------------------------------------------\par
+\par
+KampIntro \cf0 isimli projemizde Solution'a sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir console projesi olu\f2\'ba\f0 turuyoruz.\par
+Projeyi \cf1 OOP2 \cf0 olarak isimlendirebiliriz.\par
+\par
+\cf1 Bu derste soyutlama tekniklerine giri\f2\'ba\f0  yapaca\f2\u287?\u305?\f0 z.\cf0\par
+Soyutlama teknikleri OOP i\f1\lang1033\'e7\f0\lang1055 in en \f1\lang1033\'f6\f0\lang1055 nemli kavramd\f2\u305?\f0 r.\par
+Bu derste ger\f1\lang1033\'e7\f0\lang1055 ek hayattan \f1\lang1033\'f6\f0\lang1055 rneklerle soyutlama tekniklerini \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\par
+Bir bankay\f2\u305?\f0  d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 nelim.\par
+Bir bankada 2 \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 it M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri vard\f2\u305?\f0 r.\par
+Ger\f1\lang1033\'e7\f0\lang1055 ek ve T\f1\lang1033\'fc\f0\lang1055 zel m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teriler olmak \f1\lang1033\'fc\f0\lang1055 zere ikiye ayr\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\f2\'aa\f0 imdi bir m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri y\f1\lang1033\'f6\f0\lang1055 netim sistemi \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 inden ilerleyece\f2\u287?\f0 iz.\par
+\par
+\cf1 OOP2 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 Customer.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+Bildi\f2\u287?\f0 imiz \f1\lang1033\'fc\f0\lang1055 zere class'lar 2 temel ama\f1\lang1033\'e7\f0\lang1055  i\f1\lang1033\'e7\f0\lang1055 in kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+Bir class ya \f1\lang1033\'f6\f0\lang1055 zellikleri ya da operasyonlar\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 erir.\par
+\f1\lang1033\'d6\f0\lang1055 zelliklerin tan\f2\u305?\f0 mland\f2\u305?\u287?\u305?\f0  class'ta operasyon olmaz.\par
+Ayn\f2\u305?\f0  \f2\'ba\f0 ekilde operasyonlar\f2\u305?\f0 n oldu\f2\u287?\f0 u class'ta \f1\lang1033\'f6\f0\lang1055 zellikler bulunmaz.\f1\lang1033\par
+\par
+\cf2\f0\fs36\lang1055 KURAL  \fs28 -----------------------------------------------------------------------------------\cf0\par
+\cf3 Class isimlendirmesi\cf0  yaparken mutlaka \cf3 tekil \cf0 isimlendirme kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri \f1\lang1033\'f6\f0\lang1055 zelliklerini bar\f2\u305?\f0 nd\f2\u305?\f0 racak bir class'\f2\u305?\f0 n ismi Customer.cs tarz\f2\u305?\f0 nda tekil olarak isimlendirilir.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\f1\lang1033\par
+\cf1\f2\lang1055\'aa\f0 imdi inhertance konusunu i\f2\'ba\f0 leyece\f2\u287?\f0 iz.\cf0\par
+\par
+Fakat \f1\lang1033\'f6\f0\lang1055 ncelikle k\f1\lang1033\'f6\f0\lang1055 t\f1\lang1033\'fc\f0\lang1055  kod yazaca\f2\u287?\u305?\f0 z.\par
+K\f1\lang1033\'f6\f0\lang1055 t\f1\lang1033\'fc\f0\lang1055  kodlaman\f2\u305?\f0 n zararlar\f2\u305?\f0 n\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 rd\f1\lang1033\'fc\f0\lang1055 kten sonra, do\f2\u287?\f0 ru kodu yazaca\f2\u287?\u305?\f0 z.\par
+\par
+\cf1 Customer.cs\cf0  class'\f2\u305?\f0 nda gerekli m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri \f1\lang1033\'f6\f0\lang1055 zelliklerini tan\f2\u305?\f0 mlayal\f2\u305?\f0 m.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 Customer                                                \cf2\par
+\cf0  \{                                                             \cf2\par
+     public int \cf0 Id \{\cf2  get\cf0 ; \cf2 set\cf0 ; \}                               \par
+\cf2      public string \cf0 CustomerNo \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                    \cf2\par
+     public string \cf0 FirstName \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                     \par
+\cf2      public string \cf0 LastName \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                      \cf2\par
+     public string \cf0 CompanyName \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                   \par
+     \cf2 public string \cf0 IdentityNumber \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                \par
+     \cf2 public string \cf0 TaxNumber \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                     \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\f1\lang1033\par
+\cf2\f0\fs36\lang1055 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Vergi numaras\f2\u305?\f0 , Kimlik numaras\f2\u305?\f0  gibi \f1\lang1033\'f6\f0\lang1055 zellikleri string olarak tan\f2\u305?\f0 mlad\f2\u305?\f0 k.\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  bir \f1\lang1033\'f6\f0\lang1055 zellik \f1\lang1033\'fc\f0\lang1055 zerinde say\f2\u305?\f0 sal i\f2\'ba\f0 lemler ger\f1\lang1033\'e7\f0\lang1055 ekle\f2\'ba\f0 tirilmeyecekse, o halde string olarak saklan\f2\u305?\f0 r.\par
+Sonu\f1\lang1033\'e7\f0\lang1055 ta kimlik numaras\f2\u305?\f0  her zaman sabittir ve asla de\f2\u287?\f0 i\f2\'ba\f0 mez.\par
+Bu nedenden dolay\f2\u305?\f0  bu tip \f1\lang1033\'f6\f0\lang1055 zellikleri string olarak saklar\f2\u305?\f0 z.\par
+\par
+Ayn\f2\u305?\f0  zamanda say\f2\u305?\f0 sal veriler farkl\f2\u305?\f0  ortamlara aktar\f2\u305?\f0 l\f2\u305?\f0 rken bozulmalar ya\f2\'ba\f0 anabilir. O sebepten dolay\f2\u305?\f0  en iyi y\f1\lang1033\'f6\f0\lang1055 ntem string olarak saklamakt\f2\u305?\f0 r.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\f1\lang1033\par
+\cf2\f0\fs36\lang1055 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Bir nesneye ait \f1\lang1033\'f6\f0\lang1055 zellikleri tan\f2\u305?\f0 mlarken, \f1\lang1033\'f6\f0\lang1055 zelliklerin tamam\f2\u305?\f0  doldurulmas\f2\u305?\f0  \cf3 zorunlu alanlar olarak durmuyorsa\cf0 , o halde \cf3 soyutlama hatas\f2\u305?\f0  yap\f2\u305?\f0 yoruz\cf0  demektir.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+\f2\'aa\f0 imdi \cf1 Program.cs\cf0  dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f0\lang1055 al\f2\u305?\f0 m.\par
+Burada bir Customer instance'\f2\u305?\f0  olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+Ve \cf1\f2\'aa\f0 ah\f2\u305?\f0 s M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri\cf0  olarak, \f1\lang1033\'f6\f0\lang1055 zellikleri doldurmaya \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 al\f2\u305?\f0 m.\par
+\par
+\cf2\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+     \cf5 Customer \cf6 customer \cf0 =\cf2  new \cf5 Customer\cf0 ();\cf2                        \cf0\highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer\cf0 .Id = \cf3 1\cf0 ;                                          \highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer\cf0 .FirstName = "\cf3 Ali\cf0 ";                               \highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer\cf0 .LastName = \cf3 "Atakay"\cf0 ;                             \par
+     \cf6 customer\cf0 .IdentityNumber = "\cf3 10090020043\cf0 ";                  \par
+     \cf6 customer\cf0 .CustomerNo = "\cf3 3312123\cf0 ";                          \par
+\highlight7      \cf6 customer\cf0 .CompanyName = "";                                \par
+\highlight4  \}                                                             \highlight0\f0\fs28\par
+\par
+Dikkat edildi\f2\u287?\f0 i \f1\lang1033\'fc\f0\lang1055 zere, yukar\f2\u305?\f0 da \f2\'ba\f0 ah\f2\u305?\f0 s t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nde bir m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri tan\f2\u305?\f0 mlamaya \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\f0 k.\par
+Fakat ye\f2\'ba\f0 il sat\f2\u305?\f0 rda g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 len yerde, bizden \f2\'aa\f0 irket Ad\f2\u305?\f0  istedi.\par
+\cf3 Fakat \f2\'ba\f0 ah\f2\u305?\f0 s olarak, \f2\'ba\f0 irket ismi bizim i\f1\lang1033\'e7\f0\lang1055 in tamamen alakas\f2\u305?\f0 z bir \f1\lang1033\'f6\f0\lang1055 zelliktir.\cf0\par
+\cf2\f2\u304?\'ba\f0 te bu y\f1\lang1033\'fc\f0\lang1055 zden Customer class tan\f2\u305?\f0 mlamas\f2\u305?\f0  tamamen hatal\f2\u305?\f0 d\f2\u305?\f0 r.\cf1\par
+\cf3 Ger\f1\lang1033\'e7\f0\lang1055 ek M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri\cf2  ve \cf3 T\f1\lang1033\'fc\f0\lang1055 zel M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri\cf2  nesneleri, birbirine benziyor diye, ayn\f2\u305?\f0  class i\f1\lang1033\'e7\f0\lang1055 inde \cf3 ortak olarak TANIMLANAMAZ\cf2 .\par
+\cf0 Bu kullan\f2\u305?\f0 m SOLID prensiplerinin L kural\f2\u305?\f0 na ayk\f2\u305?\f0 r\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\par
+\f2\u304?\'ba\f0 te bu t\f1\lang1033\'fc\f0\lang1055 r hatal\f2\u305?\f0  class tan\f2\u305?\f0 mlamas\f2\u305?\f0  yerine, farkl\f2\u305?\f0  class'lar olu\f2\'ba\f0 turmal\f2\u305?\f0 y\f2\u305?\f0 z.\par
+\par
+\cf1 OOP2 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 IndividualCustomer.cs\cf0  olarak isimlendiriyoruz.\par
+Bireysel M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri anlam\f2\u305?\f0 ndad\f2\u305?\f0 r.\par
+\par
+\cf1 OOP2 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 CorporateCustomer.cs\cf0  olarak isimlendiriyoruz.\par
+T\f1\lang1033\'fc\f0\lang1055 zel M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri anlam\f2\u305?\f0 ndad\f2\u305?\f0 r.\par
+\par
+\f2\'aa\f0 imdi Ger\f1\lang1033\'e7\f0\lang1055 ek M\f1\lang1033\'fc\f2\lang1055\'ba\f0 terinin \f1\lang1033\'f6\f0\lang1055 zelliklerini olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+\cf1 IndividualCustomer class'\f2\u305?\f0 na gidelim.\cf0\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 IndividualCustomer                                      \cf2\par
+\cf0  \{                                                             \cf2\par
+     public int \cf0 Id \{\cf2  get\cf0 ; \cf2 set\cf0 ; \}                               \par
+\cf2      public string \cf0 CustomerNo \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                    \par
+     \cf2 public string \cf0 IdentityNumber \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                \cf2\par
+     public string \cf0 FirstName \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                     \par
+\cf2      public string \cf0 LastName \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                      \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+\f2\'aa\f0 imdi T\f1\lang1033\'fc\f0\lang1055 zel M\f1\lang1033\'fc\f2\lang1055\'ba\f0 terinin \f1\lang1033\'f6\f0\lang1055 zelliklerini olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+\cf1 CorporateCustomer class'\f2\u305?\f0 na gidelim.\cf0\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 CorporateCustomer                                       \cf2\par
+\cf0  \{                                                             \cf2\par
+     public int \cf0 Id \{\cf2  get\cf0 ; \cf2 set\cf0 ; \}                               \par
+\cf2      public string \cf0 CustomerNo \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                    \par
+\cf2      public string \cf0 CompanyName \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                   \par
+     \cf2 public string \cf0 TaxNumber \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                     \par
+ \}                                                             \highlight0\f0\fs28\par
+\par
+\f2\'aa\f0 imdi M\f1\lang1033\'fc\f2\lang1055\'ba\f0 terileri veritaban\f2\u305?\f0 na ekleyecek olan bir operasyon yazal\f2\u305?\f0 m.\par
+Bu t\f1\lang1033\'fc\f0\lang1055 r operasyonlar\f2\u305?\f0  kesinlikle, entity class'lar\f2\u305?\f0 n\f2\u305?\f0 n i\f1\lang1033\'e7\f0\lang1055 ine yazmamal\f2\u305?\f0 y\f2\u305?\f0 z.\par
+\par
+\cf1 OOP2 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 CustomerManager.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 CustomerManager                                         \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0      \cf2 public void \cf0 Add(\cf5 Customer \cf6 customer\cf0 )                        \par
+     \{                                                         \par
+         \cf5 Console\cf0 .Write(\cf6 customer\cf0 .Id + \cf3 " eklendi"\cf0 );              \par
+     \}                                                         \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+Biz yukar\f2\u305?\f0 daki \f2\'ba\f0 ekilde \cf3 Customer tipinde \cf0 olan her veriyi, ayn\f2\u305?\f0   \cf3 Add metodu \cf0 ile eklemek istedi\f2\u287?\f0 imizi d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 nelim.\par
+Yani \cf3 hem Individual hem de Corporate tipte m\f1\lang1033\'fc\f2\lang1055\'ba\f0 terileri\cf0  ayn\f2\u305?\f0  Add metodu ile eklemek istedi\f2\u287?\f0 imizi d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 nelim.\par
+\f2\u304?\'ba\f0 te bu durumda, parametre olarak Customer tipinde bir tip ge\f1\lang1033\'e7\f0\lang1055 iyoruz.\par
+\cf2\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  bu Customer tipi, hem Ger\f1\lang1033\'e7\f0\lang1055 ek hem T\f1\lang1033\'fc\f0\lang1055 zel Customer'lar\f2\u305?\f0  ifade edecek.\par
+\cf1 Bu olay\f2\u305?\f0  yapmak i\f1\lang1033\'e7\f0\lang1055 ine \cf3 INHERITANCE \cf1 (Miras) \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 ini kullanmam\f2\u305?\f0 z gerekiyor.\par
+\par
+Hem CorporateCustomer hem IndividualCustomer s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in a\f2\'ba\f0 a\f2\u287?\u305?\f0 daki inheritance kullan\f2\u305?\f0 m\f2\u305?\f0 n\f2\u305?\f0  ekliyoruz.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 CorporateCustomer : Customer                            \cf2\par
+\cf0  \{                                                             \cf2\par
+     public int \cf0 Id \{\cf2  get\cf0 ; \cf2 set\cf0 ; \}                               \par
+\cf2      public string \cf0 CustomerNo \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                    \par
+\cf2      public string \cf0 CompanyName \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                   \par
+     \cf2 public string \cf0 TaxNumber \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                     \par
+ \}                                                             \highlight0\f0\fs28\par
+\cf1\par
+\cf0 T\f1\lang1033\'fc\f0\lang1055 zel M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri bir M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teridir.\par
+Ger\f1\lang1033\'e7\f0\lang1055 ek M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri bir M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teridir.\par
+Bu mant\f2\u305?\f0 ktan dolay\f2\u305?\f0  2 m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  da Customer s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 ndan miras ald\f2\u305?\f0 .\par
+\par
+\cf1 Inheritance kavram\f2\u305?\f0 n\f2\u305?\f0 n as\f2\u305?\f0 l olay\f2\u305?\f0 n\f2\u305?\f0  \f1\lang1033\'f6\f2\lang1055\u287?\f0 renelim.\par
+\par
+\cf0 Normalde inheritance \f2\'ba\f1\lang1033\'f6\f0\lang1055 yle anlat\f2\u305?\f0 l\f2\u305?\f0 r; Customer class'\f2\u305?\f0 ndaki \f1\lang1033\'f6\f0\lang1055 zellikler IndividualCustomer class'\f2\u305?\f0 nda da kullan\f2\u305?\f0 lacakt\f2\u305?\f0 r.\par
+Evet bu bilgi tamamen do\f2\u287?\f0 rudur ama \cf3 EKS\f2\u304?\f0 KT\f2\u304?\f0 R.\par
+Asl\f2\u305?\f0 nda inheritance \f1\lang1033\'e7\f0\lang1055 ok daha \f1\lang1033\'f6\f0\lang1055 nemli bir amaca hizmet eder. \par
+\cf0 Buna birazdan gelece\f2\u287?\f0 iz. \f1\lang1033\'d6\f0\lang1055 nce \f1\lang1033\'f6\f0\lang1055 rnekteki kodlamay\f2\u305?\f0  tamamlayal\f2\u305?\f0 m.\cf3\par
+\par
+\cf0 Customer s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0  ebeveyn s\f2\u305?\f0 n\f2\u305?\f0 f olarak kullan\f2\u305?\f0 yoruz.\par
+O halde hem ger\f1\lang1033\'e7\f0\lang1055 ek hem t\f1\lang1033\'fc\f0\lang1055 zel s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 nda olan ortak \f1\lang1033\'f6\f0\lang1055 zellikleri Customer s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 nda tan\f2\u305?\f0 mlayabiliriz. \par
+Nas\f2\u305?\f0 l olsa Customer s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 ndaki \f1\lang1033\'f6\f0\lang1055 zellikler kendisini inherit eden s\f2\u305?\f0 n\f2\u305?\f0 flara da ta\f2\'ba\u305?\f0 nacakt\f2\u305?\f0 r.\par
+\par
+Ortak \f1\lang1033\'f6\f0\lang1055 zellikleri Customer s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 na ta\f2\'ba\u305?\f0 yal\f2\u305?\f0 m.\par
+\cf3\par
+\cf2\highlight4\f3\fs24  class \cf5 Customer                                                \cf2\par
+\cf0  \{                                                             \cf2\par
+     public int \cf0 Id \{\cf2  get\cf0 ; \cf2 set\cf0 ; \}                               \par
+\cf2      public string \cf0 CustomerNo \{ \cf2 get\cf0 ; \cf2 set\cf0 ; \}                    \par
+ \}                                                             \highlight0\f0\fs28\par
+\cf3\par
+\cf0 Ta\f2\'ba\u305?\f0 d\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z bu 2 \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 i di\f2\u287?\f0 er s\f2\u305?\f0 n\f2\u305?\f0 flardan siliyoruz elbette.\par
+\par
+Art\f2\u305?\f0 k 2 m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teriden ayr\f2\u305?\f0  ayr\f2\u305?\f0  instance \f1\lang1033\'fc\f0\lang1055 retebiliriz.\par
+\cf1 Program.cs dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f0\lang1055 al\f2\u305?\f0 m.\par
+\par
+\cf2\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+     \cf5 IndividualCustomer \cf6 customer1 \cf0 =\cf2  new \cf5 IndividualCustomer\cf0 ();\cf2   \cf0\highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer1\cf0 .Id = \cf3 1\cf0 ;                                         \highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer1\cf0 .FirstName = "\cf3 Ali\cf0 ";                              \highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer1\cf0 .LastName = \cf3 "Atakay"\cf0 ;                            \par
+     \cf6 customer1\cf0 .IdentityNumber = "\cf3 10090020043\cf0 ";                 \par
+     \cf6 customer1\cf0 .CustomerNo = "\cf3 3312123\cf0 ";                         \par
+                                                               \par
+\cf2      \cf5 CorporateCustomer \cf6 customer2 \cf0 =\cf2  new \cf5 CorporateCustomer\cf0 ();\cf2     \cf0\highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer2\cf0 .Id = \cf3 1\cf0 ;                                         \highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer2\cf0 .CompanyName = "\cf3 Company\cf0 ";                        \highlight0\f0\fs28\par
+\highlight4\f3\fs24      \cf6 customer2\cf0 .TaxNumber = \cf3 "121433"\cf0 ;                           \par
+     \cf6 customer2\cf0 .CustomerNo = "\cf3 3312123\cf0 ";                         \par
+ \}                                                             \highlight0\f0\fs28\par
+\par
+G\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi, Ger\f1\lang1033\'e7\f0\lang1055 ek M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri i\f1\lang1033\'e7\f0\lang1055 in gereksiz denecek hi\f1\lang1033\'e7\f0\lang1055 bir \f1\lang1033\'f6\f0\lang1055 zellik yok.\par
+T\f1\lang1033\'fc\f0\lang1055 zel M\f1\lang1033\'fc\f2\lang1055\'ba\f0 teri i\f1\lang1033\'e7\f0\lang1055 in de gereksiz hi\f1\lang1033\'e7\f0\lang1055 bir alan bulunmamaktad\f2\u305?\f0 r.\par
+Bu sayede olu\f2\'ba\f0 abilecek hatal\f2\u305?\f0  giri\f2\'ba\f0 leri minimize etmi\f2\'ba\f0  olduk.\par
+\par
+Fakat gelelim as\f2\u305?\f0 l meseleye.\par
+Inheritance olay\f2\u305?\f0 n\f2\u305?\f0 n bize sa\f2\u287?\f0 lad\f2\u305?\u287?\u305?\f0  en \f1\lang1033\'f6\f0\lang1055 nemli \f1\lang1033\'f6\f0\lang1055 zellik ba\f2\'ba\f0 ka bir \f2\'ba\f0 ey.\par
+\cf3 Bu \f1\lang1033\'f6\f0\lang1055 zellik soyutlama mant\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0 n en b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k olaylar\f2\u305?\f0 ndan birisidir.\par
+\par
+Inheritance sayesinde,\par
+EBEVEYN T\f2\u304?\f0 P\f2\u304?\f0 , \f1\lang1033\'c7\f0\lang1055 OCUK CLASS'LARIN T\f2\u304?\f0 P\f2\u304?\f0 NDE NESNELER\f2\u304?\f0 N REFERANSINI TUTAB\f2\u304?\f0 L\f2\u304?\f0 R.\par
+\par
+\cf2\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+     \cf5 IndividualCustomer \cf6 customer1 \cf0 =\cf2  new \cf5 IndividualCustomer\cf0 ();\cf2  \cf0  \par
+\cf2      \cf5 CorporateCustomer \cf6 customer2 \cf0 =\cf2  new \cf5 CorporateCustomer\cf0 ();\cf2     \par
+                                                               \par
+\fs28     \cf5 Customer \cf6 customer3 \cf0 =\cf2  new \cf5 IndividualCustomer\cf0 ();\cf2  \cf0    \par
+\cf2     \cf5 Customer \cf6 customer4 \cf0 =\cf2  new \cf5 CorporateCustomer\cf0 ();\cf2      \cf0\highlight0\f0\par
+\highlight4\f3\fs24  \}                                                             \highlight0\f0\fs28\par
+\par
+\f2\u304?\'ba\f0 te inheritance'\f2\u305?\f0 n bize sa\f2\u287?\f0 lad\f2\u305?\u287?\u305?\f0  en b\f1\lang1033\'fc\f0\lang1055 y\f1\lang1033\'fc\f0\lang1055 k avantaj budur.\par
+Kendisini miras alan t\f1\lang1033\'fc\f0\lang1055 m s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 n referans\f2\u305?\f0 n\f2\u305?\f0  tutabilir.\par
+\par
+Ve yine bu sayede ebeveyn tipte parametre i\f1\lang1033\'e7\f0\lang1055 eren Add metodunu, her 2 \f1\lang1033\'e7\f0\lang1055 ocuk nesne i\f1\lang1033\'e7\f0\lang1055 in de kullanabilece\f2\u287?\f0 iz.\par
+\par
+\cf2\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+     \cf5 Customer \cf6 customer1 \cf0 =\cf2  new \cf5 IndividualCustomer\cf0 ();\cf2  \cf0            \par
+\cf2      \cf5 Customer \cf6 customer2 \cf0 =\cf2  new \cf5 CorporateCustomer\cf0 ();\cf2              \par
+                                                               \par
+     \cf5 CustomerManager \cf6 customerManager \cf0 =\cf2  new \cf5 CustomerManager\cf2 ();  \par
+     \cf6 customerManager\cf0 .Add(\cf6 customer1\cf0 );                           \cf2\par
+     \cf6 customerManager\cf0 .Add(\cf6 customer2\cf0 );                           \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\cf1\par
+\fs36 2. DERS\fs28    ---------------------------------------------------------------------------------\par
+\cf0\par
+\par
+\cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\cf0\highlight4\f3\fs24\par
+
+\pard\sl276\slmult1\qc\cf1\highlight0\f0\fs28\par
+\par
+------------------------------------------------------------------------------------------------\par
+\fs48 5. G\f1\lang1033\'fc\f0\lang1055 n Sonu\f2\fs28\par
+
+\pard\sl276\slmult1\qj\f0 ------------------------------------------------------------------------------------------------\cf0\f1\fs22\lang31\par
+}
+ 
