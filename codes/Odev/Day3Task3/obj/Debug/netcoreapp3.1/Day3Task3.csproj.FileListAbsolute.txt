@@ -1,0 +1,13 @@
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\bin\Debug\netcoreapp3.1\Day3Task3.exe
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\bin\Debug\netcoreapp3.1\Day3Task3.deps.json
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\bin\Debug\netcoreapp3.1\Day3Task3.runtimeconfig.json
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\bin\Debug\netcoreapp3.1\Day3Task3.runtimeconfig.dev.json
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\bin\Debug\netcoreapp3.1\Day3Task3.dll
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\bin\Debug\netcoreapp3.1\Day3Task3.pdb
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\obj\Debug\netcoreapp3.1\Day3Task3.csprojAssemblyReference.cache
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\obj\Debug\netcoreapp3.1\Day3Task3.AssemblyInfoInputs.cache
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\obj\Debug\netcoreapp3.1\Day3Task3.AssemblyInfo.cs
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\obj\Debug\netcoreapp3.1\Day3Task3.csproj.CoreCompileInputs.cache
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\obj\Debug\netcoreapp3.1\Day3Task3.dll
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\obj\Debug\netcoreapp3.1\Day3Task3.pdb
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day3Task3\obj\Debug\netcoreapp3.1\Day3Task3.genruntimeconfig.cache
