@@ -1,5 +1,5 @@
-{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}}
-{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green255\blue0;}
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset238 Consolas;}{\f5\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green255\blue0;\red155\green187\blue89;}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
 \fs48 5. G\f1\lang1033\'fc\f0\lang1055 n\f2\fs28\par
@@ -237,7 +237,218 @@ Ve yine bu sayede ebeveyn tipte parametre i\f1\lang1033\'e7\f0\lang1055 eren Add
 \cf1\par
 \fs36 2. DERS\fs28    ---------------------------------------------------------------------------------\par
 \cf0\par
+CustomerManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 nda Add metoduna, Customer tipinde parametre verebiliyor olmam\f2\u305?\f0 z bir \cf3 Polymorphism\cf0  \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 idir.\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  Customer tipinde parametre sayesinde hem Ger\f1\lang1033\'e7\f0\lang1055 ek hem T\f1\lang1033\'fc\f0\lang1055 zel m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teriyi tutabiliriz.\par
 \par
+\f1\lang1033\'d6\f0\lang1055 zet olarak OOP2 projesinde \f1\lang1033\'f6\f2\lang1055\u287?\f0 rendi\f2\u287?\f0 imiz \f2\'ba\f0 ey, \cf3 bir Base s\f2\u305?\f0 n\f2\u305?\f0 f referans tutucu olarak i\f2\'ba\f0 lev g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 r\cf0 .\par
+\par
+\cf1 KampIntro \cf0 isimli projemizde Solution'a sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir console projesi olu\f2\'ba\f0 turuyoruz.\par
+Projeyi \cf1 OOP3 \cf0 olarak isimlendirebiliriz.\par
+\par
+\cf1\f2\'aa\f0 imdi interface konusunu \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\par
+\cf0 Yine bir banka uygulumas\f2\u305?\f0 n\f2\u305?\f0  d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 nelim.\cf1\par
+\cf0 Her kredi \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 idinin belli bir geri \f1\lang1033\'f6\f0\lang1055 deme plan\f2\u305?\f0  vard\f2\u305?\f0 r.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in konut kredisi al\f2\u305?\f0 rsan, 3 y\f2\u305?\f0 lda X miktar para \f1\lang1033\'f6\f0\lang1055 demek zorundas\f2\u305?\f0 n.\par
+Ta\f2\'ba\u305?\f0 t kredisi al\f2\u305?\f0 rsan, 2 y\f2\u305?\f0 lda Y miktar para \f1\lang1033\'f6\f0\lang1055 demek zorundas\f2\u305?\f0 n gibi...\par
+\par
+\f2\'aa\f0 imdi bu \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 i olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+\par
+\cf1 OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 KrediManager.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+Bu Manager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 nda operasyonlar\f2\u305?\f0 n yer ald\f2\u305?\u287?\u305?\f0 n\f2\u305?\f0  d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 nelim.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 KrediManager                                            \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0      \cf2 public void \cf0 Hesapla()                                     \par
+     \{                                                         \par
+          \cf1 if\cf0 (konut kredisi ise) ...                            \par
+          \cf1 if\cf0 (ta\f4\'ba\u305?\f3 t kredisi ise) ...                            \par
+          \cf1 if\cf0 (\f5\lang1033\'e7\f3\lang1055 ift\f5\lang1033\'e7\f3\lang1055 i kredisi ise) ...                           \par
+     \}                                                         \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+Bu tarz bir hesapla metodunda, t\f1\lang1033\'fc\f0\lang1055 m kredi \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 itleri i\f1\lang1033\'e7\f0\lang1055 in geri \f1\lang1033\'f6\f0\lang1055 deme plan\f2\u305?\f0  hesaplayan kodu yazmak istiyoruz.\par
+Yukar\f2\u305?\f0 daki yakla\f2\'ba\u305?\f0 m \f1\lang1033\'e7\f0\lang1055 ok ilkel olurdu. \par
+Y\f1\lang1033\'fc\f0\lang1055 zlerce kredi \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 idi olabilir. Hepsini tek bir metot i\f1\lang1033\'e7\f0\lang1055 inde y\f1\lang1033\'f6\f0\lang1055 netmeye \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 sayd\f2\u305?\f0 k, Hesapla metodunun i\f1\lang1033\'e7\f0\lang1055 i \f1\lang1033\'e7\f0\lang1055 ok karma\f2\'ba\u305?\f0 k bir hal al\f2\u305?\f0 rd\f2\u305?\f0 .\par
+\par
+\f2\u304?\'ba\f0 te bu karma\f2\'ba\f0 a engel olmak ve temiz kod yazmak i\f1\lang1033\'e7\f0\lang1055 in, kredi manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 n\f2\u305?\f0  birbirinden ay\f2\u305?\f0 rmam\f2\u305?\f0 z gerekmektedir.\par
+\par
+\f2\u304?\f0 lk olarak t\f1\lang1033\'fc\f0\lang1055 m kredi manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 n\f2\u305?\f0 n atas\f2\u305?\f0  olacak bir Manager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  tan\f2\u305?\f0 mlamam\f2\u305?\f0 z gerekiyor.\par
+Zaten KrediManager ad\f2\u305?\f0 nda bir s\f2\u305?\f0 n\f2\u305?\f0 f tan\f2\u305?\f0 mlam\f2\u305?\'ba\f0 t\f2\u305?\f0 k.\par
+\f2\u304?\'ba\f0 te bu s\f2\u305?\f0 n\f2\u305?\f0 f bizim ebeveyn s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 m\f2\u305?\f0 z olacak.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 KrediManager                                            \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0      \cf2 public void \cf0 Hesapla()                                     \par
+     \{                                                         \par
+     \}                                                         \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+\f2\'aa\f0 imdi t\f1\lang1033\'fc\f0\lang1055 m kredilere ayr\f2\u305?\f0  ayr\f2\u305?\f0  Manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0  olu\f2\'ba\f0 turabiliriz.\par
+\par
+\cf1 OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 KonutKrediManager.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+\cf1 OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 EmlakKrediManager.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+\cf1 OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 IhtiyacKrediManager.cs\cf0  olarak isimlendiriyoruz.\par
+\cf2\par
+Bu 3 s\f2\u305?\f0 n\f2\u305?\f0 f da KrediManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 ndan inherit almal\f2\u305?\f0 .\par
+\cf0\par
+\cf2\highlight4\f3\fs24  class \cf5 KonutKrediManager \cf0 :\cf5  KrediManager                        \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 EmlakKrediManager \cf0 :\cf5  KrediManager                        \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 IhtiyacKrediManager \cf0 :\cf5  KrediManager                      \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+Bu sayede art\f2\u305?\f0 k, 3 kredi s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  da KrediManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 ndaki Hesapla metoduna sahip.\par
+\par
+\cf3 3 kredi s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  da Hesapla metodunu farkl\f2\u305?\f0  ele al\f2\u305?\f0 r.\par
+\cf0\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  3 kredi \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 idinin de hesaplamada kulland\f2\u305?\u287?\u305?\f0  oranlar vs. farkl\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\par
+Yani asl\f2\u305?\f0 nda KrediManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 , tek ba\f2\'ba\u305?\f0 na hi\f1\lang1033\'e7\f0\lang1055 bir anlam ifade etmiyor.\par
+Sadece ebeveyn s\f2\u305?\f0 n\f2\u305?\f0 f g\f1\lang1033\'f6\f0\lang1055 revi g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yor.\par
+\par
+\cf2\fs36 KURAL  \fs28 -----------------------------------------------------------------------------------\cf0\par
+Benzer s\f2\u305?\f0 n\f2\u305?\f0 flar, \cf3 imzas\f2\u305?\f0  tamamen ayn\f2\u305?\cf0\f0  olan ama \cf3 g\f1\lang1033\'f6\f0\lang1055 vdesi farkl\f2\u305?\cf0\f0  \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 an bir metodu kullanacaksa, \cf3 bu metot imzas\f2\u305?\f0  bir interface i\f1\lang1033\'e7\f0\lang1055 inde tan\f2\u305?\f0 mlan\f2\u305?\f0 r\cf0 .\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+Yukar\f2\u305?\f0 daki kural \f1\lang1033\'e7\f0\lang1055 ok \f1\lang1033\'f6\f0\lang1055 nemlidir.\par
+Interface kullan\f2\u305?\f0 m\f2\u305?\f0 n\f2\u305?\f0 n temel kullan\f2\u305?\f0 m ama\f1\lang1033\'e7\f0\lang1055 lar\f2\u305?\f0 ndan birini anlatmaktad\f2\u305?\f0 r.\par
+\par
+O halde, '\cf3 sadece metot imzas\f2\u305?\f0 n\f2\u305?\f0  ta\f2\'ba\u305?\f0 yan\cf0 ' bir s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  \cf3 interface \cf0 olarak yazar\f2\u305?\f0 z.\par
+Dolay\f2\u305?\f0 s\f2\u305?\f0 yla \cf3 KrediManager \cf0 s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0  \cf3 interface \cf0 haline d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 t\f1\lang1033\'fc\f0\lang1055 relim.\par
+\par
+\cf2\highlight4\f3\fs24  interface \cf5 KrediManager                                        \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0      \cf2 void \cf0 Hesapla();                                           \par
+ \}                                                             \highlight0\f0\fs28\par
+\par
+Interface bizim i\f1\lang1033\'e7\f0\lang1055 in bir \f2\'ba\f0 ablon g\f1\lang1033\'f6\f0\lang1055 revi g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 r.\par
+\par
+\cf2\fs36 KURAL  \fs28 -----------------------------------------------------------------------------------\cf0\par
+\cf3 Bir s\f2\u305?\f0 n\f2\u305?\f0 f, bir interface'i implemente ederse, interface i\f1\lang1033\'e7\f0\lang1055 inde tan\f2\u305?\f0 mlanm\f2\u305?\'ba\f0  t\f1\lang1033\'fc\f0\lang1055 m metotlar\f2\u305?\f0  kullanmak zorundad\f2\u305?\f0 r.\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+KrediManager'\f2\u305?\f0  bir interface'e d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 t\f1\lang1033\'fc\f0\lang1055 rd\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 z anda, onu implemente eden t\f1\lang1033\'fc\f0\lang1055 m s\f2\u305?\f0 n\f2\u305?\f0 flar hata verecektir. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  o s\f2\u305?\f0 n\f2\u305?\f0 flarda, interface i\f1\lang1033\'e7\f0\lang1055 inde tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z Hesapla metodunu olu\f2\'ba\f0 turmad\f2\u305?\f0 k.\par
+\par
+\cf2\fs36 KURAL  \fs28 -----------------------------------------------------------------------------------\cf0\par
+\cf3 Okunurlu\f2\u287?\f0 u art\f2\u305?\f0 rmak i\f1\lang1033\'e7\f0\lang1055 in Interface isimlendirmesine I harfi ile ba\f2\'ba\f0 lan\f2\u305?\f0 r.\par
+\par
+\cf2\highlight4\f3\fs24  interface \cf5 IKrediManager                                       \cf3\highlight0\f0\fs28\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+\f2\'aa\f0 imdi art\f2\u305?\f0 k t\f1\lang1033\'fc\f0\lang1055 m kredi manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 na giderek, KrediManager interface'inin zorunlu tuttu\f2\u287?\f0 u metotlar\f2\u305?\f0  implemente edelim.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 KonutKrediManager \cf0 :\cf5  IKrediManager                       \cf2\par
+\cf0  \{                                                             \par
+      \cf2 public void \cf0 Hesapla()                                    \par
+      \{                                                        \par
+           \cf5 Console\cf0 .Write("\cf3 Konut Kredisi Hesapland\f4\u305?\cf0\f3 ");          \par
+      \}                                                        \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+Hen\f1\lang1033\'fc\f0\lang1055 z interface'in as\f2\u305?\f0 l faydas\f2\u305?\f0 na gelmedik. Birazdan \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\par
+Yukar\f2\u305?\f0 daki gibi, t\f1\lang1033\'fc\f0\lang1055 m kredi manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 nda Hesapla metodunu implemente ediyoruz.\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Interface'ler genelde yukar\f2\u305?\f0 da yer alan \f1\lang1033\'f6\f0\lang1055 rnekteki gibi operasyonel metotlar i\f1\lang1033\'e7\f0\lang1055 in kullan\f2\u305?\f0 l\f2\u305?\f0 r.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+\cf2\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+    \cf5 KonutKrediManager \cf6 konutManager \cf0 =\cf2  new \cf5 KonutKrediManager\cf0 ();  \par
+\cf2     \cf6 konutManager\cf0 .Hesapla();\cf2                                     \par
+                                                               \par
+    \cf5 EmlakKrediManager \cf6 emlakManager \cf0 =\cf2  new \cf5 EmlakKrediManager\cf0 ();  \par
+\cf2     \cf6 emlakManager\cf0 .Hesapla();                                    \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+Program.cs dosyas\f2\u305?\f0 nda, yukar\f2\u305?\f0 daki gibi bir kullan\f2\u305?\f0 m yapabiliriz.\par
+\par
+Fakat biz bu instance'lar\f2\u305?\f0  IKrediManager olarak tan\f2\u305?\f0 mlayabilirdik.\par
+\par
+\cf2\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+    \cf8 IKrediManager \cf6 konutManager \cf0 =\cf2  new \cf5 KonutKrediManager\cf0 ();      \par
+\cf2     \cf6 konutManager\cf0 .Hesapla();\cf2                                     \par
+                                                               \par
+    \cf8 IKrediManager \cf6 emlakManager \cf0 =\cf2  new \cf5 EmlakKrediManager\cf0 ();      \par
+\cf2     \cf6 emlakManager\cf0 .Hesapla();                                    \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+\cf2 'Bir interface, kendisini implemente eden s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 n referas\f2\u305?\f0 n\f2\u305?\f0  tutabilir'.\par
+\par
+\cf1\f2\'aa\f0 imdi Dependency Injection konusunu \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+\par
+\cf0\f2\'aa\f0 imdi kredi ba\f2\'ba\f0 vurular\f2\u305?\f0 n\f2\u305?\f0  alaca\f2\u287?\u305?\f0 m\f2\u305?\f0 z bir class olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+\par
+\cf1 OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 BasvuruManager.cs\cf0  olarak isimlendiriyoruz.\par
+\par
+Ba\f2\'ba\f0 vuruYap metodunda, Kredi hesaplamas\f2\u305?\f0  yapmam\f2\u305?\f0 z gerekiyor.\par
+Fakat a\f2\'ba\f0 a\f2\u287?\u305?\f0 daki gibi bir kod yazarsak ne olur?\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 BasvuruManager                                          \cf2\par
+\cf0  \{                                                             \par
+      \cf2 public void \cf0 BasvuruYap()                                 \par
+      \{                                                        \par
+           \cf5 // Ba\f4\'ba\f3 vuran bilgilerini de\f4\u287?\f3 erlendiren kodlar\cf0         \par
+           \cf5 // ...                                              \par
+\cf0                                                                \par
+\cf2            \cf5\fs20 KonutKrediManager \cf6 konutManager \cf0 =\cf2  new \cf5 KonutKrediManager\cf0 ();     \fs24\par
+\cf2            \cf6 konutManager\cf0 .Hesapla();\cf2                              \cf0\par
+      \}                                                        \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+B\f1\lang1033\'f6\f0\lang1055 yle bir kod yazarsak,\cf3  \par
+'T\f1\lang1033\'fc\f0\lang1055 m ba\f2\'ba\f0 vurular\f2\u305?\f0  KonutKrediManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 na ba\f2\u287?\u305?\f0 ml\f2\u305?\f0  hale getirmi\f2\'ba\f0  oluruz.'\par
+\cf0 Bu da tamamen hatal\f2\u305?\f0  bir kodlama olurdu.\cf2\par
+\cf0\par
+Bunun yerine, \cf3 'Ba\f2\'ba\f0 vuruyu hangi kredi i\f1\lang1033\'e7\f0\lang1055 in yapmak istiyorsak, onu bir parametre olarak al\f2\u305?\f0 r\f2\u305?\f0 z'.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 BasvuruManager                                          \cf2\par
+\cf0  \{                                                             \par
+      \cf2 public void \cf0 BasvuruYap(\cf8 IKrediManager\cf0  \cf6 krediManager\cf0 )       \par
+      \{                                                        \par
+           \cf5 // Ba\f4\'ba\f3 vuran bilgilerini de\f4\u287?\f3 erlendiren kodlar\cf0         \par
+           \cf5 // ...                                              \par
+\cf2            \cf6 konutManager\cf0 .Hesapla();\cf2                              \cf0\par
+      \}                                                        \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\cf3\par
+\f2\u304?\'ba\f0 te yukar\f2\u305?\f0 daki gibi bir y\f1\lang1033\'f6\f0\lang1055 ntem sayesinde, parametre olarak istedi\f2\u287?\f0 imiz kredi manager tipini yollayabiliriz.\par
+\par
+Ve hangi tipte kredi manager yollarsak, ONA A\f2\u304?\f0 T HESAPLA METODU \f1\lang1033\'c7\f0\lang1055 ALI\f2\'aa\f0 IR.\par
+\par
+\cf2 Bu sayede kredi manager s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 n\f2\u305?\f0 n ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar\f2\u305?\f0 ndan kurtulduk.\par
+\par
+\cf1\f2\'aa\f0 imdi Program.cs taraf\f2\u305?\f0 ndaki kullan\f2\u305?\f0 m\f2\u305?\f0  g\f1\lang1033\'f6\f0\lang1055 relim.\cf2\par
+\par
+\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+    \cf8 IKrediManager \cf6 konutManager \cf0 =\cf2  new \cf5 KonutKrediManager\cf0 ();      \cf2\par
+    \cf8 IKrediManager \cf6 emlakManager \cf0 =\cf2  new \cf5 EmlakKrediManager\cf0 ();      \par
+                                                               \par
+    \cf5 BasvuruManager \cf6 basvuruManager \cf0 = \cf2 new \cf5 BasvuruManager\cf0 ();      \par
+    \cf6 basvuruManager\cf0 .BasvuruYap(\cf6 konutManager\cf0 );                   \par
+ \}                                                             \highlight0\f0\fs28\par
+\cf3\par
+\cf2 Interface sayesinde istedi\f2\u287?\f0 imiz kredi manager'\f2\u305?\f0  ayn\f2\u305?\f0  metoda parametre olarak yollayabildik.\par
+Hangi tipte yollarsak, o tipe ait Hesapla metodu \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 acakt\f2\u305?\f0 r.\par
+Bu bilgi en \f1\lang1033\'f6\f0\lang1055 nemli bilgidir.\par
+\cf0\par
 \cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\cf0\highlight4\f3\fs24\par
 
 \pard\sl276\slmult1\qc\cf1\highlight0\f0\fs28\par
