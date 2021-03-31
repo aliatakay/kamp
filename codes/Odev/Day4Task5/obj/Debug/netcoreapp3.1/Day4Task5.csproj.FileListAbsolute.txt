@@ -1,0 +1,13 @@
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\bin\Debug\netcoreapp3.1\Day4Task5.exe
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\bin\Debug\netcoreapp3.1\Day4Task5.deps.json
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\bin\Debug\netcoreapp3.1\Day4Task5.runtimeconfig.json
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\bin\Debug\netcoreapp3.1\Day4Task5.runtimeconfig.dev.json
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\bin\Debug\netcoreapp3.1\Day4Task5.dll
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\bin\Debug\netcoreapp3.1\Day4Task5.pdb
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\obj\Debug\netcoreapp3.1\Day4Task5.AssemblyInfoInputs.cache
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\obj\Debug\netcoreapp3.1\Day4Task5.AssemblyInfo.cs
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\obj\Debug\netcoreapp3.1\Day4Task5.csproj.CoreCompileInputs.cache
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\obj\Debug\netcoreapp3.1\Day4Task5.dll
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\obj\Debug\netcoreapp3.1\Day4Task5.pdb
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\obj\Debug\netcoreapp3.1\Day4Task5.genruntimeconfig.cache
+C:\Users\asus\Desktop\kamp-notes\codes\Odev\Day4Task5\obj\Debug\netcoreapp3.1\Day4Task5.csprojAssemblyReference.cache
