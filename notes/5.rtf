@@ -1,5 +1,5 @@
-{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset238 Consolas;}{\f5\fnil\fcharset0 Consolas;}}
-{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green255\blue0;\red155\green187\blue89;}
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil\fcharset162 Consolas;}{\f4\fnil\fcharset238 Consolas;}{\f5\fnil\fcharset0 Consolas;}{\f6\fnil Consolas;}}
+{\colortbl ;\red155\green0\blue211;\red0\green77\blue187;\red255\green0\blue0;\red255\green255\blue0;\red0\green176\blue80;\red75\green172\blue198;\red0\green255\blue0;\red155\green187\blue89;\red0\green0\blue0;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sl276\slmult1\qc\cf1\f0\fs28 ------------------------------------------------------------------------------------------------\par
 \fs48 5. G\f1\lang1033\'fc\f0\lang1055 n\f2\fs28\par
@@ -448,11 +448,153 @@ Ve hangi tipte kredi manager yollarsak, ONA A\f2\u304?\f0 T HESAPLA METODU \f1\l
 \cf2 Interface sayesinde istedi\f2\u287?\f0 imiz kredi manager'\f2\u305?\f0  ayn\f2\u305?\f0  metoda parametre olarak yollayabildik.\par
 Hangi tipte yollarsak, o tipe ait Hesapla metodu \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 acakt\f2\u305?\f0 r.\par
 Bu bilgi en \f1\lang1033\'f6\f0\lang1055 nemli bilgidir.\par
-\cf0\par
-\cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\cf0\highlight4\f3\fs24\par
-
-\pard\sl276\slmult1\qc\cf1\highlight0\f0\fs28\par
 \par
+\f2\'aa\f0 imdi diyelim ki m\f1\lang1033\'fc\f2\lang1055\'ba\f0 teriye uygun kredileri belirledik.\par
+2 kredi \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 idi uygun \f1\lang1033\'e7\f2\lang1055\u305?\f0 kt\f2\u305?\f0 .\par
+Uygun olan kredilerin Hesapla sonucunu g\f1\lang1033\'f6\f0\lang1055 rmek istiyoruz.\par
+Yani kredi \f1\lang1033\'f6\f0\lang1055 n bilgilendirmesi yapmak istiyoruz ba\f2\'ba\f0 vuru yapmadan \f1\lang1033\'f6\f0\lang1055 nce. Sadece bilgi almak i\f1\lang1033\'e7\f0\lang1055 in.\par
+\par
+\cf1 BasvuruManager.cs s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 na gelelim.\par
+Uygun krediler i\f1\lang1033\'e7\f0\lang1055 in \f1\lang1033\'f6\f0\lang1055 n bilgilendirme yapan bir metot yazal\f2\u305?\f0 m.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 BasvuruManager                                          \cf2\par
+\cf0  \{                                                             \par
+      \cf2 public void \cf0 BasvuruYap(\cf8 IKrediManager\cf0  \cf6 krediManager\cf0 )       \par
+      \{                                                        \par
+\cf2            \cf6 konutManager\cf0 .Hesapla();\cf2                              \cf0\par
+      \}                                                        \par
+                                                               \par
+      \cf2 void \cf0 KrediBilgilendirmeYap(\cf5 List\cf0 <\cf8 IKrediManager\cf0 > \cf6 krediler\cf0 ) \par
+      \{                                                        \par
+\cf9\f6            \cf1 foreach \cf9 (\cf2 var \cf6 kredi \cf1 in \cf6 krediler\cf9 )\f3                      \f6\par
+           \{\f3                                                    \f6\par
+               \f3  \cf6\f6 kredi\cf9 .Hesapla();\f3                                \f6\par
+           \}\f3                                                    \cf0\par
+      \}                                                        \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+Program.cs taraf\f2\u305?\f0 nda kredi listesi yollayarak, t\f1\lang1033\'fc\f0\lang1055 m uygun krediler i\f1\lang1033\'e7\f0\lang1055 in \f1\lang1033\'f6\f0\lang1055 n bilgi alabilirim.\par
+\cf2\par
+\highlight4\f3\fs24  static void \cf0 Main(\cf2 string\cf0 [] \cf6 args\cf0 )                               \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf9\f6     \cf8 IKrediManager \cf6 konutKrediManager \cf9 = \cf10 new\cf9  \cf5 KonutKrediManager\cf9 ();\f3  \f6\par
+    \cf8 IKrediManager \cf6 emlakKrediManager \cf9 = \cf10 new\cf9  \cf5 EmlakKrediManager\cf9 ();\f3  \f6\par
+    \cf5 BasvuruManager \cf6 basvuruManager \cf9 = \cf10 new\cf9  \cf5 BasvuruManager\cf9 ();\f3       \f6\par
+\f3                                                                \f6\par
+    \cf5 List\cf9 <\cf8 IKrediManager\cf9 > \cf6 krediler \cf9 = \cf10 new\cf9  \cf5 List\cf9 <\cf8 IKrediManager\cf9 > \f3     \f6\par
+\f3                     \f6\{ \cf6 konutKrediManager\cf9 , \cf6 emlakKrediManager\cf9\};\f3    \f6\par
+    \f3                                                            \f6\par
+\f3     \cf6\f6 basvuruManager\cf9 .KrediBilgilendirmeYap(\cf6 krediler\cf9 );\f3             \f6\par
+\cf0\f3  \}                                                             \highlight0\f0\fs28\par
+\cf2\par
+\par
+\cf0\par
+\cf1\fs36 3. DERS\fs28    ---------------------------------------------------------------------------------\par
+\par
+\cf0 Interface'ler, alternatif sistemler i\f1\lang1033\'e7\f0\lang1055 in bir \f2\'ba\f0 ablon g\f1\lang1033\'f6\f0\lang1055 revi g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 r.\par
+Ayn\f2\u305?\f0  zamanda referans tutucu g\f1\lang1033\'f6\f0\lang1055 revi g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 r.\par
+\cf2\par
+Interface'leri, birbiribin alternatifi olan ama kod i\f1\lang1033\'e7\f0\lang1055 erikleri farkl\f2\u305?\f0  olan durumlar i\f1\lang1033\'e7\f0\lang1055 in kullan\f2\u305?\f0 r\f2\u305?\f0 z.\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in t\f1\lang1033\'fc\f0\lang1055 m krediler i\f1\lang1033\'e7\f0\lang1055 in geri \f1\lang1033\'f6\f0\lang1055 deme plan\f2\u305?\f0  ortakt\f2\u305?\f0 r. Ama kodlar\f2\u305?\f0  farkl\f2\u305?\f0 d\f2\u305?\f0 r.\par
+Bu durumda interface olu\f2\'ba\f0 tururuz.\par
+\par
+\cf0 Bir ba\f2\'ba\f0 ka \f1\lang1033\'f6\f0\lang1055 rnek,\par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in projemizde loglama yapmak istiyoruz.\par
+Loglama sim\f1\lang1033\'fc\f0\lang1055 lasyonunu projemize enjekte edelim.\par
+\par
+Loglama farkl\f2\u305?\f0  y\f1\lang1033\'f6\f0\lang1055 ntemlerle uygulanabilir.\par
+Loglar, text dosyas\f2\u305?\f0 nda tutulabilir, veritaban\f2\u305?\f0 nda tutulabilir, sms veya mail olarak olu\f2\'ba\f0 turulabilir.\par
+Hepsi loglamad\f2\u305?\f0 r, imzalar\f2\u305?\f0  ayn\f2\u305?\f0 d\f2\u305?\f0 r.\par
+Ancak ayn\f2\u305?\f0  zamanda hepsinin kodlar\f2\u305?\f0  da farkl\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+\cf3 Ne zaman interface kullanmam\f2\u305?\f0 z gerekti\f2\u287?\f0 ine nas\f2\u305?\f0 l karar verece\f2\u287?\f0 iz?\cf0\par
+Sistemimizde, bir i\f2\'ba\f0 in alternatifleri de varsa (veya ilerleyen zamanlarda alternatif olu\f2\'ba\f0 ma ihtimali varsa) interface kullan\f2\u305?\f0 l\f2\u305?\f0 r.\par
+\par
+Mesela projede \f2\'ba\f0 imdilik yaln\f2\u305?\f0 zca 1 \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 it loglama yap\f2\u305?\f0 yor olabiliriz.\par
+Bu loglama \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 idi de sadece text dosyas\f2\u305?\f0 na loglama yap\f2\u305?\f0 yordur.\par
+Fakat biz yine de ILoggerService ad\f2\u305?\f0 nda bir interface olu\f2\'ba\f0 turmal\f2\u305?\f0 y\f2\u305?\f0 z.\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  ileride projemize veritaban\f2\u305?\f0  loglama mant\f2\u305?\u287?\u305?\f0  eklenebilir.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\par
+\par
+\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+Bu dersten itibaren operasyon i\f1\lang1033\'e7\f0\lang1055 eren interface isimlerini \cf3 Service \cf0 olarak verece\f2\u287?\f0 iz.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\cf0\par
+\par
+\par
+\cf1\f2\'aa\f0 imdi OOP3 projemize bir log sim\f1\lang1033\'fc\f0\lang1055 lasyonu ekleyelim.\cf0\par
+\cf2\par
+\cf0\f2\'aa\f0 imdi Log i\f1\lang1033\'e7\f0\lang1055 in bir interface olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+\par
+\cf1 OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir interface ekliyoruz.\par
+Bu interface'i \cf1 ILoggerService.cs \cf0 olarak isimlendiriyoruz.\par
+\highlight4\f3\fs24\par
+\cf2  interface \cf8 ILoggerService\cf5                                       \cf2\par
+\cf0  \{                                                             \cf2\par
+\cf0      \cf2 void \cf0 Log();                                               \par
+ \}                                                             \highlight0\f0\fs28\par
+\highlight4\f3\fs24\par
+\cf1\highlight0\f0\fs28 G\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi interface i\f1\lang1033\'e7\f0\lang1055 inde yaln\f2\u305?\f0 zca metot imzas\f2\u305?\f0 n\f2\u305?\f0  tan\f2\u305?\f0 mlad\f2\u305?\f0 k.\par
+\par
+\f2\'aa\f0 imdi veritaban\f2\u305?\f0 na log yapacak olan ilgili class'\f2\u305?\f0  olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+\par
+OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 DatabaseLoggerService.cs \cf0 olarak isimlendiriyoruz.\par
+\cf1\par
+\cf2\highlight4\f3\fs24  class \cf5 DatabaseLoggerService \cf0 :\cf5  \cf8 ILoggerService                  \cf2\par
+\cf0  \{                                                             \par
+      \cf2 public void \cf0 Log()                                        \par
+      \{                                                        \par
+           \cf5 Console\cf0 .Write("\cf3 Veritaban\f4\u305?\f3 na Logland\f4\u305?\cf0\f3 ");             \par
+      \}                                                        \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\cf1\par
+OOP3 \cf0 projemize sa\f2\u287?\f0  t\f2\u305?\f0 klayarak yeni bir class ekliyoruz.\par
+Bu class'\f2\u305?\f0  \cf1 FileLoggerService.cs \cf0 olarak isimlendiriyoruz.\par
+\highlight4\f3\fs24\par
+\cf2  class \cf5 FileLoggerService \cf0 :\cf5  \cf8 ILoggerService                      \cf2\par
+\cf0  \{                                                             \par
+      \cf2 public void \cf0 Log()                                        \par
+      \{                                                        \par
+           \cf5 Console\cf0 .Write("\cf3 Dosyaya Logland\f4\u305?\cf0\f3 ");                  \par
+      \}                                                        \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+Bu \f2\'ba\f0 ekilde 2 adet loglama sistemine sahip olduk.\par
+Art\f2\u305?\f0 k loglama s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0 mda, ILoggerService \f2\'ba\f0 ablonuna uymak zorunday\f2\u305?\f0 z.\par
+\par
+\f2\'aa\f0 imdi BasvuruManager s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 ndaki BasvuruYap metodunda loglama yapmak istedi\f2\u287?\f0 imizi d\f1\lang1033\'fc\f2\lang1055\'ba\f1\lang1033\'fc\f0\lang1055 nelim.\par
+\par
+\cf2\highlight4\f3\fs24  class \cf5 BasvuruManager                                          \cf2\par
+\cf0  \{                                                             \par
+      \cf2 public void \cf0 BasvuruYap(\cf8 IKrediManager\cf0  \cf6 krediManager\cf0 ,\cf6        \par
+                             \cf8 ILoggerService \cf6 loggerService\cf0 )     \par
+      \{                                                        \par
+\cf2            \cf6 konutManager\cf0 .Hesapla();\cf2                              \par
+           \cf6 loggerService\cf2 .\cf0 Log();                                \par
+      \}                                                        \cf2\par
+\cf0  \}                                                             \highlight0\f0\fs28\par
+\par
+G\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ld\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055  gibi, interface tipinde bir parameter yollad\f2\u305?\f0 k.\par
+Bu sayede metoda hangi log s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0  t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 nde bir parametre verilirse, o s\f2\u305?\f0 n\f2\u305?\f0 fa ait Log metodu \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 acakt\f2\u305?\f0 r.\par
+\par
+Burada \cf3 Dependency Injection\cf0  uygulam\f2\u305?\'ba\f0  olduk.\par
+Asl\f2\u305?\f0 nda bu \f1\lang1033\'f6\f0\lang1055 rnekteki haline \cf3 Method Injection \cf0 deniyor.\par
+Bir de \cf3 Constructor Injection \cf0 hali vard\f2\u305?\f0 r. \f1\lang1033\'d6\f0\lang1055 dev olarak verilecek.\par
+\par
+Yukar\f2\u305?\f0 daki koda bakal\f2\u305?\f0 m.\par
+Ba\f2\'ba\f0 vuru Yaparken, \cf1 hangi kredi t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ne ve hangi loglama t\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 ne ait oldu\f2\u287?\f0 u belli DE\f2\u286?\u304?\f0 L.\par
+Sadece soyut halleri mevcut.\par
+\par
+\cf2\fs36 NOT\fs28    --------------------------------------------------------------------------------------\cf0\par
+SOLID Prensiplerinin Open/Closed prensibi der ki;\par
+projeye yeni bir istek eklendi\f2\u287?\f0 inde, mevcut kodlar\f2\u305?\f0 n hi\f1\lang1033\'e7\f0\lang1055 biri bozulmamal\f2\u305?\f0  ve de\f2\u287?\f0 i\f2\'ba\f0 tirilmemelidir.\par
+\par
+Biz \f1\lang1033\'f6\f0\lang1055 yle bir proje yazd\f2\u305?\f0 k ki, sisteme yeni bir Log service eklememiz gerekirse (\f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 in SmsLoggerService) veya yeni bir kredi eklememiz gerekirse (\f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 in EsnafKrediManager) sistemde soyutlamay\f2\u305?\f0  \f1\lang1033\'e7\f0\lang1055 ok do\f2\u287?\f0 ru in\f2\'ba\f0 a etti\f2\u287?\f0 imiz i\f1\lang1033\'e7\f0\lang1055 in, hi\f1\lang1033\'e7\f0\lang1055 bir de\f2\u287?\f0 i\f2\'ba\f0 ime ihtiya\f1\lang1033\'e7\f0\lang1055  duymadan veya eski kodlar\f2\u305?\f0  bozmadan sisteme ekleyebiliriz. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  interface sayesinde projemize bir esneklik kazand\f2\u305?\f0 rd\f2\u305?\f0 k.\cf3\par
+\cf2 ------------------------------------------------------------------------------------------------\cf1\par
+\par
+
+\pard\sl276\slmult1\qc\par
 ------------------------------------------------------------------------------------------------\par
 \fs48 5. G\f1\lang1033\'fc\f0\lang1055 n Sonu\f2\fs28\par
 
