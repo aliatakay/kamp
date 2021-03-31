@@ -591,8 +591,12 @@ SOLID Prensiplerinin Open/Closed prensibi der ki;\par
 projeye yeni bir istek eklendi\f2\u287?\f0 inde, mevcut kodlar\f2\u305?\f0 n hi\f1\lang1033\'e7\f0\lang1055 biri bozulmamal\f2\u305?\f0  ve de\f2\u287?\f0 i\f2\'ba\f0 tirilmemelidir.\par
 \par
 Biz \f1\lang1033\'f6\f0\lang1055 yle bir proje yazd\f2\u305?\f0 k ki, sisteme yeni bir Log service eklememiz gerekirse (\f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 in SmsLoggerService) veya yeni bir kredi eklememiz gerekirse (\f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 in EsnafKrediManager) sistemde soyutlamay\f2\u305?\f0  \f1\lang1033\'e7\f0\lang1055 ok do\f2\u287?\f0 ru in\f2\'ba\f0 a etti\f2\u287?\f0 imiz i\f1\lang1033\'e7\f0\lang1055 in, hi\f1\lang1033\'e7\f0\lang1055 bir de\f2\u287?\f0 i\f2\'ba\f0 ime ihtiya\f1\lang1033\'e7\f0\lang1055  duymadan veya eski kodlar\f2\u305?\f0  bozmadan sisteme ekleyebiliriz. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  interface sayesinde projemize bir esneklik kazand\f2\u305?\f0 rd\f2\u305?\f0 k.\cf3\par
-\cf2 ------------------------------------------------------------------------------------------------\cf1\par
+\cf2 ------------------------------------------------------------------------------------------------\par
 \par
+\cf0 Ger\f1\lang1033\'e7\f0\lang1055 ek hayat projelerde, \f1\lang1033\'f6\f0\lang1055 rne\f2\u287?\f0 in ba\f2\'ba\f0 vuru yap\f2\u305?\f0 ld\f2\u305?\u287?\u305?\f0 nda, birden fazla log i\f2\'ba\f0 lemi ger\f1\lang1033\'e7\f0\lang1055 ekle\f2\'ba\f0 ir.\par
+Bu durumu sim\f1\lang1033\'fc\f0\lang1055 le edebilmek i\f1\lang1033\'e7\f0\lang1055 in, BasvuruYap metoduna yollad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z interface tipindeki tekil log parametresini, List haline d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 t\f1\lang1033\'fc\f0\lang1055 relim.\par
+Bu sayede ba\f2\'ba\f0 vuru yap\f2\u305?\f0 ld\f2\u305?\u287?\u305?\f0 nda birden \f1\lang1033\'e7\f0\lang1055 ok sisteme log yap\f2\u305?\f0 labilecektir.\par
+\cf1\par
 
 \pard\sl276\slmult1\qc\par
 ------------------------------------------------------------------------------------------------\par
