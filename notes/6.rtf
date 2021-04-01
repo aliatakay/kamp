@@ -1,0 +1,669 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset238 Calibri;}{\f2\fnil\fcharset162 Calibri;}}
+{\colortbl ;\red251\green2\blue7;\red0\green0\blue255;\red0\green0\blue0;\red251\green2\blue255;\red102\green177\blue50;\red128\green128\blue128;\red85\green142\blue40;\red103\green103\blue103;\red77\green77\blue77;\red69\green39\blue1;\red253\green128\blue8;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sl360\slmult1\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\cf1\f0\fs28\lang31 RDBMS (relational database management system)\cf0 : ili\f1\'ba\f0 kisel veritaban\f1\u305?\f0  y\'f6netim sistemi anlam\f1\u305?\f0 na gelir. G\'fcn\'fcm\'fczde en \'e7ok bu sistemi esas alan yap\f1\u305?\f0 lar kullan\f1\u305?\f0 l\f1\u305?\f0 r.\par
+\par
+\cf1 NoSql\cf0  tarz\f1\u305?\f0  yap\f1\u305?\f0 lar da yine yayg\f1\u305?\f0 n olarak kullan\f1\u305?\f0 l\f1\u305?\f0 r.\par
+\par
+\cf1 RDBMS\cf0  => \cf2 Oracle, SqlServer, MySql, PostgreSql, Access\cf0  s\f1\u305?\f0 kl\f1\u305?\f0 kla kullan\f1\u305?\f0 lan sistemlere \'f6rnektir. Piyasada en yayg\f1\u305?\f0 n olarak Oracle ve SqlServer kullan\f1\u305?\f0 l\f1\u305?\f0 r.\par
+\par
+\cf1 ANSI SQL\cf0 : t\'fcm veritabanlar\f1\u305?\f0  i\'e7in ortak kabul edilen bir standartt\f1\u305?\f0 r.\par
+\par
+temel standarda ek olarak, belli veritaban\f1\u305?\f0  sistemleri kendi standartlar\f1\u305?\f0 n\f1\u305?\f0  ekleyerek, ANSI Sql\rquote i geli\f1\'ba\f0 tirebilirler.\par
+\par
+\'f6rne\f1\u287?\f0 in \cf1 PlSql\cf0 , Oracle\rquote da kullan\f1\u305?\f0 lan geni\f1\'ba\f0 letilmi\f1\'ba\f0  standatt\f1\u305?\f0 r.\par
+\cf1 T-Sql\cf0  ise SqlServer\rquote da kullan\f1\u305?\f0 lan geni\f1\'ba\f0 letilmi\f1\'ba\f0  standarda verilen isimdir.\par
+\par
+\par
+\cf1 NoSql\cf0  => \cf2 MongoDb, Firebase \cf3 s\f1\u305?\f0 kl\f1\u305?\f0 kla kullan\f1\u305?\f0 lan sistemlerdir\cf0 . NoSql asl\f1\u305?\f0 nda \ldblquote Not only Sql\rdblquote  anlam\f1\u305?\f0 na gelmektedir. yani ili\f1\'ba\f0 kisellik hala mevcuttur ancak RDBMS\rquote de oldu\f1\u287?\f0 u kadar sert de\f1\u287?\f0 ildir.\par
+\par
+\par
+NOT: RDBMS ve NoSql birbirilerinin alternatifi DE\f1\u286?\u304?\f0 LD\f1\u304?\f0 R. ikisi de farkl\f1\u305?\f0  ama\'e7lar i\'e7in kullan\f1\u305?\f0 l\f1\u305?\f0 r. 2 yap\f1\u305?\f0 ya da yerine g\'f6re ihtiya\'e7 duyulur.\par
+\par
+\'d6rnek olarak, ger\'e7ek hayatta loglar, NoSql yap\f1\u305?\f0 larda tutulur.\par
+\par
+Bu yaz\f1\u305?\f0 da, ANSI SQL ve Normalisation \'fczerinde durulacak. yani nosql yap\f1\u305?\f0 s\f1\u305?\f0  anlat\f1\u305?\f0 lmayacak.\par
+\par
+Normalisation: data\rquote y\f1\u305?\f0  modelleme tekni\f1\u287?\f0 idir. amac\f1\u305?\f0 , veri ka\'e7aklar\f1\u305?\f0 n\f1\u305?\f0  \'f6nlemektir. bunun anlam\f1\u305?\f0 , \'f6rne\f1\u287?\f0 in M\'fc\f1\'ba\f0 teri tablomuz var. Ve bu tablonun s\'fctunlar\f1\u305?\f0 ndan birinin \f1\'aa\f0 ehir oldu\f1\u287?\f0 unu varsayal\f1\u305?\f0 m. \f1\'aa\f0 ehir verisini, her yeni m\'fc\f1\'ba\f0 teri i\'e7in her defas\f1\u305?\f0 nda \ldblquote istanbul\rdblquote , \ldblquote ankara\rdblquote , \ldblquote ankara\rdblquote , \ldblquote istanbul\rdblquote , \ldblquote izmir\rdblquote  olarak girmek yerine; \f1\'ba\f0 ehirleri ayr\f1\u305?\f0  bir tablo olarak yarat\f1\u305?\f0 r\f1\u305?\f0 z.\par
+\par
+01 - adana\par
+. . . .\par
+06 - ankara\par
+. . . . \par
+34 - istanbul\par
+\par
+bu sayede, m\'fc\f1\'ba\f0 teri tablosundaki \f1\'ba\f0 ehir verisini, \f1\'ba\f0 ehirlerin id numaralar\f1\u305?\f0  ile gireriz. bu sayede veri ka\'e7aklar\f1\u305?\f0  minimize edilmi\f1\'ba\f0  olur. \par
+her m\'fc\f1\'ba\f0 teri i\'e7in \f1\'ba\f0 ehirleri text olarak girseydik, harf hatalar\f1\u305?\f0  yapabilirdik. ve veri ka\'e7aklar\f1\u305?\f0  olu\f1\'ba\f0 urdu. \ldblquote\f1\u305?\f0 stanbul\rdblquote , \ldblquote izzmir\rdblquote , \ldblquote ankra\rdblquote  gibi gibi.\par
+\par
+visual studio for mac i\'e7in sql yok san\f1\u305?\f0 r\f1\u305?\f0 m.\par
+w3shcools sitesi \'fczerinden SQL sekmesine giderek, northwind veritaban\f1\u305?\f0  \'fczerinden \'f6rnek sql kodlar\f1\u305?\f0  \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rabilirsin.\par
+\par
+visual studio\rquote da \'fczerinde \'e7al\f1\u305?\'ba\f0 t\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z database\rquote i \ldblquote SQL server object explorer\rdblquote  bulabiliriz. \par
+\par
+database ismine sa\f1\u287?\f0  t\f1\u305?\f0 klay\f1\u305?\f0 p, new query diyerek sql yazabilece\f1\u287?\f0 imiz bir sayfa a\'e7abiliriz.\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf5\f0\lang31 -- 2 adet tire (-) koyarak yorum sat\f1\u305?\f0 r\f1\u305?\f0  olu\f1\'ba\f0 tururuz.\par
+\cf0\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Customers\par
+\par
+\cf1 Select\cf0  en \'e7ok kulland\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z komutlardan biridir.\par
+Se\'e7mek, Getirmek anlam\f1\u305?\f0 na gelir.\par
+\cf1 Select\cf0  komutundan sonra se\'e7mek istedi\f1\u287?\f0 imiz s\'fctun isimlerini yazar\f1\u305?\f0 z.\par
+\cf1 *\cf0  idafesi tablodaki t\'fcm s\'fctunlar\f1\u305?\f0  getir demektir.\par
+\cf1 from \cf3 ifadesini, hangi tablodan se\'e7ece\f1\u287?\f0 imizi belirtmek i\'e7in yazar\f1\u305?\f0 z.\cf0\par
+\cf1 Customers\cf0  da datalar\f1\u305?\f0 n\f1\u305?\f0  se\'e7mek istedi\f1\u287?\f0 imiz tablonun ad\f1\u305?\f0 d\f1\u305?\f0 r.\par
+Yani bu komutu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 zda, t\'fcm Customers tablosunu oldu\f1\u287?\f0 u gibi g\'f6r\'fcr\'fcz.\par
+\par
+\cf7 -- visual studio kullan\f1\u305?\f0 yorsak, y\f1\u305?\f0 ld\f1\u305?\f0 z \'fczerine gelince, s\'fctunlar\f1\u305?\f0  bize g\'f6sterir.\cf0\par
+\par
+\cf2 Select\cf0  \cf6 ContactName, CompanyName, City\cf0  \cf2 from\cf0  Customers\par
+\par
+Bu komut ise, Customers tablosuna ait belirtti\f1\u287?\f0 imiz 3 s\'fctunu getirir.\par
+Bu tarz bir komutu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z anda, memory\rquote de fake bir tablo olu\f1\'ba\f0 ur.\par
+olu\f1\'ba\f0 an bu tablo bize \'e7\f1\u305?\f0 kt\f1\u305?\f0  olarak sunulur. \par
+\par
+\par
+\cf2 Select\cf0  \cf6 ContactName Ad, CompanyName \f1\'aa\f0 irketAdi, City Sehir\cf0  \cf2 from\cf0  Customers\par
+\par
+b\'f6yle bir komut yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 zda, bize verilen tablonun s\'fctun isimleri de\f1\u287?\f0 i\f1\'ba\f0 mi\f1\'ba\f0  olur.\par
+buna \cf1 alias\cf0  denir.\par
+\par
+\cf7 -- yaz\f1\u305?\f0 lan bu komutlar ANSII standard\f1\u305?\f0 na g\'f6re yaz\f1\u305?\f0 ld\f1\u305?\u287?\u305?\f0  i\'e7in t\'fcm db\rquote lerde \'e7al\f1\u305?\'ba\u305?\f0 r.\cf0\par
+\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Customers \cf2 where\cf0  City = \cf1\lquote London\rquote\cf0\par
+\par
+\cf1 where\cf0  komutu ile sorguya bir KO\f1\'aa\f0 UL eklemi\f1\'ba\f0  oluruz.\par
+bu komut ile City\rquote si London olan Customer\rquote lar\f1\u305?\f0  getir demi\f1\'ba\f0  olduk.\par
+\par
+\cf7 -- ANSII standatlar\f1\u305?\f0 nda, metinsel ifadeler tek t\f1\u305?\f0 rnak aras\f1\u305?\f0 na yaz\f1\u305?\f0 l\f1\u305?\f0 r.\par
+\par
+-- sql, case insensitive yakla\f1\'ba\u305?\f0 mdad\f1\u305?\f0 r. yani b\'fcy\'fck k\'fc\'e7\'fck harf duyarl\f1\u305?\f0 l\f1\u305?\u287?\u305?\f0  YOKTUR.\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Customers\par
+\cf2 select\cf0  \cf6 *\cf0  \cf2 from\cf0  customers\par
+\cf2 SELECT\cf0  \cf6 *\cf0  \cf2 fROM\cf0  CUSTOMERS\par
+\par
+3 sorgu da tamamen ayn\f1\u305?\f0  komutu ifade eder ve \'e7al\f1\u305?\'ba\u305?\f0 r.\par
+\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Products \cf2 where\cf0  CategoryId = \cf3 1\cf1  \cf8 or\cf1  \cf0 CategoryId = 3\par
+\par
+\cf1 or \cf3 komutu \ldblquote ya da\rdblquote  anlam\f1\u305?\f0 na gelir.\par
+CategoryId\rquote si 1 olanlar\f1\u305?\f0  ya da 3 olanlar\f1\u305?\f0  getir demi\f1\'ba\f0  oluruz.\cf7\par
+\cf0 Yani CategoryId\rquote si hem 1 hem 3 olanlar se\'e7ilmi\f1\'ba\f0  olur.\par
+\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Products \cf2 where\cf0  CategoryId = \cf3 1\cf1  \cf8 and\cf1  \cf0 UnitPrice >= 10\par
+\par
+\cf1 and\cf0  komutu \ldblquote ve\rdblquote  anlam\f1\u305?\f0 na gelir.\par
+CategoryId\rquote si 1 olan ve fiyat\f1\u305?\f0  10\rquote dan b\'fcy\'fck olan \'fcr\'fcnler se\'e7iyoruz.\par
+\par
+\par
+\par
+\par
+\cf7 -- sql komutlar\f1\u305?\f0 ndan b\'fcy\'fck,k\'fc\'e7\'fck ve farkl\f1\u305?\f0  komutlar\f1\u305?\f0  vard\f1\u305?\f0 r.\par
+\par
+\cf0 UnitPrice > 10 \tab\cf7 -- 10\rquote dan b\'fcy\'fck olanlar\f1\u305?\f0  getir.\cf0\par
+UnitPrice < 10 \tab\cf7 -- 10\rquote dan k\'fc\'e7\'fck olanlar\f1\u305?\f0  getir.\cf0\par
+UnitPrice <> 10 \tab\cf7 -- 10\rquote dan farkl\f1\u305?\f0  olanlar\f1\u305?\f0  getir.\par
+\par
+\cf0\par
+\par
+\par
+\par
+\par
+\cf1 order by\cf0  komutu, istedi\f1\u287?\f0 imiz tabloyu, belirtti\f1\u287?\f0 imiz d\'fczene (s\f1\u305?\f0 ralamaya) g\'f6re getirir.\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Products \cf2 order by\cf0  ProductName\par
+\par
+yukar\f1\u305?\f0 daki komutu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z zaman, t\'fcm Products tablosu gelir. \par
+Ancak gelen tablo \ldblquote product name\rdblquote  s\'fctununun s\f1\u305?\f0 ralanm\f1\u305?\'ba\f0  hali olarak kar\f1\'ba\u305?\f0 m\f1\u305?\f0 za gelir.\par
+\'f6rne\f1\u287?\f0 in, tablo her zaman primary key s\f1\u305?\f0 ralamas\f1\u305?\f0 na g\'f6re geliyordu. \par
+Ancak \f1\'ba\f0 u an \'fcr\'fcn isimlerinin alfabetik s\f1\u305?\f0 ralanm\f1\u305?\'ba\f0  haliyle gelir.\par
+\par
+order by, bir nevi s\f1\u305?\f0 ralama g\'f6revi g\'f6r\'fcr. \par
+\'d6rne\f1\u287?\f0 in bir e-ticaret sitesinde, bilgisayar kategorisine ait t\'fcm \'fcr\'fcnleri listelemek istiyoruz. \par
+ancak fiyat olarak en ucuzdan en pahal\f1\u305?\f0 ya g\'f6re listelemek istersek, order by kullan\f1\u305?\f0 r\f1\u305?\f0 z.\par
+\par
+\par
+\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Products \cf2 order by\cf0  CategoryId, ProductName\par
+\par
+yukar\f1\u305?\f0 daki gibi bir komut yazarsak, 2 a\f1\'ba\f0 amal\f1\u305?\f0  s\f1\u305?\f0 ralama i\f1\'ba\f0 lemi uygulan\f1\u305?\f0 r.\par
+\'f6ncelikle ilk yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z s\'fctuna g\'f6re s\f1\u305?\f0 ralama yapar.\par
+yani ilk olarak CategoryId\rquote ye g\'f6re t\'fcm \'fcr\'fcnleri listeler.\par
+daha sonra ise, tablonun s\f1\u305?\f0 ralanm\f1\u305?\'ba\f0  bu halini de kendi i\'e7inde productName s\f1\u305?\f0 ras\f1\u305?\f0 na g\'f6re bir daha s\f1\u305?\f0 ralar.\par
+\par
+yani; \'f6nce categoryId\rquote si 1 olan 10 \'fcr\'fcn en \'fcstte gelir.\par
+sonra categoryId\rquote si 2 olan 10 \'fcr\'fcn gelir.\par
+\par
+categoryId\rquote si 1 olan 10 \'fcr\'fcn kendi i\'e7inde alfabetik s\f1\u305?\f0 ralan\f1\u305?\f0 r.\par
+\'e7\'fcnk\'fc \'f6nce categoryId\rquote ye g\'f6re s\f1\u305?\f0 ralad\f1\u305?\f0 k.\par
+daha sonra productNam\rquote e g\'f6re s\f1\u305?\f0 ralad\f1\u305?\f0 k.\par
+\par
+\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Products \cf2 order by\cf0  UnitPrice\par
+\par
+bu komut \'e7al\f1\u305?\'ba\f0 t\f1\u305?\u287?\u305?\f0  zaman, \'fcr\'fcn fiyatlar\f1\u305?\f0  k\'fc\'e7\'fckten b\'fcy\'fc\f1\u287?\f0 e s\f1\u305?\f0 ralan\f1\u305?\f0 r.\par
+asl\f1\u305?\f0 nda bu komut gizlice bir komut daha bar\f1\u305?\f0 nd\f1\u305?\f0 r\f1\u305?\f0 r.\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Products \cf2 order by\cf0  UnitPrice \cf2 asc     \cf7 -- ascending\cf0\par
+\par
+\cf1 ascending\cf0 , \ldblquote artan\rdblquote  manas\f1\u305?\f0  ta\f1\'ba\u305?\f0 r. artan bir \f1\'ba\f0 ekilde s\f1\u305?\f0 ralama yapar.\par
+yani sql komutlar\f1\u305?\f0 nda default olarak asc yer ald\f1\u305?\u287?\u305?\f0 n\f1\u305?\f0  anlam\f1\u305?\'ba\f0  oluyoruz.\par
+\par
+azalan formu i\'e7in de \cf1 desc   \cf7 -- descending\cf0\par
+\par
+\par
+\par
+\par
+\'f6rne\f1\u287?\f0 in categoryId\rquote si 1 olan \'fcr\'fcnleri, en pahal\f1\u305?\f0 dan en ucuza \'e7a\f1\u287?\u305?\f0 ral\f1\u305?\f0 m.\par
+\par
+\cf2 Select\cf0  \cf6 *\cf0  \cf2 from\cf0  Products \cf2 where\cf0  CategoryId = 1 \cf2 order by\cf0  UnitPrice \cf2 desc\cf0\par
+\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf2 Select\cf0  \cf4 count\cf8 (*)\cf0  \cf2 from\cf0  Products\tab\tab\tab\cf7 -- 77 sonucunu d\'f6ner.\par
+\par
+\cf3 T\'fcm product tablosunda ka\'e7 adet data oldu\f1\u287?\f0 u sonucunu elde etmi\f1\'ba\f0  olduk.\cf0\par
+Yani burada anlat\f1\u305?\f0 lmaya \'e7al\f1\u305?\'ba\u305?\f0 lan olay, tek bir sonu\'e7 d\'f6nd\'fcren komutlar yazarsak, tek bir s\'fctun ve tek bir sat\f1\u305?\f0 rdan olu\f1\'ba\f0 an bir tablo elde ederiz.\par
+Bu sebepten dolay\f1\u305?\f0 , count gibi bir komutun yan\f1\u305?\f0 na bir s\'fctun ismi yazmaya kalkarsak hata al\f1\u305?\f0 r\f1\u305?\f0 z. \par
+\par
+\cf2 Select\cf0  \cf4 count\cf8 (*), ProductName\cf0  \cf2 from\cf0  Products \cf1 XXXXXXX HATALI KULLANIM\cf0\par
+bunun sebebi de, count dedi\f1\u287?\f0 imizde 1\rquote e 1 bir tablo d\'f6nd\'fcrmeye \'e7al\f1\u305?\'ba\u305?\f0 rken, yan\f1\u305?\f0 na ProductName s\'fctunu girdi\f1\u287?\f0 imizde, 1\rquote e N bir tablo d\'f6nd\'fcrmeye \'e7al\f1\u305?\'ba\u305?\f0 yoruz.\par
+Bu 2 talep, tek bir tablo olarak bize d\'f6nemez. bu y\'fczden hata al\f1\u305?\f0 r\f1\u305?\f0 z.\par
+\par
+\par
+\par
+\par
+\cf2 Select\cf0  \cf4 count\cf8 (*)\cf0  \cf2 from\cf0  Products \cf2 where\cf0  CategotyId = 2 \cf7 -- 12 sonucunu d\'f6ner.\par
+\cf3 Yukar\f1\u305?\f0 daki komut \'e7al\f1\u305?\'ba\u305?\f0 r. \'e7\'fcnk\'fc categoryId\rquote si 2 olan \'fcr\'fcnlerin adedini sorgulad\f1\u305?\f0 k.\par
+Dolay\f1\u305?\f0 s\f1\u305?\f0 yla, bu sorgunun bir sonucu vard\f1\u305?\f0 r. ve bize adet sonucu tablo olarak d\'f6ner.\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf3\f0\lang31\par
+\par
+\cf1 group by\cf2  \cf3 konusuna ge\'e7iyoruz.\par
+\par
+group by, yaln\f1\u305?\f0 zca verdi\f1\u287?\f0 imiz s\'fctun ismiyle ya da count gibi k\'fcm\'fclatif komutlarla \'e7al\f1\u305?\'ba\u305?\f0 r. aksi durumlarda hata al\f1\u305?\f0 r\f1\u305?\f0 z.\par
+\par
+\cf2 Select\cf0  \cf8 *\cf0  \cf2 from\cf0  Products \cf2 group by \cf3 CategoryId\cf0  \cf1 XXXXXXX HATALI KULLANIM\cf3\par
+\par
+bu komut hatal\f1\u305?\f0 d\f1\u305?\f0 r.\par
+\'e7\'fcnk\'fc * kullanarak t\'fcm s\'fctunlar\f1\u305?\f0  istemi\f1\'ba\f0  olduk.\par
+bu group by mant\f1\u305?\u287?\u305?\f0 na ayk\f1\u305?\f0 r\f1\u305?\f0 d\f1\u305?\f0 r.\par
+\par
+\par
+\par
+\cf2 Select\cf0  \cf3 CategoryId\cf0  \cf2 from\cf0  Products \cf2 group by \cf3 CategoryId\par
+\par
+bu komut d\'fczg\'fcn bir \f1\'ba\f0 ekilde \'e7al\f1\u305?\'ba\u305?\f0 r.\par
+\'f6rne\f1\u287?\f0 in 1-5 categoryId rakamlar\f1\u305?\f0  aras\f1\u305?\f0 nda 1 milyon adet \'fcr\'fcn var.\par
+ama categoryId \'e7e\f1\'ba\f0 itlili\f1\u287?\f0 i sadece 5 tane.\par
+biz de, ka\'e7 adet categoryId oldu\f1\u287?\f0 unu sorgulam\f1\u305?\'ba\f0  olduk.\par
+ve her id\rquote yi 1 kez sayd\f1\u305?\f0 .\par
+sonu\'e7 olarak a\f1\'ba\f0 a\f1\u287?\u305?\f0 daki gibi bir \'e7\f1\u305?\f0 kt\f1\u305?\f0  elde ederiz.\par
+\par
+\tab\tab\tab categoryId\tab\tab\par
+1\tab\tab\tab\tab 1\par
+2\tab\tab\tab\tab 2\par
+3\tab\tab\tab\tab 3\par
+4\tab\tab\tab\tab 4\par
+5\tab\tab\tab\tab 5\par
+\par
+\par
+asl\f1\u305?\f0 nda group by yapt\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 zda, arka tarafta t\'fcm categoryId verilerini ayr\f1\u305?\f0  ayr\f1\u305?\f0  tablo olarak olu\f1\'ba\f0 turuyor.\par
+tam da bu sebepten dolay\f1\u305?\f0 , count gibi komutlar\f1\u305?\f0  da group bu ile kullanabiliriz.\par
+\par
+\par
+\cf2 Select\cf0  \cf3 CategoryId, \cf4 count\cf3 (*) Adet\cf0  \cf2 from\cf0  Products \cf2 group by \cf3 CategoryId\par
+\par
+\tab\tab\tab categoryId\tab      \f2\lang1055                     \f0\lang31 Adet  \tab\par
+1\tab\tab\tab\tab 1\tab\tab\tab\tab\tab 12\tab\tab\tab\par
+2\tab\tab\tab\tab 2\tab\tab\tab\tab\tab 11\par
+3\tab\tab\tab\tab 3\tab\tab\tab\tab\tab 7\par
+4\tab\tab\tab\tab 4\tab\tab\tab\tab\tab 22\par
+5\tab\tab\tab\tab 5\tab\tab\tab\tab\tab 4\par
+\par
+\par
+asl\f1\u305?\f0 nda tam olarak \f1\'ba\f0\'f6yle d\'fc\f1\'ba\f0\'fcn\'fclmeli.\par
+group by CategoryId dedi\f1\u287?\f0 imiz zaman, her bir categoryId\rquote ye ait \'fcr\'fcnler kendi aralar\f1\u305?\f0 nda grupla\f1\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 l\f1\u305?\f0 r.\par
+\par
+bu sayede, count komutunu kulland\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z zaman, her bir grubun adedini istemi\f1\'ba\f0  oluruz.\par
+ve do\f1\u287?\f0 al olarak, yukar\f1\u305?\f0 daki tablo \'e7\f1\u305?\f0 kt\f1\u305?\f0 s\f1\u305?\f0  bize d\'f6ner.\par
+\par
+\par
+\par
+\'f6rnek yapal\f1\u305?\f0 m.\par
+\'fcr\'fcn say\f1\u305?\f0 s\f1\u305?\f0  10\rquote dan az olan kategorileri listele.\par
+\par
+\par
+\'f6nce t\'fcm kategorileri listeleyelim.\par
+\cf2\par
+Select\cf0  \cf3 CategoryId \cf2 from\cf0  Products \cf2 group by \cf3 CategoryId\par
+\par
+bu komut sayesinde, 5 adet kategorimiz varsa, 1,2,3,4,5 olarak 5 sat\f1\u305?\f0 rdan olu\f1\'ba\f0 an bir tablo d\'f6ner. ve bu tablo tek s\'fctunludur.\par
+\par
+daha sonra bu kategori numaralar\f1\u305?\f0 n\f1\u305?\f0 n yanlar\f1\u305?\f0 na, \'fcr\'fcn adetlerini yazal\f1\u305?\f0 m.\par
+\par
+\cf2 Select\cf0  \cf3 CategoryId, \cf4 count\cf3 (*) \cf2 from\cf0  Products \cf2 group by \cf3 CategoryId\par
+\par
+bu komut sayesinde 2 s\'fctunlu bir tablo elde ettik.\par
+kategoryId\rquote lerin yan\f1\u305?\f0 nda ka\'e7 adet \'fcr\'fcn i\'e7erdikleri bilgisi yer al\f1\u305?\f0 yor.\par
+\par
+\par
+ancak biz 10\rquote dan az \'fcr\'fcn i\'e7erenleri g\'f6rmek istiyoruz.\par
+i\f1\'ba\f0 te tam burada bir sorun kar\f1\'ba\u305?\f0 m\f1\u305?\f0 za \'e7\f1\u305?\f0 k\f1\u305?\f0 yor.\par
+biz bu sorguyu yaparken, k\'fcm\'fclatif olan s\'fctuna bir sorgulama yapmaya \'e7al\f1\u305?\'ba\u305?\f0 yoruz.\par
+yani count(*) s\'fctununda bir filtreleme yapmaya \'e7al\f1\u305?\'ba\u305?\f0 yoruz.\par
+i\f1\'ba\f0 te bu \f1\'ba\f0 ekilde k\'fcm\'fclatif s\'fctuna sorgu yazmak i\'e7in \cf1 having \cf3 komutunu kullan\f1\u305?\f0 r\f1\u305?\f0 z.\par
+\par
+\cf2 Select\cf0  \cf3 CategoryId, \cf4 count\cf9 (*)\cf3  \cf2 from\cf0  Products \cf2 group by \cf3 CategoryId having \cf1 count\cf10 (*)\cf3 <10\par
+\par
+bu \f1\'ba\f0 ekilde \ldblquote count\rdblquote  s\'fctunu \'fczerinde bir filtreleme yapabilmi\f1\'ba\f0  olduk.\par
+\par
+\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\par
+\cf1 JOIN\cf0  i\f1\'ba\f0 lemlerine ge\'e7iyoruz.\par
+\cf3\par
+farkl\f1\u305?\f0  tablolardaki s\'fctunlar\f1\u305?\f0  bir araya getirmek i\'e7in join yapar\f1\u305?\f0 z.\par
+farkl\f1\u305?\f0  tablolardaki s\'fctunlar\f1\u305?\f0  bir araya getirme sebebimiz ise;\par
+\'f6rne\f1\u287?\f0 in, \'fcr\'fcn tablosu; categoryId ve unitPrice s\'fctunlar\f1\u305?\f0 na sahiptir.\par
+\cf11 CategoryName \emdash  productName \emdash  UnitPrice\cf3  \par
+s\'fctunlar\f1\u305?\f0 n\f1\u305?\f0  tablo olarak istiyoruz.\par
+\par
+fakat \'fcr\'fcn tablosunda\par
+\cf1 CategoryId\cf11  \emdash  productName \emdash  UnitPrice\par
+\cf3\f1\'ba\f0 eklinde bar\f1\u305?\f0 n\f1\u305?\f0 yor veriler.\par
+\'e7\'fcnk\'fc category tablosu tamamen farkl\f1\u305?\f0  bir tablo. ve categoryName o tabloda yer al\f1\u305?\f0 yor.\par
+\par
+Bu sebepten dolay\f1\u305?\f0 , bu bilgileri ayn\f1\u305?\f0  sorguda elde edebilmek i\'e7in JOIN komutuna ihtiya\'e7 duyar\f1\u305?\f0 z.\par
+\par
+\par
+\par
+en basit haliyle 2 tabloyu bir araya getirmek i\'e7in\par
+\par
+\cf2 SELECT \cf8 *\cf2\par
+FROM \cf3 Products \cf2 INNER JOIN\cf3  Categories\par
+\cf2 ON\cf3  Products.CategoryID \cf8 =\cf3  Categories.CategoryID                                        \par
+\par
+bu komutu yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 zda, products ve categories tablosu birle\f1\'ba\f0 mi\f1\'ba\f0  olur.\par
+bu 2 tabloyu bir ortak s\'fctun kullanarak birle\f1\'ba\f0 tirmek gerekiyor.\par
+bu ortakl\f1\u305?\u287?\u305?\f0  da \cf1 ON\cf3  k\f1\u305?\f0 sm\f1\u305?\f0 ndan sonra belirtiyoruz.\par
+\par
+\'dcstte yer alan sorguda * ifadesini kulland\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z i\'e7in, 2 tabloya da ait olan t\'fcm s\'fctunlar\f1\u305?\f0  \'e7a\f1\u287?\u305?\f0 rm\f1\u305?\'ba\f0  olaca\f1\u287?\u305?\f0 z.\par
+\par
+Fakat biz \'fcst tarafta bir \'f6rnek kullanm\f1\u305?\'ba\f0 t\f1\u305?\f0 k.\par
+\par
+\cf11 CategoryName \emdash  productName \emdash  UnitPrice\par
+\par
+\cf3 farkl\f1\u305?\f0  tablolarda yer alan, bu 3 s\'fctunun gelmesini istiyorduk.\par
+o halde * yerine bu kolonlar\f1\u305?\f0  sorguda belirtmemiz laz\f1\u305?\f0 m.\par
+\par
+\cf2 SELECT\f2\lang1055  \cf8\f0\lang31 Categories.CategoryName,\f2\lang1055  \f0\lang31 Products.ProductName, Products.UnitPrice\cf2\par
+FROM \cf3 Products \cf2 INNER JOIN\cf3  Categories\par
+\cf2 ON\cf3  Products.CategoryID \cf8 =\cf3  Categories.CategoryID\par
+\par
+bu \f1\'ba\f0 ekilde 2 tablodan, kendi se\'e7ti\f1\u287?\f0 im s\'fctunlar\f1\u305?\f0  se\'e7mi\f1\'ba\f0  oldum.\par
+\par
+  \par
+\par
+\par
+\par
+\par
+\cf7 -- ger\'e7ek bir projede, bu \f1\'ba\f0 ekilde veri taban\f1\u305?\f0 ndan verileri al\f1\u305?\f0 r\f1\u305?\f0 z.\par
+-- elde etti\f1\u287?\f0 imiz bu \ldblquote\'e7oklu\rdblquote  verileri bir listede toplar\f1\u305?\f0 z.\par
+-- daha sonra bu listedeki verileri, \'f6ny\'fczde kullan\f1\u305?\f0 c\f1\u305?\f0 ya sunar\f1\u305?\f0 z.\par
+\par
+\cf1 **** \'d6NEML\f1\u304?\f0  NOT ****\cf3\par
+Sorgularla elde etti\f1\u287?\f0 imiz verileri, C# k\f1\u305?\f0 sm\f1\u305?\f0 nda bir listenin i\'e7ine atar\f1\u305?\f0 z.\par
+Fakat bu veriler, bir Entity Class halinde zaten C# k\f1\u305?\f0 sm\f1\u305?\f0 nda yer al\f1\u305?\f0 yor.\par
+\'d6rne\f1\u287?\f0 in, Product tablomuz ve tabloya ait s\'fctunlar\f1\u305?\f0 m\f1\u305?\f0 z var.\par
+Ayn\f1\u305?\f0  \f1\'ba\f0 ekilde, Product class\rquote\f1\u305?\f0 m\f1\u305?\f0 z ve class\rquote a ait property\rquote ler de C#\rquote ta var.\par
+\par
+Bu sebepten, sorgulardan gelen sonu\'e7lar\f1\u305?\f0  listelerde tutabiliriz.\par
+\'f6rne\f1\u287?\f0 in veri taban\f1\u305?\f0 ndan gelen t\'fcm Product\rquote lari List<Product> \f1\'ba\f0 eklinde tutabiliriz.\par
+\par
+Peki ya, INNER JOIN ve benzeri sorgularla gelen sonu\'e7lar\f1\u305?\f0  nas\f1\u305?\f0 l listelerde tutaca\f1\u287?\u305?\f0 z?\par
+sonu\'e7ta C# taraf\f1\u305?\f0 nda bu karma sonuca benzer bir Entity class ve nesne t\'fcr\'fc yok.\par
+\f1\u304?\'ba\f0 te bu sorunu halleden mant\f1\u305?\u287?\f0 a C# taraf\f1\u305?\f0 nda \cf1 DTO (Data Transformation Object) \cf3 denir.\par
+\cf0 Bunu daha sonra ayr\f1\u305?\f0 nt\f1\u305?\f0 l\f1\u305?\f0  \'f6\f1\u287?\f0 renece\f1\u287?\f0 iz.\par
+\cf1 **** \'d6NEML\f1\u304?\f0  NOT SONU ****\cf0\par
+\par
+\par
+\par
+\f1\'ba\f0 u ana kadar \'f6\f1\u287?\f0 rendi\f1\u287?\f0 imiz bilgileri bir arada kullanabiliriz.\par
+\par
+\'f6rne\f1\u287?\f0 in, bir sorgu yazal\f1\u305?\f0 m.\par
+\par
+Fiyat\f1\u305?\f0  10\rquote dan b\'fcy\'fck olan \'fcr\'fcnlere ait; \cf3 CategoryName \emdash  productName \emdash  UnitPrice bilgilerini getir.\par
+\par
+\cf2 SELECT \cf8 Categories.CategoryName, Products.ProductName, Products.UnitPrice\cf2\par
+FROM \cf3 Products \cf2 INNER JOIN\cf3  Categories\par
+\cf2 ON\cf3  Products.CategoryID \cf8 =\cf3  Categories.CategoryID\par
+\cf2 WHERE\cf3  Products.UnitPrice > 10\par
+\par
+\par
+\par
+\cf0\par
+\par
+\par
+\par
+\par
+\cf1 **** SYNTAX NOT ****\cf3\par
+Tablo isimleri hi\'e7bir zaman bo\f1\'ba\f0 luk karakteri i\'e7ermemelidir.\par
+Order Details diye tablo ismi tan\f1\u305?\f0 mlamak yanl\f1\u305?\'ba\f0 t\f1\u305?\f0 r.\par
+OrderDetails olarak tan\f1\u305?\f0 mlamam\f1\u305?\f0 z gerekir.\par
+\par
+E\f1\u287?\f0 er bir tablo ismi bo\f1\'ba\f0 luk karakteri i\'e7eriyorsa, sql sorgusunda o tablonun ad\f1\u305?\f0 n\f1\u305?\f0  yazarken; [Order Details] \f1\'ba\f0 eklinde k\'f6\f1\'ba\f0 eli parantezler i\'e7inde yazmal\f1\u305?\f0 y\f1\u305?\f0 z.\cf0\par
+\cf1 **** SYNTAX NOT SONU ****\cf0\par
+\par
+\par
+\par
+\par
+\par
+\par
+INNER JOIN\rquote i, birle\f1\'ba\f0 tirece\f1\u287?\f0 imiz tablolarda ortak s\'fctunlar varken yapar\f1\u305?\f0 z.\par
+E\f1\u287?\f0 er tablolarda e\f1\'ba\f0 le\f1\'ba\f0 meyen datalar varsa, bunlar\f1\u305?\f0  inner join ile elde edemeyiz.\par
+Ortak olanlar kar\f1\'ba\u305?\f0 m\f1\u305?\f0 za gelir. ancak e\f1\'ba\f0 le\f1\'ba\f0 meyen k\f1\u305?\f0 s\f1\u305?\f0 mlar\f1\u305?\f0  g\'f6remeyiz.\par
+\par
+Bunun anlam\f1\u305?\f0 n\f1\u305?\f0  bir \'f6rnek \'fczerinden a\'e7\f1\u305?\f0 klayal\f1\u305?\f0 m.\par
+\'d6rne\f1\u287?\f0 in Orders (sipari\f1\'ba\f0 ler) tablosu var.\par
+Ve Customers (m\'fc\f1\'ba\f0 teriler) tablosu var.\par
+\par
+\cf2 SELECT \cf8 *\cf2\par
+FROM \cf3 Customers C \cf2 INNER JOIN\cf3  Orders O\par
+\cf2 ON\cf3  C.CustomerID \cf8 =\cf3  O.CustomerID\par
+\par
+2 tabloyu bu \f1\'ba\f0 ekilde birle\f1\'ba\f0 tirirsek, \ldblquote sipari\f1\'ba\f0  veren m\'fc\f1\'ba\f0 teriler\rdblquote  tablo olarak kar\f1\'ba\u305?\f0 m\f1\u305?\f0 zda g\'f6r\'fcr\'fcz.\par
+\par
+Peki ya \ldblquote hi\'e7 sipari\f1\'ba\f0  vermeyen m\'fc\f1\'ba\f0 terileri\rdblquote  g\'f6rmek istiyorsak ne yapar\f1\u305?\f0 z?\par
+ \cf0\par
+\cf2 SELECT \cf8 *\cf2\par
+FROM \cf3 Customers C \cf2 LEFT JOIN\cf3  Orders O\par
+\cf2 ON\cf3  C.CustomerID \cf8 =\cf3  O.CustomerID\cf0\par
+\par
+burada \ldblquote left join\rdblquote  yapt\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z zaman, \ldblquote sipari\f1\'ba\f0  veren m\'fc\f1\'ba\f0 teriler\rdblquote  de gelir, onlara ek olarak \ldblquote hi\'e7 sipari\f1\'ba\f0  vermemi\f1\'ba\f0  m\'fc\f1\'ba\f0 teriler\rdblquote  de gelir.\par
+bunun sebebi, \ldblquote left join\rdblquote  yazd\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z i\'e7indir.\par
+sorguda sola yaz\f1\u305?\f0 lan tablo \ldblquote customers\rdblquote  tablosuydu.\par
+o halde \ldblquote left join\rdblquote  dersek, soldaki tabloya ait hepsini getir demi\f1\'ba\f0  oluruz.\par
+sa\f1\u287?\f0 daki tablodan ise, sadece Id\rquote si e\f1\'ba\f0 le\f1\'ba\f0 enler gelecek.\par
+\par
+\par
+Fakat hala tek sorgu sonucunda, istedi\f1\u287?\f0 imiz bilgiye ula\f1\'ba\f0 amad\f1\u305?\f0 k.\par
+inner join sonucunda sipari\f1\'ba\f0  veren 998 m\'fc\f1\'ba\f0 teri geliyorsa,\par
+left join sonucunda sipari\f1\'ba\f0  veren + vermeyen 1000 m\'fc\f1\'ba\f0 teri geliyorsa,\par
+hi\'e7 sipari\f1\'ba\f0  vermemi\f1\'ba\f0  2 m\'fc\f1\'ba\f0 teri oldu\f1\u287?\f0 unu anlayabiliriz.\par
+Ancak bu sonucu elde etmek i\'e7in 2 sorgu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rmam\f1\u305?\f0 z gerekti.\par
+ve sonu\'e7 \'e7\f1\u305?\f0 kt\f1\u305?\f0 s\f1\u305?\f0  olarak da bu 2 m\'fc\f1\'ba\f0 teriyi bulamad\f1\u305?\f0 k.\par
+\par
+Bu sebepten sorgunun devam etmesi gerekiyor.\par
+ve bizim de yeni bir bilgiye daha ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z var.\par
+\ldblquote left join\rdblquote  yap\f1\u305?\f0 ld\f1\u305?\u287?\u305?\f0 nda, sol tablodan gelen \ldblquote e\f1\'ba\f0 le\f1\'ba\f0 meyen\rdblquote  verilerin sorgudaki sa\f1\u287?\f0  tabloya ait olan k\f1\u305?\f0 s\f1\u305?\f0 mlar\f1\u305?\f0 nnda \cf1 null\cf0  yazar.\par
+Bu bilgi \f1\u305?\'ba\u305?\u287?\u305?\f0 nda, sorgunun kalan\f1\u305?\f0 n\f1\u305?\f0  da kolayca yazabiliriz.\par
+\par
+\cf2 SELECT \cf8 *\cf2\par
+FROM \cf3 Customers C \cf2 LEFT JOIN\cf3  Orders O\par
+\cf2 ON\cf3  C.CustomerID \cf8 =\cf3  O.CustomerID\par
+WHERE O.CustomerID \cf8 is null\par
+\par
+\cf3 sol taraftan gelen fazlal\f1\u305?\f0 klar\f1\u305?\f0 n CustomerID\rquote si, sa\f1\u287?\f0  tablodaki Order tablosundan hi\'e7bir CustomerID ile e\f1\'ba\f0 le\f1\'ba\f0 meyece\f1\u287?\f0 i i\'e7in hepsi null olarak atan\f1\u305?\f0 r.\par
+Biz de \ldblquote hi\'e7 sipari\f1\'ba\f0  vermeyen m\'fc\f1\'ba\f0 terileri\rdblquote  tek bir sorguda d\'f6nd\'fcrm\'fc\f1\'ba\f0  oluruz.\par
+\par
+\par
+\par
+\par
+\par
+INNER JOIN ve LEFT JOIN haricinde bir de \cf1 RIGHT JOIN\cf3  vard\f1\u305?\f0 r.\par
+bu komut da sa\f1\u287?\f0  tabloda olup, solda olmayan verileri de getirir.\par
+LEFT JOIN komutuyla tamamen ayn\f1\u305?\f0  yap\f1\u305?\f0 da oldu\f1\u287?\f0 u i\'e7in genelde tercih edilmez.\par
+fazla verileri alaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z tabloyu sorguda sola yazar\f1\u305?\f0 z ve LEFT JOIN ekleriz.\par
+\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+Birden fazla tablodaki verileri birle\f1\'ba\f0 tirmek istiyorsak, join yapmaya devam ederiz.\par
+\par
+\cf2 SELECT\cf0  \cf8 *\cf0  FROM Products P \cf2 INNER JOIN\cf0  [Order Details] OD\par
+\cf2 ON\cf0  P.ProductsID \cf8 =\cf0  OD.ProductsID\par
+\cf2 INNER JOIN\cf0  ORDERS O\par
+\cf2 ON\cf0  O.OrderID \cf8 =\cf0  OD.OrderID\cf3\par
+\par
+\par
+\cf1 ****** UYARI ******\cf3\par
+Ba\f1\'ba\f0 ka SQL komutlar\f1\u305?\f0  da var.\par
+Ara\f1\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 l\f1\u305?\f0 p nota eklenmeye devam edecek.\par
+\'d6rnek => UPDATE, DELETE, INSERT, CREATE TABLE, IN, UNION, UNION ALL, DISTINCT\'85\par
+{\cf2{\field{\*\fldinst{HYPERLINK https://www.w3schools.com/sql/default.asp }}{\fldrslt{https://www.w3schools.com/sql/default.asp\ul0\cf0}}}}\f0\fs28  \'fczerinden sql konular\f1\u305?\f0  \'e7al\f1\u305?\'ba\u305?\f0 labilir.\par
+\cf1 ****** UYARI SON ******\cf3\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31 w3schools.com sitesinin SQL \'e7al\f1\u305?\'ba\f0 malar\f1\u305?\f0 na ge\'e7iyoruz.\par
+\par
+\cf4 ~~~~~ SQL HAKKINDA GENEL B\f1\u304?\f0 LG\f1\u304?\f0 LER ~~~~~\par
+\cf0\par
+\cf1 SQL\cf0 ; veri tabanlar\f1\u305?\f0 na eri\f1\'ba\f0 mek ve manip\'fcle etmek i\'e7in kullan\f1\u305?\f0 lan standart dildir.\par
+\par
+\cf1 SQL (Structured Query Language)\cf0  => Yap\f1\u305?\f0 land\f1\u305?\f0 r\f1\u305?\f0 lm\f1\u305?\'ba\f0  Sorgu Dili\par
+\par
+SQL; ANSI ve ISO\rquote nun da standart kabul etti\f1\u287?\f0 i bir sorgulama dilidir.\par
+\par
+\par
+\cf2 SQL ile yap\f1\u305?\f0 labilecekler:\cf0\par
+\tab\par
+\tab\tab\tab veri taban\f1\u305?\f0 na kar\f1\'ba\u305?\f0  sorgu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 labilir.\par
+\tab\tab\tab veri taban\f1\u305?\f0 ndan veri al\f1\u305?\f0 nabilir.\par
+\tab\tab\tab veri taban\f1\u305?\f0 na yeni kay\f1\u305?\f0 t eklenebilir.\par
+\tab\tab\tab veri taban\f1\u305?\f0 ndaki kay\f1\u305?\f0 tlar g\'fcncellebilir.\par
+\tab\tab\tab veri taban\f1\u305?\f0 ndaki veriler silinebilir.\par
+\tab\tab\tab yeni bir veri taban\f1\u305?\f0  olu\f1\'ba\f0 turulabilir.\par
+\tab\tab\tab veri taban\f1\u305?\f0 nda yeni tablolar olu\f1\'ba\f0 turulabilir.\par
+\tab\tab\tab stored procedure olu\f1\'ba\f0 turulabilir.\par
+\tab\tab\tab tablo, procedure \'fczerinde izinler ayarlanabilir.\par
+\par
+\par
+SQL bir ANSI/ISO standard\f1\u305?\f0  olsa da, farkl\f1\u305?\f0  SQL dil versiyonlar\f1\u305?\f0  mevcuttur.\par
+Fakat, farkl\f1\u305?\f0  geli\f1\'ba\f0 mi\f1\'ba\f0  versiyonlar da standart SQL komutlar\f1\u305?\f0 n\f1\u305?\f0  \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 rlar.\par
+\'c7o\f1\u287?\f0 u veri taban\f1\u305?\f0 , standart SQL\rquote e ek olarak, kendi SQL eklentilerine sahiptir.\par
+\par
+\par
+\cf1 RDBMS (Relational Database Management System)\cf2  \cf3 => \f1\u304?\f0 li\f1\'ba\f0 kisel DB Y\'f6netim Sistemi\par
+\par
+RDBMS; SQL i\'e7in bir temeldir.\par
+MS SQL Server, Oracle, MySQL, Microsoft Access gibi database\rquote ler birer RDBMS\rquote dir.\par
+\cf0 Datalar, RDBMS i\'e7inde birer nesne olarak \cf1 tablo\cf0\rquote larda depolan\f1\u305?\f0 rlar.\par
+\tab\tab\tab\par
+\par
+\cf4 ~~~~~ SQL SYNTAX ~~~~~\cf0\par
+\par
+Database\rquote ler bir\'e7ok tablo i\'e7erirler.\par
+Her tablo bir isme sahiptir. (Customers, Products, Orders gibi)\par
+\par
+Tablodaki her bir s\'fctun (column), verilere ait \'f6zelliklere kar\f1\'ba\u305?\f0 l\f1\u305?\f0 k gelir.\par
+Tablodaki her bir sat\f1\u305?\f0 r ise tabloya eklenmi\f1\'ba\f0  verilerdir.\par
+\par
+\cf9 CustomerID \f2\lang1055 --\f0\lang31  CustomerName \f2\lang1055 --\f0\lang31   City  \f2\lang1055 --\f0\lang31   PostalCode \f2\lang1055 --\f0\lang31  Country\par
+\par
+    \f2\lang1055     \f0\lang31 1\tab\f2\lang1055              \f0\lang31 Ali Atakay\tab  \f2\lang1055    \f0\lang31 Istanbul     \f2\lang1055    \f0\lang31 34790      \f2\lang1055     \f0\lang31 Turkey\par
+\f2\lang1055         \f0\lang31 2\tab\tab\f2\lang1055     \f0\lang31 Kemal Kaya\tab  \f2\lang1055     \f0\lang31 Ankara       \f2\lang1055   \f0\lang31 53180      \f2\lang1055     \f0\lang31 Turkey\cf0\par
+\par
+\par
+SQL komutlar\f1\u305?\f0  \cf1 case sensitive de\f1\u287?\f0 ildir\cf0 .\par
+\cf3 yani\cf2  SELECT\cf0  ve \cf2 select\cf0  komutlar\f1\u305?\f0  tamamen ayn\f1\u305?\f0  \'e7al\f1\u305?\'ba\u305?\f0 r\par
+\par
+\par
+\cf2 En \'e7ok kullan\f1\u305?\f0 lan SQL komutlar\f1\u305?\f0 :\cf0\par
+\tab\par
+\tab\tab\tab\cf2 SELECT\cf0  \tab\tab\tab  - veri taban\f1\u305?\f0 ndan veri \'e7eker.\par
+\tab\tab\tab\cf2 UPDATE\cf0  \tab\tab\tab  - veri taban\f1\u305?\f0 ndaki veriyi g\'fcnceller.\par
+\tab\tab\tab\cf2 DELETE\cf0  \tab\tab\tab  - veri taban\f1\u305?\f0 ndaki veriyi siler.\par
+\tab\tab\tab\cf2 INSERT INTO\cf0  \tab  \f2\lang1055          \f0\lang31 - veri taban\f1\u305?\f0 na yeri veri ekler.\par
+\tab\tab\tab\cf2 CREATE DATABASE\cf0  \f2\lang1055   \f0\lang31 - yeni bir veri taban\f1\u305?\f0  yarat\f1\u305?\f0 r.\par
+\tab\tab\tab\cf2 ALTER DATABASE\cf0   \f2\lang1055     \f0\lang31 - veri taban\f1\u305?\f0 n\f1\u305?\f0  yeniden d\'fczenler.\par
+\tab\tab\tab\cf2 CREATE TABLE\cf0     \f2\lang1055        \f0\lang31 - yeni bir tablo yarat\f1\u305?\f0 r.\par
+\tab\tab\tab\cf2 ALTER TABLE\cf0     \f2\lang1055          \f0\lang31  - tabloyu yeniden d\'fczenler.\par
+\tab\tab\tab\cf2 DROP TABLE\cf0\tab     \f2\lang1055       \f0\lang31 - tablo siler\par
+\par
+\par
+\par
+\cf4 ~~~~~ SELECT ~~~~~\cf0\par
+\par
+SELECT; veri taban\f1\u305?\f0 ndan veri \'e7ekmek i\'e7in kullan\f1\u305?\f0 l\f1\u305?\f0 r.\par
+veri, bir tablo olarak d\'f6ner ve depolan\f1\u305?\f0 r.\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\f0\lang31\par
+\par
+\cf3 Se\'e7ti\f1\u287?\f0 imiz tablodan, datalara ait se\'e7ti\f1\u287?\f0 imiz s\'fctun bilgileri i\'e7in\par
+\cf0\par
+\cf2 SELECT\cf0  \cf8 CustomerID, CustomerName\cf0\par
+\cf2 FROM\cf0  \cf8 Customers\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\f0\lang31\par
+\cf0\par
+\cf3 Se\'e7ti\f1\u287?\f0 imiz tablodan, datalara ait t\'fcm s\'fctun bilgileri i\'e7in\par
+\cf0\par
+\cf2 SELECT\cf0  \cf8 *\cf0\par
+\cf2 FROM\cf0  \cf8 Customers\cf0\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+
+\pard\sl340\slmult0\par
+
+\pard\sl360\slmult1\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\cf4 ~~~~~ SELECT DISTINCT ~~~~~\cf0\par
+\par
+SELECT DISTINCT; sadece \ldblquote birbirinden farkl\f1\u305?\f0\rdblquote  de\f1\u287?\f0 erleri se\'e7er.\par
+Tekrar eden de\f1\u287?\f0 erleri 1 veri olarak se\'e7er.\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\f0\lang31\par
+\cf0\par
+\cf3 Hangi \'fclkelerden m\'fc\f1\'ba\f0 terilerin oldu\f1\u287?\f0 unu se\'e7mek i\'e7in\par
+\cf0 Her \'fclkeyi 1 kere g\'f6rmek istiyoruz.\par
+\par
+\cf2 SELECT\cf0  \cf2 DISTINCT\cf0  \cf8 Country\cf0\par
+\cf2 FROM\cf0  \cf8 Customers\cf0\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\f0\lang31\par
+\cf0\par
+\cf3 M\'fc\f1\'ba\f0 terilerin toplamda ka\'e7 farkl\f1\u305?\f0  \'fclkeden oldu\f1\u287?\f0 unu g\'f6rmek i\'e7in\cf0\par
+\par
+\cf2 SELECT\cf0  \cf4 Count\cf0 (\cf2 DISTINCT\cf0  \cf8 Country\cf3 )\cf0\par
+\cf2 FROM\cf0  \cf8 Customers\cf0\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\par
+\cf4 ~~~~~ WHERE ~~~~~\cf0\par
+\par
+\cf2 WHERE\cf0 ; kay\f1\u305?\f0 tlar\f1\u305?\f0  filtrelemek i\'e7in kullan\f1\u305?\f0 l\f1\u305?\f0 r.\par
+\par
+Belirtti\f1\u287?\f0 imiz ko\f1\'ba\f0 ula g\'f6re, verileri filtreler.\par
+\par
+Yaln\f1\u305?\f0 zca \cf2 SELECT\cf0  ile de\f1\u287?\f0 il; \cf2 UPDATE\cf0 , \cf2 DELETE\cf0  ile de kullan\f1\u305?\f0 labilir.\par
+\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\f0\lang31\par
+\par
+\cf3 Se\'e7ti\f1\u287?\f0 imiz tablodan, datalara filtre uygulayarak se\'e7mek i\'e7in\par
+\cf0\par
+\cf2 SELECT\cf0  \cf8 *\cf0\par
+\cf2 FROM\cf0  \cf8 Customers\par
+\cf2 WHERE\cf0  \cf9 Country\cf0  = \cf1\lquote Turkey\rquote\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf2 WHERE ile kullan\f1\u305?\f0 lan Operat\'f6rler:\cf0\par
+\tab\par
+\tab\tab\tab\cf2 =\cf0  \tab\tab\tab  - e\f1\'ba\f0 ittir\par
+\tab\tab\tab\cf2 >\cf0  \tab\tab\tab  - b\'fcy\'fckt\'fcr\par
+\tab\tab\tab\cf2 <\cf0  \tab\tab\tab  - k\'fc\'e7\'fckt\'fcr\par
+\tab\tab\tab\cf2 >=\cf0  \tab  \tab  \f2\lang1055          \f0\lang31 - e\f1\'ba\f0 it ya da b\'fcy\'fckt\'fcr\par
+\tab\tab\tab\cf2 <=\cf0  \tab\tab  \f2\lang1055          \f0\lang31 - e\f1\'ba\f0 it ya da k\'fc\'e7\'fckt\'fcr\par
+\tab\tab\tab\cf2 <>\cf0         \f2\lang1055                 \f0\lang31 - farkl\f1\u305?\f0  (e\f1\'ba\f0 it olmayan)\par
+\tab\tab\tab\cf2 BETWEEN\cf0    \f2\lang1055        \f0\lang31 - belirlenen veriler aral\f1\u305?\u287?\u305?\f0 nda \par
+\tab\tab\tab\cf2 LIKE\cf0       \f2\lang1055                \f0\lang31 - belirlenen bir formata uygun\par
+\tab\tab\tab\cf2 IN\cf0\tab        \f2\lang1055             \f0\lang31 - belirlenen \'e7oklu de\f1\u287?\f0 erler \par
+\par
+\par
+\par
+\cf2 T\'fcm WHERE Operat\'f6rleri i\'e7in birer sorgu \'f6rne\f1\u287?\f0 i yazal\f1\u305?\f0 m.\cf0\par
+\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\f0\lang31\par
+\par
+\cf3 Fiyat\f1\u305?\f0  20\cf0\rquote ye e\f1\'ba\f0 it olan \'fcr\'fcnleri se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Products\par
+\cf2 WHERE\cf0  \cf9 Price\cf0  = \cf3 20\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3 Fiyat\f1\u305?\f0  30\rquote dan\cf0  b\'fcy\'fck olan \'fcr\'fcnleri se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Products\par
+\cf2 WHERE\cf0  \cf9 Price\cf0  > \cf3 30\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3 Fiyat\f1\u305?\f0  100\cf0\rquote den k\'fc\'e7\'fck olan \'fcr\'fcnleri se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Products\par
+\cf2 WHERE\cf0  \cf9 Price\cf0  < \cf3 100\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3 Fiyat\f1\u305?\f0  30\cf0\rquote a e\f1\'ba\f0 it ya da 30\rquote dan b\'fcy\'fck olan \'fcr\'fcnleri se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Products\par
+\cf2 WHERE\cf0  \cf9 Price\cf0  >= \cf3 30\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3 Fiyat\f1\u305?\f0  100\cf0\rquote e e\f1\'ba\f0 it ya da 100\rquote den k\'fc\'e7\'fck olan \'fcr\'fcnleri se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Products\par
+\cf2 WHERE\cf0  \cf9 Price\cf0  <= \cf3 100\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3 Fiyat\f1\u305?\f0  50\cf0\rquote den farkl\f1\u305?\f0  olan \'fcr\'fcnleri se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Products\par
+\cf2 WHERE\cf0  \cf9 Price\cf0  <> \cf3 50\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3 Fiyat\f1\u305?\f0  50\cf0  ile 200 aras\f1\u305?\f0 nda olan \'fcr\'fcnleri se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Products\par
+\cf2 WHERE\cf0  \cf9 Price\cf0  \cf2 BETWEEN\cf0  50 \cf2 AND\cf0  200\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3\f1\u304?\f0 smi A harfi ile ba\f1\'ba\f0 layan M\'fc\f1\'ba\f0 terileri\cf0  se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Customers\par
+\cf2 WHERE\cf0  \cf9 CustomerName\cf0  \cf2 LIKE\cf0  \cf1\lquote a%\rquote\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\cf3\f1\'aa\f0 ehri Ankara ya da Istanbul olan M\'fc\f1\'ba\f0 terileri\cf0  se\'e7\par
+\cf4\par
+\cf2 SELECT\cf0  \cf8 *\cf0  \cf2 FROM\cf0  \cf8 Customers\par
+\cf2 WHERE\cf0  \cf9 City\cf0  \cf2 IN\cf0  \cf3 (\cf1\lquote Ankara\rquote\cf3 ,\cf1  \lquote Istanbul\rquote\cf3 );\cf1\par
+\cf0\par
+\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf0\f0\lang31\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 
