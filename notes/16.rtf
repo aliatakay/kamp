@@ -1,0 +1,156 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset238 Calibri;}{\f2\fnil\fcharset162 Calibri;}}
+{\colortbl ;\red251\green2\blue7;\red0\green0\blue255;\red0\green0\blue0;\red155\green0\blue211;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\f0\fs28\lang31 Bu dersten itibaren, kamp\f1\u305?\f0 n sonuna kadar Angular \'f6\f1\u287?\f0 renece\f1\u287?\f0 iz.\par
+\par
+Angular: web uygulamalar\f1\u305?\f0  geli\f1\'ba\f0 tirmek i\'e7in Google taraf\f1\u305?\f0 ndan geli\f1\'ba\f0 tirilen bir framework\rquote t\'fcr.\par
+\par
+Bu videoda sadece Angular temellerini \'f6\f1\u287?\f0 renece\f1\u287?\f0 iz. Geli\f1\'ba\f0 tirdi\f1\u287?\f0 imiz backend uygulamas\f1\u305?\f0 yla bir ba\f1\u287?\f0 lant\f1\u305?\f0  kurmayaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+GEREKS\f1\u304?\f0 N\f1\u304?\f0 MLER:\par
+\par
+1- IDE olarak Visual Studio Code kullanaca\f1\u287?\u305?\f0 z.\par
+2- node kurulumunun yap\f1\u305?\f0 lmas\f1\u305?\f0  gerekmektedir.\par
+\par
+\par
+node\rquote un bir s\'fcr\'fc \'f6zelli\f1\u287?\f0 i var.\par
+Fakat biz node\rquote u sadece 2 \'f6zelli\f1\u287?\f0 i i\'e7in kullanaca\f1\u287?\u305?\f0 z.\par
+\par
+1- npm (node package manager)\par
+2- server imkan\f1\u305?\f0  sa\f1\u287?\f0 lama \'f6zelli\f1\u287?\f0 i\par
+\par
+\par
+npm: javascript uygulamalar\f1\u305?\f0  i\'e7in paket y\'f6netimi yapmam\f1\u305?\f0 z\f1\u305?\f0  sa\f1\u287?\f0 layan ara\'e7t\f1\u305?\f0 r. \par
+dotnet ortam\f1\u305?\f0 ndaki nuget gib ayn\f1\u305?\f0  amaca hizmet etmektedir.\par
+\par
+node sayesinde geli\f1\'ba\f0 tirdi\f1\u287?\f0 imiz uygulamay\f1\u305?\f0  local\rquote de \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 p, taray\f1\u305?\f0 c\f1\u305?\f0 m\f1\u305?\f0 zda g\'f6r\'fcnt\'fcleyece\f1\u287?\f0 iz. Yani node bizim i\'e7in bir server g\'f6revi g\'f6recek.\par
+\par
+\par
+\emdash\emdash\emdash\emdash\emdash\emdash\emdash\par
+\cf1\par
+\cf2 i\f1\'ba\f0 lem:\cf1  Visual Studio Code uygulamas\f1\u305?\f0 n\f1\u305?\f0  a\'e7\f1\u305?\f0 yoruz.\par
+\par
+\cf2 i\f1\'ba\f0 lem:\cf1  Terminal > New Terminal\rquote e t\f1\u305?\f0 klayarak VSCode i\'e7inde yeni bir terminal a\'e7\f1\u305?\f0 yoruz.\par
+\cf2 amac\f1\u305?\f0 :\cf3  Gerekli paketleri indirmek ve ihtiyac\f1\u305?\f0 m\f1\u305?\f0 z olan komutlar\f1\u305?\f0  \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rmak i\'e7in VSCode i\'e7ine g\'f6m\'fcl\'fc olan terminal ekran\f1\u305?\f0 n\f1\u305?\f0  kullanaca\f1\u287?\u305?\f0 z.\cf1\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote Select Default Shell\rquote e t\f1\u305?\f0 klayarak, + tu\f1\'ba\f0 una bas\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0\f1\u304?\'ba\f0 letim sistemimizin default komut istemcisi se\'e7ilecektir.\par
+\tab\tab  Windows i\'e7in; cmd\par
+\tab\tab  MacOs i\'e7in; zsh\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote node --version\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 node\rquote a sahip olup olmad\f1\u305?\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  g\'f6rmek i\'e7in.\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote npm install -g @angular/cli\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf3 angular projeleri i\'e7in gerekli olan temel bile\f1\'ba\f0 enlerin yer ald\f1\u305?\u287?\u305?\f0  paketi \par
+(angular/cli) indirmek i\'e7in bu komutu yazd\f1\u305?\f0 k.\par
+\cf2 ayr\f1\u305?\f0 nt\f1\u305?\f0 :\cf0\par
+npm paketlerini temelde 2 seviyede kurar\f1\u305?\f0 z.\par
+local ya da global olarak kurar\f1\u305?\f0 z.\par
+-g komutu sayesine global olarak kuraca\f1\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  belirtmi\f1\'ba\f0  olduk.\par
+global demek; bir kez bu paketi kuruyoruz, bundan sonra bir daha bu paketi kurmam\f1\u305?\f0 za gerek kalmayacak demektir. \par
+bu komuttan sonra t\'fcm node sistemi, angular cli\rquote y\f1\u305?\f0  tan\f1\u305?\f0 yor olacak.\par
+kurulum vakit alabilir.\par
+bu komut daha \'f6nce mevcut bilgisayarda kullan\f1\u305?\f0 lm\f1\u305?\'ba\f0  olsa bile, mevcut angular/cli bile\f1\'ba\f0 enlerini g\'fcncelleyecektir. hi\'e7bir sorun \'e7\f1\u305?\f0 kmayacakt\f1\u305?\f0 r.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1 C dizininde \lquote kamp-frontend\rquote  ad\f1\u305?\f0 nda bir klas\'f6r olu\f1\'ba\f0 turuyoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 frontend projemizi buraya koyaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1 cd komutlar\f1\u305?\f0 yla\cf2  \cf1 VSCode terminalinde, frontend klas\'f6r yoluna gidiyoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 devam eden s\'fcre\'e7te yazaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z komutlar bu dizinde yaz\f1\u305?\f0 lacak.\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote ng new northwind\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 h\f1\u305?\f0 zl\f1\u305?\f0 ca bir angular \f1\'ba\f0 ablonu indirip, kurmak i\'e7in.\par
+\cf2 ayr\f1\u305?\f0 nt\f1\u305?\f0 :\cf0\par
+backend projemizde northwind isimli bir db kullanm\f1\u305?\'ba\f0 t\f1\u305?\f0 k.\par
+northwind bir e-ticaret projesine ait tablolara sahipti.\par
+bu projemizin ismini de northwind olarak olu\f1\'ba\f0 turuyoruz o y\'fczden.\par
+\cf2 not:\cf0\par
+bu komutu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rd\f1\u305?\f0 ktan sonra kar\f1\'ba\u305?\f0 m\f1\u305?\f0 za cevaplamam\f1\u305?\f0 z gereken birka\'e7 soru \'e7\f1\u305?\f0 kacak.\par
+bunlardan ilki\par
+Soru 1- Arka planda kullan\f1\u305?\f0 lacak dilin tip g\'fcvenlikli olmas\f1\u305?\f0 n\f1\u305?\f0  ister misiniz?\par
+\cf2 a\'e7\f1\u305?\f0 klama:\cf0  normalde javascript dilini kullan\f1\u305?\f0 yor angular ve di\f1\u287?\f0 er t\'fcm \'f6ny\'fcz k\'fct\'fcphaneleri. fakat javascript tip g\'fcvenli\f1\u287?\f0 i a\'e7\f1\u305?\f0 s\f1\u305?\f0 ndan zay\f1\u305?\f0 f bir dil.\par
+bu sebepten dolay\f1\u305?\f0 , ilk soruda, tip g\'fcvenli\f1\u287?\f0 ini kat\f1\u305?\f0  \f1\'ba\f0 ekilde uygulayan ve arka planda yine javascripte \'e7evrilen bir dil olan \ldblquote typescript\rdblquote  kullanmak isteyip istemedi\f1\u287?\f0 imizi soruyor. biz de bu soruya evet demek i\'e7in \ldblquote y\rdblquote  yaz\f1\u305?\f0 p, enter\rquote a bas\f1\u305?\f0 yoruz.\par
+\par
+\par
+Soru 2- angular routing kullanmak ister misiniz?\par
+\cf2 a\'e7\f1\u305?\f0 klama:\cf0  routing i\f1\'ba\f0 leri i\'e7in \'f6zel olarak angulardaki yap\f1\u305?\f0 y\f1\u305?\f0  kullanaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  belirterek evet diyoruz. ileride ayr\f1\u305?\f0 nt\f1\u305?\f0 l\f1\u305?\f0  \f1\'ba\f0 ekilde bu konuya de\f1\u287?\f0 inece\f1\u287?\f0 iz.\par
+\par
+Soru 3- hangi stylesheet format\f1\u305?\f0 n\f1\u305?\f0  kullanaca\f1\u287?\u305?\f0 m\f1\u305?\f0 z\f1\u305?\f0  soruyor?\par
+\cf2 a\'e7\f1\u305?\f0 klama:\cf0  default olarak css se\'e7ili oldu\f1\u287?\f0 u i\'e7in direkt enter\rquote a bas\f1\u305?\f0 yoruz.\par
+\par
+art\f1\u305?\f0 k bu ad\f1\u305?\f0 mdan sonra projemiz olu\f1\'ba\f0 maya ba\f1\'ba\f0 l\f1\u305?\f0 yor.\par
+C dizininde kamp-frontend isimli dosyaya gidersek, i\'e7inde northwind isimli klas\'f6r\'fc g\'f6r\'fcr\'fcz. bu klas\'f6r i\'e7inde gerekli angular dosyalar\f1\u305?\f0  olu\f1\'ba\f0 mu\f1\'ba\f0 tur. i\f1\'ba\f0 lemin bitmesi biraz zaman alabilir. terminal ekran\f1\u305?\f0 ndan takip edilebilir.\par
+\par
+\par
+\par
+\par
+not: bundan sonra yeni bir angular projesi olu\f1\'ba\f0 turmak istedi\f1\u287?\f0 imizde,\par
+terminal \'fczerinden istedi\f1\u287?\f0 imiz dizine gidiyoruz. ve ng new komutunu kullanarak direkt yeni bir proje yaratabiliriz.\par
+\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote cd northwind\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 proje klas\'f6r\'fcm\'fcze gitmek i\'e7in.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote code .\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 bulundu\f1\u287?\f0 umuz klas\'f6r\'fc yani projemizi vs code\rquote da a\'e7abilmek i\'e7in.\par
+\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1 new terminal diyerek terminali tekrar a\'e7\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 yeni bir vs code \'fczerinden projemiz a\'e7\f1\u305?\f0 ld\f1\u305?\u287?\u305?\f0  i\'e7in terminali tekrar a\'e7\f1\u305?\f0 yoruz.\par
+\par
+\par
+\cf2 i\f1\'ba\f0 lem: \cf1\lquote ng serve --open\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\cf2 amac\f1\u305?\f0 : \cf0 bu komutu kullanarak projemizi bir taray\f1\u305?\f0 c\f1\u305?\f0  \'fczerinde a\'e7\f1\u305?\f0 yoruz.\par
+\cf2 ayr\f1\u305?\f0 nt\f1\u305?\f0 :\cf0\par
+ng komutu angular cli\rquote\f1\u305?\f0 n temel komutudur.\par
+serve ise \ldblquote node\rquote u kullanarak yay\f1\u305?\f0 na al\rdblquote  demektir.\par
+open komutu ile de projeyi, bir taray\f1\u305?\f0 c\f1\u305?\f0  ile a\'e7mas\f1\u305?\f0 n\f1\u305?\f0  istemi\f1\'ba\f0  oluyoruz.\par
+\cf2 not:\cf0\par
+kar\f1\'ba\u305?\f0 m\f1\u305?\f0 za taray\f1\u305?\f0 c\f1\u305?\f0  se\f1\'ba\f0 enekleri \'e7\f1\u305?\f0 kabilir.\par
+google chrome se\'e7ip, a\'e7\f1\u305?\f0 lmas\f1\u305?\f0 n\f1\u305?\f0  sa\f1\u287?\f0 l\f1\u305?\f0 yoruz.\par
+\par
+\par
+sonu\'e7: angular projemizin temel \f1\'ba\f0 ablonu taray\f1\u305?\f0 c\f1\u305?\f0  \'fczerinden a\'e7\f1\u305?\f0 lm\f1\u305?\'ba\f0  oldu.\par
+taray\f1\u305?\f0 c\f1\u305?\f0 ya yans\f1\u305?\f0 yan t\'fcm \'e7\f1\u305?\f0 kt\f1\u305?\f0 lar, angular\rquote\f1\u305?\f0 n default i\'e7erikleridir.\par
+biz kendi kodlar\f1\u305?\f0 m\f1\u305?\f0 zla frontend projemizi \f1\'ba\f0 ekillendirece\f1\u287?\f0 iz.\par
+\par
+\par
+\cf2 not:\cf0\par
+normalde a\'e7\f1\u305?\f0 lan taray\f1\u305?\f0 c\f1\u305?\f0  da, localhost:4200 g\'f6r\'fcr\'fcz default olarak.\par
+fakat bizim sistemimizde bu port kullan\f1\u305?\f0 l\f1\u305?\f0 yor olabilir, uygun durumda olmayabilir.\par
+bu durumda, terminal ekran\f1\u305?\f0 na gelerek;\par
+\cf1\lquote ng serve --open --port 4201\rquote  komutunu \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 r\f1\u305?\f0 yoruz.\cf0\par
+\par
+bu \f1\'ba\f0 ekilde 4201 portu \'fczerinden projemizi \'e7al\f1\u305?\'ba\f0 t\f1\u305?\f0 rm\f1\u305?\'ba\f0  olaca\f1\u287?\u305?\f0 z.\par
+\par
+\par
+
+\pard\sl276\slmult1\qj\cf4\f2\lang1055 ------------------------------------------------------------------------------------------------\cf3\par
+
+\pard\sl276\slmult1\qc\cf4\fs36 1. B\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m Sonu\cf3\f1\fs28\par
+
+\pard\sl276\slmult1\qj\cf4\f2 ------------------------------------------------------------------------------------------------\par
+------------------------------------------------------------------------------------------------\cf3\par
+
+\pard\sl276\slmult1\qc\cf4\fs36 3. B\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m Sonu\cf3\f1\fs28\par
+
+\pard\sl276\slmult1\qj\cf4\f2 ------------------------------------------------------------------------------------------------\par
+
+\pard\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\cf0\par
+\par
+\par
+\par
+\par
+\f0\lang31\par
+\par
+\par
+\par
+}
+ 
