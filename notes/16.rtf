@@ -570,6 +570,188 @@ app klas\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055  alt\f1\u305?
 \pard\sl276\slmult1\qj\cf4\f2 ------------------------------------------------------------------------------------------------\par
 
 \pard\qj\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\cf6\par
+\par
+\cf0\f1\'aa\f2 imdi kendi componentlerimizi eklemeye ba\f1\'ba\f2 layaca\f1\u287?\u305?\f2 z.\par
+Temel hedefimiz, klasik bir e-ticaret sitesindeki gibi 3 adet b\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m olu\f1\'ba\f2 turmak.\par
+\f0\lang1033\'dc\f2\lang1055 stte navigation bar, solda kategori b\f0\lang1033\'f6\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055 m\f0\lang1033\'fc\f2\lang1055 , kalan k\f1\u305?\f2 s\f1\u305?\f2 mda da ekran bulunacak.\par
+Dolay\f1\u305?\f2 s\f1\u305?\f2 yla 3 adet temel componente ihtiyac\f1\u305?\f2 m\f1\u305?\f2 z var.\par
+\f1\u304?\f2 lerleyen zamanlarda bu say\f1\u305?\f2  artabilir.\par
+\cf6\par
+\par
+\cf0 Bir component olu\f1\'ba\f2 tural\f1\u305?\f2 m.\par
+components klas\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 ne sa\f1\u287?\f2  t\f1\u305?\f2 kl\f1\u305?\f2 yoruz.\par
+\tab "\cf6 open in integrated terminal\cf0 " diyoruz.\par
+\par
+Bizi otomatik olarak cmd ekran\f1\u305?\f2 nda o klas\f0\lang1033\'f6\f2\lang1055 re getirecek.\par
+\cf6\par
+\tab\tab\cf4 ng g component product\cf6\par
+\par
+\cf0 komutunu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 yoruz.\cf6\par
+\par
+\cf5 ng : Angular komutu\par
+g   : generate (olu\f1\'ba\f2 tur) komutu\par
+\cf6\par
+\cf0 Bize product isminde bir component olu\f1\'ba\f2 turacak.\par
+Component isimleri tekil olur.\par
+\cf6\par
+Bu komut \cf0 bize\cf6  4 adet dosya olu\f1\'ba\f2 turur.\par
+ts, html, css \cf0 ve\cf6  spec.ts \cf0 dosyalar\f1\u305?\f2 n\f1\u305?\f2 n hepsini olu\f1\'ba\f2 turur.\cf6\par
+\par
+\par
+\cf0 Bir tane de category componenti ekleyelim.\cf6\par
+\par
+\tab\tab\cf4 ng g component category\cf6\par
+\cf0\f0\lang31\par
+\par
+\f2\lang1055 Son olarak bir tane de navigation componenti ekleyelim.\cf6\par
+\par
+\tab\tab\cf4 ng g component navi\par
+\par
+\cf0\f1\'aa\f2 u an 3 adet componentimiz olu\f1\'ba\f2 tu.\cf4\par
+\par
+\par
+\par
+\cf6\fs36 app.module.ts\cf4\fs28\par
+\par
+\cf5 module\cf0 : birbiriyle ili\f1\'ba\f2 kili componentleri, directive'leri toplad\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 z yer demektir.\cf4\par
+\par
+\cf0 Bir projede farkl\f1\u305?\f2  mod\f0\lang1033\'fc\f2\lang1055 ller olabilir. \f0\lang1033\'d6\f2\lang1055 rne\f1\u287?\f2 in bir eticaret sitesinde kullan\f1\u305?\f2 c\f1\u305?\f2  mod\f0\lang1033\'fc\f2\lang1055 l\f0\lang1033\'fc\f2\lang1055  ve admin modul\f0\lang1033\'fc\f2\lang1055  olabilir.\par
+\par
+\f1\'aa\f2 imdi app.module.ts dosyam\f1\u305?\f2 za gelelim.\par
+\cf4\par
+\cf0 Burada g\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 yoruz ki, Angular bizim yerimize gerekli import ve declaration kodlar\f1\u305?\f2 n\f1\u305?\f2  olu\f1\'ba\f2 turmu\f1\'ba\f2  3 yeni componentimiz i\f0\lang1033\'e7\f2\lang1055 in de.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  cmd \f0\lang1033\'fc\f2\lang1055 zerinden angular cli kullanarak component olu\f1\'ba\f2 turma komutu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 rd\f1\u305?\f2 k, bu sayede Angular bizim i\f0\lang1033\'e7\f2\lang1055 in gerekli t\f0\lang1033\'fc\f2\lang1055 m temle tan\f1\u305?\f2 mlamalar\f1\u305?\f2  yapm\f1\u305?\'ba\f2 .\par
+\cf4\par
+\cf0 ------------------------------------------------------------------------------------------------\par
+\cf4\par
+\cf0\f1\'aa\f2 imdi bir componenti nas\f1\u305?\f2 l kullanaca\f1\u287?\u305?\f2 m\f1\u305?\f2 z \f0\lang1033\'f6\f1\lang1055\u287?\f2 renelim.\par
+\par
+app.component.html dosyas\f1\u305?\f2 na gelelim.\par
+\par
+Az \f0\lang1033\'f6\f2\lang1055 nce yazd\f1\u305?\u287?\u305?\f2 m\f1\u305?\f2 z gereksiz html kodlar\f1\u305?\f2 n\f1\u305?\f2 n tamam\f1\u305?\f2 n\f1\u305?\f2  yorum sat\f1\u305?\f2 r\f1\u305?\f2 na alal\f1\u305?\f2 m.\par
+\cf4\par
+\cf5 Kendi olu\f1\'ba\f2 turdu\f1\u287?\f2 umuz componentlerimizi app.component.html i\f0\lang1033\'e7\f2\lang1055 inde yazarak g\f0\lang1033\'f6\f2\lang1055 stermek istiyoruz. Bunun i\f0\lang1033\'e7\f2\lang1055 in yapmam\f1\u305?\f2 z gereken \f1\'ba\f2 ey; olu\f1\'ba\f2 turdu\f1\u287?\f2 umuz componentlerin selector isimlerini \f0\lang1033\'f6\f1\lang1055\u287?\f2 renmek.\cf4\par
+\par
+\cf5 Angular cli, verdi\f1\u287?\f2 imiz isimlerin ba\f1\'ba\u305?\f2 na otomatik olarak "\cf6 app\cf5 " ekler.\cf4\par
+\par
+\cf5 Yani selector'lar \f1\'ba\f2 u \f1\'ba\f2 ekilde olu\f1\'ba\f2 mu\f1\'ba\f2 tur;\par
+\tab\par
+\tab\tab\cf6 selector: 'app-product'\cf5\par
+\cf6\par
+\cf0\f0\lang31\par
+\f2\lang1055 Biz de app.component.html i\f0\lang1033\'e7\f2\lang1055 inde bu \f1\'ba\f2 ekilde etiket olarak kullanal\f1\u305?\f2 m.\par
+\par
+A\f1\'ba\f2 a\f1\u287?\u305?\f2 daki \f1\'ba\f2 ekilde ekliyoruz.\par
+\par
+\tab\tab <\cf5 app-navi\cf0 ></\cf5 app-navi\cf0 >\par
+\tab\tab <\cf5 app-category\cf0 ></\cf5 app-category\cf0 >\par
+\tab\tab <\cf5 app-product\cf0 ></\cf5 app-product\cf0 >\f0\lang31\par
+\par
+\par
+\f2\lang1055 Bu \f1\'ba\f2 ekilde biz bir component a\f1\u287?\f2 ac\f1\u305?\f2  olu\f1\'ba\f2 turmu\f1\'ba\f2  olduk.\par
+\par
+\cf6 En tepede kapsay\f1\u305?\f2 c\f1\u305?\f2  bir component var. (app.component)\f0\lang31\par
+\f2\lang1055 Onun alt\f1\u305?\f2 nda ayn\f1\u305?\f2  seviyede 3 component var. (navi,category,product)\f0\lang31\par
+\cf0\par
+\f2\lang1055 Kaydetti\f1\u287?\f2 imiz anda, 3 componentin de \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rebiliriz canl\f1\u305?\f2  projede.\par
+\par
+Component kullanma y\f0\lang1033\'f6\f2\lang1055 ntemini de \f0\lang1033\'f6\f1\lang1055\u287?\f2 renmi\f1\'ba\f2  ve uygulam\f1\u305?\'ba\f2  olduk.\par
+\par
+------------------------------------------------------------------------------------------------\f0\lang31\par
+\par
+\f1\lang1055\'aa\f2 imdi daha iyi html geli\f1\'ba\f2 tirmek amac\f1\u305?\f2 yla css i\f0\lang1033\'e7\f2\lang1055 in bootstrap kullanaca\f1\u287?\u305?\f2 z.\f0\lang31\par
+\par
+\f2\lang1055 bootstap/docs sitesinde, Components alt\f1\u305?\f2 nda navbar kodunu buluyoruz  ve kopyal\f1\u305?\f2 yoruz.\par
+\par
+navi componentimizin html'ine yap\f1\u305?\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 yoruz.\par
+\par
+Bu haliyle kaydetti\f1\u287?\f2 imizde, \f0\lang1033\'e7\f2\lang1055 irkin bir \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2  alaca\f1\u287?\u305?\f2 z.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  hen\f0\lang1033\'fc\f2\lang1055 z bootstrap css'leri devreye girmedi.\par
+Sadece temel html etiketleri \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\u305?\f2 yor.\par
+\par
+JavaScript projelerinde bir paket kullanmak istiyorsak, o pakete ait t\f0\lang1033\'fc\f2\lang1055 m kodlar projemizde bulunmal\f1\u305?\f2 d\f1\u305?\f2 r.\par
+\par
+Bu y\f0\lang1033\'fc\f2\lang1055 zden cmd'ye geliyoruz. (path'in \f0\lang1033\'f6\f2\lang1055 nemi yok)\par
+\cf6\par
+npm install bootstrap \cf0 komutunu \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\f2 r\f1\u305?\f2 yoruz.\par
+\cf6\par
+\cf0 Bu komuttan sonra, node_modules i\f0\lang1033\'e7\f2\lang1055 ine bootstrap klas\f0\lang1033\'f6\f2\lang1055 r\f0\lang1033\'fc\f2\lang1055 n\f0\lang1033\'fc\f2\lang1055 n eklendi\f1\u287?\f2 ini g\f0\lang1033\'f6\f2\lang1055 rebiliriz.\par
+\par
+\f1\u304?\f2 ndirdik ama hala projede kullanm\f1\u305?\f2 yoruz.\par
+Bunu yapabilmek i\f0\lang1033\'e7\f2\lang1055 in \cf6 angular.json \cf0 dosyas\f1\u305?\f2 na gitmemiz laz\f1\u305?\f2 m.\par
+\cf6\par
+\par
+\fs36 angular.json\fs28\par
+\par
+\cf0 bu dosya, Angular projemizle ilgili konfig\f0\lang1033\'fc\f2\lang1055 rasyon yeridir.\cf6\par
+\par
+\par
+\cf0\f1\'ba\f2 imdi bu dosyay\f1\u305?\f2  a\f0\lang1033\'e7\f1\lang1055\u305?\f2 yoruz.\par
+"\cf6 styles\cf0 " arrayini buluyoruz.\par
+\cf6\par
+\cf4\tab "styles": [\par
+              \cf6 "./node_modules/bootstrap/dist/css/bootstrap.min.css",\cf4\par
+              "src/styles.css"\par
+            ],\par
+\cf6\par
+\cf0 K\f1\u305?\f2 rm\f1\u305?\f2 z\f1\u305?\f2  sat\f1\u305?\f2 r\f1\u305?\f2  yaz\f1\u305?\f2 yoruz.\par
+Projemizdeki kullan\f1\u305?\f2 lacak olan css dosyas\f1\u305?\f2 na ek olarak bootstrap dosyas\f1\u305?\f2 n\f1\u305?\f2 n da referans\f1\u305?\f2 n\f1\u305?\f2  diziye ekledik.\f0\lang31\par
+\f2\lang1055\par
+\cf5 NOT:\f0\lang1033\par
+\f2\lang1055 .min.css dosyas\f1\u305?\f2 , normal .css dosyas\f1\u305?\f2 n\f1\u305?\f2 n tamamen ayn\f1\u305?\f2 s\f1\u305?\f2 d\f1\u305?\f2 r.\par
+Dosyadaki bo\f1\'ba\f2 luklar silindi\f1\u287?\f2 i i\f0\lang1033\'e7\f2\lang1055 in boyutu daha k\f0\lang1033\'fc\'e7\'fc\f2\lang1055 kt\f0\lang1033\'fc\f2\lang1055 r, o y\f0\lang1033\'fc\f2\lang1055 zden min olan\f1\u305?\f2  tercih ettik.\par
+\cf0\par
+\par
+\cf6\f1\'aa\f2 imdi projeyi kaydetti\f1\u287?\f2 imiz zaman, yine proje \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2 s\f1\u305?\f2 na bootstrap s\f1\u305?\f2 n\f1\u305?\f2 flar\f1\u305?\f2 n\f1\u305?\f2 n yans\f1\u305?\f2 mad\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rece\f1\u287?\f2 iz.\par
+\f0\lang1033\'c7\'fc\f2\lang1055 nk\f0\lang1033\'fc\f2\lang1055  projeye yeni bir paket ekledi\f1\u287?\f2 imizde yapmam\f1\u305?\f2 z gereken bir i\f1\'ba\f2 lem oluyor.\par
+\cf0\par
+Bu durumda node isimli terminali a\f0\lang1033\'e7\f1\lang1055\u305?\f2 yoruz.\par
+\f0\lang1033\'c7\f2\lang1055 al\f1\u305?\'ba\f2 an uygulamay\f1\u305?\f2  ctrl + C diyerek durduruyoruz.\par
+Ve sonra "ng serve --open" tekrar yay\f1\u305?\f2 na al\f1\u305?\f2 yoruz.\par
+\par
+\cf5 NOT:\f0\lang1033\par
+\f2\lang1055 projeye bir paket ekledi\f1\u287?\f2 imizde, \f0\lang1033\'e7\f1\lang1055\u305?\f2 kt\f1\u305?\f2  \f0\lang1033\'fc\f2\lang1055 zerinde sonu\f0\lang1033\'e7\f2\lang1055 lar\f1\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rebilmek i\f0\lang1033\'e7\f2\lang1055 in \f0\lang1033\'f6\f2\lang1055 nce durdurup, sonra tekrar yay\f1\u305?\f2 na almam\f1\u305?\f2 z gerekiyor.\par
+\cf0\par
+Art\f1\u305?\f2 k html kodlar\f1\u305?\f2 m\f1\u305?\f2 zdaki bootstrap s\f1\u305?\f2 n\f1\u305?\f2 flar\f1\u305?\f2 n\f1\u305?\f2 n \f0\lang1033\'e7\f2\lang1055 al\f1\u305?\'ba\f2 t\f1\u305?\u287?\u305?\f2 n\f1\u305?\f2  g\f0\lang1033\'f6\f2\lang1055 rebiliriz.\par
+\par
+------------------------------------------------------------------------------------------------\par
+\par
+app.component.ts dosyas\f1\u305?\f2 n\f1\u305?\f2  a\f0\lang1033\'e7\f2\lang1055 al\f1\u305?\f2 m.\par
+\par
+products listesinin komple keselim.\par
+\par
+product.component.ts i\f0\lang1033\'e7\f2\lang1055 inde, export class i\f0\lang1033\'e7\f2\lang1055 ine yap\f1\u305?\'ba\f2 t\f1\u305?\f2 ral\f1\u305?\f2 m.\par
+\par
+\par
+\par
+product.component.html i\f0\lang1033\'e7\f2\lang1055 ine gelelim.\par
+html kodlar\f1\u305?\f2 m\f1\u305?\f2 z\f1\u305?\f2  yazaca\f1\u287?\u305?\f2 z.\f0\lang1033\par
+\par
+\f2\lang1055\tab\tab\tab\f0\lang1033 <\cf5 table\cf0 >\par
+   \f2\lang1055\tab\tab\tab\tab\f0\lang1033  <\cf5 tr\cf0 >\par
+        \f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+\f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+\f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+\f2\lang1055\tab\tab\tab\tab\tab\f0\lang1033 <\cf5 td\cf0 ></\cf5 td\cf0 >\par
+    \f2\lang1055\tab\tab\tab\tab\f0\lang1033 </\cf5 tr\cf0 >\par
+\f2\lang1055\tab\tab\tab\f0\lang1033 </\cf5 table\cf0 >\par
+\par
+\cf6\f2\lang1055 table\cf0 : tablo\par
+\cf6 tr\cf0 : sat\f1\u305?\f2 r\par
+\cf6 td\cf0 : s\f0\lang1033\'fc\f2\lang1055 tun\par
+\par
+Bu sayede herbir sat\f1\u305?\f2 r\f1\u305?\f2 n 4 adet s\f0\lang1033\'fc\f2\lang1055 tunu oluyor.\par
+\par
+Kodu tamamlayal\f1\u305?\f2 m.\par
+\par
+\tab\tab <table class="table">\par
+    \tab\tab\tab <tr *ngFor="let product of products">\par
+        \tab\tab\tab\tab <td>\{\{ product.productId \}\}</td>\par
+        \tab\tab\tab\tab <td>\{\{ product.productName \}\}</td>\par
+        \tab\tab\tab\tab <td>\{\{ product.categoryId \}\}</td>\par
+        \tab\tab\tab\tab <td>\{\{ product.unitPrice \}\}</td>\par
+    \tab\tab\tab </tr>\par
+\tab\tab </table>\par
 
 \pard\sl276\slmult1\qj\cf4 ------------------------------------------------------------------------------------------------\cf3\par
 
