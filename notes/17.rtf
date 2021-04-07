@@ -1,5 +1,5 @@
-{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}}
-{\colortbl ;\red255\green0\blue0;\red0\green77\blue187;\red155\green0\blue211;\red0\green0\blue0;}
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat\deflang1055{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fnil Consolas;}{\f4\fnil\fcharset162 Consolas;}}
+{\colortbl ;\red255\green0\blue0;\red0\green77\blue187;\red155\green0\blue211;\red0\green0\blue0;\red0\green0\blue255;\red163\green21\blue21;}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
 \pard\sl276\slmult1\qj\f0\fs28 Ge\f1\lang1033\'e7\f0\lang1055 en derste projemize, bootstrap'in 4.6.0 versiyonunu kurmu\f2\'ba\f0 tuk.\par
 Bu derste versiyon g\f1\lang1033\'fc\f0\lang1055 ncellemesi yapaca\f2\u287?\u305?\f0 z.\par
@@ -207,6 +207,300 @@ arrayin i\f1\lang1033\'e7\f0\lang1055 ini de siliyoruz.\cf0\par
 \cf3 ------------------------------------------------------------------------------------------------\cf4\par
 
 \pard\sl276\slmult1\qc\cf3\fs36 1. B\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 m Sonu\cf4\f2\fs28\par
+
+\pard\sl276\slmult1\qj\cf3\f0 ------------------------------------------------------------------------------------------------\par
+\cf0\par
+\f2\'aa\f0 imdi WebAPI'sinden d\f1\lang1033\'f6\f0\lang1055 nen veri modelini, frontend taraf\f2\u305?\f0 nda modelleyece\f2\u287?\f0 iz.\par
+\par
+models alt\f2\u305?\f0 nda bir dosya olu\f2\'ba\f0 turuyoruz.\par
+\par
+\tab dosya ad\f2\u305?\f0  => productResponseModel.ts\par
+\par
+Bize bir product response (yan\f2\u305?\f0 t\f2\u305?\f0 ) gelece\f2\u287?\f0 i i\f1\lang1033\'e7\f0\lang1055 in. dosya ismini bu \f2\'ba\f0 ekilde verdik.\par
+\par
+productResponseModel.ts dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\par
+\par
+\tab\cf3 import \{ Product \} from './product';\par
+\par
+\tab export interface ProductResponseModel \{\par
+  \tab\tab data: Product[];\par
+  \tab\tab success: boolean;\par
+  \tab\tab message: string;\par
+\tab\}\par
+\cf0\par
+Bu \f2\'ba\f0 ekilde veri modelimizi olu\f2\'ba\f0 turuyoruz.\par
+\par
+Fakat biz backend taraf\f2\u305?\f0 nda Data Result yap\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  t\f1\lang1033\'fc\f0\lang1055 m nesneler i\f1\lang1033\'e7\f0\lang1055 in ayn\f2\u305?\f0  yap\f2\u305?\f0 da kurmu\f2\'ba\f0 tuk.\par
+Hepsinde data-success-message de\f2\u287?\f0 erleri mevcuttu.\par
+Bu sebeple, biz nesne y\f1\lang1033\'f6\f0\lang1055 nelimli kodlamay\f2\u305?\f0  sevdi\f2\u287?\f0 imiz i\f1\lang1033\'e7\f0\lang1055 in, frontend taraf\f2\u305?\f0 nda da Modellemeyi bu \f2\'ba\f0 ekilde kurgulayabiliriz.\par
+Yani madem her s\f2\u305?\f0 n\f2\u305?\f0 f i\f1\lang1033\'e7\f0\lang1055 in data modeller ayn\f2\u305?\f0 , o halde success ve message i\f1\lang1033\'e7\f0\lang1055 in ayr\f2\u305?\f0  bir .ts model yazal\f2\u305?\f0 m.\par
+\par
+\par
+models alt\f2\u305?\f0 nda bir dosya olu\f2\'ba\f0 turuyoruz.\par
+\par
+\tab dosya ad\f2\u305?\f0  => responseModel.ts\par
+\par
+Bu dosyaya success-message model tan\f2\u305?\f0 mlar\f2\u305?\f0 n\f2\u305?\f0  yapal\f2\u305?\f0 m.\par
+\par
+\tab\cf3 export interface ResponseModel \{\par
+  \tab\tab success: boolean;\par
+  \tab\tab message: string;\par
+\tab\}\par
+\cf0\par
+\par
+O halde az \f1\lang1033\'f6\f0\lang1055 nce productResponseModel'in i\f1\lang1033\'e7\f0\lang1055 ini d\f1\lang1033\'fc\f0\lang1055 zenlememiz gerekiyor.\par
+\par
+productResponseModel.ts dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\par
+\par
+\tab\cf3 import \{ Product \} from './product';\par
+
+\pard\li720\sl276\slmult1\qj import \{ ResponseModel \} from './responseModel';\par
+
+\pard\sl276\slmult1\qj\par
+\tab export interface ProductResponseModel extends ResponseModel \tab\{\par
+  \tab\tab data: Product[];\par
+\tab\}\par
+\cf0\par
+responseModel interface'ini, productResponseModel interface'ine extend diyerek inherit ediyoruz.\par
+\par
+NOT: asl\f2\u305?\f0 nda burada interface'i bir BASE olarak kullan\f2\u305?\f0 yoruz. O y\f1\lang1033\'fc\f0\lang1055 zden inherit olarak veriyoruz. implemente ETM\f2\u304?\f0 YORUZ. base s\f2\u305?\f0 n\f2\u305?\f0 f olarak kullanaca\f2\u287?\u305?\f0 z. \par
+\par
+Bu sayede, success ve message model tan\f2\u305?\f0 mlar\f2\u305?\f0 na art\f2\u305?\f0 k responseModel interface'inden eri\f2\'ba\f0 ece\f2\u287?\f0 iz.\par
+\par
+Gelecekte tan\f2\u305?\f0 mlayaca\f2\u287?\u305?\f0 m\f2\u305?\f0 z di\f2\u287?\f0 er model s\f2\u305?\f0 n\f2\u305?\f0 flar\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in de bu responseModel interface'ini kullanabilece\f2\u287?\f0 iz. \par
+\f1\lang1033\'d6\f0\lang1055 rne\f2\u287?\f0 in; categoryResponseModel vb. model tan\f2\u305?\f0 mlar\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 in.\par
+\par
+\par
+\par
+\f2\'aa\f0 imdi benzer responseModel dosyalar\f2\u305?\f0 n\f2\u305?\f0  category i\f1\lang1033\'e7\f0\lang1055 in yapal\f2\u305?\f0 m.\par
+\par
+category.ts olu\f2\'ba\f0 turuyoruz.\par
+i\f1\lang1033\'e7\f0\lang1055 ine property tan\f2\u305?\f0 mlar\f2\u305?\f0 n\f2\u305?\f0  yaz\f2\u305?\f0 yoruz. (interface kullanarak)\par
+Tiplerini de tan\f2\u305?\f0 mlamay\f2\u305?\f0  unutmuyoruz.\par
+\par
+\f2\'aa\f0 imdi category i\f1\lang1033\'e7\f0\lang1055 in de responseModel olu\f2\'ba\f0 tural\f2\u305?\f0 m.\par
+\par
+ResponseModel base interface'inden inherit alarak yaz\f2\u305?\f0 yoruz.\par
+Ve i\f1\lang1033\'e7\f0\lang1055 inde sadece data:Category[] tan\f2\u305?\f0 mlamam\f2\u305?\f0 z yetiyor.\par
+\par
+\par
+\cf2 NOT: base interface'i inherit ediyoruz. implemente etmiyoruz.\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  temel s\f2\u305?\f0 n\f2\u305?\f0 ftan, elde etmek istedi\f2\u287?\f0 imiz modeller var.\par
+Inherit ederek, base interface'teki model tan\f2\u305?\f0 mlar\f2\u305?\f0 na ula\f2\'ba\f0 m\f2\u305?\'ba\f0  oluyoruz. Bu sebepten implemente etmeye gerek yok.\par
+\cf0\par
+\f2\'aa\f0 imdi\par
+\par
+product.component.ts dosyas\f2\u305?\f0 n\f2\u305?\f0  a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\par
+\par
+\cf1 Amac\f2\u305?\f0 m\f2\u305?\f0 z: API'den gelen datay\f2\u305?\f0  kar\f2\'ba\u305?\f0 lamaya \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 mak.\cf0\par
+\par
+\f1\lang1033\'d6\f0\lang1055 ncelikle ProductComponent class yap\f2\u305?\f0 s\f2\u305?\f0 n\f2\u305?\f0  bir inceleyelim.\par
+G\f1\lang1033\'f6\f0\lang1055 rd\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 z gibi s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 m\f2\u305?\f0 za, InIn\f2\u305?\f0 t isimli bir interface implemente edilmi\f2\'ba\f0 .\par
+Bu interface sayesinde gelen, "ngOnIn\f2\u305?\f0 t" isimli metodu da zaten class i\f1\lang1033\'e7\f0\lang1055 inde g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yoruz.\par
+\par
+Bu metot, component \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\u287?\u305?\f0  anda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 an metottur.\par
+Ba\f2\'ba\f0 ka bir deyi\f2\'ba\f0 le component, DOM'a yerle\f2\'ba\f0 ti\f2\u287?\f0 i anda \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\u305?\f0 r.\par
+\par
+\cf2 NOT: Burada bilmemiz gereken bir mant\f2\u305?\f0 k vard\f2\u305?\f0 r.\par
+Bu ngOnInit metodu, ctor de\f2\u287?\f0 ildir.\par
+ctor, t\f1\lang1033\'fc\f0\lang1055 m programlama dillerinde, sadece ve sadece bir datay\f2\u305?\f0  initialize etmek i\f1\lang1033\'e7\f0\lang1055 in kullan\f2\u305?\f0 lmal\f2\u305?\f0 d\f2\u305?\f0 r. ba\f2\'ba\f0 ka ama\f1\lang1033\'e7\f0\lang1055 lar i\f1\lang1033\'e7\f0\lang1055 in kullan\f2\u305?\f0 lmamal\f2\u305?\f0 d\f2\u305?\f0 r.\par
+yani; dependency injection yapabiliriz, bir ba\f2\'ba\f0 lang\f2\u305?\f1\lang1033\'e7\f0\lang1055  datas\f2\u305?\f0 n\f2\u305?\f0  newlemek i\f1\lang1033\'e7\f0\lang1055 in kullan\f2\u305?\f0 l\f2\u305?\f0 r ctor.\par
+\par
+O y\f1\lang1033\'fc\f0\lang1055 zden buradaki ngOnInit metodunun ctor ile alakas\f2\u305?\f0  yoktur.\par
+bu metot, ilgili component "DOM'a yerle\f2\'ba\f0 ti\f2\u287?\f0 i an"da \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 acak olan kodlar\f2\u305?\f0 n yaz\f2\u305?\f0 laca\f2\u287?\u305?\f0  bir metottur.\par
+\cf0\par
+\f2\'aa\f0 imdi backend taraf\f2\u305?\f0 ndan API'den gelen datay\f2\u305?\f0  kar\f2\'ba\u305?\f0 lamak i\f1\lang1033\'e7\f0\lang1055 in kod yazaca\f2\u287?\u305?\f0 z.\par
+Bu kodlar\f2\u305?\f0  do\f2\u287?\f0 rudan ngOnInit i\f1\lang1033\'e7\f0\lang1055 inde yazm\f2\u305?\f0 yoruz. \f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  metodun i\f1\lang1033\'e7\f0\lang1055 i spagetti koda d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f2\lang1055\'ba\f0 mesin.\par
+Bu sebepten ayr\f2\u305?\f0  bir metot yazaca\f2\u287?\u305?\f0 z bu i\f2\'ba\f0  i\f1\lang1033\'e7\f0\lang1055 in.\par
+\par
+\cf1 getProducts isimli bir metot yazal\f2\u305?\f0 m.\cf0\par
+\par
+\f2\'aa\f0 imdi API'ye ba\f2\u287?\f0 lanabilmek i\f1\lang1033\'e7\f0\lang1055 in basit bir kod yazaca\f2\u287?\u305?\f0 z.\par
+Bu kodu \f1\lang1033\'f6\f2\lang1055\u287?\f0 renece\f2\u287?\f0 iz.\par
+Peki bir API'ye nas\f2\u305?\f0 l ba\f2\u287?\f0 lan\f2\u305?\f0 l\f2\u305?\f0 r?\par
+Angular'da bir API'ye ba\f2\u287?\f0 lanabilmek i\f1\lang1033\'e7\f0\lang1055 in HttpClient denilen bir nesneyi kullanaca\f2\u287?\u305?\f0 z. Bu nesne Angular'da tan\f2\u305?\f0 ml\f2\u305?\f0 d\f2\u305?\f0 r.\par
+\par
+Api'ye ba\f2\u287?\f0 lanmak i\f1\lang1033\'e7\f0\lang1055 in gerekli import'u yapal\f2\u305?\f0 m.\par
+\par
+\cf1 import \{ HttpClient \} from '@angular/common/http';\par
+\cf0\par
+Bunun vas\f2\u305?\f0 tas\f2\u305?\f0 yla art\f2\u305?\f0 k bir backend'e istekte bulunabiliyoruz.\par
+Yani bir API call olu\f2\'ba\f0 turabiliyoruz. Api \f1\lang1033\'e7\f0\lang1055 a\f2\u287?\f0 r\f2\u305?\f0 s\f2\u305?\f0 .\par
+\par
+import etti\f2\u287?\f0 imiz HttpClient'\f2\u305?\f0  kullanabilmek i\f1\lang1033\'e7\f0\lang1055 in onu enjekte etmemiz gerekiyor.\par
+Bu sebeple;\par
+\par
+  constructor(private httpClient:HttpClient) \{\}\par
+\par
+ctor i\f1\lang1033\'e7\f0\lang1055 inde "HttpClient" tipinde bir de\f2\u287?\f0 i\f2\'ba\f0 ken yaz\f2\u305?\f0 yoruz.\par
+\par
+\cf2 NOT: c#tan farkl\f2\u305?\f0  olarak, JavaScript d\f1\lang1033\'fc\f0\lang1055 nyas\f2\u305?\f0 nda, ctor'a parametre olarak verilen de\f2\u287?\f0 i\f2\'ba\f0 ken, class i\f1\lang1033\'e7\f0\lang1055 inde do\f2\u287?\f0 rudan kullan\f2\u305?\f0 labilir. class i\f1\lang1033\'e7\f0\lang1055 inde ayr\f2\u305?\f0 ca bir de\f2\u287?\f0 i\f2\'ba\f0 ken yarat\f2\u305?\f0 p, atama yapmam\f2\u305?\f0 za gerek yoktur.\cf0\par
+\par
+Peki neden private tan\f2\u305?\f0 mlad\f2\u305?\f0 k?\par
+\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  private olarak belirtmeseydik, bu s\f2\u305?\f0 n\f2\u305?\f0 ftan bir instance \f1\lang1033\'fc\f0\lang1055 retildi\f2\u287?\f0 inde, bu httpClient de\f2\u287?\f0 i\f2\'ba\f0 kenine eri\f2\'ba\f0 ebilirlerdi.\par
+Fakat biz bunu istemiyoruz. Sadece tan\f2\u305?\f0 mland\f2\u305?\u287?\u305?\f0  s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n i\f1\lang1033\'e7\f0\lang1055 inde eri\f2\'ba\f0 ilebilir olmas\f2\u305?\f0 n\f2\u305?\f0  istiyoruz. O y\f1\lang1033\'fc\f0\lang1055 zden private tan\f2\u305?\f0 mlad\f2\u305?\f0 k.\par
+\par
+\par
+\f2\'aa\f0 imdi bu sayede do\f2\u287?\f0 rudan this.httpClient diyerek eri\f2\'ba\f0 ebiliyoruz.\par
+O halde;\par
+\par
+\tab\tab getProducts() \{\par
+    \tab\tab\tab this.httpClient.get()\par
+ \tab\tab  \}\par
+\par
+yukar\f2\u305?\f0 daki \f2\'ba\f0 ekilde do\f2\u287?\f0 rudan httpClient de\f2\u287?\f0 i\f2\'ba\f0 kenini kullanabiliyoruz.\par
+get metodu ile get iste\f2\u287?\f0 i yapm\f2\u305?\'ba\f0  olaca\f2\u287?\u305?\f0 z backend'e.\par
+get metodu parametre olarak string istiyor.\par
+i\f2\'ba\f0 te bu string de ayn\f2\u305?\f0  Postmande istek yapt\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 zda yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z gibi, localhost adresini bizden istiyor.\par
+\par
+Yani => {{\field{\*\fldinst{HYPERLINK https://localhost:44368/api/products/getall }}{\fldrslt{https://localhost:44368/api/products/getall\ul0\cf0}}}}\f0\fs28\par
+\f2\'ba\f0 eklinde bir url olacak.\par
+\par
+Biz de postmanden bu adresi kopyal\f2\u305?\f0 yoruz.\par
+Yani backend \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\u287?\u305?\f0 nda a\f1\lang1033\'e7\f2\lang1055\u305?\f0 lan url'yi kopyal\f2\u305?\f0 yoruz. Taray\f2\u305?\f0 c\f2\u305?\f0 dan da alabiliriz.\par
+\par
+Bu url'yi alarak bir de\f2\u287?\f0 i\f2\'ba\f0 ken'e at\f2\u305?\f0 yoruz.\par
+\par
+  apiUrl = '{{\field{\*\fldinst{HYPERLINK https://localhost:44368/api/products/getall }}{\fldrslt{https://localhost:44368/api/products/getall\ul0\cf0}}}}\f0\fs28 ';\par
+\par
+Bu string'i de az \f1\lang1033\'f6\f0\lang1055 nce yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z httpClient nesnesinin get metoduna veriyoruz.\par
+\par
+\cf1\tab getProducts() \{\par
+    \tab\tab this.httpClient.get(this.apiUrl);\par
+  \tab\}\par
+\cf0\par
+NOT: apiUrl'i kullan\f2\u305?\f0 rken, ba\f2\'ba\u305?\f0 na this eklemek zorunday\f2\u305?\f0 z.\par
+this, bulundu\f2\u287?\f0 umuz class'\f2\u305?\f0  ifade eder. Bu belirteci kullanmak zorunday\f2\u305?\f0 z.\par
+\par
+\par
+Kodu yukardaki k\f2\u305?\f0 rm\f2\u305?\f0 z\f2\u305?\f0  metot \f2\'ba\f0 eklinde yazd\f2\u305?\f0 k.\par
+\par
+\cf1 apiUrl bize bir data verecek.\cf0\par
+\par
+Bu default tan\f2\u305?\f0 mlamada bize gelecek olan data "any" olarak kabul edilir.\par
+Fakat biz bunu "httpClient" s\f2\u305?\f0 n\f2\u305?\f0 f\f2\u305?\f0 n\f2\u305?\f0 n generic \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 ini kullanarak, data model'i belirtece\f2\u287?\f0 iz.\par
+\par
+\cf1\tab getProducts() \{\par
+    \tab      this.httpClient.get<ProductResponseModel>(this.apiUrl);\par
+ \tab  \}\par
+\cf0\par
+\cf2\f2\u304?\'ba\f0 te bu \f2\'ba\f0 ekilde generic olarak, gelen datay\f2\u305?\f0  ProductResponseModel'e mapleyece\f2\u287?\f0 imizi belirtmi\f2\'ba\f0  olduk. \par
+Data d\f1\lang1033\'f6\f0\lang1055 nd\f1\lang1033\'fc\f0\lang1055 kten sonra, ProductResponseModel tipinde maplenecek.\par
+Yani gelen de\f2\u287?\f0 eri Parse etmi\f2\'ba\f0  oluyoruz asl\f2\u305?\f0 nda.\cf0\par
+\par
+FAKAT KODUN BU HAL\f2\u304?\f0  DE H\f2\u304?\f1\lang1033\'c7\f0\lang1055 B\f2\u304?\f0 R ANLAM \f2\u304?\f0 FADE ETMEYECEK.\par
+\f1\lang1033\'c7\'dc\f0\lang1055 NK\f1\lang1033\'dc\f0\lang1055  ASYNC OLMASI GEREKMEKTED\f2\u304?\f0 R.\par
+\f2\u304?\'ba\f0 te bu nedenden dolay\f2\u305?\f0 , \cf1 subscribe(); metodu ile devam ettirmemiz gerekmektedir. Bu metot da arka planda observable isimli bir tasar\f2\u305?\f0 m desenini kullanmaktad\f2\u305?\f0 r. Buna neden ihtiya\f1\lang1033\'e7\f0\lang1055  duydu\f2\u287?\f0 umuzu birazdan anlayaca\f2\u287?\u305?\f0 z.\par
+\par
+\cf0\par
+\cf3\tab getProducts( ) \{\par
+    \tab     this.httpClient\par
+     \tab    .get<ProductResponseModel>(this.apiUrl)\par
+      \tab    .subscribe((response) => \{ \});\par
+  \tab\}\cf0\tab\par
+\par
+Gelen yan\f2\u305?\f0 t da, i\f1\lang1033\'e7\f0\lang1055 eride kulland\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z "\cf1 response\cf0 " ile e\f2\'ba\f0 le\f2\'ba\f0 iyor.\par
+\par
+\f2\'aa\f0 u anda kontrol etti\f2\u287?\f0 imizde de g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yoruz ki, response bir "productResponseModel" tipte de\f2\u287?\f0 er d\f1\lang1033\'f6\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055 yor.\par
+\par
+\cf3 getProducts() \{\par
+    this.httpClient\par
+        .get<ProductResponseModel>(this.apiUrl)\par
+        .subscribe((response) => \{\par
+            this.products = response.data;\par
+        \});\par
+  \}\par
+\cf0\par
+O halde productResponseModel tipinde bir de\f2\u287?\f0 er d\f1\lang1033\'f6\f0\lang1055 nd\f1\lang1033\'fc\f2\lang1055\u287?\f1\lang1033\'fc\f0\lang1055 ne g\f1\lang1033\'f6\f0\lang1055 re 3 adet \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 i olmal\f2\u305?\f0 . Biz \f1\lang1033\'f6\f0\lang1055 yle tan\f2\u305?\f0 mlam\f2\u305?\'ba\f0 t\f2\u305?\f0 k \f1\lang1033\'e7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055 .\par
+data-success-message \f1\lang1033\'f6\f0\lang1055 zellikleri olmal\f2\u305?\f0 .\par
+sonuna nokta koyarsak zaten bu 3 \f1\lang1033\'f6\f0\lang1055 zelli\f2\u287?\f0 in geldi\f2\u287?\f0 ini g\f1\lang1033\'f6\f0\lang1055 rebiliriz.\par
+Bu sebepten, response ile gelen bu verinin datas\f2\u305?\f0 n\f2\u305?\f0 , class\f2\u305?\f0 m\f2\u305?\f0 zdaki array'e atabiliriz yukar\f2\u305?\f0 da g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 len koddaki gibi.\par
+\par
+\f2\'aa\f0 imdilik response kodu ilkel bir \f2\'ba\f0 ekilde yazd\f2\u305?\f0 k.\par
+Bu metodu ntOnInit metodunda \f1\lang1033\'e7\f0\lang1055 a\f2\u287?\u305?\f0 ral\f2\u305?\f0 m.\par
+\par
+
+\pard\li720\sl276\slmult1\qj\cf3   ngOnInit(): void \{\par
+       this.getProducts();\par
+  \}\par
+
+\pard\sl276\slmult1\qj\cf0\par
+ \par
+html dosyas\f2\u305?\f0 ndaki eksik sat\f2\u305?\f0 r\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  da tamamlayal\f2\u305?\f0 m.\par
+\par
+\cf3 <tr *ngFor="let product of products">\par
+        <td>\{\{ product.productId \}\}</td>\par
+        <td>\{\{ product.productName \}\}</td>\par
+        <td>\{\{ product.categoryId \}\}</td>\par
+        <td>\{\{ product.unitPrice \}\}</td>\cf1\par
+        <td>\{\{ product.unitsInStock \}\}</td>\par
+\cf3     </tr>\par
+\cf0\par
+\par
+Bu haliyle, \f1\lang1033\'e7\f2\lang1055\u305?\f0 kt\f2\u305?\f0  ekran\f2\u305?\f0 m\f2\u305?\f0 zda hala hata al\f2\u305?\f0 yor olaca\f2\u287?\u305?\f0 z.\par
+\par
+\f1\lang1033\'c7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055  HttpClient'a kar\f2\'ba\u305?\f0 l\f2\u305?\f0 k gelen bir instance bulam\f2\u305?\f0 yoruz program.\par
+Bu sebepten \f2\'ba\f0 u an hata al\f2\u305?\f0 yoruz.\par
+\par
+\f2\'aa\f0 imdi biz Angular'\f2\u305?\f0 n kendi injection modul'\f1\lang1033\'fc\f0\lang1055 n\f1\lang1033\'fc\f0\lang1055  kullanaca\f2\u287?\u305?\f0 z.\par
+\cf1\par
+app.module.ts dosyas\f2\u305?\f0 na geliyoruz.\par
+\cf0\par
+\f2\u304?\'ba\f0 te bu dosyada, HttpClientModule import etmemiz gerekiyor.\par
+\par
+bu app.module.ts dosyas\f2\u305?\f0  \f1\lang1033\'e7\f0\lang1055 ok \f1\lang1033\'f6\f0\lang1055 nemli.\par
+\par
+NOT: Proje i\f1\lang1033\'e7\f0\lang1055 inde kendi tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z Componentleri\par
+\cf1 @NgModule(\{\par
+  declarations: [\par
+    AppComponent,\par
+    ProductComponent,\par
+    CategoryComponent,\par
+    NaviComponent,\par
+  ],\par
+\cf0\par
+Bunun i\f1\lang1033\'e7\f0\lang1055 ine ekliyoruz.\par
+\par
+D\f2\u305?\'ba\f0 ar\f2\u305?\f0 dan kulland\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z modulleri de\par
+\cf1 imports: [BrowserModule, AppRoutingModule, HttpClientModule],\par
+\cf0 bunun i\f1\lang1033\'e7\f0\lang1055 ine ekliyoruz.\par
+\par
+Bu sayede injection yapan yap\f2\u305?\f0 y\f2\u305?\f0  eklemi\f2\'ba\f0  olduk.\par
+\par
+\f2\'aa\u304?\f0 MD\f2\u304?\f0  HALA PROJE \f1\lang1033\'c7\f0\lang1055 ALI\f2\'aa\f0 MAYACAK, ALDI\f2\u286?\f0 IMIZ HATALAR \f2\'aa\f0 U AN DE\f2\u286?\u304?\'aa\f0 ECEK. \f2\'aa\u304?\f0 MD\f2\u304?\f0  BU HATALARI G\f2\u304?\f0 DERECE\f2\u286?\u304?\f0 Z.\par
+\par
+Hatada \cf1 CORS\cf0  diye bir \f2\'ba\f0 ey g\f1\lang1033\'f6\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 yorsak e\f2\u287?\f0 er, backend taraf\f2\u305?\f0 nda gerekli eri\f2\'ba\f0 im konfig\f1\lang1033\'fc\f0\lang1055 rasyonlar\f2\u305?\f0  yap\f2\u305?\f0 lmam\f2\u305?\'ba\f0  demektir.\par
+\par
+Farkl\f2\u305?\f0  bir kaynaktan istek yapmaya \f1\lang1033\'e7\f0\lang1055 al\f2\u305?\'ba\f0 t\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z i\f1\lang1033\'e7\f0\lang1055 in, taray\f2\u305?\f0 c\f2\u305?\f0 m\f2\u305?\f0 z g\f1\lang1033\'fc\f0\lang1055 venlik a\f1\lang1033\'e7\f2\lang1055\u305?\f0 s\f2\u305?\f0 ndan soruyor.\par
+\par
+\cf1\f2\'aa\f0 imdi backend projemizi a\f1\lang1033\'e7\f2\lang1055\u305?\f0 yoruz.\par
+Startup.cs dosyas\f2\u305?\f0 na geliyoruz.\par
+\cf0\par
+\cf2 services.Cors();\cf0\par
+diyerek gerekli injection'\f2\u305?\f0  yap\f2\u305?\f0 yoruz servislerimiz i\f1\lang1033\'e7\f0\lang1055 in.\par
+Bu yapmam\f2\u305?\f0 z gereken ilk ad\f2\u305?\f0 md\f2\u305?\f0 .\par
+\par
+\par
+\f2\'ba\f0 imdi configure k\f2\u305?\f0 sm\f2\u305?\f0 na gelelim.\par
+Burada yazd\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z yer \f1\lang1033\'f6\f0\lang1055 nemli. s\f2\u305?\f0 ralama \f1\lang1033\'f6\f0\lang1055 nemli \f1\lang1033\'e7\'fc\f0\lang1055 nk\f1\lang1033\'fc\f0\lang1055 .\par
+\par
+\cf4\f3\fs19       app.UseCors(builder => builder.WithOrigins(\cf6 "http://localhost:4200"\cf4 ));\par
+\cf0\f0\fs28\par
+Bu kodun anlam\f2\u305?\f0 ; bana localhost:4200 \f1\lang1033\'fc\f0\lang1055 zerinden istek gelirse, bu iste\f2\u287?\f0 i kabul et demektir.\par
+\par
+Peki ne t\f1\lang1033\'fc\f0\lang1055 r istekleri kabul edeyim? sorusuna da cevap vermek i\f1\lang1033\'e7\f0\lang1055 in sonuna bir metot daha ekliyoruz.\par
+\par
+\cf4\f3\fs19  app.UseCors(builder => builder.WithOrigins(\cf6 "http://localhost:4200"\cf4 )\par
+\f4\tab\tab\tab\tab\tab\tab\f3 .AllowAnyHeader());\par
+\cf0\f0\fs28\par
+Bu metot sayesinde "bu adersten gelen HER T\f1\lang1033\'dc\f0\lang1055 RL\f1\lang1033\'dc\f0\lang1055  \f2\u304?\f0 STE\f2\u286?\f0 E izin ver" demi\f2\'ba\f0  oluyoruz. yani get, post vs. her t\f1\lang1033\'fc\f0\lang1055 rl\f1\lang1033\'fc\f0\lang1055  izni veriyoruz anlam\f2\u305?\f0 na gelir.\par
+\par
+\cf2 Bu hareketimizden sonra, frontend ekran\f2\u305?\f0 m\f2\u305?\f0 zda Product'lar\f2\u305?\f0 n listelendi\f2\u287?\f0 ini g\f1\lang1033\'f6\f0\lang1055 rece\f2\u287?\f0 iz.\cf0\par
+\par
+\cf3 ------------------------------------------------------------------------------------------------\cf4\par
+
+\pard\sl276\slmult1\qc\cf3\fs36 2. B\f1\lang1033\'f6\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 m Sonu\cf4\f2\fs28\par
 
 \pard\sl276\slmult1\qj\cf3\f0 ------------------------------------------------------------------------------------------------\par
 \cf0\par
